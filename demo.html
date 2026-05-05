@@ -225,7 +225,7 @@ body {
 /* ============ SCREEN 2: MAIN (HOME) ============ */
 .main-top-bar {
   position: relative; z-index: 1;
-  display: flex; align-items: center; justify-content: flex-end;
+  display: flex; align-items: center; justify-content: space-between;
   padding: 44px 14px 0;
   flex-shrink: 0; gap: 8px;
 }
@@ -1477,6 +1477,12 @@ body {
 
         <div class="main-top-bar">
           <div class="top-bar-group">
+            <button onclick="goToVault()" style="display:flex;align-items:center;gap:5px;background:rgba(114,28,168,0.85);border:none;border-radius:20px;padding:5px 10px;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px rgba(114,28,168,0.45)">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="white" stroke="none"><path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M3 6h4v12H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z" fill="white" opacity="0.7"/></svg>
+              <span style="font-size:0.7rem;font-weight:700;color:white" id="lblVaultBtn">Vault</span>
+            </button>
+          </div>
+          <div class="top-bar-group">
             <button class="sos-pill" onclick="openSosScreen()">SOS</button>
             <button class="settings-btn" onclick="openSettings()">⚙️</button>
           </div>
@@ -1505,6 +1511,7 @@ body {
               <span class="round-btn-label" id="lblReserveBtn">Reserve</span>
             </button>
           </div>
+
         </div>
 
         <!-- NEW BAG SHEET -->
@@ -1689,8 +1696,8 @@ body {
           </button>
           <div class="ios-nav-title" id="lblNavSOS">Emergency Contacts</div>
           <div style="display:flex;gap:6px">
-            <button class="nav-circle-btn sos-nav-add" onclick="openNewContact()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><circle cx="10" cy="8" r="4"/><path d="M2 21a8 8 0 0 1 13.3-6"/><circle cx="19" cy="18" r="3" fill="currentColor" stroke="none"/><path d="M19 15v6M16 18h6" stroke="white" stroke-width="2"/></svg>
+            <button class="nav-circle-btn sos-nav-add" onclick="showDemoModal('iCloud Sync', 'Your emergency contacts sync automatically across all your devices with iCloud. Available in the full app.')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.5"/></svg>
             </button>
             <button class="nav-circle-btn sos-nav-close" onclick="goBack('screen-main')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -1712,7 +1719,7 @@ body {
 
         <div class="sos-contacts-list" id="sosContactsList" style="display:none"></div>
 
-        <button class="sos-fab" onclick="openNewContact()">+</button>
+        <button class="sos-fab" onclick="openNewContact()" style="right:auto;left:50%;transform:translateX(-50%)">+</button>
       </div>
 
       <!-- ===== SCREEN 5: RESERVE ===== -->
@@ -1754,8 +1761,8 @@ body {
           </button>
           <div class="ios-nav-title" id="lblNavReserve">Reserve</div>
           <div style="display:flex;gap:6px">
-            <button class="nav-circle-btn" onclick="changePersonCount()" title="Edit person count">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#4ecb71" stroke-width="2" stroke-linecap="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/><circle cx="19" cy="10" r="3" fill="#4ecb71" stroke="none"/><path d="M19 8v4M17 10h4" stroke="white" stroke-width="1.5"/></svg>
+            <button class="nav-circle-btn" onclick="showDemoModal('iCloud Sync', 'Your Reserve list syncs automatically across all your devices with iCloud. Available in the full app.')" title="Sync">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
             </button>
             <button class="nav-circle-btn" onclick="showDemoModal('Share as PDF', 'Export your Reserve list as a PDF and share it anywhere.')" title="Share">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
@@ -2078,6 +2085,65 @@ body {
         </div>
       </div>
 
+      <!-- ===== SCREEN: DOCUMENT VAULT ===== -->
+      <div class="screen hidden" id="screen-vault">
+        <div style="background:linear-gradient(160deg,#0d0820 0%,#130c2a 55%,#0d0820 100%);flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;">
+          <div style="position:absolute;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.18) 0%,transparent 70%);top:-70px;left:-70px;pointer-events:none"></div>
+          <div style="position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(100,40,200,0.12) 0%,transparent 70%);bottom:-40px;right:-30px;pointer-events:none"></div>
+
+          <div class="ios-nav-bar" style="padding:44px 10px 4px">
+            <button class="nav-circle-btn" onclick="goBack('screen-main')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="ios-nav-title" id="vaultNavTitle">Document Vault</div>
+            <button class="nav-circle-btn" style="border-color:rgba(124,58,237,0.4);background:rgba(124,58,237,0.12);color:#a78bfa" onclick="showDemoModal('Add Document', 'Photograph or import PDFs of your IDs, passports and insurance cards. Protected by Face ID in the full app.')">+</button>
+          </div>
+
+          <!-- Lock overlay -->
+          <div id="vaultLockOverlay" style="position:absolute;inset:0;z-index:50;background:rgba(13,8,32,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;cursor:pointer" onclick="unlockVault()">
+            <div style="width:84px;height:84px;border-radius:50%;background:rgba(124,58,237,0.18);border:1.5px solid rgba(124,58,237,0.45);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(124,58,237,0.2)">
+              <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            </div>
+            <div style="font-size:1rem;font-weight:700;color:white">Protected by Face ID</div>
+            <div style="font-size:0.75rem;color:rgba(232,240,255,0.45);text-align:center;padding:0 48px;line-height:1.55">Your documents are encrypted and accessible only to you</div>
+            <div style="margin-top:6px;display:flex;align-items:center;gap:7px;background:rgba(124,58,237,0.18);border:1px solid rgba(124,58,237,0.38);border-radius:22px;padding:9px 20px">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span style="font-size:0.8rem;font-weight:700;color:#a78bfa">Tap to authenticate</span>
+            </div>
+          </div>
+
+          <!-- Vault content (revealed after Face ID) -->
+          <div id="vaultContent" style="flex:1;overflow-y:auto;padding:8px 14px 24px;display:none;">
+            <div style="font-size:0.65rem;font-weight:600;color:rgba(232,240,255,0.38);text-transform:uppercase;letter-spacing:0.8px;margin:10px 0 8px 4px">Identity</div>
+            <div style="background:rgba(124,58,237,0.07);border:1px solid rgba(124,58,237,0.18);border-radius:14px;overflow:hidden;margin-bottom:12px">
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-bottom:1px solid rgba(255,255,255,0.06);cursor:pointer" onclick="showDemoModal('Document Preview', 'View, share or delete your documents securely in the full app.')">
+                <div style="width:40px;height:40px;border-radius:10px;background:rgba(124,58,237,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h10M7 12h6"/></svg></div>
+                <div style="flex:1"><div style="font-size:0.85rem;font-weight:600;color:white">Passport</div><div style="font-size:0.67rem;color:rgba(232,240,255,0.42);margin-top:2px">PDF · Added May 2026</div></div>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="rgba(232,240,255,0.25)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 14px;cursor:pointer" onclick="showDemoModal('Document Preview', 'View, share or delete your documents securely in the full app.')">
+                <div style="width:40px;height:40px;border-radius:10px;background:rgba(124,58,237,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h10M7 12h6"/></svg></div>
+                <div style="flex:1"><div style="font-size:0.85rem;font-weight:600;color:white">National ID Card</div><div style="font-size:0.67rem;color:rgba(232,240,255,0.42);margin-top:2px">Photo · Added May 2026</div></div>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="rgba(232,240,255,0.25)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </div>
+            <div style="font-size:0.65rem;font-weight:600;color:rgba(232,240,255,0.38);text-transform:uppercase;letter-spacing:0.8px;margin:10px 0 8px 4px">Insurance</div>
+            <div style="background:rgba(124,58,237,0.07);border:1px solid rgba(124,58,237,0.18);border-radius:14px;overflow:hidden;margin-bottom:12px">
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-bottom:1px solid rgba(255,255,255,0.06);cursor:pointer" onclick="showDemoModal('Document Preview', 'View, share or delete your documents securely in the full app.')">
+                <div style="width:40px;height:40px;border-radius:10px;background:rgba(124,58,237,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h10M7 12h6"/></svg></div>
+                <div style="flex:1"><div style="font-size:0.85rem;font-weight:600;color:white">Health Insurance Card</div><div style="font-size:0.67rem;color:rgba(232,240,255,0.42);margin-top:2px">Photo · Added May 2026</div></div>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="rgba(232,240,255,0.25)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 14px;cursor:pointer" onclick="showDemoModal('Document Preview', 'View, share or delete your documents securely in the full app.')">
+                <div style="width:40px;height:40px;border-radius:10px;background:rgba(124,58,237,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h10M7 12h6"/></svg></div>
+                <div style="flex:1"><div style="font-size:0.85rem;font-weight:600;color:white">Car Insurance</div><div style="font-size:0.67rem;color:rgba(232,240,255,0.42);margin-top:2px">PDF · Added April 2026</div></div>
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="rgba(232,240,255,0.25)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /screen-container -->
 
     <!-- DEMO FEATURE MODAL (sits above all screens) -->
@@ -2379,6 +2445,7 @@ function showScreen(id, pushHistory = true) {
 }
 
 function goBack(targetId) {
+  if (currentScreen === 'screen-vault') lockVault();
   const current = document.getElementById(currentScreen);
   current.classList.add('hidden');
   current.classList.remove('slide-left');
@@ -2391,6 +2458,25 @@ function goBack(targetId) {
   if (targetId === 'screen-main') updateBagProgress();
   if (targetId === 'screen-reserve') { renderReserveCatGrid(); updateReserveStats(); }
   if (targetId === 'screen-sos') renderSosContacts();
+}
+
+function goToVault() {
+  lockVault();
+  showScreen('screen-vault');
+}
+
+function lockVault() {
+  const overlay = document.getElementById('vaultLockOverlay');
+  const content = document.getElementById('vaultContent');
+  if (overlay) overlay.style.display = 'flex';
+  if (content) content.style.display = 'none';
+}
+
+function unlockVault() {
+  const overlay = document.getElementById('vaultLockOverlay');
+  const content = document.getElementById('vaultContent');
+  if (overlay) overlay.style.display = 'none';
+  if (content) content.style.display = 'block';
 }
 
 // ============ BAGS STATE ============
