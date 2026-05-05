@@ -1116,6 +1116,10 @@ function setLang(lang) {
   document.getElementById('langSwitcher').classList.remove('open');
   document.documentElement.lang = lang;
   localStorage.setItem('gobag_lang', lang);
+  const ssDir = lang === 'fr' ? 'screenshotsfr' : 'screenshots';
+  document.querySelectorAll('.screenshot-frame img').forEach((img, i) => {
+    img.src = ssDir + '/' + (i + 1) + '.png';
+  });
 }
 
 (function() {
