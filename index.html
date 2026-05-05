@@ -317,6 +317,8 @@
         .key-feature:nth-child(2) .key-feature-icon { --kf-glow: rgba(255,107,26,0.35);  animation-delay: 1.1s,  0.75s; }
         .key-feature:nth-child(3) .key-feature-icon { --kf-glow: rgba(0,180,216,0.35);   animation-delay: 2.25s, 1.5s;  }
         .key-feature:nth-child(4) .key-feature-icon { --kf-glow: rgba(52,199,89,0.35);   animation-delay: 3.35s, 2.25s; }
+        .key-feature:nth-child(5) .key-feature-icon { --kf-glow: rgba(124,58,237,0.35);  animation-delay: 4.5s,  3s;    }
+        .key-feature:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: calc(50% - 10px); margin: 0 auto; }
         .key-feature-icon svg { width: 26px; height: 26px; }
         .key-feature h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
         .key-feature p { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
@@ -700,6 +702,15 @@
                     <p data-i18n="kfeat4_p">Share your preparation plan with the whole family. Everyone stays in sync — one subscription covers up to 5 members.</p>
                 </div>
             </div>
+            <div class="key-feature reveal d5">
+                <div class="key-feature-icon" style="background:rgba(124,58,237,0.15)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h10M7 12h6"/><path d="M15 16l2 2 4-4" stroke-width="2"/></svg>
+                </div>
+                <div>
+                    <h3 data-i18n="kfeat5_title">Document Vault</h3>
+                    <p data-i18n="kfeat5_p">Securely store photos and PDFs of your IDs, passports and insurance cards — protected by Face ID. Accessible only to you.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -849,6 +860,7 @@ const T = {
     kfeat2_title:"Expiry & Low Stock Alerts",kfeat2_p:"Get notified automatically before items expire or fall below your minimum stock level. Never be caught unprepared.",
     kfeat3_title:"Sync across all iOS devices",kfeat3_p:"Your go bags and reserve stay up to date on every iPhone and iPad you own — automatically, via iCloud.",
     kfeat4_title:"Family sharing",kfeat4_p:"Share your preparation plan with the whole family. Everyone stays in sync — one subscription covers up to 5 members.",
+    kfeat5_title:"Document Vault",kfeat5_p:"Securely store photos and PDFs of your IDs, passports and insurance cards — protected by Face ID. Accessible only to you.",
     how_label:"How it works",how_title:"Ready in minutes",how_sub:"Set up your emergency kit in just a few steps.",
     step1_h:"Choose your language",step1_p:"The app adapts to your language immediately, no settings needed.",
     step2_h:"Build your go bag",step2_p:"Add items across categories. Use the built-in list or create custom items.",
@@ -877,6 +889,7 @@ const T = {
     kfeat2_title:"Alertes expiration & stock bas",kfeat2_p:"Recevez des notifications automatiques avant expiration ou lorsque le stock passe sous votre minimum. Toujours prêt.",
     kfeat3_title:"Sync sur tous vos appareils iOS",kfeat3_p:"Vos sacs et réserves restent à jour sur chaque iPhone et iPad — automatiquement, via iCloud.",
     kfeat4_title:"Partage familial",kfeat4_p:"Partagez votre plan de préparation avec toute la famille. Tout le monde est synchronisé — un abonnement pour jusqu'à 5 membres.",
+    kfeat5_title:"Coffre à Documents",kfeat5_p:"Stockez en sécurité photos et PDF de vos pièces d'identité, passeports et cartes d'assurance — protégés par Face ID. Accessible uniquement à vous.",
     how_label:"Comment ça marche",how_title:"Prêt en quelques minutes",how_sub:"Configurez votre kit d'urgence en quelques étapes.",
     step1_h:"Choisissez votre langue",step1_p:"L'application s'adapte immédiatement à votre langue, sans réglages.",
     step2_h:"Préparez votre sac",step2_p:"Ajoutez des articles par catégorie. Utilisez la liste intégrée ou créez vos propres articles.",
@@ -905,6 +918,7 @@ const T = {
     kfeat2_title:"Ablauf- & Bestandswarnungen",kfeat2_p:"Erhalte automatisch Benachrichtigungen vor Ablaufdaten oder wenn der Bestand unter dein Minimum fällt. Nie wieder unvorbereitet.",
     kfeat3_title:"Sync auf allen iOS-Geräten",kfeat3_p:"Deine Rucksäcke und Vorräte bleiben auf jedem iPhone und iPad aktuell — automatisch, via iCloud.",
     kfeat4_title:"Familienfreigabe",kfeat4_p:"Teile deinen Vorbereitungsplan mit der ganzen Familie. Alle bleiben synchron — ein Abo für bis zu 5 Mitglieder.",
+    kfeat5_title:"Dokumententresor",kfeat5_p:"Speichere Fotos und PDFs deiner Ausweise, Reisepässe und Versicherungskarten sicher — geschützt durch Face ID. Nur für dich zugänglich.",
     how_label:"So funktioniert es",how_title:"In Minuten einsatzbereit",how_sub:"Richte dein Notfallkit in wenigen Schritten ein.",
     step1_h:"Wähle deine Sprache",step1_p:"Die App passt sich sofort an deine Sprache an, ohne Einstellungen.",
     step2_h:"Baue deinen Rucksack",step2_p:"Füge Artikel nach Kategorien hinzu. Nutze die integrierte Liste oder erstelle eigene Artikel.",
@@ -933,6 +947,7 @@ const T = {
     kfeat2_title:"Alertas de caducidad & stock bajo",kfeat2_p:"Recibe notificaciones automáticas antes de que los artículos caduquen o bajen del mínimo. Nunca te pilles desprevenido.",
     kfeat3_title:"Sync en todos tus dispositivos iOS",kfeat3_p:"Tus bolsas y reserva se mantienen actualizadas en cada iPhone e iPad — automáticamente, via iCloud.",
     kfeat4_title:"Compartir en familia",kfeat4_p:"Comparte tu plan con toda la familia. Todos sincronizados — una suscripción para hasta 5 miembros.",
+    kfeat5_title:"Bóveda de Documentos",kfeat5_p:"Guarda fotos y PDFs de tus documentos, pasaportes y tarjetas de seguro de forma segura — protegidos por Face ID. Solo accesible para ti.",
     how_label:"Cómo funciona",how_title:"Listo en minutos",how_sub:"Configura tu kit de emergencia en pocos pasos.",
     step1_h:"Elige tu idioma",step1_p:"La app se adapta a tu idioma inmediatamente, sin configuraciones.",
     step2_h:"Construye tu bolsa",step2_p:"Añade artículos por categorías. Usa la lista integrada o crea artículos personalizados.",
@@ -961,6 +976,7 @@ const T = {
     kfeat2_title:"Avvisi scadenza & scorte basse",kfeat2_p:"Ricevi notifiche automatiche prima che gli articoli scadano o scendano sotto il minimo. Mai impreparato.",
     kfeat3_title:"Sync su tutti i dispositivi iOS",kfeat3_p:"I tuoi kit e la riserva restano aggiornati su ogni iPhone e iPad — automaticamente, via iCloud.",
     kfeat4_title:"Condivisione familiare",kfeat4_p:"Condividi il piano con tutta la famiglia. Tutti sincronizzati — un abbonamento per fino a 5 membri.",
+    kfeat5_title:"Archivio Documenti",kfeat5_p:"Archivia foto e PDF di carte d'identità, passaporti e tessere sanitarie — protetti da Face ID. Accessibile solo a te.",
     how_label:"Come funziona",how_title:"Pronto in pochi minuti",how_sub:"Configura il tuo kit d'emergenza in pochi passaggi.",
     step1_h:"Scegli la tua lingua",step1_p:"L'app si adatta immediatamente alla tua lingua, senza configurazioni.",
     step2_h:"Costruisci il tuo zaino",step2_p:"Aggiungi articoli per categoria. Usa la lista integrata o crea articoli personalizzati.",
@@ -989,6 +1005,7 @@ const T = {
     kfeat2_title:"Alertas de validade & stock baixo",kfeat2_p:"Receba notificações automáticas antes de os artigos expirarem ou quando o stock baixar do mínimo. Esteja sempre preparado.",
     kfeat3_title:"Sincronização em todos os dispositivos iOS",kfeat3_p:"Os seus dados sincronizam automaticamente via iCloud em todos os seus iPhone e iPad.",
     kfeat4_title:"Partilha familiar",kfeat4_p:"Com o Apple Family Sharing, uma subscrição cobre toda a família — sem compras adicionais.",
+    kfeat5_title:"Cofre de Documentos",kfeat5_p:"Guarde fotos e PDFs dos seus documentos, passaportes e cartões de seguro — protegidos pelo Face ID. Acessível apenas a si.",
     how_label:"Como funciona",how_title:"Pronto em minutos",how_sub:"Configure o seu kit de emergência em poucos passos.",
     step1_h:"Escolha o seu idioma",step1_p:"A app adapta-se imediatamente ao seu idioma, sem configurações.",
     step2_h:"Monte a sua mochila",step2_p:"Adicione artigos por categorias. Use a lista integrada ou crie artigos personalizados.",
@@ -1017,6 +1034,7 @@ const T = {
     kfeat2_title:"Уведомления о сроках и нехватке",kfeat2_p:"Автоматические напоминания до истечения сроков годности и при падении запасов ниже минимума. Всегда в курсе.",
     kfeat3_title:"Синхронизация на всех устройствах iOS",kfeat3_p:"Данные синхронизируются через iCloud на всех ваших iPhone и iPad автоматически.",
     kfeat4_title:"Семейный доступ",kfeat4_p:"С Apple Family Sharing одна подписка GoBag+ охватывает всю семью — без дополнительных покупок.",
+    kfeat5_title:"Хранилище документов",kfeat5_p:"Безопасно храните фото и PDF ваших удостоверений, паспортов и страховых карт — защищено Face ID. Доступно только вам.",
     how_label:"Как это работает",how_title:"Готово за несколько минут",how_sub:"Настройте аварийный набор за несколько простых шагов.",
     step1_h:"Выберите язык",step1_p:"Приложение сразу адаптируется к вашему языку — никаких дополнительных настроек.",
     step2_h:"Соберите чемоданчик",step2_p:"Добавляйте предметы по категориям. Используйте готовый список или создавайте свои пункты.",
@@ -1036,14 +1054,36 @@ const T = {
   }
 };
 
-// Force icon refresh — bypasses aggressive favicon cache
+// Load icon, round corners on canvas, set as favicon + nav logo
 (function() {
-  var iconFile = 'screenshots/gobag-icon.png';
-  var ts = '?v=' + Date.now();
-  var favicon = document.getElementById('favicon');
-  if (favicon) { favicon.href = iconFile + ts; }
-  var navLogo = document.getElementById('navLogo');
-  if (navLogo) { navLogo.src = iconFile + ts; }
+  var iconFile = 'screenshots/gobag-icon.png?v=' + Date.now();
+  var img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = function() {
+    var size = 64, r = 14;
+    var c = document.createElement('canvas');
+    c.width = c.height = size;
+    var ctx = c.getContext('2d');
+    ctx.beginPath();
+    ctx.moveTo(r, 0);
+    ctx.lineTo(size - r, 0);
+    ctx.quadraticCurveTo(size, 0, size, r);
+    ctx.lineTo(size, size - r);
+    ctx.quadraticCurveTo(size, size, size - r, size);
+    ctx.lineTo(r, size);
+    ctx.quadraticCurveTo(0, size, 0, size - r);
+    ctx.lineTo(0, r);
+    ctx.quadraticCurveTo(0, 0, r, 0);
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(img, 0, 0, size, size);
+    var dataURL = c.toDataURL('image/png');
+    var favicon = document.getElementById('favicon');
+    if (favicon) { favicon.href = dataURL; }
+    var navLogo = document.getElementById('navLogo');
+    if (navLogo) { navLogo.src = dataURL; }
+  };
+  img.src = iconFile;
 })();
 
 const FLAGS = {en:'🇬🇧',fr:'🇫🇷',de:'🇩🇪',es:'🇪🇸',it:'🇮🇹',pt:'🇵🇹',ru:'🇷🇺'};
