@@ -1062,6 +1062,86 @@ body {
 .tab-item.active .tab-label { color: #00b4d8; }
 .tab-item.active .tab-icon { filter: drop-shadow(0 0 4px rgba(0,180,216,0.6)); }
 
+/* VAULT LANDING SECTION */
+.vault-landing {
+  margin: 36px auto 0;
+  max-width: 360px;
+  background: linear-gradient(160deg, rgba(13,8,32,0.95) 0%, rgba(30,12,60,0.95) 100%);
+  border: 1px solid rgba(124,58,237,0.28);
+  border-radius: 24px;
+  padding: 28px 24px 24px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.vault-landing::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.16) 0%, transparent 70%);
+  pointer-events: none;
+}
+.vault-landing::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(100,40,200,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.vault-landing-icon {
+  width: 64px; height: 64px;
+  border-radius: 18px;
+  background: rgba(124,58,237,0.18);
+  border: 1.5px solid rgba(124,58,237,0.4);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 0 30px rgba(124,58,237,0.2);
+  position: relative;
+}
+.vault-landing h2 {
+  font-size: 1.25rem; font-weight: 800;
+  color: white; letter-spacing: -0.3px;
+  margin-bottom: 8px; position: relative;
+}
+.vault-landing p {
+  font-size: 0.82rem; color: rgba(232,240,255,0.5);
+  line-height: 1.65; margin-bottom: 20px; position: relative;
+}
+.vault-landing-features {
+  display: flex; flex-direction: column; gap: 9px;
+  margin-bottom: 22px; position: relative;
+  text-align: left;
+}
+.vault-landing-feat {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(124,58,237,0.08);
+  border: 1px solid rgba(124,58,237,0.18);
+  border-radius: 12px; padding: 10px 14px;
+}
+.vault-landing-feat-icon {
+  width: 30px; height: 30px; flex-shrink: 0;
+  border-radius: 8px; background: rgba(124,58,237,0.18);
+  display: flex; align-items: center; justify-content: center;
+}
+.vault-landing-feat-text { flex: 1; }
+.vault-landing-feat-title { font-size: 0.8rem; font-weight: 600; color: white; }
+.vault-landing-feat-sub { font-size: 0.68rem; color: rgba(232,240,255,0.38); margin-top: 1px; }
+.vault-landing-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.85), rgba(100,40,200,0.85));
+  color: white; border: none; cursor: pointer;
+  padding: 12px 24px; border-radius: 14px;
+  font-size: 0.85rem; font-weight: 700; font-family: inherit;
+  box-shadow: 0 6px 20px rgba(124,58,237,0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+}
+.vault-landing-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(124,58,237,0.5); }
+
 /* CTA BELOW PHONE */
 .demo-cta {
   margin-top: 28px;
@@ -1760,8 +1840,8 @@ body {
           </button>
           <div class="ios-nav-title" id="lblNavReserve">Reserve</div>
           <div style="display:flex;gap:6px">
-            <button class="nav-circle-btn" onclick="showDemoModal('iCloud Sync', 'Your Reserve list syncs automatically across all your devices with iCloud. Available in the full app.')" title="Sync">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            <button class="nav-circle-btn" onclick="showDemoModal('Family Sharing', 'Share your Reserve with family members and stay in sync. Available in the full app.')" title="Family sharing">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4ecb71" stroke-width="2" stroke-linecap="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/><circle cx="19" cy="10" r="3" fill="#4ecb71" stroke="none"/><path d="M19 8v4M17 10h4" stroke="white" stroke-width="1.5"/></svg>
             </button>
             <button class="nav-circle-btn" onclick="showDemoModal('Share as PDF', 'Export your Reserve list as a PDF and share it anywhere.')" title="Share">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M12 14V3"/><path d="M7 8l5-5 5 5"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/></svg>
@@ -2177,6 +2257,51 @@ body {
 
   </div><!-- /phone-frame -->
 </div><!-- /phone-wrap -->
+
+<!-- VAULT LANDING -->
+<div class="vault-landing">
+  <div class="vault-landing-icon">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="11" width="14" height="10" rx="2"/>
+      <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+    </svg>
+  </div>
+  <h2>Document Vault</h2>
+  <p>Store your most critical documents — passports, IDs, insurance cards — encrypted and locked behind Face ID. Always with you, even without internet.</p>
+  <div class="vault-landing-features">
+    <div class="vault-landing-feat">
+      <div class="vault-landing-feat-icon">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="vault-landing-feat-text">
+        <div class="vault-landing-feat-title">Face ID &amp; Touch ID</div>
+        <div class="vault-landing-feat-sub">Biometric lock — only you can open it</div>
+      </div>
+    </div>
+    <div class="vault-landing-feat">
+      <div class="vault-landing-feat-icon">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h10M7 12h6"/></svg>
+      </div>
+      <div class="vault-landing-feat-text">
+        <div class="vault-landing-feat-title">Photos &amp; PDFs</div>
+        <div class="vault-landing-feat-sub">Passports, IDs, insurance cards &amp; more</div>
+      </div>
+    </div>
+    <div class="vault-landing-feat">
+      <div class="vault-landing-feat-icon">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div class="vault-landing-feat-text">
+        <div class="vault-landing-feat-title">Offline Access</div>
+        <div class="vault-landing-feat-sub">Available anytime, no internet needed</div>
+      </div>
+    </div>
+  </div>
+  <button class="vault-landing-btn" onclick="goToVault()">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+    Try it in the demo
+  </button>
+</div>
 
 <div class="demo-cta">
   <p id="demoCta">Like what you see? Get the real app.</p>
@@ -3977,11 +4102,13 @@ function renderSosContacts() {
     card.className = 'sos-contact-card';
     const relObj = RELATIONS.find(r => r.name === c.relation);
     const relIcon = relObj ? relObj.icon.replace('width="20" height="20"', 'width="16" height="16"') : '';
+    const phoneHtml = c.phone ? `<div class="sos-contact-phone">📞 ${c.phone}</div>` : '';
+    const notesHtml = c.notes ? `<span style="color:rgba(255,255,255,0.25)">·</span><span>${c.notes}</span>` : '';
     card.innerHTML = `
       <div class="sos-contact-name">${c.name}</div>
-      ${c.phone ? `<div class="sos-contact-phone">📞 ${c.phone}</div>` : ''}
+      ${phoneHtml}
       <div class="sos-contact-meta" style="display:flex;align-items:center;gap:5px;margin-top:4px">
-        ${relIcon}<span>${getRelLabel(c.relation)}</span>${c.notes ? `<span style="color:rgba(255,255,255,0.25)">·</span><span>${c.notes}</span>` : ''}
+        ${relIcon}<span>${getRelLabel(c.relation)}</span>${notesHtml}
       </div>
     `;
     list.appendChild(card);
