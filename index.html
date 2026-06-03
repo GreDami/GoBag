@@ -606,27 +606,57 @@
         }
         .family-banner { animation: familyGlow 5s ease-in-out infinite; }
 
-        /* SCREENSHOTS */
-        .screenshots-section { padding: 80px 24px 60px; overflow: hidden; }
-        .screenshots-carousel { position: relative; margin-top: 52px; }
-        .screenshots-track-wrap { overflow: hidden; }
-        .screenshots-scroll { display: flex; gap: 20px; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
-        .screenshot-frame { flex-shrink: 0; width: 200px; border-radius: 32px; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.10); box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04); background: #111827; transition: transform 0.3s, box-shadow 0.3s; }
-        .screenshot-frame:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 32px 70px rgba(0,0,0,0.65), 0 0 36px rgba(42,111,240,0.18); }
-        .screenshot-frame img { width: 100%; display: block; }
-        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); color: var(--text); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; z-index: 10; }
-        .carousel-btn:hover { background: rgba(0,180,216,0.18); border-color: var(--cyan); }
-        .carousel-btn:disabled { opacity: 0.25; cursor: default; }
-        .carousel-btn.prev { left: -22px; }
-        .carousel-btn.next { right: -22px; }
+        /* HOW-STEPS GRID */
+        .how-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 52px;
+        }
+        @media (max-width: 900px) { .how-steps-grid { grid-template-columns: repeat(2, 1fr); } }
+        .how-step-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 24px;
+            padding: 28px 18px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            overflow: hidden;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .how-step-card:hover { border-color: rgba(0,180,216,0.3); transform: translateY(-5px); }
+        .how-step-num {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.95rem; font-weight: 800;
+            box-shadow: 0 4px 16px rgba(42,111,240,0.4);
+            flex-shrink: 0;
+            animation: stepGlow 3.5s ease-in-out infinite;
+        }
+        .how-step-card:nth-child(2) .how-step-num { animation-delay: 0.5s; }
+        .how-step-card:nth-child(3) .how-step-num { animation-delay: 1s; }
+        .how-step-card:nth-child(4) .how-step-num { animation-delay: 1.5s; }
+        .how-step-card h3 { font-size: 0.95rem; font-weight: 700; text-align: center; letter-spacing: -0.2px; }
+        .how-step-card > p { font-size: 0.8rem; color: var(--muted); line-height: 1.65; text-align: center; flex: 1; }
+        .how-step-phone {
+            width: calc(100% + 36px);
+            margin-top: 8px;
+            border-radius: 16px 16px 0 0;
+            overflow: hidden;
+            border: 1.5px solid rgba(255,255,255,0.1);
+            border-bottom: none;
+            box-shadow: 0 -6px 28px rgba(0,0,0,0.35);
+        }
+        .how-step-phone img { width: 100%; display: block; }
 
         @media (max-width: 700px) {
             nav { padding: 14px 16px; }
             .hero { padding: 100px 20px 80px; }
             .family-banner { padding: 28px 20px; }
-            .screenshot-frame { width: 185px; }
-            .carousel-btn.prev { left: 0; }
-            .carousel-btn.next { right: 0; }
         }
     </style>
 </head>
@@ -686,29 +716,45 @@
 
 <hr class="divider">
 
-<!-- SCREENSHOTS -->
-<section class="screenshots-section">
+<!-- HOW IT WORKS + APP PREVIEW -->
+<section>
     <div class="container">
-        <div class="section-label reveal" data-i18n="screenshots_label">App Preview</div>
-        <h2 class="section-title reveal d1" data-i18n="screenshots_title">See it in action</h2>
-        <p class="section-sub reveal d2" data-i18n="screenshots_sub">Everything you need, designed for simplicity and speed under pressure.</p>
-        <div class="screenshots-carousel">
-            <button class="carousel-btn prev" id="carouselPrev" onclick="carouselMove(-1)" aria-label="Previous">&#8592;</button>
-            <div class="screenshots-track-wrap">
-                <div class="screenshots-scroll" id="screenshotsTrack">
-                    <div class="screenshot-frame"><img src="screenshots/1.png" alt="Screenshot 1"></div>
-                    <div class="screenshot-frame"><img src="screenshots/2.png" alt="Screenshot 2"></div>
-                    <div class="screenshot-frame"><img src="screenshots/3.png" alt="Screenshot 3"></div>
-                    <div class="screenshot-frame"><img src="screenshots/4.png" alt="Screenshot 4"></div>
-                    <div class="screenshot-frame"><img src="screenshots/5.png" alt="Screenshot 5"></div>
-                    <div class="screenshot-frame"><img src="screenshots/6.png" alt="Screenshot 6"></div>
-                    <div class="screenshot-frame"><img src="screenshots/7.png" alt="Screenshot 7"></div>
-                    <div class="screenshot-frame"><img src="screenshots/8.png" alt="Screenshot 8"></div>
-                    <div class="screenshot-frame"><img src="screenshots/9.png" alt="Screenshot 9"></div>
-                    <div class="screenshot-frame"><img src="screenshots/10.png" alt="Screenshot 10"></div>
+        <div class="section-label reveal" data-i18n="how_label">How it works</div>
+        <h2 class="section-title reveal d1" data-i18n="how_title">Ready in minutes</h2>
+        <p class="section-sub reveal d2" data-i18n="how_sub">Set up your emergency kit in just a few steps.</p>
+        <div class="how-steps-grid">
+            <div class="how-step-card reveal d1">
+                <div class="how-step-num">1</div>
+                <h3 data-i18n="step1_h">Choose your language</h3>
+                <p data-i18n="step1_p">The app adapts to your language immediately, no settings needed.</p>
+                <div class="how-step-phone">
+                    <img src="screenshots/1.png" data-screenshot="1" alt="">
                 </div>
             </div>
-            <button class="carousel-btn next" id="carouselNext" onclick="carouselMove(1)" aria-label="Next">&#8594;</button>
+            <div class="how-step-card reveal d2">
+                <div class="how-step-num">2</div>
+                <h3 data-i18n="step2_h">Build your go bag</h3>
+                <p data-i18n="step2_p">Add items across categories. Use the built-in list or create custom items.</p>
+                <div class="how-step-phone">
+                    <img src="screenshots/3.png" data-screenshot="3" alt="">
+                </div>
+            </div>
+            <div class="how-step-card reveal d3">
+                <div class="how-step-num">3</div>
+                <h3 data-i18n="step3_h">Track your supplies</h3>
+                <p data-i18n="step3_p">Set stock levels and expiry dates. Let GoBag+ remind you when to restock.</p>
+                <div class="how-step-phone">
+                    <img src="screenshots/6.png" data-screenshot="6" alt="">
+                </div>
+            </div>
+            <div class="how-step-card reveal d4">
+                <div class="how-step-num">4</div>
+                <h3 data-i18n="step4_h">Share with family</h3>
+                <p data-i18n="step4_p">Sync everything via iCloud so your whole family stays prepared together.</p>
+                <div class="how-step-phone">
+                    <img src="screenshots/8.png" data-screenshot="8" alt="">
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -765,39 +811,6 @@
                     <h3 data-i18n="kfeat5_title">Document Vault</h3>
                     <p data-i18n="kfeat5_p">Securely store photos and PDFs of your IDs, passports and insurance cards — protected by Face ID. Accessible only to you.</p>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<hr class="divider">
-
-<!-- HOW IT WORKS -->
-<section>
-    <div class="container">
-        <div class="section-label reveal" data-i18n="how_label">How it works</div>
-        <h2 class="section-title reveal d1" data-i18n="how_title">Ready in minutes</h2>
-        <p class="section-sub reveal d2" data-i18n="how_sub">Set up your emergency kit in just a few steps.</p>
-        <div class="steps">
-            <div class="step reveal d1">
-                <div class="step-num">1</div>
-                <h3 data-i18n="step1_h">Choose your language</h3>
-                <p data-i18n="step1_p">The app adapts to your language immediately, no settings needed.</p>
-            </div>
-            <div class="step reveal d2">
-                <div class="step-num">2</div>
-                <h3 data-i18n="step2_h">Build your go bag</h3>
-                <p data-i18n="step2_p">Add items across categories. Use the built-in list or create custom items.</p>
-            </div>
-            <div class="step reveal d3">
-                <div class="step-num">3</div>
-                <h3 data-i18n="step3_h">Track your supplies</h3>
-                <p data-i18n="step3_p">Set stock levels and expiry dates. Let GoBag+ remind you when to restock.</p>
-            </div>
-            <div class="step reveal d4">
-                <div class="step-num">4</div>
-                <h3 data-i18n="step4_h">Share with family</h3>
-                <p data-i18n="step4_p">Sync everything via iCloud so your whole family stays prepared together.</p>
             </div>
         </div>
     </div>
@@ -1227,8 +1240,8 @@ function setLang(lang) {
   document.documentElement.lang = lang;
   localStorage.setItem('gobag_lang', lang);
   const ssDir = lang === 'fr' ? 'screenshotsfr' : 'screenshots';
-  document.querySelectorAll('.screenshot-frame img').forEach((img, i) => {
-    img.src = ssDir + '/' + (i + 1) + '.png';
+  document.querySelectorAll('[data-screenshot]').forEach(img => {
+    img.src = ssDir + '/' + img.getAttribute('data-screenshot') + '.png';
   });
   const heroPhone = document.getElementById('heroPhoneImg');
   if (heroPhone) heroPhone.src = ssDir + '/1.png';
@@ -1301,27 +1314,6 @@ function setLang(lang) {
       carousel.addEventListener('mouseleave', startAuto);
     }
     startAuto();
-  });
-})();
-
-// CAROUSEL
-(function() {
-  let offset = 0;
-  window.carouselMove = function(dir) {
-    const track = document.getElementById('screenshotsTrack');
-    const wrap = track.parentElement;
-    const frames = track.querySelectorAll('.screenshot-frame');
-    if (!frames.length) return;
-    const frameW = frames[0].offsetWidth + 20; // width + gap
-    const visibleW = wrap.offsetWidth;
-    const maxOffset = Math.max(0, track.scrollWidth - visibleW);
-    offset = Math.min(Math.max(0, offset + dir * frameW), maxOffset);
-    track.style.transform = 'translateX(-' + offset + 'px)';
-    document.getElementById('carouselPrev').disabled = offset <= 0;
-    document.getElementById('carouselNext').disabled = offset >= maxOffset;
-  };
-  document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('carouselPrev').disabled = true;
   });
 })();
 
