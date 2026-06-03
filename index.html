@@ -231,28 +231,6 @@
             0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.55; }
             50% { transform: translateX(-50%) translateY(12px); opacity: 1; }
         }
-        @keyframes demoPulse {
-            0%   { box-shadow: 0 0 0 0 rgba(0,180,216,0.55), 0 4px 20px rgba(0,180,216,0.25); }
-            60%  { box-shadow: 0 0 0 12px rgba(0,180,216,0), 0 4px 20px rgba(0,180,216,0.25); }
-            100% { box-shadow: 0 0 0 0 rgba(0,180,216,0), 0 4px 20px rgba(0,180,216,0.25); }
-        }
-        .btn-demo {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: linear-gradient(135deg, rgba(0,180,216,0.22), rgba(42,111,240,0.22));
-            border: 1.5px solid rgba(0,180,216,0.6);
-            color: #00d4f5; text-decoration: none;
-            padding: 15px 28px; border-radius: 16px;
-            font-size: 1rem; font-weight: 700; letter-spacing: 0.01em;
-            transition: transform 0.2s, background 0.2s;
-            animation: demoPulse 2.2s ease-out infinite;
-        }
-        .btn-demo:hover {
-            background: linear-gradient(135deg, rgba(0,180,216,0.35), rgba(42,111,240,0.35));
-            transform: translateY(-2px);
-            animation: none;
-            box-shadow: 0 4px 24px rgba(0,180,216,0.4);
-        }
-
         /* SECTION */
         section { padding: 100px 24px; }
         .container { max-width: 1100px; margin: 0 auto; }
@@ -631,13 +609,6 @@
         <div class="section-label reveal" data-i18n="screenshots_label">App Preview</div>
         <h2 class="section-title reveal d1" data-i18n="screenshots_title">See it in action</h2>
         <p class="section-sub reveal d2" data-i18n="screenshots_sub">Everything you need, designed for simplicity and speed under pressure.</p>
-        <div style="text-align:center;margin-bottom:36px;display:flex;flex-direction:column;align-items:center;gap:14px">
-            <a href="demo.html" class="btn-demo">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
-                <span data-i18n="try_demo_btn">Try the app in your browser →</span>
-            </a>
-            <p style="font-size:0.72rem;color:rgba(232,240,255,0.35);font-weight:300" data-i18n="try_demo_hint">Interactive demo · No download needed</p>
-        </div>
         <div class="screenshots-carousel">
             <button class="carousel-btn prev" id="carouselPrev" onclick="carouselMove(-1)" aria-label="Previous">&#8592;</button>
             <div class="screenshots-track-wrap">
@@ -841,7 +812,7 @@
         </a>
     </div>
     <div class="footer-links">
-        <a href="https://gredami.github.io/Privacy-GoBag/" target="_blank" data-i18n="footer_privacy">Privacy Policy</a>
+        <a href="https://mumisgreg.github.io/Privacy-GoBag/" target="_blank" data-i18n="footer_privacy">Privacy Policy</a>
         <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" data-i18n="footer_terms">Terms of Use</a>
         <a href="mailto:hidtresuh@gmail.com" data-i18n="footer_support">Support</a>
     </div>
@@ -876,7 +847,6 @@ const T = {
     lifetime_name:"Lifetime",lifetime_price:'$59.99 <span></span>',lifetime_desc:"One-time payment · No subscription",
     lifetime_f1:"Premium features",lifetime_f2:"Family Sharing (up to 5)",lifetime_f3:"All future updates",
     cta_h2:"Start your free trial today",cta_p:"No payment needed for the first 30 days. Cancel anytime in Settings.",
-    try_demo_btn:"Try the app in your browser →",try_demo_hint:"Interactive demo · No download needed",
     footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GreDami. All rights reserved."
   },
   fr: {
@@ -1087,6 +1057,7 @@ const T = {
   img.src = iconFile;
 })();
 
+const FLAGS = {en:'🇬🇧',fr:'🇫🇷',de:'🇩🇪',es:'🇪🇸',it:'🇮🇹',pt:'🇵🇹',ru:'🇷🇺'};
 const LANG_NAMES = {en:'EN',fr:'FR',de:'DE',es:'ES',it:'IT',pt:'PT',ru:'RU'};
 
 function toggleLangMenu(e) {
