@@ -10,8 +10,8 @@
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="icon" id="favicon" type="image/png" href="screenshots/gobag-icon.png">
-    <link rel="apple-touch-icon" href="screenshots/gobag-icon.png">
+    <link rel="icon" id="favicon" type="image/png" href="gobag-icon.png">
+    <link rel="apple-touch-icon" href="gobag-icon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -65,7 +65,7 @@
         }
         .nav-logo span { color: var(--cyan); }
         .nav-tagline {
-            font-size: 0.82rem;
+            font-size: 1rem;
             font-weight: 300;
             font-style: italic;
             color: var(--muted);
@@ -139,6 +139,7 @@
             padding: 120px 24px 100px;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(180deg, #020508 0%, #060f1c 45%, #0e1e30 80%, #152438 100%);
         }
         .hero-bg {
             position: absolute;
@@ -515,40 +516,31 @@
         }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         .d1 { transition-delay: 0.07s; } .d2 { transition-delay: 0.16s; }
-        .d3 { transition-delay: 0.25s; } .d4 { transition-delay: 0.34s; }
+        .d3 { transition-delay: 0.25s; } .d4 { transition-delay: 0.34s; } .d5 { transition-delay: 0.43s; }
 
-        /* Hero animated orbs */
-        .hero-orb { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; will-change: transform; }
-        .hero-orb-1 { width: 650px; height: 650px; background: rgba(42,111,240,0.22); top: -180px; left: -120px; animation: orbDrift1 14s ease-in-out infinite; }
-        .hero-orb-2 { width: 520px; height: 520px; background: rgba(255,107,26,0.16); bottom: -80px; right: -100px; animation: orbDrift2 17s ease-in-out infinite; }
-        .hero-orb-3 { width: 380px; height: 380px; background: rgba(0,180,216,0.14); top: 45%; left: 48%; transform: translate(-50%,-50%); animation: orbPulse 9s ease-in-out infinite; }
-        @keyframes orbDrift1 {
-            0%,100% { transform: translate(0,0) scale(1); }
-            33% { transform: translate(50px,-40px) scale(1.06); }
-            66% { transform: translate(-25px,30px) scale(0.95); }
-        }
-        @keyframes orbDrift2 {
-            0%,100% { transform: translate(0,0) scale(1); }
-            40% { transform: translate(-40px,50px) scale(1.08); }
-            70% { transform: translate(30px,-25px) scale(0.96); }
-        }
-        @keyframes orbPulse {
-            0%,100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%,-50%) scale(1.2); }
-        }
 
-        /* Floating particles */
-        .hero-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-        .particle {
-            position: absolute; border-radius: 50%;
-            background: rgba(0,180,216,0.6);
-            animation: particleRise linear infinite;
+        /* TREE & LEAVES */
+        .hero-scene { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .tree-wrap { position: absolute; bottom: 0; right: 0; }
+        @keyframes treeSway {
+            0%,100% { transform: rotate(-2.5deg); }
+            22%     { transform: rotate(-10deg); }
+            48%     { transform: rotate(-4deg); }
+            72%     { transform: rotate(-12deg); }
         }
-        @keyframes particleRise {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            8% { opacity: 1; }
-            92% { opacity: 0.4; }
-            100% { transform: translateY(-85vh) translateX(var(--dx,0px)); opacity: 0; }
+        .tree-leaf { position: absolute; pointer-events: none; transform-origin: 40% 60%; }
+        @keyframes leafLife {
+            0%   { transform: translate(0px,0px)                                    rotate(0deg)   scaleX(1);    opacity: 0; }
+            4%   { opacity: var(--op, 0.75); }
+            12%  { transform: translate(3px,-4px)                                   rotate(12deg)  scaleX(0.92); }
+            21%  { transform: translate(-2px,3px)                                   rotate(-7deg)  scaleX(1.04); }
+            28%  { transform: translate(5px,-5px)                                   rotate(15deg)  scaleX(0.88); }
+            34%  { transform: translate(var(--jx,0px),var(--jy,-14px))             rotate(38deg)  scaleX(0.75); animation-timing-function: cubic-bezier(.2,0,.6,1); }
+            50%  { transform: translate(calc(var(--dx)*.32),calc(var(--dy)*.28))   rotate(155deg) scaleX(1.05); animation-timing-function: ease-in-out; }
+            66%  { transform: translate(calc(var(--dx)*.60),calc(var(--dy)*.56))   rotate(295deg) scaleX(0.65); animation-timing-function: ease-in; }
+            82%  { transform: translate(calc(var(--dx)*.84),calc(var(--dy)*.82))   rotate(435deg) scaleX(0.9);  }
+            93%  { opacity: var(--op, 0.75); }
+            100% { transform: translate(var(--dx),var(--dy))                        rotate(var(--spin)) scaleX(0.8); opacity: 0; }
         }
 
         /* Animated gradient on hero span */
@@ -606,52 +598,91 @@
         }
         .family-banner { animation: familyGlow 5s ease-in-out infinite; }
 
-        /* HOW-STEPS GRID */
-        .how-steps-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+        /* HOW-STEPS CAROUSEL */
+        .steps-carousel {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 640px;
+            overflow: hidden;
             margin-top: 52px;
+            user-select: none;
+            touch-action: pan-y;
         }
-        @media (max-width: 900px) { .how-steps-grid { grid-template-columns: repeat(2, 1fr); } }
+        .steps-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .steps-btn {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.10);
+            color: var(--text);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            display: flex; align-items: center; justify-content: center;
+            font-family: inherit;
+            line-height: 1;
+        }
+        .steps-btn:hover:not(:disabled) { background: rgba(0,180,216,0.14); border-color: rgba(0,180,216,0.4); color: var(--cyan); }
+        .steps-btn:disabled { opacity: 0.25; cursor: default; }
+        .steps-dots { display: flex; gap: 8px; align-items: center; }
+        .step-dot {
+            height: 3px; width: 20px;
+            border-radius: 2px;
+            border: none; padding: 0;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: background 0.25s, width 0.25s;
+        }
+        .step-dot.active { background: var(--cyan); width: 28px; }
         .how-step-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 24px;
-            padding: 28px 18px 0;
+            position: absolute;
+            width: 220px;
+            border-radius: 36px;
+            overflow: hidden;
+            border: 1.5px solid rgba(255,255,255,0.1);
+            box-shadow: 0 32px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+            background: #05070c;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.55s cubic-bezier(0.4,0,0.2,1), box-shadow 0.55s;
+            cursor: pointer;
+            user-select: none;
+        }
+        .step-card-header {
+            padding: 20px 18px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
-            overflow: hidden;
-            transition: border-color 0.25s, transform 0.25s;
-        }
-        .how-step-card:hover { border-color: rgba(0,180,216,0.3); transform: translateY(-5px); }
-        .how-step-num {
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--blue), var(--cyan));
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.95rem; font-weight: 800;
-            box-shadow: 0 4px 16px rgba(42,111,240,0.4);
+            gap: 10px;
+            background: rgba(6,11,22,0.96);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
             flex-shrink: 0;
-            animation: stepGlow 3.5s ease-in-out infinite;
         }
-        .how-step-card:nth-child(2) .how-step-num { animation-delay: 0.5s; }
-        .how-step-card:nth-child(3) .how-step-num { animation-delay: 1s; }
-        .how-step-card:nth-child(4) .how-step-num { animation-delay: 1.5s; }
-        .how-step-card h3 { font-size: 0.95rem; font-weight: 700; text-align: center; letter-spacing: -0.2px; }
-        .how-step-card > p { font-size: 0.8rem; color: var(--muted); line-height: 1.65; text-align: center; flex: 1; }
-        .how-step-phone {
-            width: calc(100% + 36px);
-            margin-top: 8px;
-            border-radius: 16px 16px 0 0;
-            overflow: hidden;
-            border: 1.5px solid rgba(255,255,255,0.1);
-            border-bottom: none;
-            box-shadow: 0 -6px 28px rgba(0,0,0,0.35);
+        .step-card-header h3 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: -0.2px;
+            line-height: 1.3;
+            color: var(--text);
         }
-        .how-step-phone img { width: 100%; display: block; }
+        .step-card-header p {
+            font-size: 0.72rem;
+            font-weight: 400;
+            text-align: center;
+            color: var(--muted);
+            line-height: 1.55;
+            margin: 0;
+        }
+        .how-step-card > img { width: 100%; display: block; }
 
         @media (max-width: 700px) {
             nav { padding: 14px 16px; }
@@ -664,8 +695,8 @@
 
 <!-- NAV -->
 <nav>
-    <a href="#" class="nav-logo"><img id="navLogo" src="screenshots/gobag-icon.png" alt="GoBag+">GoBag<span>+</span></a>
-    <span class="nav-tagline" data-i18n="welcome_tagline">Best time to prepare for a disaster was yesterday. The second best time is today.</span>
+    <a href="#" class="nav-logo"><img id="navLogo" src="gobag-icon.png" alt="GoBag+">GoBag<span>+</span></a>
+    <span class="nav-tagline" data-i18n="welcome_tagline">Best time to prepare for a disaster was yesterday. The second best time is today</span>
     <div class="lang-switcher" id="langSwitcher">
         <button class="lang-trigger" onclick="toggleLangMenu(event)">
             <span id="currentLangCode">EN</span>
@@ -685,10 +716,7 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
-    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-scene" id="heroScene"></div>
     <div class="hero-content">
         <div class="hero-text">
             <h1 data-i18n-html="hero_h1">Be ready before<br><span>disaster strikes.</span></h1>
@@ -696,7 +724,7 @@
             <div class="hero-buttons">
                 <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="btn-primary" target="_blank">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                    <span data-i18n="hero_cta_btn">Build My Go Bag — Free</span>
+                    <span data-i18n="hero_cta_btn">Build My Go Bag</span>
                 </a>
             </div>
             <p class="hero-trial" data-i18n="hero_trial">Free 1-month trial · No commitment</p>
@@ -722,39 +750,53 @@
         <div class="section-label reveal" data-i18n="how_label">How it works</div>
         <h2 class="section-title reveal d1" data-i18n="how_title">Ready in minutes</h2>
         <p class="section-sub reveal d2" data-i18n="how_sub">Set up your emergency kit in just a few steps.</p>
-        <div class="how-steps-grid">
-            <div class="how-step-card reveal d1">
-                <div class="how-step-num">1</div>
-                <h3 data-i18n="step1_h">Choose your language</h3>
-                <p data-i18n="step1_p">The app adapts to your language immediately, no settings needed.</p>
-                <div class="how-step-phone">
-                    <img src="screenshots/2.png" data-screenshot="2" alt="">
+        <div class="steps-carousel" id="stepsStage">
+            <div class="how-step-card">
+                <div class="step-card-header">
+                    <h3 data-i18n="step1_h">Choose your language</h3>
+                    <p data-i18n="step1_p">The app adapts to your language immediately, no settings needed.</p>
                 </div>
+                <img src="screenshots/2.png" data-screenshot="2" alt="">
             </div>
-            <div class="how-step-card reveal d2">
-                <div class="how-step-num">2</div>
-                <h3 data-i18n="step2_h">Build your go bag</h3>
-                <p data-i18n="step2_p">Add items across categories. Use the built-in list or create custom items.</p>
-                <div class="how-step-phone">
-                    <img src="screenshots/3.png" data-screenshot="3" alt="">
+            <div class="how-step-card">
+                <div class="step-card-header">
+                    <h3 data-i18n="step2_h">Build your go bag</h3>
+                    <p data-i18n="step2_p">Add items across categories. Use the built-in list or create custom items.</p>
                 </div>
+                <img src="screenshots/3.png" data-screenshot="3" alt="">
             </div>
-            <div class="how-step-card reveal d3">
-                <div class="how-step-num">3</div>
-                <h3 data-i18n="step3_h">Track your supplies</h3>
-                <p data-i18n="step3_p">Set stock levels and expiry dates. Let GoBag+ remind you when to restock.</p>
-                <div class="how-step-phone">
-                    <img src="screenshots/4.png" data-screenshot="4" alt="">
+            <div class="how-step-card">
+                <div class="step-card-header">
+                    <h3 data-i18n="step3_h">Track your supplies</h3>
+                    <p data-i18n="step3_p">Set stock levels and expiry dates. Let GoBag+ remind you when to restock.</p>
                 </div>
+                <img src="screenshots/4.png" data-screenshot="4" alt="">
             </div>
-            <div class="how-step-card reveal d4">
-                <div class="how-step-num">4</div>
-                <h3 data-i18n="step4_h">Share with family</h3>
-                <p data-i18n="step4_p">Sync everything via iCloud so your whole family stays prepared together.</p>
-                <div class="how-step-phone">
-                    <img src="screenshots/5.png" data-screenshot="5" alt="">
+            <div class="how-step-card">
+                <div class="step-card-header">
+                    <h3 data-i18n="step4_h">Add your SOS contacts</h3>
+                    <p data-i18n="step4_p">Save emergency contacts so your family knows who to call when it matters most.</p>
+                </div>
+                <img src="screenshots/5.png" data-screenshot="5" alt="">
             </div>
+            <div class="how-step-card">
+                <div class="step-card-header">
+                    <h3 data-i18n="step5_h">Store your vital documents</h3>
+                    <p data-i18n="step5_p">Keep photos of your IDs, passports, and insurance cards in a Face ID–protected vault.</p>
+                </div>
+                <img src="screenshots/6.png" data-screenshot="6" alt="">
             </div>
+        </div>
+        <div class="steps-nav">
+            <button class="steps-btn" id="stepsPrev" aria-label="Previous">&#8249;</button>
+            <div class="steps-dots" id="stepsDots">
+                <button class="step-dot active" data-i="0"></button>
+                <button class="step-dot" data-i="1"></button>
+                <button class="step-dot" data-i="2"></button>
+                <button class="step-dot" data-i="3"></button>
+                <button class="step-dot" data-i="4"></button>
+            </div>
+            <button class="steps-btn" id="stepsNext" aria-label="Next">&#8250;</button>
         </div>
     </div>
 </section>
@@ -952,10 +994,10 @@
 <script>
 const T = {
   en: {
-    nav_cta:"Download Free",welcome_tagline:"Best time to prepare for a disaster was yesterday. The second best time is today.",
+    nav_cta:"Download Free",welcome_tagline:"Best time to prepare for a disaster was yesterday. The second best time is today",
     hero_h1:"Be ready before<br><span>disaster strikes.</span>",
     hero_p:"Build your go bag, track home supplies, store emergency contacts, and secure vital documents in an encrypted vault — all in one app.",
-    hero_trial:"Free 1-month trial · No commitment",hero_cta_btn:"Build My Go Bag — Free",cta_btn:"Download on the App Store",
+    hero_trial:"Free 1-month trial · No commitment",hero_cta_btn:"Build My Go Bag",cta_btn:"Download on the App Store",
     security_label:"Privacy & Security",security_title:"Your data stays yours",security_sub:"GoBag+ is built on Apple's security infrastructure. Your confidential documents never leave your devices without your consent.",
     security_1_title:"Face ID Protected",security_1_p:"The Document Vault opens only with your biometrics. No one else can access your scanned IDs and documents.",
     security_2_title:"iCloud Encrypted",security_2_p:"All data syncs through Apple's encrypted iCloud. We never see or store your information on our servers.",
@@ -971,7 +1013,8 @@ const T = {
     step1_h:"Choose your language",step1_p:"The app adapts to your language immediately, no settings needed.",
     step2_h:"Build your go bag",step2_p:"Add items across categories. Use the built-in list or create custom items.",
     step3_h:"Track your supplies",step3_p:"Set stock levels and expiry dates. Let GoBag+ remind you when to restock.",
-    step4_h:"Share with family",step4_p:"Sync everything via iCloud so your whole family stays prepared together.",
+    step4_h:"Add your SOS contacts",step4_p:"Save emergency contacts so your family knows who to call when it matters most.",
+    step5_h:"Store your vital documents",step5_p:"Keep photos of your IDs, passports, and insurance cards in a Face ID–protected vault.",
     family_h2:"One subscription, whole family covered",
     family_p:"With Apple Family Sharing, one GoBag+ Premium subscription gives full access to family members automatically — no extra purchases, no sharing passwords.",
     pricing_label:"Pricing",pricing_title:"Simple, honest pricing",pricing_sub:"Start free. Upgrade when you're ready.",pricing_badge:"Best Value",
@@ -984,10 +1027,10 @@ const T = {
     footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GreDami. All rights reserved."
   },
   fr: {
-    nav_cta:"Télécharger gratuitement",welcome_tagline:"Le meilleur moment pour se préparer à une catastrophe, c'était hier. Le deuxième meilleur moment, c'est aujourd'hui.",
+    nav_cta:"Télécharger gratuitement",welcome_tagline:"Le meilleur moment pour se préparer à une catastrophe, c'était hier. Le deuxième meilleur moment, c'est aujourd'hui",
     hero_h1:"Préparez-vous<br><span>avant qu'une catastrophe n'arrive.</span>",
     hero_p:"Préparez votre sac d'urgence, suivez vos réserves à domicile, stockez vos contacts d'urgence et sécurisez vos documents vitaux dans un coffre chiffré — dans une seule application.",
-    hero_trial:"1 mois d'essai gratuit · Sans engagement",hero_cta_btn:"Créer mon sac de survie — Gratuit",cta_btn:"Télécharger sur l'App Store",
+    hero_trial:"1 mois d'essai gratuit · Sans engagement",hero_cta_btn:"Créer mon sac de survie",cta_btn:"Télécharger sur l'App Store",
     security_label:"Confidentialité & Sécurité",security_title:"Vos données vous appartiennent",security_sub:"GoBag+ repose sur l'infrastructure de sécurité d'Apple. Vos documents confidentiels ne quittent jamais vos appareils sans votre consentement.",
     security_1_title:"Protégé par Face ID",security_1_p:"Le coffre à documents ne s'ouvre qu'avec vos données biométriques. Personne d'autre ne peut accéder à vos pièces d'identité numérisées.",
     security_2_title:"Chiffré via iCloud",security_2_p:"Toutes les données se synchronisent via iCloud chiffré par Apple. Nous ne voyons ni ne stockons jamais vos informations sur nos serveurs.",
@@ -1003,7 +1046,8 @@ const T = {
     step1_h:"Choisissez votre langue",step1_p:"L'application s'adapte immédiatement à votre langue, sans réglages.",
     step2_h:"Préparez votre sac",step2_p:"Ajoutez des articles par catégorie. Utilisez la liste intégrée ou créez vos propres articles.",
     step3_h:"Suivez vos réserves",step3_p:"Définissez des niveaux de stock et des dates d'expiration. Laissez GoBag+ vous rappeler de réapprovisionner.",
-    step4_h:"Partagez avec la famille",step4_p:"Synchronisez tout via iCloud pour que toute votre famille soit préparée ensemble.",
+    step4_h:"Ajoutez vos contacts SOS",step4_p:"Enregistrez vos contacts d'urgence pour que votre famille sache qui appeler en cas de crise.",
+    step5_h:"Stockez vos documents importants",step5_p:"Conservez photos et PDF de vos pièces d'identité, passeports et cartes d'assurance dans un coffre sécurisé par Face ID.",
     family_h2:"Un abonnement, toute la famille couverte",
     family_p:"Avec le partage familial Apple, un abonnement GoBag+ Premium donne accès complet aux membres de la famille automatiquement — sans achat supplémentaire, sans partage de mot de passe.",
     pricing_label:"Tarifs",pricing_title:"Tarification simple et honnête",pricing_sub:"Commencez gratuitement. Passez à Premium quand vous voulez.",pricing_badge:"Meilleure offre",
@@ -1016,7 +1060,7 @@ const T = {
     footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GreDami. Tous droits réservés."
   },
   de: {
-    nav_cta:"Kostenlos laden",welcome_tagline:"Der beste Zeitpunkt, sich auf eine Katastrophe vorzubereiten, war gestern. Der zweitbeste Zeitpunkt ist heute.",
+    nav_cta:"Kostenlos laden",welcome_tagline:"Der beste Zeitpunkt, sich auf eine Katastrophe vorzubereiten, war gestern. Der zweitbeste Zeitpunkt ist heute",
     hero_h1:"Sei bereit,<br><span>bevor der Notfall kommt.</span>",
     hero_p:"Baue deinen Notfallrucksack, verfolge deine Heimvorräte, speichere Notfallkontakte und sichere wichtige Dokumente in einem verschlüsselten Tresor — alles in einer App.",
     hero_trial:"1 Monat kostenlos testen · Keine Verpflichtung",hero_cta_btn:"Jetzt kostenlos starten",cta_btn:"Im App Store laden",
@@ -1035,7 +1079,8 @@ const T = {
     step1_h:"Wähle deine Sprache",step1_p:"Die App passt sich sofort an deine Sprache an, ohne Einstellungen.",
     step2_h:"Baue deinen Rucksack",step2_p:"Füge Artikel nach Kategorien hinzu. Nutze die integrierte Liste oder erstelle eigene Artikel.",
     step3_h:"Verfolge deine Vorräte",step3_p:"Lege Lagerbestände und Ablaufdaten fest. Lass GoBag+ dich ans Nachfüllen erinnern.",
-    step4_h:"Mit Familie teilen",step4_p:"Synchronisiere alles über iCloud, damit deine ganze Familie gemeinsam vorbereitet ist.",
+    step4_h:"Notfallkontakte hinzufügen",step4_p:"Hinterlege Notfallkontakte, damit deine Familie weiß, wen sie im Notfall anrufen soll.",
+    step5_h:"Wichtige Dokumente sichern",step5_p:"Bewahre Fotos deiner Ausweise, Reisepässe und Versicherungskarten in einem Face ID–geschützten Tresor auf.",
     family_h2:"Ein Abo, die ganze Familie abgesichert",
     family_p:"Mit Apple Family Sharing gibt ein GoBag+ Premium-Abonnement Familienmitgliedern automatisch vollen Zugang — ohne zusätzliche Käufe, ohne Passwörter teilen.",
     pricing_label:"Preise",pricing_title:"Einfache, faire Preisgestaltung",pricing_sub:"Starte kostenlos. Wechsle zu Premium, wenn du bereit bist.",pricing_badge:"Bestes Angebot",
@@ -1048,7 +1093,7 @@ const T = {
     footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GreDami. Alle Rechte vorbehalten."
   },
   es: {
-    nav_cta:"Descargar gratis",welcome_tagline:"El mejor momento para prepararse ante un desastre fue ayer. El segundo mejor momento es hoy.",
+    nav_cta:"Descargar gratis",welcome_tagline:"El mejor momento para prepararse ante un desastre fue ayer. El segundo mejor momento es hoy",
     hero_h1:"Prepárate antes<br><span>del desastre.</span>",
     hero_p:"Construye tu bolsa de emergencia, controla tus suministros en casa, guarda contactos de emergencia y protege tus documentos vitales en una bóveda cifrada — todo en una sola app.",
     hero_trial:"1 mes de prueba gratis · Sin compromiso",hero_cta_btn:"Empezar gratis ahora",cta_btn:"Descargar en el App Store",
@@ -1067,7 +1112,8 @@ const T = {
     step1_h:"Elige tu idioma",step1_p:"La app se adapta a tu idioma inmediatamente, sin configuraciones.",
     step2_h:"Construye tu bolsa",step2_p:"Añade artículos por categorías. Usa la lista integrada o crea artículos personalizados.",
     step3_h:"Controla tus suministros",step3_p:"Establece niveles de stock y fechas de caducidad. Deja que GoBag+ te recuerde cuándo reabastecer.",
-    step4_h:"Comparte con tu familia",step4_p:"Sincroniza todo vía iCloud para que toda tu familia esté preparada junta.",
+    step4_h:"Añade tus contactos SOS",step4_p:"Guarda contactos de emergencia para que tu familia sepa a quién llamar cuando más importa.",
+    step5_h:"Guarda tus documentos vitales",step5_p:"Conserva fotos de tus documentos, pasaportes y tarjetas de seguro en una bóveda protegida por Face ID.",
     family_h2:"Una suscripción, toda la familia cubierta",
     family_p:"Con Apple Family Sharing, una suscripción GoBag+ Premium da acceso completo a los miembros de la familia automáticamente — sin compras adicionales, sin compartir contraseñas.",
     pricing_label:"Precios",pricing_title:"Precios simples y honestos",pricing_sub:"Empieza gratis. Actualiza cuando estés listo.",pricing_badge:"Mejor oferta",
@@ -1080,7 +1126,7 @@ const T = {
     footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GreDami. Todos los derechos reservados."
   },
   it: {
-    nav_cta:"Scarica gratis",welcome_tagline:"Il momento migliore per prepararsi a un disastro era ieri. Il secondo momento migliore è oggi.",
+    nav_cta:"Scarica gratis",welcome_tagline:"Il momento migliore per prepararsi a un disastro era ieri. Il secondo momento migliore è oggi",
     hero_h1:"Sii pronto prima<br><span>del disastro.</span>",
     hero_p:"Costruisci il tuo zaino d'emergenza, monitora le scorte di casa, salva i contatti d'emergenza e proteggi i documenti vitali in un archivio cifrato — tutto in un'unica app.",
     hero_trial:"1 mese di prova gratuita · Nessun impegno",hero_cta_btn:"Inizia gratis ora",cta_btn:"Scarica sull'App Store",
@@ -1099,7 +1145,8 @@ const T = {
     step1_h:"Scegli la tua lingua",step1_p:"L'app si adatta immediatamente alla tua lingua, senza configurazioni.",
     step2_h:"Costruisci il tuo zaino",step2_p:"Aggiungi articoli per categoria. Usa la lista integrata o crea articoli personalizzati.",
     step3_h:"Monitora le scorte",step3_p:"Imposta livelli di stock e date di scadenza. Lascia che GoBag+ ti ricordi quando fare scorta.",
-    step4_h:"Condividi con la famiglia",step4_p:"Sincronizza tutto via iCloud affinché tutta la famiglia sia preparata insieme.",
+    step4_h:"Aggiungi i tuoi contatti SOS",step4_p:"Salva i contatti di emergenza per sapere chi chiamare quando più conta.",
+    step5_h:"Archivia i tuoi documenti vitali",step5_p:"Conserva foto e PDF di documenti, passaporti e tessere sanitarie in un archivio protetto da Face ID.",
     family_h2:"Un abbonamento, tutta la famiglia coperta",
     family_p:"Con Apple Family Sharing, un abbonamento GoBag+ Premium dà accesso completo ai familiari automaticamente — senza acquisti aggiuntivi, senza condividere password.",
     pricing_label:"Prezzi",pricing_title:"Prezzi semplici e onesti",pricing_sub:"Inizia gratis. Passa a Premium quando sei pronto.",pricing_badge:"Miglior offerta",
@@ -1112,7 +1159,7 @@ const T = {
     footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GreDami. Tutti i diritti riservati."
   },
   pt: {
-    nav_cta:"Baixar grátis",welcome_tagline:"O melhor momento para se preparar para um desastre foi ontem. O segundo melhor momento é hoje.",
+    nav_cta:"Baixar grátis",welcome_tagline:"O melhor momento para se preparar para um desastre foi ontem. O segundo melhor momento é hoje",
     hero_h1:"Esteja pronto<br><span>antes do desastre.</span>",
     hero_p:"Monte o seu saco de emergência, controle as suas reservas em casa, guarde contactos de emergência e proteja documentos vitais num cofre seguro — tudo numa única app.",
     hero_trial:"1 mês de teste grátis · Sem compromisso",hero_cta_btn:"Começar grátis agora",cta_btn:"Transferir na App Store",
@@ -1131,7 +1178,8 @@ const T = {
     step1_h:"Escolha o seu idioma",step1_p:"A app adapta-se imediatamente ao seu idioma, sem configurações.",
     step2_h:"Monte a sua mochila",step2_p:"Adicione artigos por categorias. Use a lista integrada ou crie artigos personalizados.",
     step3_h:"Controle as suas reservas",step3_p:"Defina níveis de stock e datas de validade. Deixe o GoBag+ lembrá-lo de reabastecer.",
-    step4_h:"Partilhe com a família",step4_p:"Sincronize tudo via iCloud para que toda a família esteja preparada em conjunto.",
+    step4_h:"Adicione os seus contactos SOS",step4_p:"Guarde contactos de emergência para a sua família saber a quem ligar quando mais precisa.",
+    step5_h:"Guarde os seus documentos vitais",step5_p:"Conserve fotos dos seus documentos, passaportes e cartões de seguro num cofre protegido pelo Face ID.",
     family_h2:"Uma subscrição, toda a família protegida",
     family_p:"Com o Apple Family Sharing, uma subscrição GoBag+ Premium dá acesso completo aos familiares automaticamente — sem compras adicionais, sem partilhar palavras-passe.",
     pricing_label:"Preços",pricing_title:"Preços simples e honestos",pricing_sub:"Comece grátis. Atualize quando estiver pronto.",pricing_badge:"Melhor oferta",
@@ -1144,10 +1192,10 @@ const T = {
     footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GreDami. Todos os direitos reservados."
   },
   ru: {
-    nav_cta:"Скачать бесплатно",welcome_tagline:"Лучшее время готовиться к катастрофе было вчера. Второе лучшее время — сегодня.",
+    nav_cta:"Скачать бесплатно",welcome_tagline:"Лучшее время готовиться к катастрофе было вчера. Второе лучшее время — сегодня",
     hero_h1:"Будьте готовы<br><span>до катастрофы.</span>",
     hero_p:"Соберите тревожный чемоданчик, следите за домашними запасами, храните экстренные контакты и защитите важные документы в зашифрованном хранилище — в одном приложении.",
-    hero_trial:"1 месяц бесплатно · Без обязательств",hero_cta_btn:"Начать готовиться — Бесплатно",cta_btn:"Загрузить в App Store",
+    hero_trial:"1 месяц бесплатно · Без обязательств",hero_cta_btn:"Начать готовиться",cta_btn:"Загрузить в App Store",
     security_label:"Конфиденциальность",security_title:"Ваши данные — только ваши",security_sub:"GoBag+ построен на инфраструктуре безопасности Apple. Ваши конфиденциальные документы никогда не покидают ваши устройства без вашего согласия.",
     security_1_title:"Защита Face ID",security_1_p:"Хранилище документов открывается только по вашей биометрии. Никто другой не может получить доступ к вашим сканам документов.",
     security_2_title:"Шифрование iCloud",security_2_p:"Все данные синхронизируются через зашифрованный iCloud Apple. Мы никогда не видим и не храним вашу информацию на наших серверах.",
@@ -1163,7 +1211,8 @@ const T = {
     step1_h:"Выберите язык",step1_p:"Приложение сразу адаптируется к вашему языку — никаких дополнительных настроек.",
     step2_h:"Соберите чемоданчик",step2_p:"Добавляйте предметы по категориям. Используйте готовый список или создавайте свои пункты.",
     step3_h:"Следите за запасами",step3_p:"Задайте уровни запасов и сроки годности. GoBag+ напомнит, когда пора пополнить.",
-    step4_h:"Поделитесь с семьёй",step4_p:"Синхронизируйте всё через iCloud — вся семья будет готова вместе.",
+    step4_h:"Добавьте контакты SOS",step4_p:"Сохраните экстренные контакты — ваша семья будет знать, кому звонить в нужный момент.",
+    step5_h:"Сохраните важные документы",step5_p:"Храните фото удостоверений, паспортов и страховых карт в хранилище, защищённом Face ID.",
     family_h2:"Одна подписка — вся семья защищена",
     family_p:"С Apple Family Sharing одна подписка GoBag+ Premium автоматически даёт полный доступ членам семьи — без дополнительных покупок и паролей.",
     pricing_label:"Цены",pricing_title:"Простые и честные цены",pricing_sub:"Начните бесплатно. Перейдите на Premium позже.",pricing_badge:"Лучшее предложение",
@@ -1179,7 +1228,7 @@ const T = {
 
 // Load icon, round corners on canvas, set as favicon + nav logo
 (function() {
-  var iconFile = 'screenshots/gobag-icon.png?v=' + Date.now();
+  var iconFile = 'gobag-icon.png?v=' + Date.now();
   var img = new Image();
   img.crossOrigin = 'anonymous';
   img.onload = function() {
@@ -1239,12 +1288,11 @@ function setLang(lang) {
   document.getElementById('langSwitcher').classList.remove('open');
   document.documentElement.lang = lang;
   localStorage.setItem('gobag_lang', lang);
-  const ssDir = lang === 'fr' ? 'screenshotsfr' : 'screenshots';
   document.querySelectorAll('[data-screenshot]').forEach(img => {
-    img.src = ssDir + '/' + img.getAttribute('data-screenshot') + '.png';
+    img.src = 'screenshots/' + img.getAttribute('data-screenshot') + '.png';
   });
   const heroPhone = document.getElementById('heroPhoneImg');
-  if (heroPhone) heroPhone.src = ssDir + '/1.png';
+  if (heroPhone) heroPhone.src = 'screenshots/1.png';
 }
 
 (function() {
@@ -1255,65 +1303,202 @@ function setLang(lang) {
   setLang(lang);
 })();
 
-// FEATURES CAROUSEL
-(function() {
-  let offset = 0;
-  let autoTimer = null;
+// ====== STEPS CAROUSEL ======
+(function(){
+  const stage   = document.getElementById('stepsStage');
+  if (!stage) return;
+  const slides  = Array.from(stage.querySelectorAll('.how-step-card'));
+  const dots    = Array.from(document.querySelectorAll('#stepsDots .step-dot'));
+  const prevBtn = document.getElementById('stepsPrev');
+  const nextBtn = document.getElementById('stepsNext');
+  const N = slides.length;
+  let cur = 0, autoTimer, isDragging = false, dragStartX = 0, dragDeltaX = 0;
 
-  function getMaxOffset() {
-    const track = document.getElementById('featTrack');
-    if (!track) return 0;
-    return Math.max(0, track.scrollWidth - track.parentElement.offsetWidth);
+  // Per-position config (FinWall style): dx=offset, sc=scale, op=opacity, zi=z-index
+  const CONFIG = [
+    { dx: -480, sc: 0.68, op: 0.20, zi: 0 },  // -2
+    { dx: -240, sc: 0.82, op: 0.50, zi: 1 },  // -1
+    { dx:    0, sc: 1.00, op: 1.00, zi: 2 },  //  0  active
+    { dx:  240, sc: 0.82, op: 0.50, zi: 1 },  // +1
+    { dx:  480, sc: 0.68, op: 0.20, zi: 0 },  // +2
+  ];
+
+  function render(extraDx) {
+    extraDx = extraDx || 0;
+    slides.forEach((s, i) => {
+      let rel = i - cur;
+      if (rel >  N / 2) rel -= N;   // wrap for infinite loop
+      if (rel < -N / 2) rel += N;
+      const abs = Math.min(Math.max(rel, -2), 2);
+      const c   = CONFIG[abs + 2];
+      const dx  = c.dx + extraDx * (1 - Math.abs(abs) * 0.3);
+      s.style.transform  = `translateX(${dx}px) scale(${c.sc})`;
+      s.style.opacity    = c.op;
+      s.style.zIndex     = c.zi;
+      s.style.transition = extraDx ? 'none' : 'transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease, box-shadow .55s';
+      s.style.boxShadow  = abs === 0
+        ? '0 32px 70px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06), 0 0 55px rgba(0,180,216,0.15)'
+        : '0 24px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04)';
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === cur));
   }
 
-  function getCardW() {
-    const cards = document.getElementById('featTrack').querySelectorAll('.feature-card');
-    if (!cards.length) return 300;
-    return cards[0].offsetWidth + 20;
-  }
-
-  function applyOffset() {
-    const track = document.getElementById('featTrack');
-    const maxOffset = getMaxOffset();
-    track.style.transform = 'translateX(-' + offset + 'px)';
-    document.getElementById('featPrev').disabled = offset <= 0;
-    document.getElementById('featNext').disabled = offset >= maxOffset;
-  }
-
-  function autoStep() {
-    const maxOffset = getMaxOffset();
-    if (offset >= maxOffset) {
-      offset = 0;
-    } else {
-      offset = Math.min(offset + getCardW(), maxOffset);
-    }
-    applyOffset();
+  function goTo(n) {
+    cur = ((n % N) + N) % N;
+    render();
   }
 
   function startAuto() {
-    stopAuto();
-    autoTimer = setInterval(autoStep, 2800);
+    autoTimer = setInterval(() => goTo(cur + 1), 2800);
   }
 
-  function stopAuto() {
-    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
-  }
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(cur - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(cur + 1));
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+  slides.forEach((s, i) => s.addEventListener('click', () => {
+    if (isDragging) return;
+    goTo(i);
+  }));
 
-  window.featMove = function(dir) {
-    const maxOffset = getMaxOffset();
-    offset = Math.min(Math.max(0, offset + dir * getCardW()), maxOffset);
-    applyOffset();
-    startAuto();
-  };
-
-  document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('featPrev').disabled = true;
-    const carousel = document.querySelector('.features-carousel');
-    if (carousel) {
-      carousel.addEventListener('mouseenter', stopAuto);
-      carousel.addEventListener('mouseleave', startAuto);
+  // Pointer drag (FinWall pattern)
+  stage.addEventListener('pointerdown', e => {
+    isDragging = false; dragStartX = e.clientX; dragDeltaX = 0;
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', e => {
+    if (e.buttons === 0) return;
+    dragDeltaX = e.clientX - dragStartX;
+    if (Math.abs(dragDeltaX) > 5) isDragging = true;
+    if (isDragging) render(dragDeltaX * 0.6);
+  });
+  stage.addEventListener('pointerup', () => {
+    if (isDragging) {
+      if      (dragDeltaX < -40) goTo(cur + 1);
+      else if (dragDeltaX >  40) goTo(cur - 1);
+      else render();
     }
-    startAuto();
+    setTimeout(() => { isDragging = false; }, 10);
+  });
+
+  render();
+  startAuto();
+})();
+
+// ====== TREE + LEAVES ======
+(function() {
+  const scene = document.getElementById('heroScene');
+  if (!scene) return;
+
+  const TREE_H = Math.min(520, Math.round(window.innerHeight * 0.65));
+  const TREE_W = Math.round(TREE_H * 380 / 540);
+
+  const treeWrap = document.createElement('div');
+  treeWrap.className = 'tree-wrap';
+  treeWrap.style.color = '#000';
+  treeWrap.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 540" width="${TREE_W}" height="${TREE_H}" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M218,540 Q214,462 210,384 Q208,312 212,244 Q216,182 213,120 Q210,74 208,30" stroke-width="14"/>
+    <path d="M212,440 Q172,406 126,368 Q96,342 74,318" stroke-width="9.5"/>
+    <path d="M74,318 Q52,300 38,280" stroke-width="5.5"/>
+    <path d="M74,318 Q58,338 46,358" stroke-width="4.5"/>
+    <path d="M126,368 Q108,348 96,330" stroke-width="4"/>
+    <path d="M126,368 Q144,348 158,328" stroke-width="3.5"/>
+    <path d="M158,328 Q170,312 178,298" stroke-width="2.5"/>
+    <path d="M96,330 Q80,314 66,298" stroke-width="3"/>
+    <path d="M66,298 Q54,284 44,270" stroke-width="2"/>
+    <path d="M210,346 Q168,312 120,278 Q88,252 66,226" stroke-width="8.5"/>
+    <path d="M66,226 Q46,208 34,188" stroke-width="5"/>
+    <path d="M66,226 Q50,244 38,264" stroke-width="4"/>
+    <path d="M120,278 Q98,256 80,236" stroke-width="4"/>
+    <path d="M80,236 Q64,218 52,202" stroke-width="2.5"/>
+    <path d="M120,278 Q140,258 156,240" stroke-width="3.5"/>
+    <path d="M156,240 Q168,224 172,210" stroke-width="2.5"/>
+    <path d="M212,252 Q170,216 124,182 Q92,156 68,130" stroke-width="7.5"/>
+    <path d="M68,130 Q48,112 34,94" stroke-width="4.5"/>
+    <path d="M68,130 Q52,148 40,168" stroke-width="3.5"/>
+    <path d="M124,182 Q100,158 82,138" stroke-width="3.5"/>
+    <path d="M82,138 Q66,120 54,104" stroke-width="2.5"/>
+    <path d="M124,182 Q146,162 160,144" stroke-width="3"/>
+    <path d="M160,144 Q172,130 176,116" stroke-width="2"/>
+    <path d="M213,164 Q170,130 124,98 Q94,76 70,54" stroke-width="6.5"/>
+    <path d="M70,54 Q52,36 40,20" stroke-width="4"/>
+    <path d="M70,54 Q58,72 50,90" stroke-width="3"/>
+    <path d="M124,98 Q102,76 84,58" stroke-width="3.5"/>
+    <path d="M84,58 Q68,42 56,28" stroke-width="2.5"/>
+    <path d="M124,98 Q144,80 156,64" stroke-width="3"/>
+    <path d="M156,64 Q168,50 172,38" stroke-width="2"/>
+    <path d="M213,400 Q256,366 302,338 Q328,322 350,310" stroke-width="8.5"/>
+    <path d="M302,338 Q322,325 344,316" stroke-width="5"/>
+    <path d="M302,338 Q314,354 320,372" stroke-width="4"/>
+    <path d="M302,338 Q288,356 276,372" stroke-width="3.5"/>
+    <path d="M211,308 Q252,274 296,246 Q320,230 346,218" stroke-width="7.5"/>
+    <path d="M296,246 Q318,234 340,224" stroke-width="4.5"/>
+    <path d="M296,246 Q306,260 312,276" stroke-width="3.5"/>
+    <path d="M296,246 Q282,262 270,278" stroke-width="3"/>
+    <path d="M212,216 Q250,186 292,160 Q316,146 340,134" stroke-width="6.5"/>
+    <path d="M292,160 Q312,150 334,142" stroke-width="4"/>
+    <path d="M292,160 Q300,174 304,190" stroke-width="3"/>
+    <path d="M292,160 Q278,174 266,188" stroke-width="2.5"/>
+    <path d="M213,134 Q248,108 286,84 Q308,71 332,60" stroke-width="5.5"/>
+    <path d="M286,84 Q304,74 324,66" stroke-width="3.5"/>
+    <path d="M286,84 Q292,98 294,112" stroke-width="2.5"/>
+    <path d="M286,84 Q272,98 260,114" stroke-width="2.5"/>
+    <path d="M211,80 Q194,58 176,42 Q162,28 150,16" stroke-width="4.5"/>
+    <path d="M176,42 Q166,30 158,18" stroke-width="2.5"/>
+    <path d="M210,70 Q226,50 242,34 Q254,22 264,12" stroke-width="4.5"/>
+    <path d="M242,34 Q252,22 260,10" stroke-width="2.5"/>
+    <path d="M210,50 Q206,34 200,20 Q196,10 194,2" stroke-width="3.5"/>
+    <path d="M210,48 Q215,32 220,18 Q224,8 226,2" stroke-width="3.5"/>
+    <path d="M211,92 Q202,72 196,54 Q190,38 186,22" stroke-width="3"/>
+    <path d="M211,88 Q220,70 228,54 Q234,40 238,24" stroke-width="3"/>
+  </svg>`;
+  scene.appendChild(treeWrap);
+
+  const shapes = [
+    '<path d="M7,0 C10,2 13,7 12,13 Q11,18 7,20 Q3,18 2,13 C1,7 4,2 7,0Z"/>',
+    '<path d="M7,1 C12,1 15,6 14,11 Q13,17 7,20 Q2,17 1,11 C0,6 2,1 7,1Z"/>',
+    '<path d="M7,0 C9,3 11,8 10,14 Q9,18 7,20 Q5,18 4,14 C3,8 5,3 7,0Z"/>',
+    '<path d="M7,0 C10,0 14,4 14,9 Q14,11 12,12 Q14,14 13,17 Q11,20 7,20 Q3,20 1,17 Q0,14 2,12 Q0,11 0,9 C0,4 4,0 7,0Z"/>',
+  ];
+
+  const tips = [
+    [10,52],[12,66],[25,61],[17,55],[12,50],[47,55],[46,61],
+    [9,35],[10,49],[14,37],[45,39],[45,44],
+    [9,17],[10,31],[14,19],[46,21],[46,27],
+    [10,4],[13,17],[15,5],[45,7],[41,12],
+    [90,57],[84,69],[73,69],[84,61],
+    [89,42],[82,51],[71,51],[87,50],
+    [88,26],[80,35],[70,35],[87,33],
+    [85,12],[77,20],[68,21],[85,19],
+    [39,3],[69,2],[51,0],[49,4],[55,3],
+    [41,13],[63,4],[50,2],[57,2],
+  ];
+
+  tips.forEach(([lp, tp], i) => {
+    const size  = 7 + Math.random() * 8;
+    const dur   = 7 + Math.random() * 6;
+    const delay = -(Math.random() * dur);
+    const angle = (170 + Math.random() * 95) * Math.PI / 180;
+    const dist  = window.innerWidth * (0.7 + Math.random() * 0.6);
+    const dx    = Math.round(Math.cos(angle) * dist);
+    const dy    = Math.round(Math.sin(angle) * dist);
+    const ja    = (160 + Math.random() * 120) * Math.PI / 180;
+    const jd    = 8 + Math.random() * 18;
+    const jx    = Math.round(Math.cos(ja) * jd);
+    const jy    = Math.round(Math.sin(ja) * jd);
+    const spin  = (Math.random() > 0.5 ? 1 : -1) * (360 + Math.random() * 420);
+    const op    = 0.55 + Math.random() * 0.3;
+    const w = Math.round(size), h = Math.round(size * 1.45);
+
+    const leaf = document.createElement('div');
+    leaf.className = 'tree-leaf';
+    leaf.style.cssText =
+      `left:${lp}%;top:${tp}%;` +
+      `--dx:${dx}px;--dy:${dy}px;` +
+      `--jx:${jx}px;--jy:${jy}px;` +
+      `--spin:${spin.toFixed(0)}deg;--op:${op.toFixed(2)};` +
+      `animation:leafLife ${dur.toFixed(1)}s ease-in-out ${delay.toFixed(1)}s infinite;`;
+    leaf.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20" width="${w}" height="${h}" fill="#ff6b1a" aria-hidden="true">${shapes[i % shapes.length]}</svg>`;
+    treeWrap.appendChild(leaf);
   });
 })();
 
@@ -1323,38 +1508,62 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ====== FLOATING PARTICLES ======
+// ====== FOREST SCENE ======
 (function() {
-  const container = document.getElementById('heroParticles');
-  if (!container) return;
-  for (let i = 0; i < 28; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 3 + 1.5;
-    p.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${Math.random()*100}%;
-      bottom:${Math.random()*20}%;
-      --dx:${(Math.random()-0.5)*80}px;
-      animation-duration:${6+Math.random()*10}s;
-      animation-delay:${Math.random()*8}s;
-      opacity:${0.3+Math.random()*0.5};
-      background:${Math.random()>0.5?'rgba(0,180,216,0.6)':'rgba(42,111,240,0.5)'};
-    `;
-    container.appendChild(p);
-  }
-})();
+  const scene = document.getElementById('heroForest');
+  if (!scene) return;
 
-// ====== MOUSE PARALLAX ON HERO ORBS ======
-(function() {
-  const orbs = document.querySelectorAll('.hero-orb');
-  document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5);
-    const y = (e.clientY / window.innerHeight - 0.5);
-    orbs.forEach((orb, i) => {
-      const f = (i + 1) * 22;
-      orb.style.transform = `translate(${x*f}px,${y*f}px)`;
-    });
+  const svgBody = '<rect x="43" y="258" width="14" height="42" rx="2"/>'
+    + '<polygon points="50,20 75,108 25,108"/>'
+    + '<polygon points="50,65 82,158 18,158"/>'
+    + '<polygon points="50,108 90,208 10,208"/>'
+    + '<polygon points="50,155 97,258 3,258"/>';
+
+  // [left%, height_px, color, dur_s, delay_s, base_deg, gust_deg]
+  const trees = [
+    // background — slightly lighter than horizon, depth haze
+    [1,   85, '#0a1828', 4.3, -1.2, -1,   3],
+    [13,  78, '#0a1828', 4.1, -3.5, -1.5, 3],
+    [25,  90, '#0a1828', 4.5, -0.7, -1,   4],
+    [37,  82, '#0a1828', 4.0, -2.3, -1.5, 3],
+    [50,  88, '#0a1828', 4.2, -4.1, -1,   3],
+    [63,  80, '#0a1828', 4.4, -1.0, -1.5, 4],
+    [75,  86, '#0a1828', 4.1, -3.0, -1,   3],
+    [88,  82, '#0a1828', 4.3, -0.5, -1.5, 3],
+    // midground
+    [0,   155, '#040a14', 3.5, -0.9,  -2,   7],
+    [9,   168, '#040a14', 3.7, -2.4,  -2.5, 8],
+    [19,  160, '#040a14', 3.3, -4.0,  -2,   7],
+    [29,  172, '#040a14', 3.6, -1.5,  -3,   8],
+    [39,  165, '#040a14', 3.4, -3.2,  -2,   7],
+    [50,  170, '#040a14', 3.7, -0.6,  -2.5, 8],
+    [61,  158, '#040a14', 3.3, -2.8,  -2,   7],
+    [71,  168, '#040a14', 3.5, -1.1,  -3,   8],
+    [81,  162, '#040a14', 3.6, -4.5,  -2.5, 7],
+    [91,  170, '#040a14', 3.4, -2.0,  -2,   8],
+    [100, 155, '#040a14', 3.7, -0.3,  -2.5, 7],
+    // foreground — near-black silhouettes
+    [-2,  252, '#010204', 2.6, -1.3,  -3,   12],
+    [7,   272, '#010204', 2.8, -2.7,  -3.5, 13],
+    [17,  258, '#010204', 2.5, -4.2,  -3,   12],
+    [27,  278, '#010204', 2.7, -0.8,  -4,   14],
+    [37,  262, '#010204', 2.6, -3.3,  -3.5, 13],
+    [47,  275, '#010204', 2.8, -1.7,  -3,   12],
+    [57,  258, '#010204', 2.6, -4.8,  -4,   13],
+    [67,  272, '#010204', 2.7, -2.3,  -3.5, 14],
+    [77,  265, '#010204', 2.5, -0.5,  -3,   12],
+    [87,  278, '#010204', 2.8, -3.7,  -4,   13],
+    [96,  260, '#010204', 2.6, -2.0,  -3.5, 12],
+    [104, 272, '#010204', 2.7, -1.0,  -3,   13],
+  ];
+
+  trees.forEach(([left, h, color, dur, delay, base, gust]) => {
+    const w = Math.round(h / 3);
+    const div = document.createElement('div');
+    div.className = 'tree-wrap';
+    div.style.cssText = `left:${left}%;color:${color};--dur:${dur}s;--delay:${delay}s;--base:${base}deg;--gust:${gust}deg;`;
+    div.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 300" width="${w}" height="${h}" fill="currentColor" aria-hidden="true">${svgBody}</svg>`;
+    scene.appendChild(div);
   });
 })();
 </script>
