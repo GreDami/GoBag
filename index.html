@@ -1236,11 +1236,26 @@ function setLang(lang) {
 }
 
 (function() {
-  const saved = localStorage.getItem('gobag_lang');
-  const browser = (navigator.language || '').slice(0, 2).toLowerCase();
   const supported = ['en','fr','de','es','it','pt','ru'];
-  const lang = supported.includes(saved) ? saved : supported.includes(browser) ? browser : 'en';
-  setLang(lang);
+  const saved = localStorage.getItem('gobag_lang');
+  if (supported.includes(saved)) { setLang(saved); return; }
+
+  const browserLang = (navigator.language || '').slice(0, 2).toLowerCase();
+  const fallbackLang = supported.includes(browserLang) ? browserLang : 'en';
+
+  const COUNTRY_LANG = {
+    FR:'fr', BE:'fr', LU:'fr', MC:'fr',
+    DE:'de', AT:'de',
+    ES:'es', MX:'es', AR:'es', CO:'es', CL:'es', PE:'es', VE:'es', EC:'es', UY:'es', GT:'es', CR:'es', PA:'es', BO:'es', PY:'es', DO:'es', HN:'es', SV:'es', NI:'es',
+    IT:'it', SM:'it',
+    PT:'pt', BR:'pt',
+    RU:'ru', BY:'ru', KZ:'ru', KG:'ru',
+  };
+
+  fetch('https://ipapi.co/json/').then(r => r.json()).then(data => {
+    const cc = ((data && data.country_code) || '').toUpperCase();
+    setLang(COUNTRY_LANG[cc] || fallbackLang);
+  }).catch(() => setLang(fallbackLang));
 })();
 
 // ====== STEPS CAROUSEL ======
