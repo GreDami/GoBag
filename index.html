@@ -175,12 +175,12 @@
         }
         .hero h1 {
             font-family: var(--display);
-            font-size: clamp(2.8rem, 7.5vw, 5.2rem);
+            font-size: clamp(3.4rem, 9vw, 6.4rem);
             font-weight: 900;
-            line-height: 1.02;
+            line-height: 1.0;
             margin-bottom: 24px;
             letter-spacing: -0.5px;
-            max-width: 560px;
+            max-width: 640px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -512,29 +512,6 @@
         .d3 { transition-delay: 0.25s; } .d4 { transition-delay: 0.34s; } .d5 { transition-delay: 0.43s; }
 
 
-        /* TREE & LEAVES */
-        .hero-scene { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-        .tree-wrap { position: absolute; bottom: 0; right: 0; }
-        @keyframes treeSway {
-            0%,100% { transform: rotate(-2.5deg); }
-            22%     { transform: rotate(-10deg); }
-            48%     { transform: rotate(-4deg); }
-            72%     { transform: rotate(-12deg); }
-        }
-        .tree-leaf { position: absolute; pointer-events: none; transform-origin: 40% 60%; }
-        @keyframes leafLife {
-            0%   { transform: translate(0px,0px)                                    rotate(0deg)   scaleX(1);    opacity: 0; }
-            4%   { opacity: var(--op, 0.75); }
-            12%  { transform: translate(3px,-4px)                                   rotate(12deg)  scaleX(0.92); }
-            21%  { transform: translate(-2px,3px)                                   rotate(-7deg)  scaleX(1.04); }
-            28%  { transform: translate(5px,-5px)                                   rotate(15deg)  scaleX(0.88); }
-            34%  { transform: translate(var(--jx,0px),var(--jy,-14px))             rotate(38deg)  scaleX(0.75); animation-timing-function: cubic-bezier(.2,0,.6,1); }
-            50%  { transform: translate(calc(var(--dx)*.32),calc(var(--dy)*.28))   rotate(155deg) scaleX(1.05); animation-timing-function: ease-in-out; }
-            66%  { transform: translate(calc(var(--dx)*.60),calc(var(--dy)*.56))   rotate(295deg) scaleX(0.65); animation-timing-function: ease-in; }
-            82%  { transform: translate(calc(var(--dx)*.84),calc(var(--dy)*.82))   rotate(435deg) scaleX(0.9);  }
-            93%  { opacity: var(--op, 0.75); }
-            100% { transform: translate(var(--dx),var(--dy))                        rotate(var(--spin)) scaleX(0.8); opacity: 0; }
-        }
 
         /* Hero load-in: one orchestrated sequence instead of scattered ambient loops */
         @keyframes heroIn {
@@ -680,10 +657,9 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-scene" id="heroScene"></div>
     <div class="hero-content">
         <div class="hero-text">
-            <h1 data-i18n-html="hero_h1">Be ready before<br><span>disaster strikes.</span></h1>
+            <h1 data-i18n-html="hero_h1">Go Bag &amp;<br><span>Home Reserve</span></h1>
             <p data-i18n="hero_p">Build your go bag, track home supplies, store emergency contacts, and secure vital documents in an encrypted vault — all in one app.</p>
             <div class="hero-buttons">
                 <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="btn-primary" target="_blank">
@@ -959,7 +935,7 @@
 const T = {
   en: {
     nav_cta:"Download Free",welcome_tagline:"Best time to prepare for a disaster was yesterday. The second best time is today",
-    hero_h1:"Be ready before<br><span>disaster strikes.</span>",
+    hero_h1:"Go Bag &<br><span>Home Reserve</span>",
     hero_p:"Build your go bag, track home supplies, store emergency contacts, and secure vital documents in an encrypted vault — all in one app.",
     hero_trial:"Free 1-month trial · No commitment",hero_cta_btn:"Build My Go Bag",cta_btn:"Download on the App Store",
     security_label:"Privacy & Security",security_title:"Your data stays yours",security_sub:"GoBag+ is built on Apple's security infrastructure. Your confidential documents never leave your devices without your consent.",
@@ -1346,124 +1322,6 @@ function setLang(lang) {
 
   render();
   startAuto();
-})();
-
-// ====== TREE + LEAVES ======
-(function() {
-  const scene = document.getElementById('heroScene');
-  if (!scene) return;
-
-  const TREE_H = Math.min(520, Math.round(window.innerHeight * 0.65));
-  const TREE_W = Math.round(TREE_H * 380 / 540);
-
-  const treeWrap = document.createElement('div');
-  treeWrap.className = 'tree-wrap';
-  treeWrap.style.color = '#000';
-  treeWrap.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 540" width="${TREE_W}" height="${TREE_H}" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M218,540 Q214,462 210,384 Q208,312 212,244 Q216,182 213,120 Q210,74 208,30" stroke-width="14"/>
-    <path d="M212,440 Q172,406 126,368 Q96,342 74,318" stroke-width="9.5"/>
-    <path d="M74,318 Q52,300 38,280" stroke-width="5.5"/>
-    <path d="M74,318 Q58,338 46,358" stroke-width="4.5"/>
-    <path d="M126,368 Q108,348 96,330" stroke-width="4"/>
-    <path d="M126,368 Q144,348 158,328" stroke-width="3.5"/>
-    <path d="M158,328 Q170,312 178,298" stroke-width="2.5"/>
-    <path d="M96,330 Q80,314 66,298" stroke-width="3"/>
-    <path d="M66,298 Q54,284 44,270" stroke-width="2"/>
-    <path d="M210,346 Q168,312 120,278 Q88,252 66,226" stroke-width="8.5"/>
-    <path d="M66,226 Q46,208 34,188" stroke-width="5"/>
-    <path d="M66,226 Q50,244 38,264" stroke-width="4"/>
-    <path d="M120,278 Q98,256 80,236" stroke-width="4"/>
-    <path d="M80,236 Q64,218 52,202" stroke-width="2.5"/>
-    <path d="M120,278 Q140,258 156,240" stroke-width="3.5"/>
-    <path d="M156,240 Q168,224 172,210" stroke-width="2.5"/>
-    <path d="M212,252 Q170,216 124,182 Q92,156 68,130" stroke-width="7.5"/>
-    <path d="M68,130 Q48,112 34,94" stroke-width="4.5"/>
-    <path d="M68,130 Q52,148 40,168" stroke-width="3.5"/>
-    <path d="M124,182 Q100,158 82,138" stroke-width="3.5"/>
-    <path d="M82,138 Q66,120 54,104" stroke-width="2.5"/>
-    <path d="M124,182 Q146,162 160,144" stroke-width="3"/>
-    <path d="M160,144 Q172,130 176,116" stroke-width="2"/>
-    <path d="M213,164 Q170,130 124,98 Q94,76 70,54" stroke-width="6.5"/>
-    <path d="M70,54 Q52,36 40,20" stroke-width="4"/>
-    <path d="M70,54 Q58,72 50,90" stroke-width="3"/>
-    <path d="M124,98 Q102,76 84,58" stroke-width="3.5"/>
-    <path d="M84,58 Q68,42 56,28" stroke-width="2.5"/>
-    <path d="M124,98 Q144,80 156,64" stroke-width="3"/>
-    <path d="M156,64 Q168,50 172,38" stroke-width="2"/>
-    <path d="M213,400 Q256,366 302,338 Q328,322 350,310" stroke-width="8.5"/>
-    <path d="M302,338 Q322,325 344,316" stroke-width="5"/>
-    <path d="M302,338 Q314,354 320,372" stroke-width="4"/>
-    <path d="M302,338 Q288,356 276,372" stroke-width="3.5"/>
-    <path d="M211,308 Q252,274 296,246 Q320,230 346,218" stroke-width="7.5"/>
-    <path d="M296,246 Q318,234 340,224" stroke-width="4.5"/>
-    <path d="M296,246 Q306,260 312,276" stroke-width="3.5"/>
-    <path d="M296,246 Q282,262 270,278" stroke-width="3"/>
-    <path d="M212,216 Q250,186 292,160 Q316,146 340,134" stroke-width="6.5"/>
-    <path d="M292,160 Q312,150 334,142" stroke-width="4"/>
-    <path d="M292,160 Q300,174 304,190" stroke-width="3"/>
-    <path d="M292,160 Q278,174 266,188" stroke-width="2.5"/>
-    <path d="M213,134 Q248,108 286,84 Q308,71 332,60" stroke-width="5.5"/>
-    <path d="M286,84 Q304,74 324,66" stroke-width="3.5"/>
-    <path d="M286,84 Q292,98 294,112" stroke-width="2.5"/>
-    <path d="M286,84 Q272,98 260,114" stroke-width="2.5"/>
-    <path d="M211,80 Q194,58 176,42 Q162,28 150,16" stroke-width="4.5"/>
-    <path d="M176,42 Q166,30 158,18" stroke-width="2.5"/>
-    <path d="M210,70 Q226,50 242,34 Q254,22 264,12" stroke-width="4.5"/>
-    <path d="M242,34 Q252,22 260,10" stroke-width="2.5"/>
-    <path d="M210,50 Q206,34 200,20 Q196,10 194,2" stroke-width="3.5"/>
-    <path d="M210,48 Q215,32 220,18 Q224,8 226,2" stroke-width="3.5"/>
-    <path d="M211,92 Q202,72 196,54 Q190,38 186,22" stroke-width="3"/>
-    <path d="M211,88 Q220,70 228,54 Q234,40 238,24" stroke-width="3"/>
-  </svg>`;
-  scene.appendChild(treeWrap);
-
-  const shapes = [
-    '<path d="M7,0 C10,2 13,7 12,13 Q11,18 7,20 Q3,18 2,13 C1,7 4,2 7,0Z"/>',
-    '<path d="M7,1 C12,1 15,6 14,11 Q13,17 7,20 Q2,17 1,11 C0,6 2,1 7,1Z"/>',
-    '<path d="M7,0 C9,3 11,8 10,14 Q9,18 7,20 Q5,18 4,14 C3,8 5,3 7,0Z"/>',
-    '<path d="M7,0 C10,0 14,4 14,9 Q14,11 12,12 Q14,14 13,17 Q11,20 7,20 Q3,20 1,17 Q0,14 2,12 Q0,11 0,9 C0,4 4,0 7,0Z"/>',
-  ];
-
-  const tips = [
-    [10,52],[12,66],[25,61],[17,55],[12,50],[47,55],[46,61],
-    [9,35],[10,49],[14,37],[45,39],[45,44],
-    [9,17],[10,31],[14,19],[46,21],[46,27],
-    [10,4],[13,17],[15,5],[45,7],[41,12],
-    [90,57],[84,69],[73,69],[84,61],
-    [89,42],[82,51],[71,51],[87,50],
-    [88,26],[80,35],[70,35],[87,33],
-    [85,12],[77,20],[68,21],[85,19],
-    [39,3],[69,2],[51,0],[49,4],[55,3],
-    [41,13],[63,4],[50,2],[57,2],
-  ];
-
-  tips.forEach(([lp, tp], i) => {
-    const size  = 7 + Math.random() * 8;
-    const dur   = 7 + Math.random() * 6;
-    const delay = -(Math.random() * dur);
-    const angle = (170 + Math.random() * 95) * Math.PI / 180;
-    const dist  = window.innerWidth * (0.7 + Math.random() * 0.6);
-    const dx    = Math.round(Math.cos(angle) * dist);
-    const dy    = Math.round(Math.sin(angle) * dist);
-    const ja    = (160 + Math.random() * 120) * Math.PI / 180;
-    const jd    = 8 + Math.random() * 18;
-    const jx    = Math.round(Math.cos(ja) * jd);
-    const jy    = Math.round(Math.sin(ja) * jd);
-    const spin  = (Math.random() > 0.5 ? 1 : -1) * (360 + Math.random() * 420);
-    const op    = 0.55 + Math.random() * 0.3;
-    const w = Math.round(size), h = Math.round(size * 1.45);
-
-    const leaf = document.createElement('div');
-    leaf.className = 'tree-leaf';
-    leaf.style.cssText =
-      `left:${lp}%;top:${tp}%;` +
-      `--dx:${dx}px;--dy:${dy}px;` +
-      `--jx:${jx}px;--jy:${jy}px;` +
-      `--spin:${spin.toFixed(0)}deg;--op:${op.toFixed(2)};` +
-      `animation:leafLife ${dur.toFixed(1)}s ease-in-out ${delay.toFixed(1)}s infinite;`;
-    leaf.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20" width="${w}" height="${h}" fill="#d2601f" aria-hidden="true">${shapes[i % shapes.length]}</svg>`;
-    treeWrap.appendChild(leaf);
-  });
 })();
 
 // ====== SCROLL REVEAL ======
