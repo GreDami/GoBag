@@ -739,38 +739,52 @@
         <div class="steps-carousel" id="stepsStage">
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step1_h">Choose your language</h3>
-                    <p data-i18n="step1_p">The app adapts to your language immediately, no settings needed.</p>
+                    <h3 data-i18n="step1_h">Track your supplies</h3>
+                    <p data-i18n="step1_p">See what's stocked, what's running low, and what still needs a target.</p>
                 </div>
                 <img src="screenshots/2.png" data-screenshot="2" alt="">
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step2_h">Build your go bag</h3>
-                    <p data-i18n="step2_p">Add items across categories. Use the built-in list or create custom items.</p>
+                    <h3 data-i18n="step2_h">Sync across your devices</h3>
+                    <p data-i18n="step2_p">Your bag and reserve stay up to date on iPhone and iPad through iCloud.</p>
                 </div>
                 <img src="screenshots/3.png" data-screenshot="3" alt="">
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step3_h">Track your supplies</h3>
-                    <p data-i18n="step3_p">Set stock levels and expiry dates. Let GoBag+ remind you when to restock.</p>
+                    <h3 data-i18n="step3_h">Add your SOS contacts</h3>
+                    <p data-i18n="step3_p">Save emergency contacts so your family knows who to call when it matters most.</p>
                 </div>
                 <img src="screenshots/4.png" data-screenshot="4" alt="">
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step4_h">Add your SOS contacts</h3>
-                    <p data-i18n="step4_p">Save emergency contacts so your family knows who to call when it matters most.</p>
+                    <h3 data-i18n="step4_h">Store your vital documents</h3>
+                    <p data-i18n="step4_p">Keep photos of your IDs, passports, and insurance cards in a Face ID–protected vault.</p>
                 </div>
                 <img src="screenshots/5.png" data-screenshot="5" alt="">
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step5_h">Store your vital documents</h3>
-                    <p data-i18n="step5_p">Keep photos of your IDs, passports, and insurance cards in a Face ID–protected vault.</p>
+                    <h3 data-i18n="step5_h">Size it to your household</h3>
+                    <p data-i18n="step5_p">Tell GoBag+ how many people you're preparing for and your targets adjust automatically.</p>
                 </div>
                 <img src="screenshots/6.png" data-screenshot="6" alt="">
+            </div>
+            <div class="how-step-card">
+                <div class="step-card-header">
+                    <h3 data-i18n="step6_h">Check readiness at a glance</h3>
+                    <p data-i18n="step6_p">A home screen widget keeps your go bag and home reserve levels in view.</p>
+                </div>
+                <img src="screenshots/7.png" data-screenshot="7" alt="">
+            </div>
+            <div class="how-step-card">
+                <div class="step-card-header">
+                    <h3 data-i18n="step7_h">Everything in one place</h3>
+                    <p data-i18n="step7_p">Go bag, home reserve, SOS contacts, and documents — all one tap away.</p>
+                </div>
+                <img src="screenshots/8.png" data-screenshot="8" alt="">
             </div>
         </div>
         <div class="steps-nav">
@@ -781,6 +795,8 @@
                 <button class="step-dot" data-i="2"></button>
                 <button class="step-dot" data-i="3"></button>
                 <button class="step-dot" data-i="4"></button>
+                <button class="step-dot" data-i="5"></button>
+                <button class="step-dot" data-i="6"></button>
             </div>
             <button class="steps-btn" id="stepsNext" aria-label="Next">&#8250;</button>
         </div>
@@ -1042,11 +1058,13 @@ const T = {
     kfeat4_title:"Family sharing",kfeat4_p:"Share your preparation plan with the whole family. Everyone stays in sync — one subscription covers up to 5 members.",
     kfeat5_title:"Document Vault",kfeat5_p:"Securely store photos and PDFs of your IDs, passports and insurance cards — protected by Face ID. Accessible only to you.",
     how_label:"How it works",how_title:"Ready in minutes",how_sub:"Set up your emergency kit in just a few steps.",
-    step1_h:"Choose your language",step1_p:"The app adapts to your language immediately, no settings needed.",
-    step2_h:"Build your go bag",step2_p:"Add items across categories. Use the built-in list or create custom items.",
-    step3_h:"Track your supplies",step3_p:"Set stock levels and expiry dates. Let GoBag+ remind you when to restock.",
-    step4_h:"Add your SOS contacts",step4_p:"Save emergency contacts so your family knows who to call when it matters most.",
-    step5_h:"Store your vital documents",step5_p:"Keep photos of your IDs, passports, and insurance cards in a Face ID–protected vault.",
+    step1_h:"Track your supplies",step1_p:"See what's stocked, what's running low, and what still needs a target.",
+    step2_h:"Sync across your devices",step2_p:"Your bag and reserve stay up to date on iPhone and iPad through iCloud.",
+    step3_h:"Add your SOS contacts",step3_p:"Save emergency contacts so your family knows who to call when it matters most.",
+    step4_h:"Store your vital documents",step4_p:"Keep photos of your IDs, passports, and insurance cards in a Face ID–protected vault.",
+    step5_h:"Size it to your household",step5_p:"Tell GoBag+ how many people you're preparing for and your targets adjust automatically.",
+    step6_h:"Check readiness at a glance",step6_p:"A home screen widget keeps your go bag and home reserve levels in view.",
+    step7_h:"Everything in one place",step7_p:"Go bag, home reserve, SOS contacts, and documents — all one tap away.",
     family_h2:"One subscription, whole family covered",
     family_p:"With Apple Family Sharing, one GoBag+ Premium subscription gives full access to family members automatically — no extra purchases, no sharing passwords.",
     reviews_label:"Reviews",reviews_title:"Loved by people who plan ahead",reviews_sub:"Real feedback from the GoBag+ community.",
@@ -1079,11 +1097,13 @@ const T = {
     kfeat4_title:"Partage familial",kfeat4_p:"Partagez votre plan de préparation avec toute la famille. Tout le monde est synchronisé — un abonnement pour jusqu'à 5 membres.",
     kfeat5_title:"Coffre à Documents",kfeat5_p:"Stockez en sécurité photos et PDF de vos pièces d'identité, passeports et cartes d'assurance — protégés par Face ID. Accessible uniquement à vous.",
     how_label:"Comment ça marche",how_title:"Prêt en quelques minutes",how_sub:"Configurez votre kit d'urgence en quelques étapes.",
-    step1_h:"Choisissez votre langue",step1_p:"L'application s'adapte immédiatement à votre langue, sans réglages.",
-    step2_h:"Préparez votre sac",step2_p:"Ajoutez des articles par catégorie. Utilisez la liste intégrée ou créez vos propres articles.",
-    step3_h:"Suivez vos réserves",step3_p:"Définissez des niveaux de stock et des dates d'expiration. Laissez GoBag+ vous rappeler de réapprovisionner.",
-    step4_h:"Ajoutez vos contacts SOS",step4_p:"Enregistrez vos contacts d'urgence pour que votre famille sache qui appeler en cas de crise.",
-    step5_h:"Stockez vos documents importants",step5_p:"Conservez photos et PDF de vos pièces d'identité, passeports et cartes d'assurance dans un coffre sécurisé par Face ID.",
+    step1_h:"Suivez vos réserves",step1_p:"Voyez ce qui est en stock, ce qui s'épuise et ce qui n'a pas encore d'objectif.",
+    step2_h:"Synchronisé sur tous vos appareils",step2_p:"Votre sac et votre réserve restent à jour sur iPhone et iPad via iCloud.",
+    step3_h:"Ajoutez vos contacts SOS",step3_p:"Enregistrez vos contacts d'urgence pour que votre famille sache qui appeler en cas de crise.",
+    step4_h:"Stockez vos documents importants",step4_p:"Conservez photos et PDF de vos pièces d'identité, passeports et cartes d'assurance dans un coffre sécurisé par Face ID.",
+    step5_h:"Adaptez-le à votre foyer",step5_p:"Indiquez à GoBag+ pour combien de personnes vous préparez : vos objectifs s'ajustent automatiquement.",
+    step6_h:"Votre niveau de préparation en un coup d'œil",step6_p:"Un widget sur l'écran d'accueil garde vos niveaux de sac et de réserve sous les yeux.",
+    step7_h:"Tout au même endroit",step7_p:"Sac d'évacuation, réserve, contacts SOS et documents — tout à portée d'un geste.",
     family_h2:"Un abonnement, toute la famille couverte",
     family_p:"Avec le partage familial Apple, un abonnement GoBag+ Premium donne accès complet aux membres de la famille automatiquement — sans achat supplémentaire, sans partage de mot de passe.",
     reviews_label:"Avis",reviews_title:"Adopté par ceux qui anticipent",reviews_sub:"De vrais retours de la communauté GoBag+.",
@@ -1116,11 +1136,13 @@ const T = {
     kfeat4_title:"Familienfreigabe",kfeat4_p:"Teile deinen Vorbereitungsplan mit der ganzen Familie. Alle bleiben synchron — ein Abo für bis zu 5 Mitglieder.",
     kfeat5_title:"Dokumententresor",kfeat5_p:"Speichere Fotos und PDFs deiner Ausweise, Reisepässe und Versicherungskarten sicher — geschützt durch Face ID. Nur für dich zugänglich.",
     how_label:"So funktioniert es",how_title:"In Minuten einsatzbereit",how_sub:"Richte dein Notfallkit in wenigen Schritten ein.",
-    step1_h:"Wähle deine Sprache",step1_p:"Die App passt sich sofort an deine Sprache an, ohne Einstellungen.",
-    step2_h:"Baue deinen Rucksack",step2_p:"Füge Artikel nach Kategorien hinzu. Nutze die integrierte Liste oder erstelle eigene Artikel.",
-    step3_h:"Verfolge deine Vorräte",step3_p:"Lege Lagerbestände und Ablaufdaten fest. Lass GoBag+ dich ans Nachfüllen erinnern.",
-    step4_h:"Notfallkontakte hinzufügen",step4_p:"Hinterlege Notfallkontakte, damit deine Familie weiß, wen sie im Notfall anrufen soll.",
-    step5_h:"Wichtige Dokumente sichern",step5_p:"Bewahre Fotos deiner Ausweise, Reisepässe und Versicherungskarten in einem Face ID–geschützten Tresor auf.",
+    step1_h:"Verfolge deine Vorräte",step1_p:"Sieh, was vorrätig ist, was zur Neige geht und wofür noch ein Ziel fehlt.",
+    step2_h:"Auf allen Geräten synchron",step2_p:"Rucksack und Vorrat bleiben auf iPhone und iPad über iCloud aktuell.",
+    step3_h:"Notfallkontakte hinzufügen",step3_p:"Hinterlege Notfallkontakte, damit deine Familie weiß, wen sie im Notfall anrufen soll.",
+    step4_h:"Wichtige Dokumente sichern",step4_p:"Bewahre Fotos deiner Ausweise, Reisepässe und Versicherungskarten in einem Face ID–geschützten Tresor auf.",
+    step5_h:"Auf deinen Haushalt zugeschnitten",step5_p:"Sag GoBag+, für wie viele Personen du vorsorgst — die Zielmengen passen sich automatisch an.",
+    step6_h:"Bereitschaft auf einen Blick",step6_p:"Ein Widget auf dem Home-Bildschirm zeigt dir Rucksack- und Vorratsstand jederzeit an.",
+    step7_h:"Alles an einem Ort",step7_p:"Notfallrucksack, Hausvorrat, SOS-Kontakte und Dokumente — alles nur einen Tipp entfernt.",
     family_h2:"Ein Abo, die ganze Familie abgesichert",
     family_p:"Mit Apple Family Sharing gibt ein GoBag+ Premium-Abonnement Familienmitgliedern automatisch vollen Zugang — ohne zusätzliche Käufe, ohne Passwörter teilen.",
     reviews_label:"Bewertungen",reviews_title:"Geliebt von vorausschauenden Menschen",reviews_sub:"Echtes Feedback aus der GoBag+ Community.",
@@ -1153,11 +1175,13 @@ const T = {
     kfeat4_title:"Compartir en familia",kfeat4_p:"Comparte tu plan con toda la familia. Todos sincronizados — una suscripción para hasta 5 miembros.",
     kfeat5_title:"Bóveda de Documentos",kfeat5_p:"Guarda fotos y PDFs de tus documentos, pasaportes y tarjetas de seguro de forma segura — protegidos por Face ID. Solo accesible para ti.",
     how_label:"Cómo funciona",how_title:"Listo en minutos",how_sub:"Configura tu kit de emergencia en pocos pasos.",
-    step1_h:"Elige tu idioma",step1_p:"La app se adapta a tu idioma inmediatamente, sin configuraciones.",
-    step2_h:"Construye tu bolsa",step2_p:"Añade artículos por categorías. Usa la lista integrada o crea artículos personalizados.",
-    step3_h:"Controla tus suministros",step3_p:"Establece niveles de stock y fechas de caducidad. Deja que GoBag+ te recuerde cuándo reabastecer.",
-    step4_h:"Añade tus contactos SOS",step4_p:"Guarda contactos de emergencia para que tu familia sepa a quién llamar cuando más importa.",
-    step5_h:"Guarda tus documentos vitales",step5_p:"Conserva fotos de tus documentos, pasaportes y tarjetas de seguro en una bóveda protegida por Face ID.",
+    step1_h:"Controla tus suministros",step1_p:"Mira qué tienes en stock, qué se está agotando y qué aún no tiene objetivo.",
+    step2_h:"Sincroniza entre tus dispositivos",step2_p:"Tu bolsa y tu reserva se mantienen al día en iPhone y iPad mediante iCloud.",
+    step3_h:"Añade tus contactos SOS",step3_p:"Guarda contactos de emergencia para que tu familia sepa a quién llamar cuando más importa.",
+    step4_h:"Guarda tus documentos vitales",step4_p:"Conserva fotos de tus documentos, pasaportes y tarjetas de seguro en una bóveda protegida por Face ID.",
+    step5_h:"Ajústalo a tu hogar",step5_p:"Dile a GoBag+ para cuántas personas te preparas y tus objetivos se ajustan automáticamente.",
+    step6_h:"Comprueba tu preparación de un vistazo",step6_p:"Un widget en la pantalla de inicio mantiene a la vista los niveles de tu bolsa y tu reserva.",
+    step7_h:"Todo en un solo lugar",step7_p:"Bolsa de emergencia, reserva del hogar, contactos SOS y documentos — todo a un toque.",
     family_h2:"Una suscripción, toda la familia cubierta",
     family_p:"Con Apple Family Sharing, una suscripción GoBag+ Premium da acceso completo a los miembros de la familia automáticamente — sin compras adicionales, sin compartir contraseñas.",
     reviews_label:"Opiniones",reviews_title:"Querida por quienes se preparan con tiempo",reviews_sub:"Comentarios reales de la comunidad GoBag+.",
@@ -1190,11 +1214,13 @@ const T = {
     kfeat4_title:"Condivisione familiare",kfeat4_p:"Condividi il piano con tutta la famiglia. Tutti sincronizzati — un abbonamento per fino a 5 membri.",
     kfeat5_title:"Archivio Documenti",kfeat5_p:"Archivia foto e PDF di carte d'identità, passaporti e tessere sanitarie — protetti da Face ID. Accessibile solo a te.",
     how_label:"Come funziona",how_title:"Pronto in pochi minuti",how_sub:"Configura il tuo kit d'emergenza in pochi passaggi.",
-    step1_h:"Scegli la tua lingua",step1_p:"L'app si adatta immediatamente alla tua lingua, senza configurazioni.",
-    step2_h:"Costruisci il tuo zaino",step2_p:"Aggiungi articoli per categoria. Usa la lista integrata o crea articoli personalizzati.",
-    step3_h:"Monitora le scorte",step3_p:"Imposta livelli di stock e date di scadenza. Lascia che GoBag+ ti ricordi quando fare scorta.",
-    step4_h:"Aggiungi i tuoi contatti SOS",step4_p:"Salva i contatti di emergenza per sapere chi chiamare quando più conta.",
-    step5_h:"Archivia i tuoi documenti vitali",step5_p:"Conserva foto e PDF di documenti, passaporti e tessere sanitarie in un archivio protetto da Face ID.",
+    step1_h:"Monitora le scorte",step1_p:"Vedi cosa è disponibile, cosa sta finendo e cosa non ha ancora un obiettivo.",
+    step2_h:"Sincronizzato su tutti i dispositivi",step2_p:"Zaino e scorte restano aggiornati su iPhone e iPad tramite iCloud.",
+    step3_h:"Aggiungi i tuoi contatti SOS",step3_p:"Salva i contatti di emergenza per sapere chi chiamare quando più conta.",
+    step4_h:"Archivia i tuoi documenti vitali",step4_p:"Conserva foto e PDF di documenti, passaporti e tessere sanitarie in un archivio protetto da Face ID.",
+    step5_h:"Su misura per la tua famiglia",step5_p:"Indica a GoBag+ per quante persone ti stai preparando: gli obiettivi si adattano da soli.",
+    step6_h:"Controlla la tua prontezza a colpo d'occhio",step6_p:"Un widget nella schermata Home tiene sempre in vista i livelli di zaino e scorte.",
+    step7_h:"Tutto in un unico posto",step7_p:"Zaino d'emergenza, scorte di casa, contatti SOS e documenti — tutto a portata di tocco.",
     family_h2:"Un abbonamento, tutta la famiglia coperta",
     family_p:"Con Apple Family Sharing, un abbonamento GoBag+ Premium dà accesso completo ai familiari automaticamente — senza acquisti aggiuntivi, senza condividere password.",
     reviews_label:"Recensioni",reviews_title:"Amata da chi si organizza in anticipo",reviews_sub:"Feedback reali dalla community di GoBag+.",
@@ -1227,11 +1253,13 @@ const T = {
     kfeat4_title:"Partilha familiar",kfeat4_p:"Com o Apple Family Sharing, uma subscrição cobre toda a família — sem compras adicionais.",
     kfeat5_title:"Cofre de Documentos",kfeat5_p:"Guarde fotos e PDFs dos seus documentos, passaportes e cartões de seguro — protegidos pelo Face ID. Acessível apenas a si.",
     how_label:"Como funciona",how_title:"Pronto em minutos",how_sub:"Configure o seu kit de emergência em poucos passos.",
-    step1_h:"Escolha o seu idioma",step1_p:"A app adapta-se imediatamente ao seu idioma, sem configurações.",
-    step2_h:"Monte a sua mochila",step2_p:"Adicione artigos por categorias. Use a lista integrada ou crie artigos personalizados.",
-    step3_h:"Controle as suas reservas",step3_p:"Defina níveis de stock e datas de validade. Deixe o GoBag+ lembrá-lo de reabastecer.",
-    step4_h:"Adicione os seus contactos SOS",step4_p:"Guarde contactos de emergência para a sua família saber a quem ligar quando mais precisa.",
-    step5_h:"Guarde os seus documentos vitais",step5_p:"Conserve fotos dos seus documentos, passaportes e cartões de seguro num cofre protegido pelo Face ID.",
+    step1_h:"Controle as suas reservas",step1_p:"Veja o que está em stock, o que está a acabar e o que ainda não tem objetivo definido.",
+    step2_h:"Sincronize entre os seus dispositivos",step2_p:"A sua mochila e reserva ficam atualizadas no iPhone e no iPad através do iCloud.",
+    step3_h:"Adicione os seus contactos SOS",step3_p:"Guarde contactos de emergência para a sua família saber a quem ligar quando mais precisa.",
+    step4_h:"Guarde os seus documentos vitais",step4_p:"Conserve fotos dos seus documentos, passaportes e cartões de seguro num cofre protegido pelo Face ID.",
+    step5_h:"À medida do seu agregado",step5_p:"Diga ao GoBag+ para quantas pessoas se está a preparar e os objetivos ajustam-se automaticamente.",
+    step6_h:"Veja a sua preparação num relance",step6_p:"Um widget no ecrã principal mantém à vista os níveis da mochila e da reserva.",
+    step7_h:"Tudo num só lugar",step7_p:"Mochila de emergência, reserva doméstica, contactos SOS e documentos — tudo a um toque.",
     family_h2:"Uma subscrição, toda a família protegida",
     family_p:"Com o Apple Family Sharing, uma subscrição GoBag+ Premium dá acesso completo aos familiares automaticamente — sem compras adicionais, sem partilhar palavras-passe.",
     reviews_label:"Avaliações",reviews_title:"Adorada por quem se prepara com antecedência",reviews_sub:"Feedback real da comunidade GoBag+.",
@@ -1264,11 +1292,13 @@ const T = {
     kfeat4_title:"Семейный доступ",kfeat4_p:"С Apple Family Sharing одна подписка GoBag+ охватывает всю семью — без дополнительных покупок.",
     kfeat5_title:"Хранилище документов",kfeat5_p:"Безопасно храните фото и PDF ваших удостоверений, паспортов и страховых карт — защищено Face ID. Доступно только вам.",
     how_label:"Как это работает",how_title:"Готово за несколько минут",how_sub:"Настройте аварийный набор за несколько простых шагов.",
-    step1_h:"Выберите язык",step1_p:"Приложение сразу адаптируется к вашему языку — никаких дополнительных настроек.",
-    step2_h:"Соберите чемоданчик",step2_p:"Добавляйте предметы по категориям. Используйте готовый список или создавайте свои пункты.",
-    step3_h:"Следите за запасами",step3_p:"Задайте уровни запасов и сроки годности. GoBag+ напомнит, когда пора пополнить.",
-    step4_h:"Добавьте контакты SOS",step4_p:"Сохраните экстренные контакты — ваша семья будет знать, кому звонить в нужный момент.",
-    step5_h:"Сохраните важные документы",step5_p:"Храните фото удостоверений, паспортов и страховых карт в хранилище, защищённом Face ID.",
+    step1_h:"Следите за запасами",step1_p:"Смотрите, что есть в наличии, что заканчивается и для чего ещё не задана норма.",
+    step2_h:"Синхронизация на всех устройствах",step2_p:"Рюкзак и запасы остаются актуальными на iPhone и iPad через iCloud.",
+    step3_h:"Добавьте контакты SOS",step3_p:"Сохраните экстренные контакты — ваша семья будет знать, кому звонить в нужный момент.",
+    step4_h:"Сохраните важные документы",step4_p:"Храните фото удостоверений, паспортов и страховых карт в хранилище, защищённом Face ID.",
+    step5_h:"Настройте под свою семью",step5_p:"Укажите GoBag+, на сколько человек вы готовитесь, — нормы пересчитаются автоматически.",
+    step6_h:"Готовность — с первого взгляда",step6_p:"Виджет на экране «Домой» держит уровни рюкзака и домашнего запаса на виду.",
+    step7_h:"Всё в одном месте",step7_p:"Тревожный рюкзак, домашний запас, контакты SOS и документы — всё в одно касание.",
     family_h2:"Одна подписка — вся семья защищена",
     family_p:"С Apple Family Sharing одна подписка GoBag+ Premium автоматически даёт полный доступ членам семьи — без дополнительных покупок и паролей.",
     reviews_label:"Отзывы",reviews_title:"Любимое приложение тех, кто готовится заранее",reviews_sub:"Настоящие отзывы сообщества GoBag+.",
@@ -1391,12 +1421,15 @@ function setLang(lang) {
 
   // Per-position config (FinWall style): dx=offset, sc=scale, op=opacity, zi=z-index
   const CONFIG = [
-    { dx: -480, sc: 0.68, op: 0.20, zi: 0 },  // -2
-    { dx: -240, sc: 0.82, op: 0.50, zi: 1 },  // -1
-    { dx:    0, sc: 1.00, op: 1.00, zi: 2 },  //  0  active
-    { dx:  240, sc: 0.82, op: 0.50, zi: 1 },  // +1
-    { dx:  480, sc: 0.68, op: 0.20, zi: 0 },  // +2
+    { dx: -660, sc: 0.56, op: 0.08, zi: 0 },  // -3
+    { dx: -480, sc: 0.68, op: 0.20, zi: 1 },  // -2
+    { dx: -240, sc: 0.82, op: 0.50, zi: 2 },  // -1
+    { dx:    0, sc: 1.00, op: 1.00, zi: 3 },  //  0  active
+    { dx:  240, sc: 0.82, op: 0.50, zi: 2 },  // +1
+    { dx:  480, sc: 0.68, op: 0.20, zi: 1 },  // +2
+    { dx:  660, sc: 0.56, op: 0.08, zi: 0 },  // +3
   ];
+  const EDGE = (CONFIG.length - 1) / 2;
 
   function render(extraDx) {
     extraDx = extraDx || 0;
@@ -1404,9 +1437,9 @@ function setLang(lang) {
       let rel = i - cur;
       if (rel >  N / 2) rel -= N;   // wrap for infinite loop
       if (rel < -N / 2) rel += N;
-      const abs = Math.min(Math.max(rel, -2), 2);
-      const c   = CONFIG[abs + 2];
-      const dx  = c.dx + extraDx * (1 - Math.abs(abs) * 0.3);
+      const abs = Math.min(Math.max(rel, -EDGE), EDGE);
+      const c   = CONFIG[abs + EDGE];
+      const dx  = c.dx + extraDx * (1 - Math.abs(abs) * 0.25);
       s.style.transform  = `translateX(${dx}px) scale(${c.sc})`;
       s.style.opacity    = c.op;
       s.style.zIndex     = c.zi;
