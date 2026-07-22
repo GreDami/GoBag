@@ -472,6 +472,9 @@
             border-radius: 50px;
             white-space: nowrap;
         }
+        .pricing-badge.subtle {
+            background: rgba(22,33,61,0.5);
+        }
         .pricing-name { font-size: 0.88rem; font-weight: 500; color: var(--muted); margin-bottom: 8px; }
         .pricing-price { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
         .pricing-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
@@ -974,7 +977,8 @@
                     <li data-i18n="free_f3">Emergency contacts</li>
                 </ul>
             </div>
-            <div class="pricing-card reveal d2">
+            <div class="pricing-card featured reveal d2">
+                <div class="pricing-badge" data-i18n="pricing_badge_popular">Most Popular</div>
                 <div class="pricing-name" data-i18n="yearly_name">Premium Yearly</div>
                 <div class="pricing-price" data-i18n-html="yearly_price">from $11.99 <span>/year</span></div>
                 <div class="pricing-desc" data-i18n="yearly_desc">≈ $1.00/month · 1 month free trial</div>
@@ -988,8 +992,8 @@
                     <li data-i18n="yearly_f7">Backup &amp; restore</li>
                 </ul>
             </div>
-            <div class="pricing-card featured reveal d3">
-                <div class="pricing-badge" data-i18n="pricing_badge">Best Value</div>
+            <div class="pricing-card reveal d3">
+                <div class="pricing-badge subtle" data-i18n="pricing_badge">Best Value</div>
                 <div class="pricing-name" data-i18n="lifetime_name">Lifetime</div>
                 <div class="pricing-price" data-i18n-html="lifetime_price">from $34.99 <span></span></div>
                 <div class="pricing-desc" data-i18n="lifetime_desc">One-time payment · No subscription</div>
@@ -1071,7 +1075,7 @@ const T = {
     review1_quote:"Finally an app that makes emergency prep simple instead of overwhelming. I built three go bags in under an hour.",review1_meta:"iPhone user",
     review2_quote:"The expiry alerts alone are worth it — caught two boxes of expired meds I'd completely forgotten about.",review2_meta:"Premium member",
     review3_quote:"We share one subscription across the whole family and everyone's go bag stays in sync. Exactly what we needed.",review3_meta:"Family plan",
-    pricing_label:"Pricing",pricing_title:"Simple, honest pricing",pricing_sub:"Start free. Upgrade when you're ready.",pricing_badge:"Best Value",
+    pricing_label:"Pricing",pricing_title:"Simple, honest pricing",pricing_sub:"Start free. Upgrade when you're ready.",pricing_badge:"Best Value",pricing_badge_popular:"Most Popular",
     free_name:"Free",free_price:'$0',free_price_desc:"Forever free basics",free_f1:"1 Go Bag",free_f2:"Core item categories",free_f3:"Emergency contacts",
     yearly_name:"Premium Yearly",yearly_price:'from $11.99 <span>/year</span>',yearly_desc:"≈ $1.00/month · 1 month free trial",
     yearly_f1:"Unlimited Go Bags",yearly_f2:"All item categories",yearly_f3:"Home reserve tracking",yearly_f4:"Family iCloud sync",yearly_f5:"Family Sharing (up to 5)",yearly_f6:"Widget + notifications",yearly_f7:"Backup & restore",
@@ -1110,7 +1114,7 @@ const T = {
     review1_quote:"Enfin une appli qui rend la préparation simple plutôt qu'angoissante. J'ai créé trois sacs de survie en moins d'une heure.",review1_meta:"Utilisatrice iPhone",
     review2_quote:"Les alertes d'expiration valent le coup à elles seules — j'ai retrouvé deux boîtes de médicaments expirés que j'avais complètement oubliées.",review2_meta:"Membre Premium",
     review3_quote:"On partage un seul abonnement pour toute la famille et chaque sac reste synchronisé. Exactement ce qu'il nous fallait.",review3_meta:"Forfait famille",
-    pricing_label:"Tarifs",pricing_title:"Tarification simple et honnête",pricing_sub:"Commencez gratuitement. Passez à Premium quand vous voulez.",pricing_badge:"Meilleure offre",
+    pricing_label:"Tarifs",pricing_title:"Tarification simple et honnête",pricing_sub:"Commencez gratuitement. Passez à Premium quand vous voulez.",pricing_badge:"Meilleure offre",pricing_badge_popular:"Le plus populaire",
     free_name:"Gratuit",free_price:'0€',free_price_desc:"Gratuit pour toujours",free_f1:"1 sac d'urgence",free_f2:"Catégories principales",free_f3:"Contacts d'urgence",
     yearly_name:"Premium Annuel",yearly_price:'12,99€ <span>/an</span>',yearly_desc:"≈ 1,08€/mois · 1 mois d'essai gratuit",
     yearly_f1:"Sacs d'urgence illimités",yearly_f2:"Toutes les catégories",yearly_f3:"Suivi des réserves",yearly_f4:"Synchronisation iCloud familiale",yearly_f5:"Partage familial (jusqu'à 5)",yearly_f6:"Widget + notifications",yearly_f7:"Sauvegarde & restauration",
@@ -1149,7 +1153,7 @@ const T = {
     review1_quote:"Endlich eine App, die Notfallvorsorge einfach statt überwältigend macht. Ich habe drei Notfalltaschen in unter einer Stunde erstellt.",review1_meta:"iPhone-Nutzerin",
     review2_quote:"Allein die Ablaufwarnungen sind den Kauf wert — ich habe zwei Packungen abgelaufener Medikamente gefunden, die ich komplett vergessen hatte.",review2_meta:"Premium-Mitglied",
     review3_quote:"Wir teilen ein Abo für die ganze Familie und jede Notfalltasche bleibt synchron. Genau das, was wir brauchten.",review3_meta:"Familientarif",
-    pricing_label:"Preise",pricing_title:"Einfache, faire Preisgestaltung",pricing_sub:"Starte kostenlos. Wechsle zu Premium, wenn du bereit bist.",pricing_badge:"Bestes Angebot",
+    pricing_label:"Preise",pricing_title:"Einfache, faire Preisgestaltung",pricing_sub:"Starte kostenlos. Wechsle zu Premium, wenn du bereit bist.",pricing_badge:"Bestes Angebot",pricing_badge_popular:"Am beliebtesten",
     free_name:"Kostenlos",free_price:'0€',free_price_desc:"Für immer kostenlos",free_f1:"1 Notfallrucksack",free_f2:"Hauptkategorien",free_f3:"Notfallkontakte",
     yearly_name:"Premium Jährlich",yearly_price:'12,99€ <span>/Jahr</span>',yearly_desc:"≈ 1,08€/Monat · 1 Monat kostenlos",
     yearly_f1:"Unbegrenzte Rucksäcke",yearly_f2:"Alle Kategorien",yearly_f3:"Heimvorräte verwalten",yearly_f4:"iCloud-Familiensynchronisation",yearly_f5:"Family Sharing (bis zu 5)",yearly_f6:"Widget + Benachrichtigungen",yearly_f7:"Sicherung & Wiederherstellung",
@@ -1188,7 +1192,7 @@ const T = {
     review1_quote:"Por fin una app que hace que prepararse sea simple y no abrumador. Creé tres mochilas de emergencia en menos de una hora.",review1_meta:"Usuaria de iPhone",
     review2_quote:"Solo las alertas de caducidad ya valen la pena — encontré dos cajas de medicamentos caducados que había olvidado por completo.",review2_meta:"Miembro Premium",
     review3_quote:"Compartimos una sola suscripción para toda la familia y cada mochila se mantiene sincronizada. Justo lo que necesitábamos.",review3_meta:"Plan familiar",
-    pricing_label:"Precios",pricing_title:"Precios simples y honestos",pricing_sub:"Empieza gratis. Actualiza cuando estés listo.",pricing_badge:"Mejor oferta",
+    pricing_label:"Precios",pricing_title:"Precios simples y honestos",pricing_sub:"Empieza gratis. Actualiza cuando estés listo.",pricing_badge:"Mejor oferta",pricing_badge_popular:"El más popular",
     free_name:"Gratis",free_price:'0€',free_price_desc:"Gratis para siempre",free_f1:"1 bolsa de emergencia",free_f2:"Categorías principales",free_f3:"Contactos de emergencia",
     yearly_name:"Premium Anual",yearly_price:'12,99€ <span>/año</span>',yearly_desc:"≈ 1,08€/mes · 1 mes de prueba gratis",
     yearly_f1:"Bolsas ilimitadas",yearly_f2:"Todas las categorías",yearly_f3:"Control de suministros",yearly_f4:"Sincronización iCloud familiar",yearly_f5:"Family Sharing (hasta 5)",yearly_f6:"Widget + notificaciones",yearly_f7:"Copia de seguridad y restauración",
@@ -1227,7 +1231,7 @@ const T = {
     review1_quote:"Finalmente un'app che rende la preparazione semplice e non stressante. Ho creato tre zaini d'emergenza in meno di un'ora.",review1_meta:"Utente iPhone",
     review2_quote:"Solo gli avvisi di scadenza valgono l'acquisto — ho trovato due scatole di medicinali scaduti che avevo completamente dimenticato.",review2_meta:"Membro Premium",
     review3_quote:"Condividiamo un solo abbonamento per tutta la famiglia e ogni zaino resta sincronizzato. Esattamente ciò di cui avevamo bisogno.",review3_meta:"Piano famiglia",
-    pricing_label:"Prezzi",pricing_title:"Prezzi semplici e onesti",pricing_sub:"Inizia gratis. Passa a Premium quando sei pronto.",pricing_badge:"Miglior offerta",
+    pricing_label:"Prezzi",pricing_title:"Prezzi semplici e onesti",pricing_sub:"Inizia gratis. Passa a Premium quando sei pronto.",pricing_badge:"Miglior offerta",pricing_badge_popular:"Il più popolare",
     free_name:"Gratuito",free_price:'0€',free_price_desc:"Gratis per sempre",free_f1:"1 zaino d'emergenza",free_f2:"Categorie principali",free_f3:"Contatti d'emergenza",
     yearly_name:"Premium Annuale",yearly_price:'12,99€ <span>/anno</span>',yearly_desc:"≈ 1,08€/mese · 1 mese di prova gratuita",
     yearly_f1:"Zaini illimitati",yearly_f2:"Tutte le categorie",yearly_f3:"Gestione scorte",yearly_f4:"Sincronizzazione iCloud familiare",yearly_f5:"Family Sharing (fino a 5)",yearly_f6:"Widget + notifiche",yearly_f7:"Backup e ripristino",
@@ -1266,7 +1270,7 @@ const T = {
     review1_quote:"Finalmente uma app que torna a preparação simples em vez de esmagadora. Criei três mochilas de emergência em menos de uma hora.",review1_meta:"Utilizadora de iPhone",
     review2_quote:"Só os alertas de validade já valem a pena — encontrei duas caixas de medicamentos vencidos que tinha esquecido completamente.",review2_meta:"Membro Premium",
     review3_quote:"Partilhamos uma única subscrição para toda a família e cada mochila fica sincronizada. Exatamente o que precisávamos.",review3_meta:"Plano família",
-    pricing_label:"Preços",pricing_title:"Preços simples e honestos",pricing_sub:"Comece grátis. Atualize quando estiver pronto.",pricing_badge:"Melhor oferta",
+    pricing_label:"Preços",pricing_title:"Preços simples e honestos",pricing_sub:"Comece grátis. Atualize quando estiver pronto.",pricing_badge:"Melhor oferta",pricing_badge_popular:"Mais popular",
     free_name:"Grátis",free_price:'0€',free_price_desc:"Grátis para sempre",free_f1:"1 mochila de emergência",free_f2:"Categorias principais",free_f3:"Contactos de emergência",
     yearly_name:"Premium Anual",yearly_price:'12,99€ <span>/ano</span>',yearly_desc:"≈ 1,08€/mês · 1 mês de teste grátis",
     yearly_f1:"Mochilas ilimitadas",yearly_f2:"Todas as categorias",yearly_f3:"Controlo de reservas",yearly_f4:"Sincronização iCloud familiar",yearly_f5:"Family Sharing (até 5)",yearly_f6:"Widget + notificações",yearly_f7:"Cópia de segurança e restauro",
@@ -1305,7 +1309,7 @@ const T = {
     review1_quote:"Наконец-то приложение, которое делает подготовку простой, а не пугающей. Я собрала три тревожных чемоданчика меньше чем за час.",review1_meta:"Пользователь iPhone",
     review2_quote:"Одни только уведомления о сроках годности стоят своих денег — нашёл две упаковки просроченных лекарств, о которых совсем забыл.",review2_meta:"Premium-участник",
     review3_quote:"Мы делим одну подписку на всю семью, и у каждого чемоданчик синхронизирован. Именно то, что нам было нужно.",review3_meta:"Семейный план",
-    pricing_label:"Цены",pricing_title:"Простые и честные цены",pricing_sub:"Начните бесплатно. Перейдите на Premium позже.",pricing_badge:"Лучшее предложение",
+    pricing_label:"Цены",pricing_title:"Простые и честные цены",pricing_sub:"Начните бесплатно. Перейдите на Premium позже.",pricing_badge:"Лучшее предложение",pricing_badge_popular:"Самый популярный",
     free_name:"Бесплатно",free_price:'0€',free_price_desc:"Навсегда бесплатно",free_f1:"1 тревожный чемоданчик",free_f2:"Основные категории",free_f3:"Экстренные контакты",
     yearly_name:"Premium — Годовой",yearly_price:'12,99€ <span>/год</span>',yearly_desc:"≈ 1,08€/мес · 1 месяц бесплатно",
     yearly_f1:"Неограниченное число наборов",yearly_f2:"Все категории",yearly_f3:"Учёт домашних запасов",yearly_f4:"Семейная синхронизация iCloud",yearly_f5:"Family Sharing (до 5 чел.)",yearly_f6:"Виджет + уведомления",yearly_f7:"Резервное копирование",
