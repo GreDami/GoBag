@@ -54,8 +54,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-    <link rel="icon" id="favicon" type="image/png" href="screenshots/gobag-icon.png">
-    <link rel="apple-touch-icon" href="screenshots/gobag-icon.png">
+    <link rel="icon" type="image/png" href="favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="favicon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -803,7 +803,7 @@
 
 <!-- NAV -->
 <nav>
-    <a href="#" class="nav-logo"><img id="navLogo" src="screenshots/gobag-icon.png" alt="GoBag+">GoBag<span>+</span></a>
+    <a href="#" class="nav-logo"><img src="favicon.png" alt="GoBag+">GoBag<span>+</span></a>
     <span class="nav-tagline" data-i18n="welcome_tagline">Best time to prepare for a disaster was yesterday. The second best time is today</span>
     <div class="lang-switcher" id="langSwitcher">
         <button class="lang-trigger" onclick="toggleLangMenu(event)">
@@ -1081,7 +1081,7 @@
         <div class="section-label reveal" data-i18n="pricing_label">Pricing</div>
         <h2 class="section-title reveal d1" data-i18n="pricing_title">Simple, honest pricing</h2>
         <p class="section-sub reveal d2" style="margin:0 auto 60px" data-i18n="pricing_sub">Start free. Upgrade when you're ready.</p>
-        <div class="pricing-grid">
+        <div class="pricing-grid" data-nosnippet>
             <div class="pricing-card reveal d1">
                 <div class="pricing-name" data-i18n="free_name">Free</div>
                 <div class="pricing-price" data-i18n-html="free_price">$0</div>
@@ -1459,37 +1459,6 @@ const T = {
   }
 };
 
-// Load icon, round corners on canvas, set as favicon + nav logo
-(function() {
-  var iconFile = 'screenshots/gobag-icon.png?v=' + Date.now();
-  var img = new Image();
-  img.crossOrigin = 'anonymous';
-  img.onload = function() {
-    var size = 64, r = 14;
-    var c = document.createElement('canvas');
-    c.width = c.height = size;
-    var ctx = c.getContext('2d');
-    ctx.beginPath();
-    ctx.moveTo(r, 0);
-    ctx.lineTo(size - r, 0);
-    ctx.quadraticCurveTo(size, 0, size, r);
-    ctx.lineTo(size, size - r);
-    ctx.quadraticCurveTo(size, size, size - r, size);
-    ctx.lineTo(r, size);
-    ctx.quadraticCurveTo(0, size, 0, size - r);
-    ctx.lineTo(0, r);
-    ctx.quadraticCurveTo(0, 0, r, 0);
-    ctx.closePath();
-    ctx.clip();
-    ctx.drawImage(img, 0, 0, size, size);
-    var dataURL = c.toDataURL('image/png');
-    var favicon = document.getElementById('favicon');
-    if (favicon) { favicon.href = dataURL; }
-    var navLogo = document.getElementById('navLogo');
-    if (navLogo) { navLogo.src = dataURL; }
-  };
-  img.src = iconFile;
-})();
 
 const FLAGS = {en:'🇬🇧',fr:'🇫🇷',de:'🇩🇪',es:'🇪🇸',it:'🇮🇹',pt:'🇵🇹',ru:'🇷🇺'};
 const LANG_NAMES = {en:'EN',fr:'FR',de:'DE',es:'ES',it:'IT',pt:'PT',ru:'RU'};
