@@ -3,19 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2SZMMJ1PKR"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-2SZMMJ1PKR');
-    </script>
+    <!-- Google Analytics is consent-gated: it only loads after the visitor
+         accepts in the cookie banner. See loadGA()/setConsent() near the end. -->
+
     <title>GoBag+ — Emergency Preparedness App</title>
     <meta name="description" content="Build your go bag, track home supplies, and keep your family prepared. GoBag+ for iPhone.">
+    <link rel="canonical" href="https://gobag.gredami.com/">
+    <meta name="theme-color" content="#f6f1e6">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="GreDami">
+
+    <!-- Open Graph -->
     <meta property="og:title" content="GoBag+ — Emergency Preparedness App">
-    <meta property="og:description" content="Build your go bag, track home supplies, and keep your family prepared.">
+    <meta property="og:description" content="Build your go bag, track home supplies, store emergency contacts, and secure vital documents — all in one app.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gobag.gredami.com/">
+    <meta property="og:site_name" content="GoBag+">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://gobag.gredami.com/screenshots/og.jpg">
+    <meta property="og:image:secure_url" content="https://gobag.gredami.com/screenshots/og.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="GoBag+ — Go Bag & Home Reserve, emergency preparedness for iPhone">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GoBag+ — Emergency Preparedness App">
+    <meta name="twitter:description" content="Build your go bag, track home supplies, and secure vital documents — all in one app.">
+    <meta name="twitter:image" content="https://gobag.gredami.com/screenshots/og.jpg">
+    <meta name="twitter:site" content="@GreDamiStudio">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "GoBag+",
+      "operatingSystem": "iOS",
+      "applicationCategory": "UtilitiesApplication",
+      "url": "https://gobag.gredami.com/",
+      "downloadUrl": "https://apps.apple.com/app/id6760232332",
+      "image": "https://gobag.gredami.com/screenshots/og.jpg",
+      "description": "Build your go bag, track home supplies, store emergency contacts, and secure vital documents in an encrypted vault.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "3" },
+      "author": { "@type": "Organization", "name": "GreDami", "url": "https://gredami.com" }
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -430,6 +465,24 @@
         }
         .review-name { font-size: 0.85rem; font-weight: 700; }
         .review-meta { font-size: 0.74rem; color: var(--muted); }
+        /* Overall App Store rating + real review cards */
+        .rating-summary {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 40px;
+            padding: 9px 20px;
+            border-radius: 999px;
+            background: var(--card);
+            border: 1px solid rgba(22,33,61,0.08);
+            box-shadow: 0 4px 18px rgba(22,33,61,0.06);
+        }
+        .rating-summary .rating-stars { color: var(--orange); letter-spacing: 2px; font-size: 0.95rem; }
+        .rating-summary .rating-score { font-size: 1.05rem; font-weight: 800; }
+        .rating-summary .rating-meta { font-size: 0.82rem; color: var(--muted); }
+        .reviews-grid.two-up { grid-template-columns: repeat(2, 1fr); max-width: 720px; }
+        .review-title { font-size: 1rem; font-weight: 800; letter-spacing: -0.2px; margin: 0 0 10px; }
+        @media (max-width: 800px) { .reviews-grid.two-up { grid-template-columns: 1fr; max-width: 380px; } }
 
         /* PRICING */
         .pricing-grid {
@@ -679,6 +732,71 @@
             .hero { padding: 100px 20px 80px; }
             .family-banner { padding: 28px 20px; }
         }
+
+        /* COOKIE CONSENT */
+        .cookie-consent {
+            position: fixed;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            z-index: 200;
+            max-width: 720px;
+            margin: 0 auto;
+            display: none;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 18px 22px;
+            background: rgba(255,253,248,0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(22,33,61,0.10);
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(22,33,61,0.20), 0 0 0 1px rgba(22,33,61,0.03);
+        }
+        .cookie-consent.show { display: flex; }
+        .cookie-consent p {
+            margin: 0;
+            font-size: 0.86rem;
+            color: var(--muted);
+            line-height: 1.5;
+            flex: 1 1 260px;
+        }
+        .cookie-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .cookie-link {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--blue);
+            text-decoration: none;
+            margin-right: 4px;
+        }
+        .cookie-link:hover { text-decoration: underline; }
+        .cookie-btn {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 9px 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.15s, opacity 0.15s;
+        }
+        .cookie-btn:hover { transform: translateY(-1px); }
+        .cookie-btn.decline {
+            background: transparent;
+            border: 1px solid rgba(22,33,61,0.18);
+            color: var(--text);
+        }
+        .cookie-btn.accept { background: var(--green); color: #fff; }
+        @media (max-width: 560px) {
+            .cookie-consent { left: 12px; right: 12px; bottom: 12px; padding: 16px; }
+            .cookie-actions { width: 100%; justify-content: flex-end; }
+        }
     </style>
 </head>
 <body>
@@ -720,7 +838,7 @@
         </div>
         <div class="hero-visual">
             <div class="hero-phone">
-                <img id="heroPhoneImg" src="screenshots/1.png" alt="GoBag+ App">
+                <img id="heroPhoneImg" src="screenshots/1.jpg" alt="GoBag+ App" width="660" height="1435" fetchpriority="high" decoding="async">
             </div>
         </div>
     </div>
@@ -745,49 +863,49 @@
                     <h3 data-i18n="step1_h">Track your supplies</h3>
                     <p data-i18n="step1_p">See what's stocked, what's running low, and what still needs a target.</p>
                 </div>
-                <img src="screenshots/2.png" data-screenshot="2" alt="">
+                <img src="screenshots/2.jpg" data-screenshot="2" alt="" width="660" height="1435" loading="lazy" decoding="async">
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step2_h">Sync across your devices</h3>
                     <p data-i18n="step2_p">Your bag and reserve stay up to date on iPhone and iPad through iCloud.</p>
                 </div>
-                <img src="screenshots/3.png" data-screenshot="3" alt="">
+                <img src="screenshots/3.jpg" data-screenshot="3" alt="" width="660" height="1428" loading="lazy" decoding="async">
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step3_h">Add your SOS contacts</h3>
                     <p data-i18n="step3_p">Save emergency contacts so your family knows who to call when it matters most.</p>
                 </div>
-                <img src="screenshots/4.png" data-screenshot="4" alt="">
+                <img src="screenshots/4.jpg" data-screenshot="4" alt="" width="660" height="1435" loading="lazy" decoding="async">
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step4_h">Store your vital documents</h3>
                     <p data-i18n="step4_p">Keep photos of your IDs, passports, and insurance cards in a Face ID–protected vault.</p>
                 </div>
-                <img src="screenshots/5.png" data-screenshot="5" alt="">
+                <img src="screenshots/5.jpg" data-screenshot="5" alt="" width="660" height="1435" loading="lazy" decoding="async">
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step5_h">Size it to your household</h3>
                     <p data-i18n="step5_p">Tell GoBag+ how many people you're preparing for and your targets adjust automatically.</p>
                 </div>
-                <img src="screenshots/6.png" data-screenshot="6" alt="">
+                <img src="screenshots/6.jpg" data-screenshot="6" alt="" width="660" height="1435" loading="lazy" decoding="async">
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step6_h">Check readiness at a glance</h3>
                     <p data-i18n="step6_p">A home screen widget keeps your go bag and home reserve levels in view.</p>
                 </div>
-                <img src="screenshots/7.png" data-screenshot="7" alt="">
+                <img src="screenshots/7.jpg" data-screenshot="7" alt="" width="660" height="1435" loading="lazy" decoding="async">
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step7_h">Everything in one place</h3>
                     <p data-i18n="step7_p">Go bag, home reserve, SOS contacts, and documents — all one tap away.</p>
                 </div>
-                <img src="screenshots/8.png" data-screenshot="8" alt="">
+                <img src="screenshots/8.jpg" data-screenshot="8" alt="" width="660" height="1435" loading="lazy" decoding="async">
             </div>
         </div>
         <div class="steps-nav">
@@ -906,7 +1024,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="#2f8a52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
                 </div>
                 <h3 data-i18n="security_3_title">Zero Data Collection</h3>
-                <p data-i18n="security_3_p">No personal data collected, no analytics, nothing sold. Your emergency plan is private by design.</p>
+                <p data-i18n="security_3_p">GoBag+ collects no personal data and never sells your information. Your emergency plan stays private, by design.</p>
             </div>
         </div>
     </div>
@@ -920,37 +1038,34 @@
         <div class="section-label reveal" data-i18n="reviews_label">Reviews</div>
         <h2 class="section-title reveal d1" data-i18n="reviews_title">Loved by people who plan ahead</h2>
         <p class="section-sub reveal d2" style="margin:0 auto 48px" data-i18n="reviews_sub">Real feedback from the GoBag+ community.</p>
-        <div class="reviews-grid">
+        <!-- Real App Store reviews (verbatim). Add a .review-card block per new review. -->
+        <div class="rating-summary reveal d2">
+            <span class="rating-stars">★★★★★</span>
+            <span class="rating-score">5.0</span>
+            <span class="rating-meta">· 3 <span data-i18n="rating_ratings">App Store ratings</span></span>
+        </div>
+        <div class="reviews-grid two-up">
             <div class="review-card reveal d1">
                 <div class="review-stars">★★★★★</div>
-                <p class="review-quote" data-i18n="review1_quote">Finally an app that makes emergency prep simple instead of overwhelming. I built three go bags in under an hour.</p>
+                <h3 class="review-title">App super utile !</h3>
+                <p class="review-quote">Appli très simple et à la fois tellement pratique ! Merci 🙏</p>
                 <div class="review-author">
-                    <div class="review-avatar" style="background:rgba(52,88,199,0.15); color:var(--blue)">S</div>
+                    <div class="review-avatar" style="background:rgba(52,88,199,0.15); color:var(--blue)">D</div>
                     <div>
-                        <div class="review-name">Sarah M.</div>
-                        <div class="review-meta" data-i18n="review1_meta">iPhone user</div>
+                        <div class="review-name">DamMinieFan</div>
+                        <div class="review-meta">App Store</div>
                     </div>
                 </div>
             </div>
             <div class="review-card reveal d2">
                 <div class="review-stars">★★★★★</div>
-                <p class="review-quote" data-i18n="review2_quote">The expiry alerts alone are worth it — caught two boxes of expired meds I'd completely forgotten about.</p>
+                <h3 class="review-title">Clean and simple</h3>
+                <p class="review-quote">Cool ! Very easy to use. Just what you need!</p>
                 <div class="review-author">
-                    <div class="review-avatar" style="background:rgba(210,96,31,0.15); color:var(--orange)">M</div>
+                    <div class="review-avatar" style="background:rgba(210,96,31,0.15); color:var(--orange)">A</div>
                     <div>
-                        <div class="review-name">Marcus T.</div>
-                        <div class="review-meta" data-i18n="review2_meta">Premium member</div>
-                    </div>
-                </div>
-            </div>
-            <div class="review-card reveal d3">
-                <div class="review-stars">★★★★★</div>
-                <p class="review-quote" data-i18n="review3_quote">We share one subscription across the whole family and everyone's go bag stays in sync. Exactly what we needed.</p>
-                <div class="review-author">
-                    <div class="review-avatar" style="background:rgba(47,138,82,0.15); color:var(--green)">E</div>
-                    <div>
-                        <div class="review-name">Elena R.</div>
-                        <div class="review-meta" data-i18n="review3_meta">Family plan</div>
+                        <div class="review-name">ASPcom</div>
+                        <div class="review-meta">App Store</div>
                     </div>
                 </div>
             </div>
@@ -1043,18 +1158,55 @@
     <p data-i18n="footer_copy">© 2026 GreDami. All rights reserved.</p>
 </footer>
 
+<!-- COOKIE CONSENT -->
+<div id="cookieConsent" class="cookie-consent" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <p data-i18n="cookie_text">We use analytics cookies to understand how the site is used. You decide.</p>
+    <div class="cookie-actions">
+        <a href="/privacy/" class="cookie-link" data-i18n="footer_privacy">Privacy Policy</a>
+        <button class="cookie-btn decline" onclick="setConsent(false)" data-i18n="cookie_decline">Decline</button>
+        <button class="cookie-btn accept" onclick="setConsent(true)" data-i18n="cookie_accept">Accept</button>
+    </div>
+</div>
+
 <script>
+// ====== CONSENT-GATED GOOGLE ANALYTICS ======
+// GA loads only after the visitor explicitly accepts. Choice is remembered.
+function loadGA() {
+  if (window.__gaLoaded) return;
+  window.__gaLoaded = true;
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2SZMMJ1PKR';
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', 'G-2SZMMJ1PKR', { anonymize_ip: true });
+}
+function setConsent(granted) {
+  localStorage.setItem('gobag_consent', granted ? 'granted' : 'denied');
+  var b = document.getElementById('cookieConsent');
+  if (b) b.classList.remove('show');
+  if (granted) loadGA();
+}
+(function() {
+  var c = localStorage.getItem('gobag_consent');
+  if (c === 'granted') { loadGA(); return; }
+  if (c === 'denied') return;
+  var b = document.getElementById('cookieConsent');
+  if (b) b.classList.add('show');
+})();
+
 const T = {
   en: {
-    nav_cta:"Download Free",welcome_tagline:"Best time to prepare for a disaster was yesterday. The second best time is today",
+    welcome_tagline:"Best time to prepare for a disaster was yesterday. The second best time is today",
     hero_h1:"Go Bag &<br><span>Home Reserve</span>",
     hero_p:"Build your go bag, track home supplies, store emergency contacts, and secure vital documents in an encrypted vault — all in one app.",
     hero_trial:"Free 1-month trial · No commitment",hero_cta_btn:"Build My Go Bag",cta_btn:"Download on the App Store",
     security_label:"Privacy & Security",security_title:"Your data stays yours",security_sub:"GoBag+ is built on Apple's security infrastructure. Your confidential documents never leave your devices without your consent.",
     security_1_title:"Face ID Protected",security_1_p:"The Document Vault opens only with your biometrics. No one else can access your scanned IDs and documents.",
     security_2_title:"iCloud Encrypted",security_2_p:"All data syncs through Apple's encrypted iCloud. We never see or store your information on our servers.",
-    security_3_title:"Zero Data Collection",security_3_p:"No personal data collected, no analytics, nothing sold. Your emergency plan is private by design.",
-    screenshots_label:"App Preview",screenshots_title:"See it in action",screenshots_sub:"Everything you need, designed for simplicity and speed under pressure.",
+    security_3_title:"Zero Data Collection",security_3_p:"GoBag+ collects no personal data and never sells your information. Your emergency plan stays private, by design.",
     features_label:"Features",features_title:"Key features",
     kfeat1_title:"Go Bags & Home Reserve",kfeat1_p:"Organize your emergency kits by category and track home supplies with stock levels and expiry dates — all in one place.",
     kfeat2_title:"Expiry & Low Stock Alerts",kfeat2_p:"Get notified automatically before items expire or fall below your minimum stock level. Never be caught unprepared.",
@@ -1072,9 +1224,6 @@ const T = {
     family_h2:"One subscription, whole family covered",
     family_p:"With Apple Family Sharing, one GoBag+ Premium subscription gives full access to family members automatically — no extra purchases, no sharing passwords.",
     reviews_label:"Reviews",reviews_title:"Loved by people who plan ahead",reviews_sub:"Real feedback from the GoBag+ community.",
-    review1_quote:"Finally an app that makes emergency prep simple instead of overwhelming. I built three go bags in under an hour.",review1_meta:"iPhone user",
-    review2_quote:"The expiry alerts alone are worth it — caught two boxes of expired meds I'd completely forgotten about.",review2_meta:"Premium member",
-    review3_quote:"We share one subscription across the whole family and everyone's go bag stays in sync. Exactly what we needed.",review3_meta:"Family plan",
     pricing_label:"Pricing",pricing_title:"Simple, honest pricing",pricing_sub:"Start free. Upgrade when you're ready.",pricing_badge:"Best Value",pricing_badge_popular:"Most Popular",
     free_name:"Free",free_price:'$0',free_price_desc:"Forever free basics",free_f1:"1 Go Bag",free_f2:"Core item categories",free_f3:"Emergency contacts",
     yearly_name:"Premium Yearly",yearly_price:'from $11.99 <span>/year</span>',yearly_desc:"≈ $1.00/month · 1 month free trial",
@@ -1082,18 +1231,19 @@ const T = {
     lifetime_name:"Lifetime",lifetime_price:'from $34.99 <span></span>',lifetime_desc:"One-time payment · No subscription",
     lifetime_f1:"Premium features",lifetime_f2:"Family Sharing (up to 5)",lifetime_f3:"All future updates",
     cta_h2:"Start your free trial today",cta_p:"No payment needed for the first 30 days. Cancel anytime in Settings.",
-    footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GreDami. All rights reserved."
+    footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_support:"Support",footer_copy:"© 2026 GreDami. All rights reserved.",
+    cookie_text:"We use analytics cookies to understand how the site is used. You decide.",cookie_accept:"Accept",cookie_decline:"Decline",
+    rating_ratings:"App Store ratings"
   },
   fr: {
-    nav_cta:"Télécharger gratuitement",welcome_tagline:"Le meilleur moment pour se préparer à une catastrophe, c'était hier. Le deuxième meilleur moment, c'est aujourd'hui",
+    welcome_tagline:"Le meilleur moment pour se préparer à une catastrophe, c'était hier. Le deuxième meilleur moment, c'est aujourd'hui",
     hero_h1:"Sac de survie & <span>Réserve</span>",
     hero_p:"Préparez votre sac d'urgence, suivez vos réserves à domicile, stockez vos contacts d'urgence et sécurisez vos documents vitaux dans un coffre chiffré — dans une seule application.",
     hero_trial:"1 mois d'essai gratuit · Sans engagement",hero_cta_btn:"Créer mon sac de survie",cta_btn:"Télécharger sur l'App Store",
     security_label:"Confidentialité & Sécurité",security_title:"Vos données vous appartiennent",security_sub:"GoBag+ repose sur l'infrastructure de sécurité d'Apple. Vos documents confidentiels ne quittent jamais vos appareils sans votre consentement.",
     security_1_title:"Protégé par Face ID",security_1_p:"Le coffre à documents ne s'ouvre qu'avec vos données biométriques. Personne d'autre ne peut accéder à vos pièces d'identité numérisées.",
     security_2_title:"Chiffré via iCloud",security_2_p:"Toutes les données se synchronisent via iCloud chiffré par Apple. Nous ne voyons ni ne stockons jamais vos informations sur nos serveurs.",
-    security_3_title:"Aucune collecte de données",security_3_p:"Aucune donnée personnelle collectée, aucune analyse, rien de vendu. Votre plan d'urgence est privé par conception.",
-    screenshots_label:"Aperçu de l'app",screenshots_title:"Voyez-la en action",screenshots_sub:"Tout ce dont vous avez besoin, conçu pour la simplicité et la rapidité sous pression.",
+    security_3_title:"Aucune collecte de données",security_3_p:"GoBag+ ne collecte aucune donnée personnelle et ne vend jamais vos informations. Votre plan d'urgence reste privé, par conception.",
     features_label:"Fonctionnalités",features_title:"Fonctionnalités clés",
     kfeat1_title:"Sacs de survie & réserve maison",kfeat1_p:"Organisez vos kits d'urgence par catégorie et suivez vos provisions avec les niveaux de stock et dates d'expiration — tout en un.",
     kfeat2_title:"Alertes expiration & stock bas",kfeat2_p:"Recevez des notifications automatiques avant expiration ou lorsque le stock passe sous votre minimum. Toujours prêt.",
@@ -1111,9 +1261,6 @@ const T = {
     family_h2:"Un abonnement, toute la famille couverte",
     family_p:"Avec le partage familial Apple, un abonnement GoBag+ Premium donne accès complet aux membres de la famille automatiquement — sans achat supplémentaire, sans partage de mot de passe.",
     reviews_label:"Avis",reviews_title:"Adopté par ceux qui anticipent",reviews_sub:"De vrais retours de la communauté GoBag+.",
-    review1_quote:"Enfin une appli qui rend la préparation simple plutôt qu'angoissante. J'ai créé trois sacs de survie en moins d'une heure.",review1_meta:"Utilisatrice iPhone",
-    review2_quote:"Les alertes d'expiration valent le coup à elles seules — j'ai retrouvé deux boîtes de médicaments expirés que j'avais complètement oubliées.",review2_meta:"Membre Premium",
-    review3_quote:"On partage un seul abonnement pour toute la famille et chaque sac reste synchronisé. Exactement ce qu'il nous fallait.",review3_meta:"Forfait famille",
     pricing_label:"Tarifs",pricing_title:"Tarification simple et honnête",pricing_sub:"Commencez gratuitement. Passez à Premium quand vous voulez.",pricing_badge:"Meilleure offre",pricing_badge_popular:"Le plus populaire",
     free_name:"Gratuit",free_price:'0€',free_price_desc:"Gratuit pour toujours",free_f1:"1 sac d'urgence",free_f2:"Catégories principales",free_f3:"Contacts d'urgence",
     yearly_name:"Premium Annuel",yearly_price:'12,99€ <span>/an</span>',yearly_desc:"≈ 1,08€/mois · 1 mois d'essai gratuit",
@@ -1121,18 +1268,19 @@ const T = {
     lifetime_name:"À vie",lifetime_price:'39,99€ <span></span>',lifetime_desc:"Paiement unique · Sans abonnement",
     lifetime_f1:"Fonctionnalités Premium",lifetime_f2:"Partage familial (jusqu'à 5)",lifetime_f3:"Toutes les mises à jour futures",
     cta_h2:"Commencez votre essai gratuit aujourd'hui",cta_p:"Aucun paiement requis pendant les 30 premiers jours. Résiliez à tout moment dans Réglages.",
-    footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GreDami. Tous droits réservés."
+    footer_privacy:"Politique de confidentialité",footer_terms:"Conditions d'utilisation",footer_support:"Support",footer_copy:"© 2026 GreDami. Tous droits réservés.",
+    cookie_text:"Nous utilisons des cookies d'analyse pour comprendre l'usage du site. À vous de choisir.",cookie_accept:"Accepter",cookie_decline:"Refuser",
+    rating_ratings:"notes sur l'App Store"
   },
   de: {
-    nav_cta:"Kostenlos laden",welcome_tagline:"Der beste Zeitpunkt, sich auf eine Katastrophe vorzubereiten, war gestern. Der zweitbeste Zeitpunkt ist heute",
+    welcome_tagline:"Der beste Zeitpunkt, sich auf eine Katastrophe vorzubereiten, war gestern. Der zweitbeste Zeitpunkt ist heute",
     hero_h1:"Notfalltasche & <span>Heimvorrat</span>",
     hero_p:"Baue deinen Notfallrucksack, verfolge deine Heimvorräte, speichere Notfallkontakte und sichere wichtige Dokumente in einem verschlüsselten Tresor — alles in einer App.",
     hero_trial:"1 Monat kostenlos testen · Keine Verpflichtung",hero_cta_btn:"Jetzt kostenlos starten",cta_btn:"Im App Store laden",
     security_label:"Datenschutz & Sicherheit",security_title:"Deine Daten gehören dir",security_sub:"GoBag+ basiert auf Apples Sicherheitsinfrastruktur. Deine vertraulichen Dokumente verlassen deine Geräte nie ohne dein Einverständnis.",
     security_1_title:"Face ID geschützt",security_1_p:"Der Dokumententresor öffnet sich nur mit deinen Biometrikdaten. Niemand sonst kann auf deine gescannten Ausweise zugreifen.",
     security_2_title:"iCloud verschlüsselt",security_2_p:"Alle Daten werden über Apples verschlüsseltes iCloud synchronisiert. Wir sehen oder speichern deine Informationen nie auf unseren Servern.",
-    security_3_title:"Keine Datenerfassung",security_3_p:"Keine persönlichen Daten gesammelt, keine Analysen, nichts verkauft. Dein Notfallplan ist von Natur aus privat.",
-    screenshots_label:"App-Vorschau",screenshots_title:"Sieh sie in Aktion",screenshots_sub:"Alles, was du brauchst — einfach und schnell, auch unter Druck.",
+    security_3_title:"Keine Datenerfassung",security_3_p:"GoBag+ sammelt keine persönlichen Daten und verkauft deine Informationen niemals. Dein Notfallplan bleibt privat – von Grund auf.",
     features_label:"Funktionen",features_title:"Hauptfunktionen",
     kfeat1_title:"Notfallrucksäcke & Heimvorrat",kfeat1_p:"Organisiere deine Notfallkits nach Kategorien und verfolge Heimvorräte mit Lagerbeständen und Ablaufdaten — alles an einem Ort.",
     kfeat2_title:"Ablauf- & Bestandswarnungen",kfeat2_p:"Erhalte automatisch Benachrichtigungen vor Ablaufdaten oder wenn der Bestand unter dein Minimum fällt. Nie wieder unvorbereitet.",
@@ -1150,9 +1298,6 @@ const T = {
     family_h2:"Ein Abo, die ganze Familie abgesichert",
     family_p:"Mit Apple Family Sharing gibt ein GoBag+ Premium-Abonnement Familienmitgliedern automatisch vollen Zugang — ohne zusätzliche Käufe, ohne Passwörter teilen.",
     reviews_label:"Bewertungen",reviews_title:"Geliebt von vorausschauenden Menschen",reviews_sub:"Echtes Feedback aus der GoBag+ Community.",
-    review1_quote:"Endlich eine App, die Notfallvorsorge einfach statt überwältigend macht. Ich habe drei Notfalltaschen in unter einer Stunde erstellt.",review1_meta:"iPhone-Nutzerin",
-    review2_quote:"Allein die Ablaufwarnungen sind den Kauf wert — ich habe zwei Packungen abgelaufener Medikamente gefunden, die ich komplett vergessen hatte.",review2_meta:"Premium-Mitglied",
-    review3_quote:"Wir teilen ein Abo für die ganze Familie und jede Notfalltasche bleibt synchron. Genau das, was wir brauchten.",review3_meta:"Familientarif",
     pricing_label:"Preise",pricing_title:"Einfache, faire Preisgestaltung",pricing_sub:"Starte kostenlos. Wechsle zu Premium, wenn du bereit bist.",pricing_badge:"Bestes Angebot",pricing_badge_popular:"Am beliebtesten",
     free_name:"Kostenlos",free_price:'0€',free_price_desc:"Für immer kostenlos",free_f1:"1 Notfallrucksack",free_f2:"Hauptkategorien",free_f3:"Notfallkontakte",
     yearly_name:"Premium Jährlich",yearly_price:'12,99€ <span>/Jahr</span>',yearly_desc:"≈ 1,08€/Monat · 1 Monat kostenlos",
@@ -1160,18 +1305,19 @@ const T = {
     lifetime_name:"Lebenslang",lifetime_price:'39,99€ <span></span>',lifetime_desc:"Einmalige Zahlung · Kein Abo",
     lifetime_f1:"Premium-Funktionen",lifetime_f2:"Family Sharing (bis zu 5)",lifetime_f3:"Alle zukünftigen Updates",
     cta_h2:"Starte heute deinen kostenlosen Test",cta_p:"In den ersten 30 Tagen keine Zahlung erforderlich. Jederzeit in den Einstellungen kündigen.",
-    footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GreDami. Alle Rechte vorbehalten."
+    footer_privacy:"Datenschutzrichtlinie",footer_terms:"Nutzungsbedingungen",footer_support:"Support",footer_copy:"© 2026 GreDami. Alle Rechte vorbehalten.",
+    cookie_text:"Wir verwenden Analyse-Cookies, um die Nutzung der Website zu verstehen. Du entscheidest.",cookie_accept:"Akzeptieren",cookie_decline:"Ablehnen",
+    rating_ratings:"App-Store-Bewertungen"
   },
   es: {
-    nav_cta:"Descargar gratis",welcome_tagline:"El mejor momento para prepararse ante un desastre fue ayer. El segundo mejor momento es hoy",
+    welcome_tagline:"El mejor momento para prepararse ante un desastre fue ayer. El segundo mejor momento es hoy",
     hero_h1:"Mochila de emergencia &<br><span>Reserva</span>",
     hero_p:"Construye tu bolsa de emergencia, controla tus suministros en casa, guarda contactos de emergencia y protege tus documentos vitales en una bóveda cifrada — todo en una sola app.",
     hero_trial:"1 mes de prueba gratis · Sin compromiso",hero_cta_btn:"Empezar gratis ahora",cta_btn:"Descargar en el App Store",
     security_label:"Privacidad & Seguridad",security_title:"Tus datos son tuyos",security_sub:"GoBag+ está construido sobre la infraestructura de seguridad de Apple. Tus documentos confidenciales nunca salen de tus dispositivos sin tu consentimiento.",
     security_1_title:"Protegido con Face ID",security_1_p:"El cofre de documentos solo se abre con tus datos biométricos. Nadie más puede acceder a tus documentos escaneados.",
     security_2_title:"Cifrado en iCloud",security_2_p:"Todos los datos se sincronizan a través del iCloud cifrado de Apple. Nunca vemos ni almacenamos tu información en nuestros servidores.",
-    security_3_title:"Cero recopilación de datos",security_3_p:"Sin datos personales recopilados, sin análisis, nada vendido. Tu plan de emergencia es privado por diseño.",
-    screenshots_label:"Vista previa",screenshots_title:"Mírala en acción",screenshots_sub:"Todo lo que necesitas, diseñado para la simplicidad y la rapidez bajo presión.",
+    security_3_title:"Cero recopilación de datos",security_3_p:"GoBag+ no recopila datos personales ni vende nunca tu información. Tu plan de emergencia es privado por diseño.",
     features_label:"Características",features_title:"Características clave",
     kfeat1_title:"Bolsas de emergencia & reserva",kfeat1_p:"Organiza tus kits por categoría y controla las provisiones del hogar con niveles de stock y fechas de caducidad — todo en un lugar.",
     kfeat2_title:"Alertas de caducidad & stock bajo",kfeat2_p:"Recibe notificaciones automáticas antes de que los artículos caduquen o bajen del mínimo. Nunca te pilles desprevenido.",
@@ -1189,9 +1335,6 @@ const T = {
     family_h2:"Una suscripción, toda la familia cubierta",
     family_p:"Con Apple Family Sharing, una suscripción GoBag+ Premium da acceso completo a los miembros de la familia automáticamente — sin compras adicionales, sin compartir contraseñas.",
     reviews_label:"Opiniones",reviews_title:"Querida por quienes se preparan con tiempo",reviews_sub:"Comentarios reales de la comunidad GoBag+.",
-    review1_quote:"Por fin una app que hace que prepararse sea simple y no abrumador. Creé tres mochilas de emergencia en menos de una hora.",review1_meta:"Usuaria de iPhone",
-    review2_quote:"Solo las alertas de caducidad ya valen la pena — encontré dos cajas de medicamentos caducados que había olvidado por completo.",review2_meta:"Miembro Premium",
-    review3_quote:"Compartimos una sola suscripción para toda la familia y cada mochila se mantiene sincronizada. Justo lo que necesitábamos.",review3_meta:"Plan familiar",
     pricing_label:"Precios",pricing_title:"Precios simples y honestos",pricing_sub:"Empieza gratis. Actualiza cuando estés listo.",pricing_badge:"Mejor oferta",pricing_badge_popular:"El más popular",
     free_name:"Gratis",free_price:'0€',free_price_desc:"Gratis para siempre",free_f1:"1 bolsa de emergencia",free_f2:"Categorías principales",free_f3:"Contactos de emergencia",
     yearly_name:"Premium Anual",yearly_price:'12,99€ <span>/año</span>',yearly_desc:"≈ 1,08€/mes · 1 mes de prueba gratis",
@@ -1199,18 +1342,19 @@ const T = {
     lifetime_name:"De por vida",lifetime_price:'39,99€ <span></span>',lifetime_desc:"Pago único · Sin suscripción",
     lifetime_f1:"Funciones Premium",lifetime_f2:"Family Sharing (hasta 5)",lifetime_f3:"Todas las actualizaciones futuras",
     cta_h2:"Empieza tu prueba gratuita hoy",cta_p:"Sin pago durante los primeros 30 días. Cancela cuando quieras en Ajustes.",
-    footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GreDami. Todos los derechos reservados."
+    footer_privacy:"Política de privacidad",footer_terms:"Condiciones de uso",footer_support:"Soporte",footer_copy:"© 2026 GreDami. Todos los derechos reservados.",
+    cookie_text:"Usamos cookies de análisis para entender cómo se usa el sitio. Tú decides.",cookie_accept:"Aceptar",cookie_decline:"Rechazar",
+    rating_ratings:"valoraciones en la App Store"
   },
   it: {
-    nav_cta:"Scarica gratis",welcome_tagline:"Il momento migliore per prepararsi a un disastro era ieri. Il secondo momento migliore è oggi",
+    welcome_tagline:"Il momento migliore per prepararsi a un disastro era ieri. Il secondo momento migliore è oggi",
     hero_h1:"Zaino d'emergenza & <span>Riserva</span>",
     hero_p:"Costruisci il tuo zaino d'emergenza, monitora le scorte di casa, salva i contatti d'emergenza e proteggi i documenti vitali in un archivio cifrato — tutto in un'unica app.",
     hero_trial:"1 mese di prova gratuita · Nessun impegno",hero_cta_btn:"Inizia gratis ora",cta_btn:"Scarica sull'App Store",
     security_label:"Privacy & Sicurezza",security_title:"I tuoi dati restano tuoi",security_sub:"GoBag+ è basato sull'infrastruttura di sicurezza di Apple. I tuoi documenti riservati non lasciano mai i tuoi dispositivi senza il tuo consenso.",
     security_1_title:"Protetto da Face ID",security_1_p:"Il cofre documenti si apre solo con i tuoi dati biometrici. Nessun altro può accedere ai tuoi documenti scansionati.",
     security_2_title:"Cifrato via iCloud",security_2_p:"Tutti i dati si sincronizzano tramite iCloud cifrato di Apple. Non vediamo né archiviamo mai le tue informazioni sui nostri server.",
-    security_3_title:"Zero raccolta dati",security_3_p:"Nessun dato personale raccolto, nessuna analisi, nulla venduto. Il tuo piano d'emergenza è privato per design.",
-    screenshots_label:"Anteprima app",screenshots_title:"Guardala in azione",screenshots_sub:"Tutto ciò di cui hai bisogno, progettato per semplicità e rapidità sotto pressione.",
+    security_3_title:"Zero raccolta dati",security_3_p:"GoBag+ non raccoglie dati personali e non vende mai le tue informazioni. Il tuo piano d'emergenza resta privato, per design.",
     features_label:"Funzionalità",features_title:"Funzionalità chiave",
     kfeat1_title:"Kit di emergenza & riserva",kfeat1_p:"Organizza i kit per categoria e tieni traccia delle scorte domestiche con livelli e date di scadenza — tutto in un posto.",
     kfeat2_title:"Avvisi scadenza & scorte basse",kfeat2_p:"Ricevi notifiche automatiche prima che gli articoli scadano o scendano sotto il minimo. Mai impreparato.",
@@ -1228,9 +1372,6 @@ const T = {
     family_h2:"Un abbonamento, tutta la famiglia coperta",
     family_p:"Con Apple Family Sharing, un abbonamento GoBag+ Premium dà accesso completo ai familiari automaticamente — senza acquisti aggiuntivi, senza condividere password.",
     reviews_label:"Recensioni",reviews_title:"Amata da chi si organizza in anticipo",reviews_sub:"Feedback reali dalla community di GoBag+.",
-    review1_quote:"Finalmente un'app che rende la preparazione semplice e non stressante. Ho creato tre zaini d'emergenza in meno di un'ora.",review1_meta:"Utente iPhone",
-    review2_quote:"Solo gli avvisi di scadenza valgono l'acquisto — ho trovato due scatole di medicinali scaduti che avevo completamente dimenticato.",review2_meta:"Membro Premium",
-    review3_quote:"Condividiamo un solo abbonamento per tutta la famiglia e ogni zaino resta sincronizzato. Esattamente ciò di cui avevamo bisogno.",review3_meta:"Piano famiglia",
     pricing_label:"Prezzi",pricing_title:"Prezzi semplici e onesti",pricing_sub:"Inizia gratis. Passa a Premium quando sei pronto.",pricing_badge:"Miglior offerta",pricing_badge_popular:"Il più popolare",
     free_name:"Gratuito",free_price:'0€',free_price_desc:"Gratis per sempre",free_f1:"1 zaino d'emergenza",free_f2:"Categorie principali",free_f3:"Contatti d'emergenza",
     yearly_name:"Premium Annuale",yearly_price:'12,99€ <span>/anno</span>',yearly_desc:"≈ 1,08€/mese · 1 mese di prova gratuita",
@@ -1238,18 +1379,19 @@ const T = {
     lifetime_name:"A vita",lifetime_price:'39,99€ <span></span>',lifetime_desc:"Pagamento unico · Nessun abbonamento",
     lifetime_f1:"Funzionalità Premium",lifetime_f2:"Family Sharing (fino a 5)",lifetime_f3:"Tutti gli aggiornamenti futuri",
     cta_h2:"Inizia la tua prova gratuita oggi",cta_p:"Nessun pagamento richiesto per i primi 30 giorni. Cancella quando vuoi in Impostazioni.",
-    footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GreDami. Tutti i diritti riservati."
+    footer_privacy:"Informativa sulla privacy",footer_terms:"Termini di utilizzo",footer_support:"Supporto",footer_copy:"© 2026 GreDami. Tutti i diritti riservati.",
+    cookie_text:"Usiamo cookie di analisi per capire come viene usato il sito. Decidi tu.",cookie_accept:"Accetta",cookie_decline:"Rifiuta",
+    rating_ratings:"valutazioni sull'App Store"
   },
   pt: {
-    nav_cta:"Baixar grátis",welcome_tagline:"O melhor momento para se preparar para um desastre foi ontem. O segundo melhor momento é hoje",
+    welcome_tagline:"O melhor momento para se preparar para um desastre foi ontem. O segundo melhor momento é hoje",
     hero_h1:"Mochila de emergência &<br><span>Reserva doméstica</span>",
     hero_p:"Monte o seu saco de emergência, controle as suas reservas em casa, guarde contactos de emergência e proteja documentos vitais num cofre seguro — tudo numa única app.",
     hero_trial:"1 mês de teste grátis · Sem compromisso",hero_cta_btn:"Começar grátis agora",cta_btn:"Transferir na App Store",
     security_label:"Privacidade & Segurança",security_title:"Os seus dados pertencem-lhe",security_sub:"GoBag+ é construído sobre a infraestrutura de segurança da Apple. Os seus documentos confidenciais nunca saem dos seus dispositivos sem o seu consentimento.",
     security_1_title:"Protegido com Face ID",security_1_p:"O cofre de documentos abre apenas com os seus dados biométricos. Mais ninguém pode aceder aos seus documentos digitalizados.",
     security_2_title:"Cifrado via iCloud",security_2_p:"Todos os dados sincronizam através do iCloud cifrado da Apple. Nunca vemos nem armazenamos as suas informações nos nossos servidores.",
-    security_3_title:"Zero recolha de dados",security_3_p:"Nenhum dado pessoal recolhido, sem análises, nada vendido. O seu plano de emergência é privado por design.",
-    screenshots_label:"Pré-visualização",screenshots_title:"Veja em ação",screenshots_sub:"Tudo o que precisa, concebido para simplicidade e rapidez sob pressão.",
+    security_3_title:"Zero recolha de dados",security_3_p:"O GoBag+ não recolhe dados pessoais e nunca vende as suas informações. O seu plano de emergência é privado por design.",
     features_label:"Funcionalidades",features_title:"Funcionalidades-chave",
     kfeat1_title:"Mochilas & reserva doméstica",kfeat1_p:"Organize várias mochilas de emergência por categorias e acompanhe as suas reservas em casa com datas de validade e níveis de stock.",
     kfeat2_title:"Alertas de validade & stock baixo",kfeat2_p:"Receba notificações automáticas antes de os artigos expirarem ou quando o stock baixar do mínimo. Esteja sempre preparado.",
@@ -1267,9 +1409,6 @@ const T = {
     family_h2:"Uma subscrição, toda a família protegida",
     family_p:"Com o Apple Family Sharing, uma subscrição GoBag+ Premium dá acesso completo aos familiares automaticamente — sem compras adicionais, sem partilhar palavras-passe.",
     reviews_label:"Avaliações",reviews_title:"Adorada por quem se prepara com antecedência",reviews_sub:"Feedback real da comunidade GoBag+.",
-    review1_quote:"Finalmente uma app que torna a preparação simples em vez de esmagadora. Criei três mochilas de emergência em menos de uma hora.",review1_meta:"Utilizadora de iPhone",
-    review2_quote:"Só os alertas de validade já valem a pena — encontrei duas caixas de medicamentos vencidos que tinha esquecido completamente.",review2_meta:"Membro Premium",
-    review3_quote:"Partilhamos uma única subscrição para toda a família e cada mochila fica sincronizada. Exatamente o que precisávamos.",review3_meta:"Plano família",
     pricing_label:"Preços",pricing_title:"Preços simples e honestos",pricing_sub:"Comece grátis. Atualize quando estiver pronto.",pricing_badge:"Melhor oferta",pricing_badge_popular:"Mais popular",
     free_name:"Grátis",free_price:'0€',free_price_desc:"Grátis para sempre",free_f1:"1 mochila de emergência",free_f2:"Categorias principais",free_f3:"Contactos de emergência",
     yearly_name:"Premium Anual",yearly_price:'12,99€ <span>/ano</span>',yearly_desc:"≈ 1,08€/mês · 1 mês de teste grátis",
@@ -1277,18 +1416,19 @@ const T = {
     lifetime_name:"Vitalício",lifetime_price:'39,99€ <span></span>',lifetime_desc:"Pagamento único · Sem subscrição",
     lifetime_f1:"Funcionalidades Premium",lifetime_f2:"Family Sharing (até 5)",lifetime_f3:"Todas as atualizações futuras",
     cta_h2:"Comece o seu teste grátis hoje",cta_p:"Sem pagamento nos primeiros 30 dias. Cancele quando quiser nas Definições.",
-    footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GreDami. Todos os direitos reservados."
+    footer_privacy:"Política de Privacidade",footer_terms:"Termos de Utilização",footer_support:"Suporte",footer_copy:"© 2026 GreDami. Todos os direitos reservados.",
+    cookie_text:"Usamos cookies de análise para perceber como o site é usado. Você decide.",cookie_accept:"Aceitar",cookie_decline:"Recusar",
+    rating_ratings:"avaliações na App Store"
   },
   ru: {
-    nav_cta:"Скачать бесплатно",welcome_tagline:"Лучшее время готовиться к катастрофе было вчера. Второе лучшее время — сегодня",
+    welcome_tagline:"Лучшее время готовиться к катастрофе было вчера. Второе лучшее время — сегодня",
     hero_h1:"Тревожный чемоданчик & <span>Запасы</span>",
     hero_p:"Соберите тревожный чемоданчик, следите за домашними запасами, храните экстренные контакты и защитите важные документы в зашифрованном хранилище — в одном приложении.",
     hero_trial:"1 месяц бесплатно · Без обязательств",hero_cta_btn:"Начать готовиться",cta_btn:"Загрузить в App Store",
     security_label:"Конфиденциальность",security_title:"Ваши данные — только ваши",security_sub:"GoBag+ построен на инфраструктуре безопасности Apple. Ваши конфиденциальные документы никогда не покидают ваши устройства без вашего согласия.",
     security_1_title:"Защита Face ID",security_1_p:"Хранилище документов открывается только по вашей биометрии. Никто другой не может получить доступ к вашим сканам документов.",
     security_2_title:"Шифрование iCloud",security_2_p:"Все данные синхронизируются через зашифрованный iCloud Apple. Мы никогда не видим и не храним вашу информацию на наших серверах.",
-    security_3_title:"Нулевой сбор данных",security_3_p:"Никаких личных данных, никакой аналитики, ничего не продаётся. Ваш план действий в чрезвычайных ситуациях приватен по замыслу.",
-    screenshots_label:"Обзор приложения",screenshots_title:"Посмотрите, как это работает",screenshots_sub:"Всё необходимое — просто и быстро, даже в экстремальных ситуациях.",
+    security_3_title:"Нулевой сбор данных",security_3_p:"GoBag+ не собирает личные данные и никогда не продаёт вашу информацию. Ваш план действий в чрезвычайных ситуациях приватен по замыслу.",
     features_label:"Возможности",features_title:"Ключевые возможности",
     kfeat1_title:"Чемоданчики & домашние запасы",kfeat1_p:"Создайте несколько тревожных наборов по категориям и следите за домашними запасами с датами годности и нормами на человека.",
     kfeat2_title:"Уведомления о сроках и нехватке",kfeat2_p:"Автоматические напоминания до истечения сроков годности и при падении запасов ниже минимума. Всегда в курсе.",
@@ -1306,9 +1446,6 @@ const T = {
     family_h2:"Одна подписка — вся семья защищена",
     family_p:"С Apple Family Sharing одна подписка GoBag+ Premium автоматически даёт полный доступ членам семьи — без дополнительных покупок и паролей.",
     reviews_label:"Отзывы",reviews_title:"Любимое приложение тех, кто готовится заранее",reviews_sub:"Настоящие отзывы сообщества GoBag+.",
-    review1_quote:"Наконец-то приложение, которое делает подготовку простой, а не пугающей. Я собрала три тревожных чемоданчика меньше чем за час.",review1_meta:"Пользователь iPhone",
-    review2_quote:"Одни только уведомления о сроках годности стоят своих денег — нашёл две упаковки просроченных лекарств, о которых совсем забыл.",review2_meta:"Premium-участник",
-    review3_quote:"Мы делим одну подписку на всю семью, и у каждого чемоданчик синхронизирован. Именно то, что нам было нужно.",review3_meta:"Семейный план",
     pricing_label:"Цены",pricing_title:"Простые и честные цены",pricing_sub:"Начните бесплатно. Перейдите на Premium позже.",pricing_badge:"Лучшее предложение",pricing_badge_popular:"Самый популярный",
     free_name:"Бесплатно",free_price:'0€',free_price_desc:"Навсегда бесплатно",free_f1:"1 тревожный чемоданчик",free_f2:"Основные категории",free_f3:"Экстренные контакты",
     yearly_name:"Premium — Годовой",yearly_price:'12,99€ <span>/год</span>',yearly_desc:"≈ 1,08€/мес · 1 месяц бесплатно",
@@ -1316,7 +1453,9 @@ const T = {
     lifetime_name:"Навсегда",lifetime_price:'39,99€ <span></span>',lifetime_desc:"Единоразовая оплата · Без подписки",
     lifetime_f1:"Функции Premium",lifetime_f2:"Family Sharing (до 5 чел.)",lifetime_f3:"Все будущие обновления",
     cta_h2:"Начните бесплатный пробный период",cta_p:"Без оплаты в первые 30 дней. Отмените в любое время в Настройках.",
-    footer_privacy:"Политика конфиденциальности",footer_terms:"Условия использования",footer_support:"Поддержка",footer_copy:"© 2026 GreDami. Все права защищены."
+    footer_privacy:"Политика конфиденциальности",footer_terms:"Условия использования",footer_support:"Поддержка",footer_copy:"© 2026 GreDami. Все права защищены.",
+    cookie_text:"Мы используем аналитические cookie, чтобы понять, как используется сайт. Решать вам.",cookie_accept:"Принять",cookie_decline:"Отклонить",
+    rating_ratings:"оценки в App Store"
   }
 };
 
@@ -1401,10 +1540,10 @@ function setLang(lang) {
   document.documentElement.lang = lang;
   localStorage.setItem('gobag_lang', lang);
   document.querySelectorAll('[data-screenshot]').forEach(img => {
-    img.src = 'screenshots/' + img.getAttribute('data-screenshot') + '.png';
+    img.src = 'screenshots/' + img.getAttribute('data-screenshot') + '.jpg';
   });
   const heroPhone = document.getElementById('heroPhoneImg');
-  if (heroPhone) heroPhone.src = 'screenshots/1.png';
+  if (heroPhone) heroPhone.src = 'screenshots/1.jpg';
   applyRegionalPricing(lang);
 }
 
@@ -1526,65 +1665,6 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-// ====== FOREST SCENE ======
-(function() {
-  const scene = document.getElementById('heroForest');
-  if (!scene) return;
-
-  const svgBody = '<rect x="43" y="258" width="14" height="42" rx="2"/>'
-    + '<polygon points="50,20 75,108 25,108"/>'
-    + '<polygon points="50,65 82,158 18,158"/>'
-    + '<polygon points="50,108 90,208 10,208"/>'
-    + '<polygon points="50,155 97,258 3,258"/>';
-
-  // [left%, height_px, color, dur_s, delay_s, base_deg, gust_deg]
-  const trees = [
-    // background — slightly lighter than horizon, depth haze
-    [1,   85, '#0a1828', 4.3, -1.2, -1,   3],
-    [13,  78, '#0a1828', 4.1, -3.5, -1.5, 3],
-    [25,  90, '#0a1828', 4.5, -0.7, -1,   4],
-    [37,  82, '#0a1828', 4.0, -2.3, -1.5, 3],
-    [50,  88, '#0a1828', 4.2, -4.1, -1,   3],
-    [63,  80, '#0a1828', 4.4, -1.0, -1.5, 4],
-    [75,  86, '#0a1828', 4.1, -3.0, -1,   3],
-    [88,  82, '#0a1828', 4.3, -0.5, -1.5, 3],
-    // midground
-    [0,   155, '#040a14', 3.5, -0.9,  -2,   7],
-    [9,   168, '#040a14', 3.7, -2.4,  -2.5, 8],
-    [19,  160, '#040a14', 3.3, -4.0,  -2,   7],
-    [29,  172, '#040a14', 3.6, -1.5,  -3,   8],
-    [39,  165, '#040a14', 3.4, -3.2,  -2,   7],
-    [50,  170, '#040a14', 3.7, -0.6,  -2.5, 8],
-    [61,  158, '#040a14', 3.3, -2.8,  -2,   7],
-    [71,  168, '#040a14', 3.5, -1.1,  -3,   8],
-    [81,  162, '#040a14', 3.6, -4.5,  -2.5, 7],
-    [91,  170, '#040a14', 3.4, -2.0,  -2,   8],
-    [100, 155, '#040a14', 3.7, -0.3,  -2.5, 7],
-    // foreground — near-black silhouettes
-    [-2,  252, '#010204', 2.6, -1.3,  -3,   12],
-    [7,   272, '#010204', 2.8, -2.7,  -3.5, 13],
-    [17,  258, '#010204', 2.5, -4.2,  -3,   12],
-    [27,  278, '#010204', 2.7, -0.8,  -4,   14],
-    [37,  262, '#010204', 2.6, -3.3,  -3.5, 13],
-    [47,  275, '#010204', 2.8, -1.7,  -3,   12],
-    [57,  258, '#010204', 2.6, -4.8,  -4,   13],
-    [67,  272, '#010204', 2.7, -2.3,  -3.5, 14],
-    [77,  265, '#010204', 2.5, -0.5,  -3,   12],
-    [87,  278, '#010204', 2.8, -3.7,  -4,   13],
-    [96,  260, '#010204', 2.6, -2.0,  -3.5, 12],
-    [104, 272, '#010204', 2.7, -1.0,  -3,   13],
-  ];
-
-  trees.forEach(([left, h, color, dur, delay, base, gust]) => {
-    const w = Math.round(h / 3);
-    const div = document.createElement('div');
-    div.className = 'tree-wrap';
-    div.style.cssText = `left:${left}%;color:${color};--dur:${dur}s;--delay:${delay}s;--base:${base}deg;--gust:${gust}deg;`;
-    div.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 300" width="${w}" height="${h}" fill="currentColor" aria-hidden="true">${svgBody}</svg>`;
-    scene.appendChild(div);
-  });
-})();
 </script>
 </body>
 </html>
