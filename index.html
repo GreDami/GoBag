@@ -468,6 +468,7 @@
         .key-feature:nth-child(4) .key-feature-icon { --kf-glow: rgba(47,138,82,0.35); }
         .key-feature:nth-child(5) .key-feature-icon { --kf-glow: rgba(124,58,237,0.35); }
         .key-feature:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: calc(50% - 10px); margin: 0 auto; }
+        @media (max-width: 600px) { .key-feature:last-child:nth-child(odd) { max-width: none; grid-column: auto; margin: 0; } }
         .key-feature-icon svg { width: 26px; height: 26px; }
         .key-feature h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
         .key-feature p { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
