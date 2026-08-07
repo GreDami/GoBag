@@ -548,6 +548,72 @@
             margin-right: auto;
         }
         .hero h1 span { color: var(--green); }
+
+        /* "Тревожный чемоданчик" is far longer than any other language's
+           headline and its words cannot be broken, so at the shared size the
+           Russian headline ran 664px wide inside a 640px box — 24px over — and
+           filled the full column width on phones. Scaled to ~86%, it lands in
+           the same block the other six occupy. setLang keeps html[lang] in
+           sync, so this follows the switcher. */
+        html[lang="ru"] .hero h1 { font-size: clamp(2.9rem, 7.7vw, 5.5rem); }
+
+        /* ── the headline character roll ─────────────────────────────────────
+           Each character is its own clipping box rather than each line. The
+           seven languages break the headline in different places — four of
+           them have no <br> at all and wrap on their own — and a per-line clip
+           would let the second line's letters ride up over the first.
+
+           Two faces per character: the lit one rides up and out, its twin
+           rides in from below on the same stagger, so the headline reads the
+           same at both ends of the animation. */
+        /* A line may break between two adjacent inline-blocks, so without this
+           the browser hyphen-lessly splits words mid-letter — "Notfalltasche"
+           broke across two lines in German. Breaks stay at the real spaces,
+           which the split leaves as ordinary text nodes. */
+        .hero h1 .rw { font-style: normal; white-space: nowrap; }
+
+        .hero h1 .rc {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            color: inherit;            /* outranks `.hero h1 span`, so only the
+                                          green wrapper tints its own letters */
+            line-height: 1.26;         /* room for descenders inside the clip */
+            margin-block: -0.13em;     /* ...handed back, so the headline keeps
+                                          its original line rhythm */
+            vertical-align: top;       /* baseline alignment measures this box
+                                          from its baseline, which leaves the
+                                          bottom margin uncounted and the line
+                                          12% tall. Top-aligned, both count. */
+        }
+        .hero h1 .rc i {
+            display: block;
+            font-style: normal;
+            transform: translateY(0);
+            transition: transform .52s cubic-bezier(.2,.7,.3,1);
+            transition-delay: var(--d, 0s);
+        }
+        .hero h1 .rc i + i {           /* the twin, parked one face below */
+            position: absolute;
+            inset: 0;
+            transform: translateY(100%);
+        }
+        .hero h1.is-rolling .rc i     { transform: translateY(-100%); }
+        .hero h1.is-rolling .rc i + i { transform: translateY(0); }
+        @media (hover: hover) {
+            .hero h1:hover .rc i     { transform: translateY(-100%); }
+            .hero h1:hover .rc i + i { transform: translateY(0); }
+        }
+        /* Kills the travel only. The faces stay stacked, so the headline still
+           renders exactly once. */
+        @media (prefers-reduced-motion: reduce) {
+            .hero h1 .rc i { transition: none; }
+            .hero h1:hover .rc i,     .hero h1.is-rolling .rc i     { transform: translateY(0); }
+            .hero h1:hover .rc i + i, .hero h1.is-rolling .rc i + i { transform: translateY(100%); }
+        }
+        /* Used for one frame when the tap-to-play state is reset, so the
+           letters do not visibly roll back to where they started. */
+        .hero h1.roll-reset .rc i { transition: none; }
         .hero p {
             font-size: clamp(0.95rem, 1.8vw, 1.15rem);
             font-weight: 300;
@@ -1237,7 +1303,7 @@
 <section class="hero">
     <div class="hero-content">
         <div class="hero-text">
-            <h1 data-i18n-html="hero_h1">Go Bag &amp;<br><span>Home Reserve</span></h1>
+            <h1 data-i18n-html="hero_h1">Gobag &amp;<br><span>Household supplies</span></h1>
             <p data-i18n="hero_p">Build your go bag, track home supplies, store emergency contacts, and secure vital documents in an encrypted vault — all in one app.</p>
             <div class="hero-buttons">
                 <a href="https://apps.apple.com/fr/app/gobag/id6760232332" class="btn-primary" target="_blank">
@@ -1660,7 +1726,7 @@ function setConsent(granted) {
 const T = {
   en: {
     welcome_tagline:"Best time to prepare for a disaster was yesterday. The second best time is today",
-    hero_h1:"Go Bag &<br><span>Home Reserve</span>",
+    hero_h1:"Gobag &<br><span>Household supplies</span>",
     hero_p:"Build your go bag, track home supplies, store emergency contacts, and secure vital documents in an encrypted vault — all in one app.",
     hero_trial:"Free 1-month trial · No commitment",hero_cta_btn:"Build My Go Bag",cta_btn:"Download on the App Store",
     security_label:"Privacy & Security",security_title:"Your data stays yours",security_sub:"GoBag+ is built on Apple's security infrastructure. Your confidential documents never leave your devices without your consent.",
@@ -2006,6 +2072,84 @@ function applyRegionalPricing(lang) {
   if (yd) yd.textContent = '≈ $1.00/month · 1 month free trial';
 }
 
+/* ── headline character roll ───────────────────────────────────────────────
+   Splits the hero headline into per-character faces. Rebuilt on every language
+   change: setLang replaces the h1's innerHTML wholesale, which wipes the split.
+
+   The walk clones element wrappers instead of flattening them, so the green
+   <span> and the <br> survive — the letters inside the wrapper inherit its
+   colour. Spaces are left as real text nodes: that keeps the browser's word
+   wrapping, which it would not do between two adjacent inline-blocks. */
+const ROLL_STAGGER = 0.028;   /* seconds between neighbouring characters */
+
+function buildTextRoll(el) {
+  if (!el || el.querySelector('.rc')) return;   /* already split */
+
+  let i = 0;
+  const walk = (src, dest) => {
+    src.childNodes.forEach(node => {
+      if (node.nodeType === 3) {
+        /* Keep the spaces as text nodes and bundle each word: those spaces are
+           the only place the line is allowed to break. */
+        node.nodeValue.split(/( )/).forEach(part => {
+          if (part === '') return;
+          if (part === ' ') { dest.appendChild(document.createTextNode(' ')); i++; return; }
+          const word = document.createElement('i');
+          word.className = 'rw';
+          part.split('').forEach(ch => {
+            const rc = document.createElement('span');
+            rc.className = 'rc';
+            rc.setAttribute('aria-hidden', 'true');   /* the h1 carries the label */
+            rc.style.setProperty('--d', (ROLL_STAGGER * i++).toFixed(3) + 's');
+            const face = document.createElement('i');
+            face.textContent = ch;
+            rc.appendChild(face);
+            rc.appendChild(face.cloneNode(true));
+            word.appendChild(rc);
+          });
+          dest.appendChild(word);
+        });
+      } else if (node.nodeName === 'BR') {
+        dest.appendChild(document.createElement('br'));
+      } else {
+        const clone = node.cloneNode(false);
+        walk(node, clone);
+        dest.appendChild(clone);
+      }
+    });
+  };
+
+  /* Read the label before the split: letter-by-letter markup is announced
+     letter by letter by some screen readers. The <br> has to become a space
+     first — textContent drops it, which would say "Go Bag &Home Reserve". */
+  const flat = document.createElement('div');
+  flat.innerHTML = el.innerHTML.replace(/<br\s*\/?>/gi, ' ');
+  const label = flat.textContent.replace(/\s+/g, ' ').trim();
+  const frag = document.createDocumentFragment();
+  walk(el, frag);
+  el.textContent = '';
+  el.appendChild(frag);
+  el.setAttribute('aria-label', label);
+
+  /* Touch devices never fire :hover, so the roll plays on tap instead. The
+     end state renders identically to the start, so the class is dropped a
+     frame after the last character lands, with the transition suppressed —
+     otherwise every letter visibly rolls back. */
+  if (!window.matchMedia('(hover: hover)').matches && !el.dataset.rollTap) {
+    el.dataset.rollTap = '1';
+    const total = (ROLL_STAGGER * i + 0.6) * 1000;
+    el.addEventListener('click', () => {
+      if (el.classList.contains('is-rolling')) return;
+      el.classList.add('is-rolling');
+      setTimeout(() => {
+        el.classList.add('roll-reset');
+        el.classList.remove('is-rolling');
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('roll-reset')));
+      }, total);
+    });
+  }
+}
+
 function setLang(lang) {
   const t = T[lang];
   if (!t) return;
@@ -2017,6 +2161,7 @@ function setLang(lang) {
     const k = el.getAttribute('data-i18n-html');
     if (t[k] !== undefined) el.innerHTML = t[k];
   });
+  buildTextRoll(document.querySelector('.hero h1'));   /* the line above wiped it */
   document.querySelectorAll('.lang-option').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
@@ -2051,6 +2196,10 @@ function setLang(lang) {
 
   // Paint immediately with the best guess we already have (cached region included).
   if (userPicked) setLang(saved);
+
+  // For everyone else the first setLang waits on the geo-IP round trip below,
+  // so split the headline now rather than leaving it inert until that lands.
+  buildTextRoll(document.querySelector('.hero h1'));
 
   // Refine region from geo-IP, then re-apply pricing (and language, if not user-picked).
   fetch('https://ipapi.co/json/').then(r => r.json()).then(data => {
