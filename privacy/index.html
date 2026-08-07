@@ -64,6 +64,15 @@
             backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(22,33,61,0.06);
             gap: 16px;
+
+            /* Keycap material, same tokens as the site nav. The perspective
+               lets the key grow toward you on hover rather than only gaining
+               a drop shadow. */
+            --key-face-hi: #fffefb;   /* lit crown of the top face */
+            --key-face:    #f3ecdb;   /* the face in shade         */
+            --key-side:    #d8ccb1;   /* the extruded side wall    */
+            --key-side-dk: #bcae8d;   /* its darker bottom lip     */
+            perspective: 900px;
         }
         .nav-logo {
             font-size: 1.1rem;
@@ -78,16 +87,94 @@
         }
         .nav-logo img { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; }
         .nav-logo span { color: var(--green); }
+        /* ── the home key ────────────────────────────────────────────────────
+           The keycap from the site nav: a lit top face, a side wall built from
+           hard offset shadows, and a contact shadow on the bar below it. Five
+           shadows in every state so the transition interpolates instead of
+           jumping —
+             rest    side 3px   the key sits proud of the bar
+             hover   side 8px   it rises, the shadow spreads and softens
+             active  side 0px   it bottoms out, the shadow tightens under it */
         .nav-back {
-            font-size: 0.83rem;
-            font-weight: 500;
-            color: var(--muted);
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 15px;
+            border: 1px solid rgba(22,33,61,0.11);
+            border-radius: 12px;
             text-decoration: none;
-            transition: color 0.2s;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.1px;
+            white-space: nowrap;
             flex-shrink: 0;
+            color: var(--navy);
+            background: linear-gradient(180deg, var(--key-face-hi) 0%, var(--key-face) 100%);
+            transform: translateY(0) translateZ(0);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.95),
+                inset 0 -1px 0 rgba(22,33,61,0.05),
+                0 3px 0 var(--key-side),
+                0 4px 0 var(--key-side-dk),
+                0 6px 10px rgba(22,33,61,0.15);
+            transition: transform .17s cubic-bezier(.2,.7,.3,1),
+                        box-shadow .17s cubic-bezier(.2,.7,.3,1);
         }
-        .nav-back:hover { color: var(--text); }
+        /* specular bloom across the top of the face */
+        .nav-back::after {
+            content: '';
+            position: absolute;
+            inset: 1px 1px auto;
+            height: 55%;
+            border-radius: 11px 11px 14px 14px;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0));
+            opacity: 0.55;
+            transition: opacity .17s ease;
+        }
+        .nav-back svg { width: 17px; height: 17px; flex-shrink: 0; opacity: 0.72; transition: opacity .17s ease; }
+
+        .nav-back:hover {
+            transform: translateY(-5px) translateZ(18px);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.98),
+                inset 0 -1px 0 rgba(22,33,61,0.05),
+                0 8px 0 var(--key-side),
+                0 9px 0 var(--key-side-dk),
+                0 15px 22px rgba(22,33,61,0.20);
+        }
+        .nav-back:hover::after { opacity: 0.9; }
+        .nav-back:hover svg { opacity: 1; }
+
+        /* bottoming out */
+        .nav-back:active {
+            transform: translateY(3px) translateZ(0);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.7),
+                inset 0 -1px 0 rgba(22,33,61,0.05),
+                0 0 0 var(--key-side),
+                0 1px 0 var(--key-side-dk),
+                0 2px 4px rgba(22,33,61,0.2);
+            transition-duration: .06s;
+        }
+        .nav-back:active::after { opacity: 0.35; }
+
         @media (max-width: 600px) { nav { padding: 16px 20px; } }
+        /* icon only; the label would push the wordmark into a wrap */
+        @media (max-width: 400px) {
+            .nav-back { padding: 0 13px; }
+            .nav-back span { display: none; }
+        }
+
+        /* Depth is drawn, not animated, so the key keeps it here. Only the
+           travel is removed. */
+        @media (prefers-reduced-motion: reduce) {
+            .nav-back { transition-duration: .001ms !important; }
+            .nav-back:hover, .nav-back:active { transform: none; }
+        }
 
         /* PAGE */
         .page {
@@ -187,7 +274,14 @@
         <img src="../favicon.png" alt="GoBag+">
         GoBag<span>+</span>
     </a>
-    <a href="/" class="nav-back">← Back to site</a>
+    <a href="/" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3.4 10.7 12 3.6l8.6 7.1"/>
+            <path d="M5.6 9.4V19a1.4 1.4 0 0 0 1.4 1.4h10a1.4 1.4 0 0 0 1.4-1.4V9.4"/>
+            <path d="M9.7 20.4v-5.5h4.6v5.5"/>
+        </svg>
+        <span>Back to site</span>
+    </a>
 </nav>
 
 <main class="page">
