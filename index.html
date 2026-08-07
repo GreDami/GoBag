@@ -225,7 +225,7 @@
              1-2 inset  lit top edge, shaded bottom edge of the face
              3-4 hard   the side wall and its darker bottom lip
              5   soft   the contact shadow thrown on the deck            */
-        .nav-key, .nav-cta, .lang-trigger {
+        .nav-key, .nav-cta, .lang-trigger, .nav-burger {
             position: relative;
             display: inline-flex;
             align-items: center;
@@ -254,7 +254,7 @@
                         box-shadow .17s cubic-bezier(.2,.7,.3,1);
         }
         /* specular bloom across the top of the face */
-        .nav-key::after, .nav-cta::after, .lang-trigger::after {
+        .nav-key::after, .nav-cta::after, .lang-trigger::after, .nav-burger::after {
             content: '';
             position: absolute;
             inset: 1px 1px auto;
@@ -267,7 +267,7 @@
         }
         .nav-key svg { width: 17px; height: 17px; flex-shrink: 0; opacity: 0.72; transition: opacity .17s ease; }
 
-        .nav-key:hover, .nav-cta:hover, .lang-trigger:hover {
+        .nav-key:hover, .nav-cta:hover, .lang-trigger:hover, .nav-burger:hover {
             transform: translateY(-5px) translateZ(18px);
             box-shadow:
                 inset 0 1px 0 rgba(255,255,255,0.98),
@@ -280,7 +280,7 @@
         .nav-key:hover svg { opacity: 1; }
 
         /* bottoming out */
-        .nav-key:active, .nav-cta:active, .lang-trigger:active {
+        .nav-key:active, .nav-cta:active, .lang-trigger:active, .nav-burger:active {
             transform: translateY(3px) translateZ(0);
             box-shadow:
                 inset 0 1px 0 rgba(255,255,255,0.7),
@@ -401,7 +401,17 @@
         .lang-option.active { color: #1c5c39; background: rgba(47,138,82,0.13); font-weight: 600; }
 
         /* ── burger, also a key ──────────────────────────────────────────── */
-        .nav-burger { display: none; width: 46px; padding: 0; justify-content: center; }
+        .nav-burger {
+            display: none;
+            width: 46px;
+            min-width: 46px;
+            padding: 0;
+            flex-direction: column;   /* the shared rule is a row; without this
+                                         the three bars sit side by side */
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
         .nav-burger i {
             display: block;
             width: 18px; height: 2px;
@@ -409,7 +419,6 @@
             background: var(--navy);
             transition: transform .3s cubic-bezier(.2,.7,.3,1), opacity .2s ease;
         }
-        .nav-burger i + i { margin-top: 4px; }
         body.nav-open .nav-burger i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
         body.nav-open .nav-burger i:nth-child(2) { opacity: 0; }
         body.nav-open .nav-burger i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
@@ -428,6 +437,10 @@
             transition: opacity .34s ease, visibility .34s;
         }
         body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
+
+        /* Page scroll lock. position:fixed rather than overflow:hidden, which
+           iOS Safari ignores on body. The scroll offset is preserved in JS. */
+        body.nav-locked { position: fixed; left: 0; right: 0; width: 100%; overflow: hidden; }
 
         .nav-stage {
             position: fixed;
@@ -2188,15 +2201,23 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   function focusables() {
     return Array.prototype.slice.call(drawer.querySelectorAll('a[href], button:not([disabled])'));
   }
+  // Page scroll lock. The body goes position:fixed, so its scroll offset has
+  // to be carried across by hand or the page jumps to the top on open.
+  var savedY = 0;
   function open() {
-    document.body.classList.add('nav-open');
+    savedY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.top = (-savedY) + 'px';
+    document.body.classList.add('nav-open', 'nav-locked');
     burger.setAttribute('aria-expanded', 'true');
     stage.setAttribute('aria-hidden', 'false');
     var f = focusables();
     if (f.length) f[0].focus();
   }
-  function close(returnFocus) {
-    document.body.classList.remove('nav-open');
+  function close(returnFocus, restoreScroll) {
+    var wasLocked = document.body.classList.contains('nav-locked');
+    document.body.classList.remove('nav-open', 'nav-locked');
+    document.body.style.top = '';
+    if (wasLocked && restoreScroll !== false) window.scrollTo(0, savedY);
     burger.setAttribute('aria-expanded', 'false');
     stage.setAttribute('aria-hidden', 'true');
     if (returnFocus && burger.offsetParent !== null) burger.focus();
@@ -2209,7 +2230,9 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   if (scrim) scrim.addEventListener('click', function () { close(false); });
 
   // Tapping a destination dismisses the panel so the scroll is visible.
-  drawer.addEventListener('click', function (e) { if (e.target.closest('a')) close(false); });
+  drawer.addEventListener('click', function (e) {
+    if (e.target.closest('a')) close(false, false);
+  });
 
   document.addEventListener('keydown', function (e) {
     if (!document.body.classList.contains('nav-open')) return;
