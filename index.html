@@ -121,20 +121,70 @@
             line-height: 1.6;
         }
 
-        /* NAV */
+        /* ═══════════════════════════════════════════════════════════════════
+           NAV — extruded keycap menu
+
+           Every item is a physical key: a lit top face, a side wall built from
+           hard offset shadows, and a contact shadow on the deck below it. The
+           keys sit in a recessed tray, so the bar has depth at rest.
+
+           One light source, directly above:
+             rest    side 3px   the key sits proud of the deck
+             hover   side 8px   it rises, the shadow spreads and softens
+             active  side 0px   it bottoms out, the shadow tightens under it
+
+           Keys also translateZ inside a real perspective, so they grow toward
+           you rather than just gaining a drop shadow.
+
+           Scoped entirely to the nav: no page tokens or page rules are
+           touched. Labels reuse existing i18n keys, so the menu translates
+           without a single change to the dictionaries.
+           ═══════════════════════════════════════════════════════════════════ */
+
+        /* The only two declarations outside the nav element itself. Without
+           scroll-padding, a menu link drops the target heading underneath the
+           fixed bar. Remove these two lines if you would rather not have them. */
+        html { scroll-padding-top: 96px; scroll-behavior: smooth; }
+
+        /* Keycap material. Declared on both the bar and the drawer stage: the
+           drawer is a sibling of <nav>, not a child, so tokens scoped to nav
+           alone never reach it and its keys lose their faces entirely. */
+        nav, .nav-stage {
+            --key-face-hi: #fffefb;   /* lit crown of the top face */
+            --key-face:    #f3ecdb;   /* the face in shade         */
+            --key-side:    #d8ccb1;   /* the extruded side wall    */
+            --key-side-dk: #bcae8d;   /* its darker bottom lip     */
+            --key-on-hi:   #eaf5ee;
+            --key-on:      #cfe6d9;
+            --key-on-side: #a3c9b2;
+            --key-on-dk:   #7fae91;
+            --cta-hi:      #2f8450;   /* every stop clears 4.5:1 on white */
+            --cta-bg:      #24603c;
+            --cta-side:    #1b4d30;
+            --cta-dk:      #143d26;
+        }
+
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            z-index: 100;
+            z-index: 210;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 18px 40px;
-            background: rgba(246,241,230,0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(22,33,61,0.06);
-            gap: 16px;
+            gap: 18px;
+            padding: 13px 34px;
+            background: rgba(246,241,230,0.82);
+            backdrop-filter: blur(18px) saturate(1.25);
+            -webkit-backdrop-filter: blur(18px) saturate(1.25);
+            border-bottom: 1px solid rgba(22,33,61,0.07);
+            transition: padding .28s ease, background .28s ease, box-shadow .28s ease;
         }
+        nav.scrolled {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            background: rgba(246,241,230,0.94);
+            box-shadow: 0 6px 22px rgba(22,33,61,0.10);
+        }
+
         .nav-logo {
             font-size: 1.1rem;
             font-weight: 700;
@@ -144,79 +194,303 @@
             flex-shrink: 0;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0;                    /* "GoBag" and "+" are separate flex items;
+                                          a gap here splits the wordmark */
+            transition: transform .2s ease;
         }
-        .nav-logo img {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            flex-shrink: 0;
-        }
+        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; margin-right: 10px; }
         .nav-logo span { color: var(--green); }
-        .nav-tagline {
-            font-size: 1rem;
-            font-weight: 300;
-            font-style: italic;
-            color: var(--muted);
-            text-align: center;
-            flex: 1;
-            padding: 0 16px;
-            line-height: 1.5;
-            letter-spacing: 0.2px;
-        }
-        @media (max-width: 900px) { .nav-tagline { display: none; } }
+        .nav-logo:hover { transform: translateY(-1px); }
 
-        /* LANG SWITCHER */
-        .lang-switcher { position: relative; flex-shrink: 0; }
-        .lang-trigger {
+        /* ── the deck: a recessed tray the keys sit in ───────────────────── */
+        .nav-keys {
             display: flex;
             align-items: center;
-            gap: 5px;
-            background: transparent;
-            border: none;
-            color: var(--muted);
-            font-size: 0.78rem;
-            font-weight: 600;
-            padding: 4px 6px;
-            cursor: pointer;
-            transition: color 0.2s;
-            font-family: inherit;
-            letter-spacing: 0.3px;
+            gap: 7px;
+            margin: 0 auto;
+            padding: 7px;
+            list-style: none;
+            border-radius: 17px;
+            background: linear-gradient(180deg, rgba(22,33,61,0.06), rgba(22,33,61,0.022));
+            box-shadow:
+                inset 0 2px 3px rgba(22,33,61,0.10),
+                inset 0 -1px 0 rgba(255,255,255,0.75);
+            perspective: 900px;
+            transform-style: preserve-3d;
         }
-        .lang-trigger:hover { color: var(--text); }
-        .lang-trigger .arrow { transition: transform 0.2s; }
+
+        /* ── the keycap ──────────────────────────────────────────────────────
+           Five shadows, same count in every state so the transition
+           interpolates instead of jumping:
+             1-2 inset  lit top edge, shaded bottom edge of the face
+             3-4 hard   the side wall and its darker bottom lip
+             5   soft   the contact shadow thrown on the deck            */
+        .nav-key, .nav-cta, .lang-trigger {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 15px;
+            border: 1px solid rgba(22,33,61,0.11);
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.1px;
+            white-space: nowrap;
+            cursor: pointer;
+            color: var(--navy);
+            background: linear-gradient(180deg, var(--key-face-hi) 0%, var(--key-face) 100%);
+            transform: translateY(0) translateZ(0);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.95),
+                inset 0 -1px 0 rgba(22,33,61,0.05),
+                0 3px 0 var(--key-side),
+                0 4px 0 var(--key-side-dk),
+                0 6px 10px rgba(22,33,61,0.15);
+            transition: transform .17s cubic-bezier(.2,.7,.3,1),
+                        box-shadow .17s cubic-bezier(.2,.7,.3,1);
+        }
+        /* specular bloom across the top of the face */
+        .nav-key::after, .nav-cta::after, .lang-trigger::after {
+            content: '';
+            position: absolute;
+            inset: 1px 1px auto;
+            height: 55%;
+            border-radius: 11px 11px 14px 14px;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0));
+            opacity: 0.55;
+            transition: opacity .17s ease;
+        }
+        .nav-key svg { width: 17px; height: 17px; flex-shrink: 0; opacity: 0.72; transition: opacity .17s ease; }
+
+        .nav-key:hover, .nav-cta:hover, .lang-trigger:hover {
+            transform: translateY(-5px) translateZ(18px);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.98),
+                inset 0 -1px 0 rgba(22,33,61,0.05),
+                0 8px 0 var(--key-side),
+                0 9px 0 var(--key-side-dk),
+                0 15px 22px rgba(22,33,61,0.20);
+        }
+        .nav-key:hover::after, .nav-cta:hover::after, .lang-trigger:hover::after { opacity: 0.9; }
+        .nav-key:hover svg { opacity: 1; }
+
+        /* bottoming out */
+        .nav-key:active, .nav-cta:active, .lang-trigger:active {
+            transform: translateY(3px) translateZ(0);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.7),
+                inset 0 -1px 0 rgba(22,33,61,0.05),
+                0 0 0 var(--key-side),
+                0 1px 0 var(--key-side-dk),
+                0 2px 4px rgba(22,33,61,0.2);
+            transition-duration: .06s;
+        }
+        .nav-key:active::after, .nav-cta:active::after { opacity: 0.35; }
+
+        /* ── the key for the section you are currently in ────────────────── */
+        .nav-key.current {
+            color: #1c5c39;
+            border-color: rgba(47,138,82,0.32);
+            background: linear-gradient(180deg, var(--key-on-hi) 0%, var(--key-on) 100%);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.9),
+                inset 0 -1px 0 rgba(22,33,61,0.05),
+                0 3px 0 var(--key-on-side),
+                0 4px 0 var(--key-on-dk),
+                0 6px 12px rgba(47,138,82,0.24);
+        }
+        .nav-key.current svg { opacity: 1; color: var(--green); }
+        .nav-key.current:hover {
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.95),
+                inset 0 -1px 0 rgba(22,33,61,0.05),
+                0 8px 0 var(--key-on-side),
+                0 9px 0 var(--key-on-dk),
+                0 15px 24px rgba(47,138,82,0.3);
+        }
+        /* status LED, lit only on the current key */
+        .nav-key.current::before {
+            content: '';
+            position: absolute;
+            top: 6px; right: 7px;
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 6px rgba(47,138,82,0.9);
+        }
+
+        .nav-end { display: flex; align-items: center; gap: 10px; margin-left: auto; flex-shrink: 0; }
+
+        /* ── the CTA: same key, cast in green ────────────────────────────── */
+        .nav-cta {
+            color: #fff;
+            border-color: rgba(0,0,0,0.16);
+            background: linear-gradient(180deg, var(--cta-hi) 0%, var(--cta-bg) 100%);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.34),
+                inset 0 -1px 0 rgba(0,0,0,0.18),
+                0 3px 0 var(--cta-side),
+                0 4px 0 var(--cta-dk),
+                0 6px 12px rgba(24,80,46,0.34);
+        }
+        .nav-cta::after { background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0)); }
+        .nav-cta svg { fill: #fff; flex-shrink: 0; }
+        .nav-cta:hover {
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                inset 0 -1px 0 rgba(0,0,0,0.18),
+                0 8px 0 var(--cta-side),
+                0 9px 0 var(--cta-dk),
+                0 15px 26px rgba(24,80,46,0.42);
+        }
+        .nav-cta:active {
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.3),
+                inset 0 -1px 0 rgba(0,0,0,0.18),
+                0 0 0 var(--cta-side),
+                0 1px 0 var(--cta-dk),
+                0 2px 5px rgba(24,80,46,0.4);
+        }
+
+        /* ── language switcher — same keycap, existing markup and JS ─────── */
+        .lang-switcher { position: relative; flex-shrink: 0; }
+        .lang-trigger { font-family: var(--mono); font-size: 0.76rem; padding: 0 11px; }
+        .lang-trigger .arrow { font-size: 0.5rem; opacity: 0.55; transition: transform .2s ease; }
         .lang-switcher.open .lang-trigger .arrow { transform: rotate(180deg); }
         .lang-dropdown {
             position: absolute;
-            top: calc(100% + 8px);
+            top: calc(100% + 12px);
             right: 0;
+            min-width: 158px;
+            padding: 7px;
+            border-radius: 14px;
             background: var(--card);
             border: 1px solid rgba(22,33,61,0.10);
-            border-radius: 10px;
-            padding: 6px;
-            display: none;
+            box-shadow: 0 18px 40px rgba(22,33,61,0.22), 0 2px 6px rgba(22,33,61,0.08);
+            display: flex;
             flex-direction: column;
             gap: 2px;
-            min-width: 130px;
-            z-index: 200;
-            box-shadow: 0 8px 32px rgba(22,33,61,0.16);
+            z-index: 220;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.97);
+            transform-origin: top right;
+            transition: opacity .2s ease, transform .2s cubic-bezier(.2,.7,.3,1), visibility .2s;
         }
-        .lang-switcher.open .lang-dropdown { display: flex; }
+        .lang-switcher.open .lang-dropdown { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
         .lang-option {
             background: none;
             border: none;
-            color: var(--muted);
-            font-size: 0.82rem;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.86rem;
             font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 6px;
+            min-height: 44px;              /* iOS HIG minimum touch target */
+            padding: 0 12px;
+            border-radius: 9px;
             cursor: pointer;
             text-align: left;
-            transition: background 0.15s, color 0.15s;
-            font-family: inherit;
+            transition: background .15s, color .15s;
         }
-        .lang-option:hover { background: rgba(47,138,82,0.07); color: var(--text); }
-        .lang-option.active { color: var(--green); background: rgba(47,138,82,0.07); }
+        .lang-option:hover { background: rgba(22,33,61,0.06); }
+        .lang-option.active { color: #1c5c39; background: rgba(47,138,82,0.13); font-weight: 600; }
+
+        /* ── burger, also a key ──────────────────────────────────────────── */
+        .nav-burger { display: none; width: 46px; padding: 0; justify-content: center; }
+        .nav-burger i {
+            display: block;
+            width: 18px; height: 2px;
+            border-radius: 2px;
+            background: var(--navy);
+            transition: transform .3s cubic-bezier(.2,.7,.3,1), opacity .2s ease;
+        }
+        .nav-burger i + i { margin-top: 4px; }
+        body.nav-open .nav-burger i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        body.nav-open .nav-burger i:nth-child(2) { opacity: 0; }
+        body.nav-open .nav-burger i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+        /* ── mobile: the folding drawer ──────────────────────────────────────
+           The stage owns the perspective; the panel swings on a hinge at its
+           right edge from 92° (edge-on, invisible) to 0° (flat, facing you). */
+        .nav-scrim {
+            position: fixed;
+            inset: 0;
+            z-index: 190;
+            background: rgba(22,33,61,0.45);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .34s ease, visibility .34s;
+        }
+        body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
+
+        .nav-stage {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            pointer-events: none;
+            perspective: 1500px;
+            perspective-origin: 100% 40%;
+        }
+        .nav-drawer {
+            position: absolute;
+            top: 0; right: 0; bottom: 0;
+            width: min(320px, 86vw);
+            padding: 92px 18px 26px;
+            overflow-y: auto;
+            pointer-events: none;
+            background: linear-gradient(200deg, var(--card) 0%, var(--cream) 55%, var(--cream2) 100%);
+            border-left: 1px solid rgba(22,33,61,0.10);
+            box-shadow: -26px 0 60px rgba(22,33,61,0.30);
+            transform-origin: 100% 50%;
+            transform: rotateY(-92deg);
+            opacity: 0;
+            transition: transform .42s cubic-bezier(.22,.7,.28,1), opacity .28s ease;
+        }
+        body.nav-open .nav-drawer { transform: rotateY(0deg); opacity: 1; pointer-events: auto; }
+        .nav-drawer ul { list-style: none; display: grid; gap: 11px; margin: 0; padding: 0; }
+        .nav-drawer .nav-key,
+        .nav-drawer .nav-cta { width: 100%; justify-content: flex-start; min-height: 50px; font-size: 0.95rem; }
+        .nav-drawer .nav-key svg { width: 19px; height: 19px; }
+        .nav-drawer .nav-cta { justify-content: center; margin-top: 6px; }
+
+        /* Spanish and Portuguese labels are ~70px wider than English, so the
+           bar is measured against the longest language, not en. Tightening
+           here keeps the full deck down to ~1000px in every language. */
+        @media (max-width: 1200px) {
+            nav { padding-left: 22px; padding-right: 22px; gap: 12px; }
+            .nav-keys { gap: 5px; padding: 6px; }
+            .nav-key { padding: 0 12px; gap: 7px; }
+        }
+
+        @media (max-width: 1000px) {
+            nav { padding: 11px 16px; gap: 12px; }
+            nav .nav-keys { display: none; }          /* the deck moves into the drawer */
+            .nav-burger { display: inline-flex; }
+            .nav-end .nav-cta { display: none; }      /* lives in the drawer instead */
+        }
+        @media (max-width: 380px) {
+            .nav-logo { font-size: 0; gap: 0; }       /* icon only; wordmark would wrap */
+            .nav-logo img { width: 30px; height: 30px; }
+        }
+
+        /* Depth is drawn, not animated, so the keys keep it here. Only travel
+           and the hinge are removed. */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .nav-key, .nav-cta, .lang-trigger, .nav-logo, .nav-burger i, .nav-drawer, .lang-dropdown {
+                transition-duration: .001ms !important;
+            }
+            .nav-key:hover, .nav-cta:hover, .lang-trigger:hover,
+            .nav-key:active, .nav-cta:active, .lang-trigger:active { transform: none; }
+            .nav-drawer { transform: translateX(100%); }
+            body.nav-open .nav-drawer { transform: translateX(0); }
+        }
 
         /* HERO */
         .hero {
@@ -868,26 +1142,86 @@
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-    <a href="#" class="nav-logo"><img src="favicon.png" alt="GoBag+">GoBag<span>+</span></a>
-    <span class="nav-tagline" data-i18n="welcome_tagline">Best time to prepare for a disaster was yesterday. The second best time is today</span>
-    <div class="lang-switcher" id="langSwitcher">
-        <button class="lang-trigger" onclick="toggleLangMenu(event)">
-            <span id="currentLangCode">EN</span>
-            <span class="arrow">▼</span>
-        </button>
-        <div class="lang-dropdown">
-            <button class="lang-option active" data-lang="en" onclick="setLang('en')">English</button>
-            <button class="lang-option" data-lang="fr" onclick="setLang('fr')">Français</button>
-            <button class="lang-option" data-lang="de" onclick="setLang('de')">Deutsch</button>
-            <button class="lang-option" data-lang="es" onclick="setLang('es')">Español</button>
-            <button class="lang-option" data-lang="it" onclick="setLang('it')">Italiano</button>
-            <button class="lang-option" data-lang="pt" onclick="setLang('pt')">Português</button>
-            <button class="lang-option" data-lang="ru" onclick="setLang('ru')">Русский</button>
+<!-- NAV — extruded keycap menu. Labels reuse existing i18n keys, so all seven
+     languages work without touching the dictionaries. -->
+<nav id="siteNav">
+    <a href="#" class="nav-logo"><img src="favicon.png" alt="">GoBag<span>+</span></a>
+
+    <ul class="nav-keys" id="navKeys">
+        <li><a class="nav-key" href="#features">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7.5" height="7.5" rx="2.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2.2"/>
+                <rect x="3" y="13.5" width="7.5" height="7.5" rx="2.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2.2"/>
+            </svg><span data-i18n="features_label">Features</span></a></li>
+        <li><a class="nav-key" href="#reviews">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3.8l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8z"/>
+            </svg><span data-i18n="reviews_label">Reviews</span></a></li>
+        <li><a class="nav-key" href="#pricing">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20.4 13.2l-7.2 7.2a2 2 0 0 1-2.9 0l-6.1-6.1a2 2 0 0 1-.6-1.5V5.6a2 2 0 0 1 2-2h7.2a2 2 0 0 1 1.5.6l6.1 6.1a2 2 0 0 1 0 2.9z"/><circle cx="8.6" cy="8.6" r="1.5"/>
+            </svg><span data-i18n="pricing_label">Pricing</span></a></li>
+        <li><a class="nav-key" href="#faq">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.6 2.6 0 0 1 5 1c0 1.8-2.5 2.2-2.5 4"/><path d="M12 17.6h.01"/>
+            </svg><span data-i18n="faq_label">FAQ</span></a></li>
+    </ul>
+
+    <div class="nav-end">
+        <div class="lang-switcher" id="langSwitcher">
+            <button class="lang-trigger" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false" aria-label="Language">
+                <span id="currentLangCode">EN</span>
+                <span class="arrow" aria-hidden="true">▼</span>
+            </button>
+            <div class="lang-dropdown">
+                <button class="lang-option active" data-lang="en" onclick="setLang('en')">English</button>
+                <button class="lang-option" data-lang="fr" onclick="setLang('fr')">Français</button>
+                <button class="lang-option" data-lang="de" onclick="setLang('de')">Deutsch</button>
+                <button class="lang-option" data-lang="es" onclick="setLang('es')">Español</button>
+                <button class="lang-option" data-lang="it" onclick="setLang('it')">Italiano</button>
+                <button class="lang-option" data-lang="pt" onclick="setLang('pt')">Português</button>
+                <button class="lang-option" data-lang="ru" onclick="setLang('ru')">Русский</button>
+            </div>
         </div>
+
+        <a class="nav-cta" href="https://apps.apple.com/fr/app/gobag/id6760232332" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span data-i18n="cta_btn">Download on the App Store</span>
+        </a>
+
+        <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="navDrawer">
+            <i></i><i></i><i></i>
+        </button>
     </div>
 </nav>
+
+<div class="nav-scrim" id="navScrim"></div>
+<div class="nav-stage" aria-hidden="true">
+    <aside class="nav-drawer" id="navDrawer" aria-label="Menu">
+        <ul>
+            <li><a class="nav-key" href="#features">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="7.5" height="7.5" rx="2.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2.2"/>
+                    <rect x="3" y="13.5" width="7.5" height="7.5" rx="2.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2.2"/>
+                </svg><span data-i18n="features_label">Features</span></a></li>
+            <li><a class="nav-key" href="#reviews">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 3.8l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8z"/>
+                </svg><span data-i18n="reviews_label">Reviews</span></a></li>
+            <li><a class="nav-key" href="#pricing">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20.4 13.2l-7.2 7.2a2 2 0 0 1-2.9 0l-6.1-6.1a2 2 0 0 1-.6-1.5V5.6a2 2 0 0 1 2-2h7.2a2 2 0 0 1 1.5.6l6.1 6.1a2 2 0 0 1 0 2.9z"/><circle cx="8.6" cy="8.6" r="1.5"/>
+                </svg><span data-i18n="pricing_label">Pricing</span></a></li>
+            <li><a class="nav-key" href="#faq">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.6 2.6 0 0 1 5 1c0 1.8-2.5 2.2-2.5 4"/><path d="M12 17.6h.01"/>
+                </svg><span data-i18n="faq_label">FAQ</span></a></li>
+            <li><a class="nav-cta" href="https://apps.apple.com/fr/app/gobag/id6760232332" target="_blank" rel="noopener">
+                <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <span data-i18n="cta_btn">Download on the App Store</span></a></li>
+        </ul>
+    </aside>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1100,7 +1434,7 @@
 <hr class="divider">
 
 <!-- REVIEWS -->
-<section>
+<section id="reviews">
     <div class="container" style="text-align:center">
         <div class="section-label reveal" data-i18n="reviews_label">Reviews</div>
         <h2 class="section-title reveal d1" data-i18n="reviews_title">Loved by people who plan ahead</h2>
@@ -1143,7 +1477,7 @@
 <hr class="divider">
 
 <!-- PRICING -->
-<section>
+<section id="pricing">
     <div class="container" style="text-align:center">
         <div class="section-label reveal" data-i18n="pricing_label">Pricing</div>
         <h2 class="section-title reveal d1" data-i18n="pricing_title">Simple, honest pricing</h2>
@@ -1806,6 +2140,93 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// NAV — compact-on-scroll, current-key highlight, and the folding drawer.
+// Self-contained: touches nothing outside the nav.
+// ═══════════════════════════════════════════════════════════════════════════
+(function () {
+  var nav  = document.getElementById('siteNav');
+  var keys = Array.prototype.slice.call(document.querySelectorAll('.nav-key[href^="#"]'));
+  if (!nav) return;
+
+  // One rAF-throttled scroll read drives both the compact bar and the lit key.
+  var ticking = false;
+  function paint() {
+    ticking = false;
+    nav.classList.toggle('scrolled', window.scrollY > 12);
+
+    // The lit key is the last section whose top has passed under the bar.
+    var probe = window.scrollY + 150, current = null;
+    keys.forEach(function (k) {
+      var el = document.querySelector(k.getAttribute('href'));
+      if (el && el.offsetTop <= probe) current = k.getAttribute('href');
+    });
+    // The end of the page always belongs to the last entry, however short it is.
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) {
+      current = keys.length ? keys[keys.length - 1].getAttribute('href') : null;
+    }
+    keys.forEach(function (k) {
+      k.classList.toggle('current', k.getAttribute('href') === current);
+    });
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(paint); }
+  }, { passive: true });
+  window.addEventListener('resize', paint, { passive: true });
+  paint();
+
+  // ── the folding drawer ───────────────────────────────────────────────────
+  var burger = document.getElementById('navBurger');
+  var drawer = document.getElementById('navDrawer');
+  var scrim  = document.getElementById('navScrim');
+  if (!burger || !drawer) return;
+  var stage = drawer.parentElement;
+
+  function focusables() {
+    return Array.prototype.slice.call(drawer.querySelectorAll('a[href], button:not([disabled])'));
+  }
+  function open() {
+    document.body.classList.add('nav-open');
+    burger.setAttribute('aria-expanded', 'true');
+    stage.setAttribute('aria-hidden', 'false');
+    var f = focusables();
+    if (f.length) f[0].focus();
+  }
+  function close(returnFocus) {
+    document.body.classList.remove('nav-open');
+    burger.setAttribute('aria-expanded', 'false');
+    stage.setAttribute('aria-hidden', 'true');
+    if (returnFocus && burger.offsetParent !== null) burger.focus();
+  }
+
+  burger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    document.body.classList.contains('nav-open') ? close(true) : open();
+  });
+  if (scrim) scrim.addEventListener('click', function () { close(false); });
+
+  // Tapping a destination dismisses the panel so the scroll is visible.
+  drawer.addEventListener('click', function (e) { if (e.target.closest('a')) close(false); });
+
+  document.addEventListener('keydown', function (e) {
+    if (!document.body.classList.contains('nav-open')) return;
+    if (e.key === 'Escape') { close(true); return; }
+    if (e.key !== 'Tab') return;
+    // Trap Tab inside the panel, or focus wanders behind the scrim.
+    var f = focusables();
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1000) close(false);
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
