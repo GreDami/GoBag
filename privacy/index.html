@@ -83,9 +83,10 @@
             flex-shrink: 0;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0;                    /* "GoBag" and "+" are separate flex items;
+                                          a gap here splits the wordmark */
         }
-        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; }
+        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; margin-right: 10px; }
         .nav-logo span { color: var(--green); }
         /* ── the home key ────────────────────────────────────────────────────
            The keycap from the site nav: a lit top face, a side wall built from
