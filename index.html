@@ -684,18 +684,60 @@
         }
         .hero-phone {
             width: 210px;
-            border-radius: 38px;
-            overflow: hidden;
-            border: 2px solid rgba(22,33,61,0.12);
+            border-radius: 12% / 5.4%;
             box-shadow:
-                0 30px 70px rgba(22,33,61,0.22),
-                0 0 0 1px rgba(22,33,61,0.06),
+                0 30px 70px rgba(22,33,61,0.24),
                 0 0 50px rgba(52,88,199,0.14);
-            background: #000;
             animation: phoneFloat 6s ease-in-out infinite;
             transform: rotate(-3deg);
         }
-        .hero-phone img { width: 100%; height: auto; display: block; }
+
+        /* ===== iPhone MOCKUP FRAME (shared: hero + steps carousel) =====
+           All metrics are % of the frame box so one rule scales from the
+           140px mobile hero to the 212px carousel slide with no overrides.
+           No notch/island overlay: the screenshots already contain one. */
+        .phone-mock {
+            position: relative;
+            width: 100%;
+            padding: 3.3%;
+            border-radius: 12% / 5.4%;
+            background: linear-gradient(135deg,
+                #8b929c 0%, #3a4048 12%, #1a1d22 34%,
+                #14171b 62%, #3a4048 88%, #9aa1ab 100%);
+            transition: box-shadow 0.55s cubic-bezier(0.4,0,0.2,1);
+        }
+        .phone-screen {
+            position: relative;
+            border-radius: 9% / 3.9%;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.16);
+        }
+        .phone-screen img { width: 100%; height: auto; display: block; }
+        /* Side hardware: one element per side, buttons carved out with
+           transparent gradient stops so no extra DOM is needed. */
+        .phone-mock::before,
+        .phone-mock::after {
+            content: "";
+            position: absolute;
+            width: 1.2%;
+            border-radius: 1px;
+        }
+        .phone-mock::before {          /* left: action + volume up/down */
+            left: -1%;
+            top: 16%;
+            height: 24%;
+            background: linear-gradient(180deg,
+                #4a505a 0 25%, transparent 25% 41%,
+                #4a505a 41% 66%, transparent 66% 74%,
+                #4a505a 74% 100%);
+        }
+        .phone-mock::after {           /* right: side (power) button */
+            right: -1%;
+            top: 26%;
+            height: 11%;
+            background: linear-gradient(180deg, #5c626b, #2b2f36);
+        }
         @keyframes phoneFloat {
             0%, 100% { transform: rotate(-3deg) translateY(0); }
             50% { transform: rotate(-3deg) translateY(-14px); }
@@ -1074,26 +1116,25 @@
         .step-dot.active { background: var(--green); width: 28px; }
         .how-step-card {
             position: absolute;
-            width: 220px;
-            border-radius: 36px;
-            overflow: hidden;
-            border: 1.5px solid rgba(22,33,61,0.1);
-            box-shadow: 0 24px 50px rgba(22,33,61,0.2), 0 0 0 1px rgba(22,33,61,0.04);
-            background: var(--card);
+            width: 212px;
             display: flex;
             flex-direction: column;
-            transition: transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.55s cubic-bezier(0.4,0,0.2,1), box-shadow 0.55s;
+            align-items: center;
+            gap: 18px;
+            transition: transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.55s cubic-bezier(0.4,0,0.2,1);
             cursor: pointer;
             user-select: none;
         }
         .step-card-header {
-            padding: 20px 18px 16px;
+            /* fixed height keeps every phone on the same baseline
+               regardless of how many lines the translated copy takes */
+            min-height: 96px;
+            padding: 0 2px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
-            background: var(--card);
-            border-bottom: 1px solid rgba(22,33,61,0.08);
+            justify-content: flex-end;
+            gap: 8px;
             flex-shrink: 0;
         }
         .step-card-header h3 {
@@ -1112,7 +1153,7 @@
             line-height: 1.55;
             margin: 0;
         }
-        .how-step-card > img { width: 100%; height: auto; display: block; }
+        .how-step-card .phone-mock { flex-shrink: 0; }
 
         @media (max-width: 700px) {
             nav { padding: 14px 16px; }
@@ -1315,7 +1356,11 @@
         </div>
         <div class="hero-visual">
             <div class="hero-phone">
-                <img id="heroPhoneImg" src="screenshots/1.jpg" alt="GoBag+ App" width="660" height="1435" fetchpriority="high" decoding="async">
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <img id="heroPhoneImg" src="screenshots/1.jpg" alt="GoBag+ App" width="660" height="1435" fetchpriority="high" decoding="async">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1340,49 +1385,77 @@
                     <h3 data-i18n="step1_h">Track your supplies</h3>
                     <p data-i18n="step1_p">See what's stocked, what's running low, and what still needs a target.</p>
                 </div>
-                <img src="screenshots/2.jpg" data-screenshot="2" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <img src="screenshots/2.jpg" data-screenshot="2" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                    </div>
+                </div>
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step2_h">Sync across your devices</h3>
                     <p data-i18n="step2_p">Your bag and reserve stay up to date on iPhone and iPad through iCloud.</p>
                 </div>
-                <img src="screenshots/3.jpg" data-screenshot="3" alt="" width="660" height="1428" loading="lazy" decoding="async">
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <img src="screenshots/3.jpg" data-screenshot="3" alt="" width="660" height="1428" loading="lazy" decoding="async">
+                    </div>
+                </div>
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step3_h">Add your SOS contacts</h3>
                     <p data-i18n="step3_p">Save emergency contacts so your family knows who to call when it matters most.</p>
                 </div>
-                <img src="screenshots/4.jpg" data-screenshot="4" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <img src="screenshots/4.jpg" data-screenshot="4" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                    </div>
+                </div>
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step4_h">Store your vital documents</h3>
                     <p data-i18n="step4_p">Keep photos of your IDs, passports, and insurance cards in a Face ID–protected vault.</p>
                 </div>
-                <img src="screenshots/5.jpg" data-screenshot="5" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <img src="screenshots/5.jpg" data-screenshot="5" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                    </div>
+                </div>
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step5_h">Size it to your household</h3>
                     <p data-i18n="step5_p">Tell GoBag+ how many people you're preparing for and your targets adjust automatically.</p>
                 </div>
-                <img src="screenshots/6.jpg" data-screenshot="6" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <img src="screenshots/6.jpg" data-screenshot="6" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                    </div>
+                </div>
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step6_h">Check readiness at a glance</h3>
                     <p data-i18n="step6_p">A home screen widget keeps your go bag and home reserve levels in view.</p>
                 </div>
-                <img src="screenshots/7.jpg" data-screenshot="7" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <img src="screenshots/7.jpg" data-screenshot="7" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                    </div>
+                </div>
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step7_h">Everything in one place</h3>
                     <p data-i18n="step7_p">Go bag, home reserve, SOS contacts, and documents — all one tap away.</p>
                 </div>
-                <img src="screenshots/8.jpg" data-screenshot="8" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <img src="screenshots/8.jpg" data-screenshot="8" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                    </div>
+                </div>
             </div>
         </div>
         <div class="steps-nav">
@@ -2245,10 +2318,13 @@ function setLang(lang) {
       s.style.transform  = `translateX(${dx}px) scale(${c.sc})`;
       s.style.opacity    = c.op;
       s.style.zIndex     = c.zi;
-      s.style.transition = extraDx ? 'none' : 'transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease, box-shadow .55s';
-      s.style.boxShadow  = abs === 0
-        ? '0 24px 50px rgba(22,33,61,0.22), 0 0 0 1px rgba(22,33,61,0.06), 0 0 40px rgba(47,138,82,0.18)'
-        : '0 18px 36px rgba(22,33,61,0.16), 0 0 0 1px rgba(22,33,61,0.04)';
+      s.style.transition = extraDx ? 'none' : 'transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease';
+      // depth belongs on the phone frame — the slide itself is a transparent
+      // wrapper around the caption + mockup, so a shadow on it would box the text
+      const mock = s.querySelector('.phone-mock') || s;
+      mock.style.boxShadow = abs === 0
+        ? '0 24px 50px rgba(22,33,61,0.22), 0 0 40px rgba(47,138,82,0.18)'
+        : '0 18px 36px rgba(22,33,61,0.16)';
     });
     dots.forEach((d, i) => d.classList.toggle('active', i === cur));
   }
