@@ -738,19 +738,6 @@
             height: 11%;
             background: linear-gradient(180deg, #5c626b, #2b2f36);
         }
-        /* screenshots/3.jpg is a composite marketing shot that already contains
-           an iPad and two iPhones with their own frames — framing it again would
-           nest a phone inside a phone, so it renders as a plain photo card.
-           Width is trimmed to 97% so its height matches the phone frames beside
-           it and every slide keeps the same baseline. */
-        .device-photo {
-            position: relative;
-            width: 97%;
-            border-radius: 6% / 2.75%;
-            overflow: hidden;
-            transition: box-shadow 0.55s cubic-bezier(0.4,0,0.2,1);
-        }
-        .device-photo img { width: 100%; height: auto; display: block; }
         @keyframes phoneFloat {
             0%, 100% { transform: rotate(-3deg) translateY(0); }
             50% { transform: rotate(-3deg) translateY(-14px); }
@@ -1166,8 +1153,7 @@
             line-height: 1.55;
             margin: 0;
         }
-        .how-step-card .phone-mock,
-        .how-step-card .device-photo { flex-shrink: 0; }
+        .how-step-card .phone-mock { flex-shrink: 0; }
 
         @media (max-width: 700px) {
             nav { padding: 14px 16px; }
@@ -1410,8 +1396,10 @@
                     <h3 data-i18n="step2_h">Sync across your devices</h3>
                     <p data-i18n="step2_p">Your bag and reserve stay up to date on iPhone and iPad through iCloud.</p>
                 </div>
-                <div class="device-photo">
-                    <img src="screenshots/3.jpg" data-screenshot="3" alt="" width="660" height="1428" loading="lazy" decoding="async">
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <img src="screenshots/3.jpg" data-screenshot="3" alt="" width="660" height="1428" loading="lazy" decoding="async">
+                    </div>
                 </div>
             </div>
             <div class="how-step-card">
@@ -2330,9 +2318,9 @@ function setLang(lang) {
       s.style.opacity    = c.op;
       s.style.zIndex     = c.zi;
       s.style.transition = extraDx ? 'none' : 'transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease';
-      // depth belongs on the visual — the slide itself is a transparent
+      // depth belongs on the phone frame — the slide itself is a transparent
       // wrapper around the caption + mockup, so a shadow on it would box the text
-      const mock = s.querySelector('.phone-mock, .device-photo') || s;
+      const mock = s.querySelector('.phone-mock') || s;
       mock.style.boxShadow = abs === 0
         ? '0 24px 50px rgba(22,33,61,0.22), 0 0 40px rgba(47,138,82,0.18)'
         : '0 18px 36px rgba(22,33,61,0.16)';
