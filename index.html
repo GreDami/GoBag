@@ -1176,6 +1176,26 @@
             .family-banner { padding: 28px 20px; }
         }
 
+        /* FAQ — two-column layout: heading rail on the left, accordion on the
+           right, ported from the text-reveal-faqs component (md:grid-cols-5,
+           split 2/3). */
+        .faq-layout {
+            max-width: 1040px;
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            align-items: start;
+            gap: 24px 56px;
+            text-align: left;
+        }
+        .faq-intro .section-sub { max-width: none; margin-bottom: 22px; }
+        .faq-contact { font-size: 0.9rem; line-height: 1.7; color: var(--muted); margin: 0; }
+        .faq-contact a { color: var(--blue); font-weight: 600; text-decoration: none; }
+        .faq-contact a:hover { text-decoration: underline; }
+        @media (max-width: 860px) {
+            .faq-layout { grid-template-columns: 1fr; gap: 28px; }
+            .faq-intro .section-sub { margin-bottom: 14px; }
+        }
+
         /* FAQ */
         .faq-list { display: flex; flex-direction: column; gap: 12px; text-align: left; }
         .faq-item {
@@ -1205,6 +1225,26 @@
         .faq-item[open] .faq-chevron { transform: rotate(180deg); }
         .faq-answer { padding: 0 24px 22px; }
         .faq-answer p { font-size: 0.92rem; line-height: 1.75; color: var(--muted); margin: 0; }
+
+        /* BlurredStagger: each character fades in from blur, one after the next.
+           Characters are grouped into nowrap words so lines still break between
+           words — per-character inline-block alone lets a line break mid-word. */
+        .faq-word { display: inline-block; white-space: nowrap; }
+        .faq-char {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(10px);
+            animation: faqCharIn 0.3s ease forwards;
+        }
+        @keyframes faqCharIn {
+            to { opacity: 1; filter: blur(0); }
+        }
+        /* stands in for the component's accordion-down keyframes: native
+           <details> can't transition its own height without max-height math */
+        .faq-item[open] .faq-answer { animation: faqAnswerIn 0.25s ease-out both; }
+        @keyframes faqAnswerIn {
+            from { opacity: 0; transform: translateY(-6px); }
+        }
 
         /* COOKIE CONSENT */
         .cookie-consent {
@@ -1690,10 +1730,13 @@
 
 <!-- FAQ -->
 <section id="faq">
-    <div class="container" style="max-width:760px; text-align:center">
-        <div class="section-label reveal" data-i18n="faq_label">FAQ</div>
-        <h2 class="section-title reveal d1" data-i18n="faq_title">Frequently asked questions</h2>
-        <p class="section-sub reveal d2" style="margin:0 auto 48px" data-i18n="faq_sub">Everything you need to know about go bags, prep kits, and GoBag+.</p>
+    <div class="container faq-layout">
+        <div class="faq-intro">
+            <div class="section-label reveal" data-i18n="faq_label">FAQ</div>
+            <h2 class="section-title reveal d1" data-i18n="faq_title">Frequently asked questions</h2>
+            <p class="section-sub reveal d2" data-i18n="faq_sub">Everything you need to know about go bags, prep kits, and GoBag+.</p>
+            <p class="faq-contact reveal d3" data-i18n-html="faq_contact">Can’t find what you’re looking for? Reach out to our <a href='mailto:contact@gredami.com'>support team</a>.</p>
+        </div>
         <div class="faq-list">
             <details class="faq-item reveal">
                 <summary><span data-i18n="faq_q1">What is a go bag?</span>
@@ -1838,7 +1881,7 @@ const T = {
     family_p:"With Apple Family Sharing, one GoBag+ Premium subscription gives full access to family members automatically — no extra purchases, no sharing passwords.",
     reviews_label:"Reviews",reviews_title:"Loved by people who plan ahead",reviews_sub:"Real feedback from the GoBag+ community.",
     review1_title:"Super useful app!",review1_quote:"Really simple and so practical at the same time! Thank you 🙏",review2_title:"Clean and simple",review2_quote:"Cool! Very easy to use. Just what you need!",
-    faq_label:"FAQ",faq_title:"Frequently asked questions",faq_sub:"Everything you need to know about go bags, prep kits, and GoBag+.",
+    faq_label:"FAQ",faq_title:"Frequently asked questions",faq_sub:"Everything you need to know about go bags, prep kits, and GoBag+.",faq_contact:"Can’t find what you’re looking for? Reach out to our <a href='mailto:contact@gredami.com'>support team</a>.",
     faq_q1:"What is a go bag?",faq_a1:"A go bag — also called a bug-out bag or 72-hour kit — is a portable emergency kit with the essentials you need to grab and go during a disaster or evacuation. GoBag+ helps you build one across 9 categories so nothing important is left behind.",
     faq_q2:"What should an emergency prep kit include?",faq_a2:"A good prep kit covers water, food, first aid, important documents, tools, shelter, communication, personal care, and cash. GoBag+ organizes all of these and adjusts the recommended quantities to how many people you're preparing for.",
     faq_q3:"How does GoBag+ help me build my go bag and prep kit?",faq_a3:"GoBag+ lets you create personalized go bags across 9 categories and track every item, with your readiness shown at a glance. Targets adjust automatically to your household size, so you always know what's stocked and what's still missing.",
@@ -1883,7 +1926,7 @@ const T = {
     family_p:"Avec le partage familial Apple, un abonnement GoBag+ Premium donne accès complet aux membres de la famille automatiquement — sans achat supplémentaire, sans partage de mot de passe.",
     reviews_label:"Avis",reviews_title:"Adopté par ceux qui anticipent",reviews_sub:"De vrais retours de la communauté GoBag+.",
     review1_title:"App super utile !",review1_quote:"Appli très simple et à la fois tellement pratique ! Merci 🙏",review2_title:"Simple et épurée",review2_quote:"Cool ! Très facile à utiliser. Juste ce qu'il faut !",
-    faq_label:"FAQ",faq_title:"Questions fréquentes",faq_sub:"Tout ce qu'il faut savoir sur les sacs de survie, les kits d'urgence et GoBag+.",
+    faq_label:"FAQ",faq_title:"Questions fréquentes",faq_sub:"Tout ce qu'il faut savoir sur les sacs de survie, les kits d'urgence et GoBag+.",faq_contact:"Vous ne trouvez pas ce que vous cherchez ? Écrivez à notre <a href='mailto:contact@gredami.com'>équipe d’assistance</a>.",
     faq_q1:"Qu'est-ce qu'un sac de survie ?",faq_a1:"Un sac de survie — aussi appelé sac d'évacuation ou kit 72 heures — est un kit d'urgence portable contenant l'essentiel à emporter en cas de catastrophe ou d'évacuation. GoBag+ vous aide à le constituer selon 9 catégories pour ne rien oublier d'important.",
     faq_q2:"Que doit contenir un kit d'urgence ?",faq_a2:"Un bon kit d'urgence couvre l'eau, la nourriture, les premiers soins, les documents importants, les outils, l'abri, la communication, l'hygiène et l'argent liquide. GoBag+ organise tout cela et adapte les quantités recommandées au nombre de personnes à préparer.",
     faq_q3:"Comment GoBag+ m'aide-t-il à constituer mon kit ?",faq_a3:"GoBag+ vous permet de créer des sacs de survie personnalisés selon 9 catégories et de suivre chaque article, avec votre niveau de préparation en un coup d'œil. Les objectifs s'ajustent automatiquement à la taille de votre foyer, pour toujours savoir ce qui est prêt et ce qui manque.",
@@ -1928,7 +1971,7 @@ const T = {
     family_p:"Mit Apple Family Sharing gibt ein GoBag+ Premium-Abonnement Familienmitgliedern automatisch vollen Zugang — ohne zusätzliche Käufe, ohne Passwörter teilen.",
     reviews_label:"Bewertungen",reviews_title:"Geliebt von vorausschauenden Menschen",reviews_sub:"Echtes Feedback aus der GoBag+ Community.",
     review1_title:"Super nützliche App!",review1_quote:"Wirklich einfache App und gleichzeitig so praktisch! Danke 🙏",review2_title:"Klar und einfach",review2_quote:"Cool! Sehr einfach zu bedienen. Genau das, was man braucht!",
-    faq_label:"FAQ",faq_title:"Häufige Fragen",faq_sub:"Alles Wichtige über Notfallrucksäcke, Notfall-Kits und GoBag+.",
+    faq_label:"FAQ",faq_title:"Häufige Fragen",faq_sub:"Alles Wichtige über Notfallrucksäcke, Notfall-Kits und GoBag+.",faq_contact:"Nicht gefunden, wonach Sie suchen? Wenden Sie sich an unser <a href='mailto:contact@gredami.com'>Support-Team</a>.",
     faq_q1:"Was ist ein Notfallrucksack (Go Bag)?",faq_a1:"Ein Notfallrucksack — auch Fluchtrucksack oder 72-Stunden-Kit genannt — ist ein tragbares Notfall-Kit mit dem Nötigsten, das du bei einer Katastrophe oder Evakuierung sofort greifen kannst. GoBag+ hilft dir, ihn über 9 Kategorien zusammenzustellen, damit nichts Wichtiges fehlt.",
     faq_q2:"Was gehört in ein Notfall-Kit?",faq_a2:"Ein gutes Notfall-Kit umfasst Wasser, Nahrung, Erste Hilfe, wichtige Dokumente, Werkzeug, Unterkunft, Kommunikation, Körperpflege und Bargeld. GoBag+ organisiert all das und passt die empfohlenen Mengen an die Anzahl der Personen an, für die du vorsorgst.",
     faq_q3:"Wie hilft mir GoBag+ beim Zusammenstellen?",faq_a3:"Mit GoBag+ erstellst du persönliche Notfallrucksäcke über 9 Kategorien und verfolgst jeden Gegenstand — deine Bereitschaft immer im Blick. Die Vorgaben passen sich automatisch an deine Haushaltsgröße an, damit du stets weißt, was vorhanden ist und was noch fehlt.",
@@ -1973,7 +2016,7 @@ const T = {
     family_p:"Con Apple Family Sharing, una suscripción GoBag+ Premium da acceso completo a los miembros de la familia automáticamente — sin compras adicionales, sin compartir contraseñas.",
     reviews_label:"Opiniones",reviews_title:"Querida por quienes se preparan con tiempo",reviews_sub:"Comentarios reales de la comunidad GoBag+.",
     review1_title:"¡App súper útil!",review1_quote:"¡App muy sencilla y a la vez tan práctica! Gracias 🙏",review2_title:"Limpia y sencilla",review2_quote:"¡Genial! Muy fácil de usar. ¡Justo lo que necesitas!",
-    faq_label:"FAQ",faq_title:"Preguntas frecuentes",faq_sub:"Todo lo que necesitas saber sobre mochilas de emergencia, kits de preparación y GoBag+.",
+    faq_label:"FAQ",faq_title:"Preguntas frecuentes",faq_sub:"Todo lo que necesitas saber sobre mochilas de emergencia, kits de preparación y GoBag+.",faq_contact:"¿No encuentras lo que buscas? Escribe a nuestro <a href='mailto:contact@gredami.com'>equipo de soporte</a>.",
     faq_q1:"¿Qué es una mochila de emergencia (go bag)?",faq_a1:"Una mochila de emergencia —también llamada mochila de evacuación o kit de 72 horas— es un kit portátil con lo esencial para salir de inmediato ante un desastre o una evacuación. GoBag+ te ayuda a prepararla en 9 categorías para no olvidar nada importante.",
     faq_q2:"¿Qué debe incluir un kit de emergencia?",faq_a2:"Un buen kit de emergencia cubre agua, comida, primeros auxilios, documentos importantes, herramientas, refugio, comunicación, higiene y dinero en efectivo. GoBag+ lo organiza todo y ajusta las cantidades recomendadas al número de personas que preparas.",
     faq_q3:"¿Cómo me ayuda GoBag+ a preparar mi kit?",faq_a3:"GoBag+ te permite crear mochilas de emergencia personalizadas en 9 categorías y controlar cada artículo, con tu nivel de preparación de un vistazo. Los objetivos se ajustan automáticamente al tamaño de tu hogar, para que siempre sepas qué tienes y qué te falta.",
@@ -2018,7 +2061,7 @@ const T = {
     family_p:"Con Apple Family Sharing, un abbonamento GoBag+ Premium dà accesso completo ai familiari automaticamente — senza acquisti aggiuntivi, senza condividere password.",
     reviews_label:"Recensioni",reviews_title:"Amata da chi si organizza in anticipo",reviews_sub:"Feedback reali dalla community di GoBag+.",
     review1_title:"App super utile!",review1_quote:"App semplicissima e allo stesso tempo così pratica! Grazie 🙏",review2_title:"Pulita e semplice",review2_quote:"Forte! Molto facile da usare. Proprio quello che serve!",
-    faq_label:"FAQ",faq_title:"Domande frequenti",faq_sub:"Tutto quello che c'è da sapere su zaini d'emergenza, kit di preparazione e GoBag+.",
+    faq_label:"FAQ",faq_title:"Domande frequenti",faq_sub:"Tutto quello che c'è da sapere su zaini d'emergenza, kit di preparazione e GoBag+.",faq_contact:"Non trovi quello che cerchi? Scrivi al nostro <a href='mailto:contact@gredami.com'>team di supporto</a>.",
     faq_q1:"Che cos'è uno zaino d'emergenza (go bag)?",faq_a1:"Uno zaino d'emergenza — detto anche zaino di fuga o kit 72 ore — è un kit portatile con l'essenziale da prendere al volo in caso di catastrofe o evacuazione. GoBag+ ti aiuta a comporlo in 9 categorie per non dimenticare nulla di importante.",
     faq_q2:"Cosa deve contenere un kit d'emergenza?",faq_a2:"Un buon kit d'emergenza comprende acqua, cibo, primo soccorso, documenti importanti, attrezzi, riparo, comunicazione, igiene e contanti. GoBag+ organizza tutto questo e adatta le quantità consigliate al numero di persone per cui ti prepari.",
     faq_q3:"Come mi aiuta GoBag+ a comporre il mio kit?",faq_a3:"GoBag+ ti permette di creare zaini d'emergenza personalizzati in 9 categorie e di tenere traccia di ogni articolo, con il livello di preparazione a colpo d'occhio. Gli obiettivi si adattano automaticamente alla dimensione del nucleo familiare, così sai sempre cosa hai e cosa manca.",
@@ -2063,7 +2106,7 @@ const T = {
     family_p:"Com o Apple Family Sharing, uma subscrição GoBag+ Premium dá acesso completo aos familiares automaticamente — sem compras adicionais, sem partilhar palavras-passe.",
     reviews_label:"Avaliações",reviews_title:"Adorada por quem se prepara com antecedência",reviews_sub:"Feedback real da comunidade GoBag+.",
     review1_title:"App super útil!",review1_quote:"App muito simples e ao mesmo tempo tão prática! Obrigado 🙏",review2_title:"Limpa e simples",review2_quote:"Fixe! Muito fácil de usar. Mesmo o que precisa!",
-    faq_label:"FAQ",faq_title:"Perguntas frequentes",faq_sub:"Tudo o que precisa de saber sobre mochilas de emergência, kits de preparação e GoBag+.",
+    faq_label:"FAQ",faq_title:"Perguntas frequentes",faq_sub:"Tudo o que precisa de saber sobre mochilas de emergência, kits de preparação e GoBag+.",faq_contact:"Não encontra o que procura? Fale com a nossa <a href='mailto:contact@gredami.com'>equipa de apoio</a>.",
     faq_q1:"O que é uma mochila de emergência (go bag)?",faq_a1:"Uma mochila de emergência — também chamada mochila de evacuação ou kit de 72 horas — é um kit portátil com o essencial para agarrar e sair perante uma catástrofe ou evacuação. O GoBag+ ajuda-o a montá-la em 9 categorias para não esquecer nada importante.",
     faq_q2:"O que deve conter um kit de emergência?",faq_a2:"Um bom kit de emergência cobre água, comida, primeiros socorros, documentos importantes, ferramentas, abrigo, comunicação, higiene e dinheiro. O GoBag+ organiza tudo isto e ajusta as quantidades recomendadas ao número de pessoas para quem se prepara.",
     faq_q3:"Como é que o GoBag+ me ajuda a montar o meu kit?",faq_a3:"O GoBag+ permite criar mochilas de emergência personalizadas em 9 categorias e acompanhar cada item, com o seu nível de preparação num relance. As metas ajustam-se automaticamente ao tamanho do agregado, para saber sempre o que tem e o que falta.",
@@ -2108,7 +2151,7 @@ const T = {
     family_p:"С Apple Family Sharing одна подписка GoBag+ Premium автоматически даёт полный доступ членам семьи — без дополнительных покупок и паролей.",
     reviews_label:"Отзывы",reviews_title:"Любимое приложение тех, кто готовится заранее",reviews_sub:"Настоящие отзывы сообщества GoBag+.",
     review1_title:"Супер полезное приложение!",review1_quote:"Очень простое приложение и при этом такое удобное! Спасибо 🙏",review2_title:"Чисто и просто",review2_quote:"Круто! Очень легко пользоваться. Именно то, что нужно!",
-    faq_label:"FAQ",faq_title:"Частые вопросы",faq_sub:"Всё, что нужно знать о тревожных рюкзаках, наборах на случай ЧС и GoBag+.",
+    faq_label:"FAQ",faq_title:"Частые вопросы",faq_sub:"Всё, что нужно знать о тревожных рюкзаках, наборах на случай ЧС и GoBag+.",faq_contact:"Не нашли то, что искали? Напишите в нашу <a href='mailto:contact@gredami.com'>службу поддержки</a>.",
     faq_q1:"Что такое тревожный рюкзак (go bag)?",faq_a1:"Тревожный рюкзак — также называемый эвакуационным рюкзаком или набором на 72 часа — это переносной набор с самым необходимым, который можно схватить и уйти при катастрофе или эвакуации. GoBag+ помогает собрать его по 9 категориям, чтобы не забыть ничего важного.",
     faq_q2:"Что должно быть в наборе на случай ЧС?",faq_a2:"Хороший аварийный набор включает воду, еду, аптечку, важные документы, инструменты, укрытие, средства связи, гигиену и наличные. GoBag+ упорядочивает всё это и подстраивает рекомендуемое количество под число людей, для которых вы готовитесь.",
     faq_q3:"Как GoBag+ помогает собрать набор?",faq_a3:"GoBag+ позволяет создавать персональные тревожные рюкзаки по 9 категориям и отслеживать каждый предмет, показывая готовность с одного взгляда. Цели автоматически подстраиваются под размер семьи, поэтому вы всегда знаете, что есть и чего не хватает.",
@@ -2382,6 +2425,64 @@ function setLang(lang) {
 
   render();
   startAuto();
+})();
+
+// ====== FAQ ACCORDION + BLURRED STAGGER ======
+(function(){
+  const items = Array.from(document.querySelectorAll('.faq-item'));
+  if (!items.length) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const STAGGER = 15;    // ms between characters, matching the source component
+  const CAP     = 1100;  // …but a 300-character answer would take 4.5s at that
+                         //    rate, so the step shrinks to keep the whole
+                         //    reveal under ~1.1s on long answers
+
+  function reveal(p) {
+    const text = p.textContent;
+    const step = Math.min(STAGGER, CAP / text.length);
+    const frag = document.createDocumentFragment();
+    let i = 0;
+
+    // split on whitespace but keep it: spaces stay real text nodes between
+    // the nowrap word spans, so the paragraph wraps normally
+    text.split(/(\s+)/).forEach(part => {
+      if (!part) return;
+      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); i += part.length; return; }
+      const word = document.createElement('span');
+      word.className = 'faq-word';
+      for (const ch of part) {
+        const s = document.createElement('span');
+        s.className = 'faq-char';
+        s.textContent = ch;
+        s.style.animationDelay = (i++ * step) + 'ms';
+        word.appendChild(s);
+      }
+      frag.appendChild(word);
+    });
+
+    p.textContent = '';
+    p.appendChild(frag);
+
+    /* Put the plain text node back once the reveal lands: setLang writes
+       textContent, so leaving the answer as hundreds of spans would break
+       translation and make some screen readers spell it out letter by letter.
+       Skipped if setLang already replaced the content mid-animation. */
+    clearTimeout(p._revealTimer);
+    p._revealTimer = setTimeout(() => {
+      if (p.querySelector('.faq-char')) p.textContent = text;
+    }, step * text.length + 400);
+  }
+
+  items.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      items.forEach(other => { if (other !== item) other.open = false; });  // single-open, as type="single"
+      if (reduce) return;
+      const p = item.querySelector('.faq-answer p');
+      if (p) reveal(p);
+    });
+  });
 })();
 
 // ====== SCROLL REVEAL ======
