@@ -738,6 +738,21 @@
             height: 11%;
             background: linear-gradient(180deg, #5c626b, #2b2f36);
         }
+        /* screenshots/3.jpg is a composite photo, so unlike the other screens it
+           carries no Dynamic Island of its own and its frame would read as a
+           phone missing one. Draw it, matching the island in screenshots/1.jpg
+           (206x60px within that file's 660x1435 screen). */
+        .phone-mock--island .phone-screen::after {
+            content: "";
+            position: absolute;
+            top: 1.6%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 31.2%;
+            height: 4.18%;
+            border-radius: 99px;
+            background: #000;
+        }
         @keyframes phoneFloat {
             0%, 100% { transform: rotate(-3deg) translateY(0); }
             50% { transform: rotate(-3deg) translateY(-14px); }
@@ -1396,7 +1411,7 @@
                     <h3 data-i18n="step2_h">Sync across your devices</h3>
                     <p data-i18n="step2_p">Your bag and reserve stay up to date on iPhone and iPad through iCloud.</p>
                 </div>
-                <div class="phone-mock">
+                <div class="phone-mock phone-mock--island">
                     <div class="phone-screen">
                         <img src="screenshots/3.jpg" data-screenshot="3" alt="" width="660" height="1428" loading="lazy" decoding="async">
                     </div>
