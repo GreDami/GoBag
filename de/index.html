@@ -1,26 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Analytics is consent-gated: it only loads after the visitor
          accepts in the cookie banner. See loadGA()/setConsent() near the end. -->
     <!-- i18n:head:start -->
-    <script>
-    (function() {
-      var p = location.pathname;
-      if (p !== '/' && p !== '/index.html') return;
-      var supported = ["fr","de","es","it","pt","ru"];
-      var pick;
-      try { pick = localStorage.getItem('gobag_lang'); } catch (e) {}
-      if (!pick) pick = (navigator.language || '').slice(0, 2).toLowerCase();
-      if (supported.indexOf(pick) !== -1) location.replace('/' + pick + '/');
-    })();
-    </script>
-    <title>GoBag+ — Go Bag &amp; Emergency Prep Kit App for iPhone</title>
-    <meta name="description" content="Build your go bag and emergency kit with GoBag+: track supplies with expiry alerts, store SOS contacts, and secure vital documents. Free on iPhone.">
-    <meta name="keywords" content="go bag, bug-out bag, prep kit, prepper kit, emergency kit, 72-hour kit, survival kit, emergency preparedness, disaster kit app, GoBag">
-    <link rel="canonical" href="https://gobag.gredami.com/">
+    <title>GoBag+ — Notfallrucksack &amp; Notvorrat App für iPhone</title>
+    <meta name="description" content="Packe deinen Notfallrucksack und verwalte deinen Notvorrat mit GoBag+: Ablaufwarnungen, Bestandsübersicht, SOS-Kontakte und Dokumententresor.">
+    <meta name="keywords" content="Notfallrucksack, Fluchtrucksack, Notvorrat, Notfallausrüstung, Krisenvorsorge, Notgepäck, Bug-out-Bag, Katastrophenschutz, Notfallvorsorge App">
+    <link rel="canonical" href="https://gobag.gredami.com/de/">
 
     <!-- Every language is its own URL; hreflang tells Google which to show where. -->
     <link rel="alternate" hreflang="en" href="https://gobag.gredami.com/">
@@ -37,14 +26,14 @@
     <meta name="author" content="GreDami">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="GoBag+ — Go Bag &amp; Emergency Prep Kit App for iPhone">
-    <meta property="og:description" content="Build your go bag (bug-out bag) and prep kit, track home supplies, store emergency contacts, and secure vital documents — all in one app for iPhone.">
+    <meta property="og:title" content="GoBag+ — Notfallrucksack &amp; Notvorrat App für iPhone">
+    <meta property="og:description" content="Stelle deinen Notfallrucksack zusammen, verfolge deinen Heimvorrat und sichere wichtige Dokumente — alles in einer App für iPhone.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gobag.gredami.com/">
+    <meta property="og:url" content="https://gobag.gredami.com/de/">
     <meta property="og:site_name" content="GoBag+">
-    <meta property="og:locale" content="en_US">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
     <meta property="og:locale:alternate" content="fr_FR">
-    <meta property="og:locale:alternate" content="de_DE">
     <meta property="og:locale:alternate" content="es_ES">
     <meta property="og:locale:alternate" content="it_IT">
     <meta property="og:locale:alternate" content="pt_PT">
@@ -54,12 +43,12 @@
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="GoBag+ — Go Bag &amp; Emergency Prep Kit App for iPhone">
+    <meta property="og:image:alt" content="GoBag+ — Notfallrucksack &amp; Notvorrat App für iPhone">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GoBag+ — Go Bag &amp; Emergency Prep Kit App for iPhone">
-    <meta name="twitter:description" content="Build your go bag and emergency kit with GoBag+: track supplies with expiry alerts, store SOS contacts, and secure vital documents. Free on iPhone.">
+    <meta name="twitter:title" content="GoBag+ — Notfallrucksack &amp; Notvorrat App für iPhone">
+    <meta name="twitter:description" content="Packe deinen Notfallrucksack und verwalte deinen Notvorrat mit GoBag+: Ablaufwarnungen, Bestandsübersicht, SOS-Kontakte und Dokumententresor.">
     <meta name="twitter:image" content="https://gobag.gredami.com/screenshots/og.jpg">
     <meta name="twitter:site" content="@GreDamiStudio">
 
@@ -76,14 +65,14 @@
   ],
   "operatingSystem": "iOS",
   "applicationCategory": "UtilitiesApplication",
-  "url": "https://gobag.gredami.com/",
-  "inLanguage": "en",
+  "url": "https://gobag.gredami.com/de/",
+  "inLanguage": "de",
   "downloadUrl": "https://apps.apple.com/app/id6760232332",
   "installUrl": "https://apps.apple.com/app/id6760232332",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "screenshot": "https://gobag.gredami.com/screenshots/1.jpg",
-  "description": "Build your go bag (bug-out bag) and prep kit, track home supplies, store emergency contacts, and secure vital documents — all in one app for iPhone.",
-  "keywords": "go bag, bug-out bag, prep kit, prepper kit, emergency kit, 72-hour kit, survival kit, emergency preparedness, disaster kit app, GoBag",
+  "description": "Stelle deinen Notfallrucksack zusammen, verfolge deinen Heimvorrat und sichere wichtige Dokumente — alles in einer App für iPhone.",
+  "keywords": "Notfallrucksack, Fluchtrucksack, Notvorrat, Notfallausrüstung, Krisenvorsorge, Notgepäck, Bug-out-Bag, Katastrophenschutz, Notfallvorsorge App",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -118,8 +107,8 @@
     "Go Bag",
     "prep kit app"
   ],
-  "url": "https://gobag.gredami.com/",
-  "inLanguage": "en",
+  "url": "https://gobag.gredami.com/de/",
+  "inLanguage": "de",
   "publisher": {
     "@type": "Organization",
     "name": "GreDami",
@@ -131,54 +120,54 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "inLanguage": "en",
+  "inLanguage": "de",
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is a go bag?",
+      "name": "Was ist ein Notfallrucksack (Go Bag)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A go bag — also called a bug-out bag or 72-hour kit — is a portable emergency kit with the essentials you need to grab and go during a disaster or evacuation. GoBag+ helps you build one across 9 categories so nothing important is left behind."
+        "text": "Ein Notfallrucksack — auch Fluchtrucksack oder 72-Stunden-Kit genannt — ist ein tragbares Notfall-Kit mit dem Nötigsten, das du bei einer Katastrophe oder Evakuierung sofort greifen kannst. GoBag+ hilft dir, ihn über 9 Kategorien zusammenzustellen, damit nichts Wichtiges fehlt."
       }
     },
     {
       "@type": "Question",
-      "name": "What should an emergency prep kit include?",
+      "name": "Was gehört in ein Notfall-Kit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A good prep kit covers water, food, first aid, important documents, tools, shelter, communication, personal care, and cash. GoBag+ organizes all of these and adjusts the recommended quantities to how many people you're preparing for."
+        "text": "Ein gutes Notfall-Kit umfasst Wasser, Nahrung, Erste Hilfe, wichtige Dokumente, Werkzeug, Unterkunft, Kommunikation, Körperpflege und Bargeld. GoBag+ organisiert all das und passt die empfohlenen Mengen an die Anzahl der Personen an, für die du vorsorgst."
       }
     },
     {
       "@type": "Question",
-      "name": "How does GoBag+ help me build my go bag and prep kit?",
+      "name": "Wie hilft mir GoBag+ beim Zusammenstellen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "GoBag+ lets you create personalized go bags across 9 categories and track every item, with your readiness shown at a glance. Targets adjust automatically to your household size, so you always know what's stocked and what's still missing."
+        "text": "Mit GoBag+ erstellst du persönliche Notfallrucksäcke über 9 Kategorien und verfolgst jeden Gegenstand — deine Bereitschaft immer im Blick. Die Vorgaben passen sich automatisch an deine Haushaltsgröße an, damit du stets weißt, was vorhanden ist und was noch fehlt."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I track home supplies and get expiry alerts?",
+      "name": "Kann ich Hausvorräte verfolgen und Ablaufwarnungen erhalten?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Beyond your go bag, GoBag+ tracks your home reserve of food, water, and medicine with minimum stock levels per person, and notifies you automatically before items expire or run low."
+        "text": "Ja. Neben deinem Rucksack verfolgt GoBag+ deinen Hausvorrat an Nahrung, Wasser und Medikamenten mit Mindestbeständen pro Person und benachrichtigt dich automatisch, bevor Artikel ablaufen oder zur Neige gehen."
       }
     },
     {
       "@type": "Question",
-      "name": "Does GoBag+ sync across devices and work for my whole family?",
+      "name": "Synchronisiert GoBag+ zwischen Geräten und für meine Familie?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Your bags and reserve sync across iPhone and iPad via iCloud, and Apple Family Sharing covers up to 5 members on one subscription. You can also keep IDs and passports in a Face ID–protected vault and reach emergency contacts instantly with the SOS button, even offline."
+        "text": "Ja. Deine Rucksäcke und Vorräte synchronisieren sich über iCloud zwischen iPhone und iPad, und die Apple Familienfreigabe deckt bis zu 5 Mitglieder mit einem Abo ab. Ausweise und Pässe kannst du in einem per Face ID geschützten Tresor ablegen und Notfallkontakte mit der SOS-Taste sofort erreichen, auch offline."
       }
     },
     {
       "@type": "Question",
-      "name": "Is GoBag+ free?",
+      "name": "Ist GoBag+ kostenlos?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "GoBag+ is free to download with the core essentials. Premium unlocks unlimited go bags, full home-reserve tracking, family sync, the home-screen widget, backup & restore, and expiry alerts — and starts with a 1-month free trial."
+        "text": "GoBag+ ist mit den wichtigsten Funktionen kostenlos. Premium schaltet unbegrenzte Notfallrucksäcke, die vollständige Vorratsverfolgung, Familiensynchronisierung, das Widget, Backup & Wiederherstellung sowie Ablaufwarnungen frei — mit einem kostenlosen Probemonat."
       }
     }
   ]
@@ -1555,15 +1544,15 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="3" y="3" width="7.5" height="7.5" rx="2.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2.2"/>
                 <rect x="3" y="13.5" width="7.5" height="7.5" rx="2.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2.2"/>
-            </svg><span data-i18n="features_label">Features</span></a></li>
+            </svg><span data-i18n="features_label">Funktionen</span></a></li>
         <li><a class="nav-key" href="#reviews">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 3.8l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8z"/>
-            </svg><span data-i18n="reviews_label">Reviews</span></a></li>
+            </svg><span data-i18n="reviews_label">Bewertungen</span></a></li>
         <li><a class="nav-key" href="#pricing">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M20.4 13.2l-7.2 7.2a2 2 0 0 1-2.9 0l-6.1-6.1a2 2 0 0 1-.6-1.5V5.6a2 2 0 0 1 2-2h7.2a2 2 0 0 1 1.5.6l6.1 6.1a2 2 0 0 1 0 2.9z"/><circle cx="8.6" cy="8.6" r="1.5"/>
-            </svg><span data-i18n="pricing_label">Pricing</span></a></li>
+            </svg><span data-i18n="pricing_label">Preise</span></a></li>
         <li><a class="nav-key" href="#faq">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.6 2.6 0 0 1 5 1c0 1.8-2.5 2.2-2.5 4"/><path d="M12 17.6h.01"/>
@@ -1574,13 +1563,13 @@
         <!-- i18n:switcher:start -->
         <div class="lang-switcher" id="langSwitcher">
             <button class="lang-trigger" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false" aria-label="Language">
-                <span id="currentLangCode">EN</span>
+                <span id="currentLangCode">DE</span>
                 <span class="arrow" aria-hidden="true">▼</span>
             </button>
             <div class="lang-dropdown">
-                <a class="lang-option active" href="/" hreflang="en" onclick="rememberLang('en')" aria-current="page">English</a>
+                <a class="lang-option" href="/" hreflang="en" onclick="rememberLang('en')">English</a>
                 <a class="lang-option" href="/fr/" hreflang="fr" onclick="rememberLang('fr')">Français</a>
-                <a class="lang-option" href="/de/" hreflang="de" onclick="rememberLang('de')">Deutsch</a>
+                <a class="lang-option active" href="/de/" hreflang="de" onclick="rememberLang('de')" aria-current="page">Deutsch</a>
                 <a class="lang-option" href="/es/" hreflang="es" onclick="rememberLang('es')">Español</a>
                 <a class="lang-option" href="/it/" hreflang="it" onclick="rememberLang('it')">Italiano</a>
                 <a class="lang-option" href="/pt/" hreflang="pt" onclick="rememberLang('pt')">Português</a>
@@ -1591,7 +1580,7 @@
 
         <a class="nav-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">
             <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            <span data-i18n="cta_btn">Download on the App Store</span>
+            <span data-i18n="cta_btn">Im App Store laden</span>
         </a>
 
         <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="navDrawer">
@@ -1608,22 +1597,22 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <rect x="3" y="3" width="7.5" height="7.5" rx="2.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2.2"/>
                     <rect x="3" y="13.5" width="7.5" height="7.5" rx="2.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2.2"/>
-                </svg><span data-i18n="features_label">Features</span></a></li>
+                </svg><span data-i18n="features_label">Funktionen</span></a></li>
             <li><a class="nav-key" href="#reviews">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M12 3.8l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8z"/>
-                </svg><span data-i18n="reviews_label">Reviews</span></a></li>
+                </svg><span data-i18n="reviews_label">Bewertungen</span></a></li>
             <li><a class="nav-key" href="#pricing">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M20.4 13.2l-7.2 7.2a2 2 0 0 1-2.9 0l-6.1-6.1a2 2 0 0 1-.6-1.5V5.6a2 2 0 0 1 2-2h7.2a2 2 0 0 1 1.5.6l6.1 6.1a2 2 0 0 1 0 2.9z"/><circle cx="8.6" cy="8.6" r="1.5"/>
-                </svg><span data-i18n="pricing_label">Pricing</span></a></li>
+                </svg><span data-i18n="pricing_label">Preise</span></a></li>
             <li><a class="nav-key" href="#faq">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.6 2.6 0 0 1 5 1c0 1.8-2.5 2.2-2.5 4"/><path d="M12 17.6h.01"/>
                 </svg><span data-i18n="faq_label">FAQ</span></a></li>
             <li><a class="nav-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">
                 <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                <span data-i18n="cta_btn">Download on the App Store</span></a></li>
+                <span data-i18n="cta_btn">Im App Store laden</span></a></li>
         </ul>
     </aside>
 </div>
@@ -1632,15 +1621,15 @@
 <section class="hero">
     <div class="hero-content">
         <div class="hero-text">
-            <h1 data-i18n-html="hero_h1">Go bag &amp;<br><span>Household supplies</span></h1>
-            <p data-i18n="hero_p">Build your go bag, track home supplies, store emergency contacts, and secure vital documents in an encrypted vault — all in one app.</p>
+            <h1 data-i18n-html="hero_h1">Notfalltasche & <span>Heimvorrat</span></h1>
+            <p data-i18n="hero_p">Baue deinen Notfallrucksack, verfolge deine Heimvorräte, speichere Notfallkontakte und sichere wichtige Dokumente in einem verschlüsselten Tresor — alles in einer App.</p>
             <div class="hero-buttons">
                 <a href="https://apps.apple.com/app/id6760232332" class="btn-primary" target="_blank">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                    <span data-i18n="hero_cta_btn">Build My Go Bag</span>
+                    <span data-i18n="hero_cta_btn">Jetzt kostenlos starten</span>
                 </a>
             </div>
-            <p class="hero-trial" data-i18n="hero_trial">Free 1-month trial · No commitment</p>
+            <p class="hero-trial" data-i18n="hero_trial">1 Monat kostenlos testen · Keine Verpflichtung</p>
         </div>
         <div class="hero-visual">
             <div class="hero-phone">
@@ -1664,14 +1653,14 @@
 <!-- HOW IT WORKS + APP PREVIEW -->
 <section>
     <div class="container">
-        <div class="section-label reveal" data-i18n="how_label">How it works</div>
-        <h2 class="section-title reveal d1" data-i18n="how_title">Ready in minutes</h2>
-        <p class="section-sub reveal d2" data-i18n="how_sub">Set up your emergency kit in just a few steps.</p>
+        <div class="section-label reveal" data-i18n="how_label">So funktioniert es</div>
+        <h2 class="section-title reveal d1" data-i18n="how_title">In Minuten einsatzbereit</h2>
+        <p class="section-sub reveal d2" data-i18n="how_sub">Richte dein Notfallkit in wenigen Schritten ein.</p>
         <div class="steps-carousel" id="stepsStage">
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step1_h">Track your supplies</h3>
-                    <p data-i18n="step1_p">See what's stocked, what's running low, and what still needs a target.</p>
+                    <h3 data-i18n="step1_h">Verfolge deine Vorräte</h3>
+                    <p data-i18n="step1_p">Sieh, was vorrätig ist, was zur Neige geht und wofür noch ein Ziel fehlt.</p>
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
@@ -1681,8 +1670,8 @@
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step2_h">Sync across your devices</h3>
-                    <p data-i18n="step2_p">Your bag and reserve stay up to date on iPhone and iPad through iCloud.</p>
+                    <h3 data-i18n="step2_h">Auf allen Geräten synchron</h3>
+                    <p data-i18n="step2_p">Rucksack und Vorrat bleiben auf iPhone und iPad über iCloud aktuell.</p>
                 </div>
                 <div class="phone-mock phone-mock--island">
                     <div class="phone-screen">
@@ -1692,8 +1681,8 @@
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step3_h">Add your SOS contacts</h3>
-                    <p data-i18n="step3_p">Save emergency contacts so your family knows who to call when it matters most.</p>
+                    <h3 data-i18n="step3_h">Notfallkontakte hinzufügen</h3>
+                    <p data-i18n="step3_p">Hinterlege Notfallkontakte, damit deine Familie weiß, wen sie im Notfall anrufen soll.</p>
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
@@ -1703,8 +1692,8 @@
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step4_h">Store your vital documents</h3>
-                    <p data-i18n="step4_p">Keep photos of your IDs, passports, and insurance cards in a Face ID–protected vault.</p>
+                    <h3 data-i18n="step4_h">Wichtige Dokumente sichern</h3>
+                    <p data-i18n="step4_p">Bewahre Fotos deiner Ausweise, Reisepässe und Versicherungskarten in einem Face ID–geschützten Tresor auf.</p>
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
@@ -1714,8 +1703,8 @@
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step5_h">Size it to your household</h3>
-                    <p data-i18n="step5_p">Tell GoBag+ how many people you're preparing for and your targets adjust automatically.</p>
+                    <h3 data-i18n="step5_h">Auf deinen Haushalt zugeschnitten</h3>
+                    <p data-i18n="step5_p">Sag GoBag+, für wie viele Personen du vorsorgst — die Zielmengen passen sich automatisch an.</p>
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
@@ -1725,8 +1714,8 @@
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step6_h">Check readiness at a glance</h3>
-                    <p data-i18n="step6_p">A home screen widget keeps your go bag and home reserve levels in view.</p>
+                    <h3 data-i18n="step6_h">Bereitschaft auf einen Blick</h3>
+                    <p data-i18n="step6_p">Ein Widget auf dem Home-Bildschirm zeigt dir Rucksack- und Vorratsstand jederzeit an.</p>
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
@@ -1736,8 +1725,8 @@
             </div>
             <div class="how-step-card">
                 <div class="step-card-header">
-                    <h3 data-i18n="step7_h">Everything in one place</h3>
-                    <p data-i18n="step7_p">Go bag, home reserve, SOS contacts, and documents — all one tap away.</p>
+                    <h3 data-i18n="step7_h">Alles an einem Ort</h3>
+                    <p data-i18n="step7_p">Notfallrucksack, Hausvorrat, SOS-Kontakte und Dokumente — alles nur einen Tipp entfernt.</p>
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
@@ -1767,16 +1756,16 @@
 <!-- FEATURES -->
 <section id="features">
     <div class="container">
-        <div class="section-label reveal" data-i18n="features_label">Features</div>
-        <h2 class="section-title reveal d1" data-i18n="features_title">Key features</h2>
+        <div class="section-label reveal" data-i18n="features_label">Funktionen</div>
+        <h2 class="section-title reveal d1" data-i18n="features_title">Hauptfunktionen</h2>
         <div class="key-features-grid">
             <div class="key-feature reveal d1">
                 <div class="key-feature-icon" style="background:rgba(52,88,199,0.15)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="#3458c7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4a3 3 0 0 0-3 3H6a3 3 0 0 0-3 3v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a3 3 0 0 0-3-3h-.01a3 3 0 0 0-3-3H9z"/><line x1="9" y1="13" x2="15" y2="13"/></svg>
                 </div>
                 <div>
-                    <h3 data-i18n="kfeat1_title">Go Bags &amp; Home Reserve</h3>
-                    <p data-i18n="kfeat1_p">Organize your emergency kits by category and track home supplies with stock levels and expiry dates — all in one place.</p>
+                    <h3 data-i18n="kfeat1_title">Notfallrucksäcke &amp; Heimvorrat</h3>
+                    <p data-i18n="kfeat1_p">Organisiere deine Notfallkits nach Kategorien und verfolge Heimvorräte mit Lagerbeständen und Ablaufdaten — alles an einem Ort.</p>
                 </div>
             </div>
             <div class="key-feature reveal d2">
@@ -1784,8 +1773,8 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="#d2601f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
                 </div>
                 <div>
-                    <h3 data-i18n="kfeat2_title">Expiry &amp; Low Stock Alerts</h3>
-                    <p data-i18n="kfeat2_p">Get notified automatically before items expire or fall below your minimum stock level. Never be caught unprepared.</p>
+                    <h3 data-i18n="kfeat2_title">Ablauf- &amp; Bestandswarnungen</h3>
+                    <p data-i18n="kfeat2_p">Erhalte automatisch Benachrichtigungen vor Ablaufdaten oder wenn der Bestand unter dein Minimum fällt. Nie wieder unvorbereitet.</p>
                 </div>
             </div>
             <div class="key-feature reveal d3">
@@ -1793,8 +1782,8 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="#2f8a52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/><path d="M9 7h6M9 11h6"/></svg>
                 </div>
                 <div>
-                    <h3 data-i18n="kfeat3_title">Sync across all iOS devices</h3>
-                    <p data-i18n="kfeat3_p">Your go bags and reserve stay up to date on every iPhone and iPad you own — automatically, via iCloud.</p>
+                    <h3 data-i18n="kfeat3_title">Sync auf allen iOS-Geräten</h3>
+                    <p data-i18n="kfeat3_p">Deine Rucksäcke und Vorräte bleiben auf jedem iPhone und iPad aktuell — automatisch, via iCloud.</p>
                 </div>
             </div>
             <div class="key-feature reveal d4">
@@ -1802,8 +1791,8 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="#2f8a52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
                 <div>
-                    <h3 data-i18n="kfeat4_title">Family sharing</h3>
-                    <p data-i18n="kfeat4_p">Share your preparation plan with the whole family. Everyone stays in sync — one subscription covers up to 5 members.</p>
+                    <h3 data-i18n="kfeat4_title">Familienfreigabe</h3>
+                    <p data-i18n="kfeat4_p">Teile deinen Vorbereitungsplan mit der ganzen Familie. Alle bleiben synchron — ein Abo für bis zu 5 Mitglieder.</p>
                 </div>
             </div>
             <div class="key-feature reveal d5">
@@ -1811,8 +1800,8 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h10M7 12h6"/><path d="M15 16l2 2 4-4" stroke-width="2"/></svg>
                 </div>
                 <div>
-                    <h3 data-i18n="kfeat5_title">Document Vault</h3>
-                    <p data-i18n="kfeat5_p">Securely store photos and PDFs of your IDs, passports and insurance cards — protected by Face ID. Accessible only to you.</p>
+                    <h3 data-i18n="kfeat5_title">Dokumententresor</h3>
+                    <p data-i18n="kfeat5_p">Speichere Fotos und PDFs deiner Ausweise, Reisepässe und Versicherungskarten sicher — geschützt durch Face ID. Nur für dich zugänglich.</p>
                 </div>
             </div>
         </div>
@@ -1827,8 +1816,8 @@
         <div class="family-banner reveal">
             <div class="family-icon">👨‍👩‍👧‍👦</div>
             <div class="family-text">
-                <h2 data-i18n="family_h2">One subscription, whole family covered</h2>
-                <p data-i18n="family_p">With Apple Family Sharing, one GoBag+ Premium subscription gives full access to family members automatically — no extra purchases, no sharing passwords.</p>
+                <h2 data-i18n="family_h2">Ein Abo, die ganze Familie abgesichert</h2>
+                <p data-i18n="family_p">Mit Apple Family Sharing gibt ein GoBag+ Premium-Abonnement Familienmitgliedern automatisch vollen Zugang — ohne zusätzliche Käufe, ohne Passwörter teilen.</p>
             </div>
         </div>
     </div>
@@ -1839,30 +1828,30 @@
 <!-- SECURITY -->
 <section>
     <div class="container" style="text-align:center">
-        <div class="section-label reveal" data-i18n="security_label">Privacy &amp; Security</div>
-        <h2 class="section-title reveal d1" data-i18n="security_title">Your data stays yours</h2>
-        <p class="section-sub reveal d2" style="margin:0 auto 48px" data-i18n="security_sub">GoBag+ is built on Apple's security infrastructure. Your confidential documents never leave your devices without your consent.</p>
+        <div class="section-label reveal" data-i18n="security_label">Datenschutz &amp; Sicherheit</div>
+        <h2 class="section-title reveal d1" data-i18n="security_title">Deine Daten gehören dir</h2>
+        <p class="section-sub reveal d2" style="margin:0 auto 48px" data-i18n="security_sub">GoBag+ basiert auf Apples Sicherheitsinfrastruktur. Deine vertraulichen Dokumente verlassen deine Geräte nie ohne dein Einverständnis.</p>
         <div class="security-grid">
             <div class="security-item reveal d1">
                 <div class="security-icon" style="background:rgba(52,88,199,0.12)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="#3458c7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
-                <h3 data-i18n="security_1_title">Face ID Protected</h3>
-                <p data-i18n="security_1_p">The Document Vault opens only with your biometrics. No one else can access your scanned IDs and documents.</p>
+                <h3 data-i18n="security_1_title">Face ID geschützt</h3>
+                <p data-i18n="security_1_p">Der Dokumententresor öffnet sich nur mit deinen Biometrikdaten. Niemand sonst kann auf deine gescannten Ausweise zugreifen.</p>
             </div>
             <div class="security-item reveal d2">
                 <div class="security-icon" style="background:rgba(47,138,82,0.12)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="#2f8a52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 2v4M2 12h4M12 22v-4M22 12h-4"/><circle cx="12" cy="12" r="3"/><path d="M4.22 4.22l2.83 2.83M19.78 4.22l-2.83 2.83M4.22 19.78l2.83-2.83M19.78 19.78l-2.83-2.83"/></svg>
                 </div>
-                <h3 data-i18n="security_2_title">iCloud Encrypted</h3>
-                <p data-i18n="security_2_p">All data syncs through Apple's encrypted iCloud. We never see or store your information on our servers.</p>
+                <h3 data-i18n="security_2_title">iCloud verschlüsselt</h3>
+                <p data-i18n="security_2_p">Alle Daten werden über Apples verschlüsseltes iCloud synchronisiert. Wir sehen oder speichern deine Informationen nie auf unseren Servern.</p>
             </div>
             <div class="security-item reveal d3">
                 <div class="security-icon" style="background:rgba(47,138,82,0.12)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="#2f8a52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
                 </div>
-                <h3 data-i18n="security_3_title">Zero Data Collection</h3>
-                <p data-i18n="security_3_p">GoBag+ collects no personal data and never sells your information. Your emergency plan stays private, by design.</p>
+                <h3 data-i18n="security_3_title">Keine Datenerfassung</h3>
+                <p data-i18n="security_3_p">GoBag+ sammelt keine persönlichen Daten und verkauft deine Informationen niemals. Dein Notfallplan bleibt privat – von Grund auf.</p>
             </div>
         </div>
     </div>
@@ -1873,20 +1862,20 @@
 <!-- REVIEWS -->
 <section id="reviews">
     <div class="container" style="text-align:center">
-        <div class="section-label reveal" data-i18n="reviews_label">Reviews</div>
-        <h2 class="section-title reveal d1" data-i18n="reviews_title">Loved by people who plan ahead</h2>
-        <p class="section-sub reveal d2" style="margin:0 auto 48px" data-i18n="reviews_sub">Real feedback from the GoBag+ community.</p>
+        <div class="section-label reveal" data-i18n="reviews_label">Bewertungen</div>
+        <h2 class="section-title reveal d1" data-i18n="reviews_title">Geliebt von vorausschauenden Menschen</h2>
+        <p class="section-sub reveal d2" style="margin:0 auto 48px" data-i18n="reviews_sub">Echtes Feedback aus der GoBag+ Community.</p>
         <!-- Real App Store reviews (verbatim). Add a .review-card block per new review. -->
         <div class="rating-summary reveal d2">
             <span class="rating-stars">★★★★★</span>
             <span class="rating-score">5.0</span>
-            <span class="rating-meta">· 3 <span data-i18n="rating_ratings">App Store ratings</span></span>
+            <span class="rating-meta">· 3 <span data-i18n="rating_ratings">App-Store-Bewertungen</span></span>
         </div>
         <div class="reviews-grid two-up">
             <div class="review-card reveal d1">
                 <div class="review-stars">★★★★★</div>
-                <h3 class="review-title" data-i18n="review1_title">Super useful app!</h3>
-                <p class="review-quote" data-i18n="review1_quote">Really simple and so practical at the same time! Thank you 🙏</p>
+                <h3 class="review-title" data-i18n="review1_title">Super nützliche App!</h3>
+                <p class="review-quote" data-i18n="review1_quote">Wirklich einfache App und gleichzeitig so praktisch! Danke 🙏</p>
                 <div class="review-author">
                     <div class="review-avatar" style="background:rgba(52,88,199,0.15); color:var(--blue)">D</div>
                     <div>
@@ -1897,8 +1886,8 @@
             </div>
             <div class="review-card reveal d2">
                 <div class="review-stars">★★★★★</div>
-                <h3 class="review-title" data-i18n="review2_title">Clean and simple</h3>
-                <p class="review-quote" data-i18n="review2_quote">Cool! Very easy to use. Just what you need!</p>
+                <h3 class="review-title" data-i18n="review2_title">Klar und einfach</h3>
+                <p class="review-quote" data-i18n="review2_quote">Cool! Sehr einfach zu bedienen. Genau das, was man braucht!</p>
                 <div class="review-author">
                     <div class="review-avatar" style="background:rgba(210,96,31,0.15); color:var(--orange)">A</div>
                     <div>
@@ -1916,43 +1905,43 @@
 <!-- PRICING -->
 <section id="pricing">
     <div class="container" style="text-align:center">
-        <h2 class="section-title reveal" data-i18n="pricing_title">Pricing</h2>
-        <p class="section-sub reveal d1" style="margin:0 auto 60px" data-i18n="pricing_sub">Start free. Upgrade when you're ready.</p>
+        <h2 class="section-title reveal" data-i18n="pricing_title">Preise</h2>
+        <p class="section-sub reveal d1" style="margin:0 auto 60px" data-i18n="pricing_sub">Starte kostenlos. Wechsle zu Premium, wenn du bereit bist.</p>
         <div class="pricing-grid" data-nosnippet>
             <div class="pricing-card reveal d1">
-                <div class="pricing-name" data-i18n="free_name">Free</div>
-                <div class="pricing-price" data-i18n-html="free_price">$0</div>
-                <div class="pricing-desc" data-i18n="free_price_desc">Forever free basics</div>
+                <div class="pricing-name" data-i18n="free_name">Kostenlos</div>
+                <div class="pricing-price" data-i18n-html="free_price">0€</div>
+                <div class="pricing-desc" data-i18n="free_price_desc">Für immer kostenlos</div>
                 <ul class="pricing-features">
-                    <li data-i18n="free_f1">1 Go Bag</li>
-                    <li data-i18n="free_f2">Core item categories</li>
-                    <li data-i18n="free_f3">Emergency contacts</li>
+                    <li data-i18n="free_f1">1 Notfallrucksack</li>
+                    <li data-i18n="free_f2">Hauptkategorien</li>
+                    <li data-i18n="free_f3">Notfallkontakte</li>
                 </ul>
             </div>
             <div class="pricing-card featured reveal d2">
-                <div class="pricing-badge" data-i18n="pricing_badge_popular">Most Popular</div>
-                <div class="pricing-name" data-i18n="yearly_name">Premium Yearly</div>
-                <div class="pricing-price" data-i18n-html="yearly_price">from $11.99 <span>/year</span></div>
-                <div class="pricing-desc" data-i18n="yearly_desc">≈ $1.00/month · 1 month free trial</div>
+                <div class="pricing-badge" data-i18n="pricing_badge_popular">Am beliebtesten</div>
+                <div class="pricing-name" data-i18n="yearly_name">Premium Jährlich</div>
+                <div class="pricing-price" data-i18n-html="yearly_price">12,99€ <span>/Jahr</span></div>
+                <div class="pricing-desc" data-i18n="yearly_desc">≈ 1,08€/Monat · 1 Monat kostenlos</div>
                 <ul class="pricing-features">
-                    <li data-i18n="yearly_f1">Unlimited Go Bags</li>
-                    <li data-i18n="yearly_f2">All item categories</li>
-                    <li data-i18n="yearly_f3">Home reserve tracking</li>
-                    <li data-i18n="yearly_f4">Family iCloud sync</li>
-                    <li data-i18n="yearly_f5">Family Sharing (up to 5)</li>
-                    <li data-i18n="yearly_f6">Widget + notifications</li>
-                    <li data-i18n="yearly_f7">Backup &amp; restore</li>
+                    <li data-i18n="yearly_f1">Unbegrenzte Rucksäcke</li>
+                    <li data-i18n="yearly_f2">Alle Kategorien</li>
+                    <li data-i18n="yearly_f3">Heimvorräte verwalten</li>
+                    <li data-i18n="yearly_f4">iCloud-Familiensynchronisation</li>
+                    <li data-i18n="yearly_f5">Family Sharing (bis zu 5)</li>
+                    <li data-i18n="yearly_f6">Widget + Benachrichtigungen</li>
+                    <li data-i18n="yearly_f7">Sicherung &amp; Wiederherstellung</li>
                 </ul>
             </div>
             <div class="pricing-card reveal d3">
-                <div class="pricing-badge subtle" data-i18n="pricing_badge">Best Value</div>
-                <div class="pricing-name" data-i18n="lifetime_name">Lifetime</div>
-                <div class="pricing-price" data-i18n-html="lifetime_price">from $34.99 <span></span></div>
-                <div class="pricing-desc" data-i18n="lifetime_desc">One-time payment · No subscription</div>
+                <div class="pricing-badge subtle" data-i18n="pricing_badge">Bestes Angebot</div>
+                <div class="pricing-name" data-i18n="lifetime_name">Lebenslang</div>
+                <div class="pricing-price" data-i18n-html="lifetime_price">39,99€ <span></span></div>
+                <div class="pricing-desc" data-i18n="lifetime_desc">Einmalige Zahlung · Kein Abo</div>
                 <ul class="pricing-features">
-                    <li data-i18n="lifetime_f1">Premium features</li>
-                    <li data-i18n="lifetime_f2">Family Sharing (up to 5)</li>
-                    <li data-i18n="lifetime_f3">All future updates</li>
+                    <li data-i18n="lifetime_f1">Premium-Funktionen</li>
+                    <li data-i18n="lifetime_f2">Family Sharing (bis zu 5)</li>
+                    <li data-i18n="lifetime_f3">Alle zukünftigen Updates</li>
                 </ul>
             </div>
         </div>
@@ -1966,46 +1955,46 @@
     <div class="container faq-layout">
         <div class="faq-intro">
             <div class="section-label reveal" data-i18n="faq_label">FAQ</div>
-            <h2 class="section-title reveal d1" data-i18n="faq_title">Frequently asked questions</h2>
-            <p class="section-sub reveal d2" data-i18n="faq_sub">Everything you need to know about go bags, prep kits, and GoBag+.</p>
-            <p class="faq-contact reveal d3" data-i18n-html="faq_contact">Can't find what you're looking for? Reach out to our <a href='mailto:contact@gredami.com'>support team</a>.</p>
+            <h2 class="section-title reveal d1" data-i18n="faq_title">Häufige Fragen</h2>
+            <p class="section-sub reveal d2" data-i18n="faq_sub">Alles Wichtige über Notfallrucksäcke, Notfall-Kits und GoBag+.</p>
+            <p class="faq-contact reveal d3" data-i18n-html="faq_contact">Nicht gefunden, wonach Sie suchen? Wenden Sie sich an unser <a href='mailto:contact@gredami.com'>Support-Team</a>.</p>
         </div>
         <div class="faq-list">
             <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q1">What is a go bag?</span>
+                <summary><span data-i18n="faq_q1">Was ist ein Notfallrucksack (Go Bag)?</span>
                     <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                 </summary>
-                <div class="faq-answer"><p data-i18n="faq_a1">A go bag — also called a bug-out bag or 72-hour kit — is a portable emergency kit with the essentials you need to grab and go during a disaster or evacuation. GoBag+ helps you build one across 9 categories so nothing important is left behind.</p></div>
+                <div class="faq-answer"><p data-i18n="faq_a1">Ein Notfallrucksack — auch Fluchtrucksack oder 72-Stunden-Kit genannt — ist ein tragbares Notfall-Kit mit dem Nötigsten, das du bei einer Katastrophe oder Evakuierung sofort greifen kannst. GoBag+ hilft dir, ihn über 9 Kategorien zusammenzustellen, damit nichts Wichtiges fehlt.</p></div>
             </details>
             <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q2">What should an emergency prep kit include?</span>
+                <summary><span data-i18n="faq_q2">Was gehört in ein Notfall-Kit?</span>
                     <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                 </summary>
-                <div class="faq-answer"><p data-i18n="faq_a2">A good prep kit covers water, food, first aid, important documents, tools, shelter, communication, personal care, and cash. GoBag+ organizes all of these and adjusts the recommended quantities to how many people you're preparing for.</p></div>
+                <div class="faq-answer"><p data-i18n="faq_a2">Ein gutes Notfall-Kit umfasst Wasser, Nahrung, Erste Hilfe, wichtige Dokumente, Werkzeug, Unterkunft, Kommunikation, Körperpflege und Bargeld. GoBag+ organisiert all das und passt die empfohlenen Mengen an die Anzahl der Personen an, für die du vorsorgst.</p></div>
             </details>
             <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q3">How does GoBag+ help me build my go bag and prep kit?</span>
+                <summary><span data-i18n="faq_q3">Wie hilft mir GoBag+ beim Zusammenstellen?</span>
                     <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                 </summary>
-                <div class="faq-answer"><p data-i18n="faq_a3">GoBag+ lets you create personalized go bags across 9 categories and track every item, with your readiness shown at a glance. Targets adjust automatically to your household size, so you always know what's stocked and what's still missing.</p></div>
+                <div class="faq-answer"><p data-i18n="faq_a3">Mit GoBag+ erstellst du persönliche Notfallrucksäcke über 9 Kategorien und verfolgst jeden Gegenstand — deine Bereitschaft immer im Blick. Die Vorgaben passen sich automatisch an deine Haushaltsgröße an, damit du stets weißt, was vorhanden ist und was noch fehlt.</p></div>
             </details>
             <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q4">Can I track home supplies and get expiry alerts?</span>
+                <summary><span data-i18n="faq_q4">Kann ich Hausvorräte verfolgen und Ablaufwarnungen erhalten?</span>
                     <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                 </summary>
-                <div class="faq-answer"><p data-i18n="faq_a4">Yes. Beyond your go bag, GoBag+ tracks your home reserve of food, water, and medicine with minimum stock levels per person, and notifies you automatically before items expire or run low.</p></div>
+                <div class="faq-answer"><p data-i18n="faq_a4">Ja. Neben deinem Rucksack verfolgt GoBag+ deinen Hausvorrat an Nahrung, Wasser und Medikamenten mit Mindestbeständen pro Person und benachrichtigt dich automatisch, bevor Artikel ablaufen oder zur Neige gehen.</p></div>
             </details>
             <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q5">Does GoBag+ sync across devices and work for my whole family?</span>
+                <summary><span data-i18n="faq_q5">Synchronisiert GoBag+ zwischen Geräten und für meine Familie?</span>
                     <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                 </summary>
-                <div class="faq-answer"><p data-i18n="faq_a5">Yes. Your bags and reserve sync across iPhone and iPad via iCloud, and Apple Family Sharing covers up to 5 members on one subscription. You can also keep IDs and passports in a Face ID–protected vault and reach emergency contacts instantly with the SOS button, even offline.</p></div>
+                <div class="faq-answer"><p data-i18n="faq_a5">Ja. Deine Rucksäcke und Vorräte synchronisieren sich über iCloud zwischen iPhone und iPad, und die Apple Familienfreigabe deckt bis zu 5 Mitglieder mit einem Abo ab. Ausweise und Pässe kannst du in einem per Face ID geschützten Tresor ablegen und Notfallkontakte mit der SOS-Taste sofort erreichen, auch offline.</p></div>
             </details>
             <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q6">Is GoBag+ free?</span>
+                <summary><span data-i18n="faq_q6">Ist GoBag+ kostenlos?</span>
                     <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                 </summary>
-                <div class="faq-answer"><p data-i18n="faq_a6">GoBag+ is free to download with the core essentials. Premium unlocks unlimited go bags, full home-reserve tracking, family sync, the home-screen widget, backup &amp; restore, and expiry alerts — and starts with a 1-month free trial.</p></div>
+                <div class="faq-answer"><p data-i18n="faq_a6">GoBag+ ist mit den wichtigsten Funktionen kostenlos. Premium schaltet unbegrenzte Notfallrucksäcke, die vollständige Vorratsverfolgung, Familiensynchronisierung, das Widget, Backup &amp; Wiederherstellung sowie Ablaufwarnungen frei — mit einem kostenlosen Probemonat.</p></div>
             </details>
         </div>
     </div>
@@ -2015,11 +2004,11 @@
 
 <!-- CTA -->
 <div class="cta-section">
-    <h2 class="reveal" data-i18n="cta_h2">Start your free trial today</h2>
-    <p class="reveal d1" data-i18n="cta_p">No payment needed for the first 30 days. Cancel anytime in Settings.</p>
+    <h2 class="reveal" data-i18n="cta_h2">Starte heute deinen kostenlosen Test</h2>
+    <p class="reveal d1" data-i18n="cta_p">In den ersten 30 Tagen keine Zahlung erforderlich. Jederzeit in den Einstellungen kündigen.</p>
     <a href="https://apps.apple.com/app/id6760232332" class="btn-primary" target="_blank">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        <span data-i18n="cta_btn">Download on the App Store</span>
+        <span data-i18n="cta_btn">Im App Store laden</span>
     </a>
 </div>
 
@@ -2040,20 +2029,20 @@
         </a>
     </div>
     <div class="footer-links">
-        <a href="/privacy/" data-i18n="footer_privacy">Privacy Policy</a>
-        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" data-i18n="footer_terms">Terms of Use</a>
+        <a href="/privacy/" data-i18n="footer_privacy">Datenschutzrichtlinie</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" data-i18n="footer_terms">Nutzungsbedingungen</a>
         <a href="mailto:contact@gredami.com" data-i18n="footer_support">Support</a>
     </div>
-    <p data-i18n="footer_copy">© 2026 GreDami. All rights reserved.</p>
+    <p data-i18n="footer_copy">© 2026 GreDami. Alle Rechte vorbehalten.</p>
 </footer>
 
 <!-- COOKIE CONSENT -->
 <div id="cookieConsent" class="cookie-consent" role="dialog" aria-live="polite" aria-label="Cookie consent">
-    <p data-i18n="cookie_text">We use analytics cookies to understand how the site is used. You decide.</p>
+    <p data-i18n="cookie_text">Wir verwenden Analyse-Cookies, um die Nutzung der Website zu verstehen. Du entscheidest.</p>
     <div class="cookie-actions">
-        <a href="/privacy/" class="cookie-link" data-i18n="footer_privacy">Privacy Policy</a>
-        <button class="cookie-btn decline" onclick="setConsent(false)" data-i18n="cookie_decline">Decline</button>
-        <button class="cookie-btn accept" onclick="setConsent(true)" data-i18n="cookie_accept">Accept</button>
+        <a href="/privacy/" class="cookie-link" data-i18n="footer_privacy">Datenschutzrichtlinie</a>
+        <button class="cookie-btn decline" onclick="setConsent(false)" data-i18n="cookie_decline">Ablehnen</button>
+        <button class="cookie-btn accept" onclick="setConsent(true)" data-i18n="cookie_accept">Akzeptieren</button>
     </div>
 </div>
 

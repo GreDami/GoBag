@@ -3,26 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2SZMMJ1PKR"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-2SZMMJ1PKR');
-    </script>
+    <!-- Google Analytics is consent-gated: it only loads after the visitor
+         accepts in the cookie banner. See loadGA()/setConsent() near the end. -->
     <title>Privacy Policy — GoBag+</title>
     <meta name="description" content="GoBag+ privacy policy. Your data stays on your device — no analytics, no tracking, no third parties.">
     <meta property="og:title" content="Privacy Policy — GoBag+">
     <meta property="og:description" content="Your data stays on your device — no analytics, no tracking, no third parties.">
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://gobag.gredami.com/privacy/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="apple-touch-icon" href="../favicon.png">
     <style>
+/* i18n:fonts:start */
+/* Self-hosted from Google Fonts by tools/fetch-fonts.mjs — do not edit.
+   Nothing here reaches a third-party server: the files sit in /fonts/. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/fonts/inter-300-900-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/fonts/inter-300-900-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/fonts/inter-300-900-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/fonts/inter-300-900-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Alumni Sans';
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: url(/fonts/alumni-sans-700-900-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Alumni Sans';
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: url(/fonts/alumni-sans-700-900-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Alumni Sans';
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: url(/fonts/alumni-sans-700-900-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Alumni Sans';
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: url(/fonts/alumni-sans-700-900-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/ibm-plex-mono-500-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/ibm-plex-mono-500-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/ibm-plex-mono-500-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/ibm-plex-mono-500-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/ibm-plex-mono-600-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/ibm-plex-mono-600-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/ibm-plex-mono-600-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/fonts/ibm-plex-mono-600-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* i18n:fonts:end */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
@@ -35,7 +158,7 @@
             --card: #fffdf8;
             --text: #16213d;
             --muted: rgba(22,33,61,0.62);
-            --display: 'Big Shoulders Display', 'Inter', sans-serif;
+            --display: 'Alumni Sans', 'Inter', sans-serif;
             --mono: 'IBM Plex Mono', ui-monospace, monospace;
         }
 
@@ -266,6 +389,74 @@
         .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: rgba(22,33,61,0.06); border: 1px solid rgba(22,33,61,0.10); color: var(--muted); transition: all 0.2s; text-decoration: none; }
         .footer-social a:hover { background: rgba(47,138,82,0.12); border-color: rgba(47,138,82,0.3); color: var(--text); }
         footer p { font-family: var(--mono); font-size: 0.66rem; color: rgba(22,33,61,0.3); letter-spacing: 0.3px; }
+        .cookie-consent {
+            position: fixed;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            z-index: 200;
+            max-width: 720px;
+            margin: 0 auto;
+            display: none;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 18px 22px;
+            background: rgba(255,253,248,0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(22,33,61,0.10);
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(22,33,61,0.20), 0 0 0 1px rgba(22,33,61,0.03);
+        }
+        .cookie-consent.show { display: flex; }
+        .cookie-consent p {
+            margin: 0;
+            font-size: 0.86rem;
+            color: var(--muted);
+            line-height: 1.5;
+            flex: 1 1 260px;
+        }
+        .cookie-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .cookie-link {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--blue);
+            text-decoration: none;
+            margin-right: 4px;
+        }
+        .cookie-link:hover { text-decoration: underline; }
+        .cookie-btn {
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 9px 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.15s, opacity 0.15s;
+        }
+        .cookie-btn:hover { transform: translateY(-1px); }
+        .cookie-btn.decline {
+            background: transparent;
+            border: 1px solid rgba(22,33,61,0.18);
+            color: var(--text);
+        }
+        .cookie-btn.accept { background: var(--green); color: #fff; }
+        @media (max-width: 560px) {
+            .cookie-consent { left: 12px; right: 12px; bottom: 12px; padding: 16px; }
+            /* German, Portuguese and Russian run the link and both buttons past
+               the width of a phone. Let the row wrap and give the link a line of
+               its own, so the two buttons stay together instead of one of them
+               being stranded on the line above. */
+            .cookie-actions { width: 100%; flex-wrap: wrap; flex-shrink: 1; justify-content: flex-end; row-gap: 12px; }
+            .cookie-link { flex: 1 0 100%; margin-right: 0; }
+        }
     </style>
 </head>
 <body>
@@ -318,7 +509,7 @@
 
     <section>
         <h2><span class="num">06</span> Analytics &amp; Tracking</h2>
-        <p>The App does not use any analytics SDKs, advertising networks, or tracking tools, and does not track you across apps or websites. This website uses Google Analytics to measure aggregate visits; it is not connected to any data in the App.</p>
+        <p>The App does not use any analytics SDKs, advertising networks, or tracking tools, and does not track you across apps or websites. This website uses Google Analytics to measure aggregate visits, and only after you accept it in the cookie banner — decline and no analytics cookies are set at all. It is not connected to any data in the App.</p>
     </section>
 
     <section>
@@ -370,6 +561,45 @@
     </div>
     <p>© 2026 GreDami. All rights reserved.</p>
 </footer>
+
+<!-- COOKIE CONSENT -->
+<div id="cookieConsent" class="cookie-consent" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <p>We use analytics cookies to understand how the site is used. You decide.</p>
+    <div class="cookie-actions">
+        <button class="cookie-btn decline" onclick="setConsent(false)">Decline</button>
+        <button class="cookie-btn accept" onclick="setConsent(true)">Accept</button>
+    </div>
+</div>
+
+<script>
+// ====== CONSENT-GATED GOOGLE ANALYTICS ======
+// GA loads only after the visitor explicitly accepts. Choice is remembered.
+function loadGA() {
+  if (window.__gaLoaded) return;
+  window.__gaLoaded = true;
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2SZMMJ1PKR';
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', 'G-2SZMMJ1PKR', { anonymize_ip: true });
+}
+function setConsent(granted) {
+  localStorage.setItem('gobag_consent', granted ? 'granted' : 'denied');
+  var b = document.getElementById('cookieConsent');
+  if (b) b.classList.remove('show');
+  if (granted) loadGA();
+}
+(function() {
+  var c = localStorage.getItem('gobag_consent');
+  if (c === 'granted') { loadGA(); return; }
+  if (c === 'denied') return;
+  var b = document.getElementById('cookieConsent');
+  if (b) b.classList.add('show');
+})();
+</script>
 
 </body>
 </html>
