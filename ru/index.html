@@ -648,6 +648,7 @@
             inset: 0;
             z-index: 190;
             background: rgba(22,33,61,0.45);
+            -webkit-backdrop-filter: blur(2px);
             backdrop-filter: blur(2px);
             opacity: 0;
             visibility: hidden;
@@ -1462,6 +1463,7 @@
         }
 
         /* COOKIE CONSENT */
+/* i18n:cookiecss:start */
         .cookie-consent {
             position: fixed;
             left: 20px;
@@ -1477,6 +1479,7 @@
             justify-content: space-between;
             padding: 18px 22px;
             background: rgba(255,253,248,0.92);
+            -webkit-backdrop-filter: blur(16px);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(22,33,61,0.10);
             border-radius: 18px;
@@ -1508,6 +1511,11 @@
             font-family: inherit;
             font-size: 0.82rem;
             font-weight: 700;
+            /* 34px tall on padding alone, under the 44px iOS HIG minimum. */
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 9px 18px;
             border-radius: 10px;
             border: none;
@@ -1528,8 +1536,9 @@
                its own, so the two buttons stay together instead of one of them
                being stranded on the line above. */
             .cookie-actions { width: 100%; flex-wrap: wrap; flex-shrink: 1; justify-content: flex-end; row-gap: 12px; }
-            .cookie-link { flex: 1 0 100%; margin-right: 0; }
+            .cookie-link { flex: 1 0 100%; margin-right: 0; display: flex; align-items: center; min-height: 44px; }
         }
+/* i18n:cookiecss:end */
     </style>
 </head>
 <body>
@@ -2047,6 +2056,7 @@
 </div>
 
 <script>
+/* i18n:consentjs:start */
 // ====== CONSENT-GATED GOOGLE ANALYTICS ======
 // GA loads only after the visitor explicitly accepts. Choice is remembered.
 function loadGA() {
@@ -2062,18 +2072,20 @@ function loadGA() {
   gtag('config', 'G-2SZMMJ1PKR', { anonymize_ip: true });
 }
 function setConsent(granted) {
-  localStorage.setItem('gobag_consent', granted ? 'granted' : 'denied');
+  try { localStorage.setItem('gobag_consent', granted ? 'granted' : 'denied'); } catch (e) {}
   var b = document.getElementById('cookieConsent');
   if (b) b.classList.remove('show');
   if (granted) loadGA();
 }
 (function() {
-  var c = localStorage.getItem('gobag_consent');
+  var c = null;
+  try { c = localStorage.getItem('gobag_consent'); } catch (e) {}
   if (c === 'granted') { loadGA(); return; }
   if (c === 'denied') return;
   var b = document.getElementById('cookieConsent');
   if (b) b.classList.add('show');
 })();
+/* i18n:consentjs:end */
 
 function toggleLangMenu(e) {
   e.stopPropagation();
@@ -2084,16 +2096,26 @@ document.addEventListener('click', function() {
   document.getElementById('langSwitcher').classList.remove('open');
 });
 
-// Detected App Store region (guessed from IP). Drives USD price display,
-// independently of the display language.
-let userCountry = (localStorage.getItem('gobag_cc') || '').toUpperCase();
+/* Is the visitor in the US? Read from the browser's own time zone.
+   This used to be an IP lookup against ipapi.co, which handed the visitor's
+   address to a third party before the consent banner was answered — the same
+   leak the analytics gate and the self-hosted fonts removed. It also rate
+   limited (HTTP 429) and threw an uncaught CORS error into the console on
+   Firefox and Safari. The time zone is local, instant and never leaves the
+   device. */
+const US_TIMEZONE = /^(America\/(New_York|Detroit|Chicago|Denver|Boise|Phoenix|Los_Angeles|Anchorage|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak|Menominee|Indiana\/|Kentucky\/|North_Dakota\/)|Pacific\/Honolulu)/;
+
+function inUnitedStates() {
+  try { return US_TIMEZONE.test(Intl.DateTimeFormat().resolvedOptions().timeZone || ''); }
+  catch (e) { return false; }
+}
 
 // USD pricing shown on the English / fallback path. US sees the exact price;
 // every other non-euro region sees "from $X" so we never promise a figure
 // Apple won't honor. Euro languages keep their € prices from T untouched.
 function applyRegionalPricing(lang) {
   if (lang !== 'en') return;
-  const pre = userCountry === 'US' ? '' : 'from ';
+  const pre = inUnitedStates() ? '' : 'from ';
   const y  = document.querySelector('[data-i18n-html="yearly_price"]');
   const l  = document.querySelector('[data-i18n-html="lifetime_price"]');
   const yd = document.querySelector('[data-i18n="yearly_desc"]');
@@ -2191,22 +2213,9 @@ function rememberLang(lang) {
 
 buildTextRoll(document.querySelector('.hero h1'));
 
-/* The English page quotes USD and needs the visitor's region to decide between
-   the exact US price and "from $X". Every other language ships its € prices in
-   the HTML, so it skips the lookup entirely. */
-if (document.documentElement.lang === 'en') {
-  applyRegionalPricing('en');
-  fetch('https://ipapi.co/json/')
-    .then(r => r.json())
-    .then(data => {
-      const cc = ((data && data.country_code) || '').toUpperCase();
-      if (!cc) return;
-      userCountry = cc;
-      try { localStorage.setItem('gobag_cc', cc); } catch (e) {}
-      applyRegionalPricing('en');
-    })
-    .catch(() => {});
-}
+/* The English page quotes USD and picks between the exact US price and
+   "from $X". Every other language ships its € prices in the HTML. */
+if (document.documentElement.lang === 'en') applyRegionalPricing('en');
 
 // ====== STEPS CAROUSEL ======
 (function(){

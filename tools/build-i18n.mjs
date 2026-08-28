@@ -13,6 +13,7 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 
 const ORIGIN = 'https://gobag.gredami.com';
 const LANGS = ['en', 'fr', 'de', 'es', 'it', 'pt', 'ru'];
@@ -254,6 +255,16 @@ function replaceRegion(html, name, body, style = 'html') {
   return html.slice(0, a + start.length) + '\n' + body + '\n' + html.slice(b);
 }
 
+/* Body of a marked region, without the markers. */
+function extractRegion(html, name) {
+  const start = `/* i18n:${name}:start */`;
+  const end = `/* i18n:${name}:end */`;
+  const a = html.indexOf(start);
+  const b = html.indexOf(end);
+  if (a < 0 || b < 0) throw new Error(`marker i18n:${name} not found in index.html`);
+  return html.slice(a + start.length, b).replace(/^\n|\n$/g, '');
+}
+
 const source = fs.readFileSync('index.html', 'utf8');
 const report = [];
 
@@ -283,7 +294,19 @@ for (const lang of LANGS) {
 
 /* ── sitemap ──────────────────────────────────────────────────────────────── */
 
-const today = new Date().toISOString().slice(0, 10);
+/* lastmod is the date the source page was last committed, not the date of the
+   build. Stamping today on every run tells Google the page changed when it did
+   not, which teaches it to distrust the field — and it made every build dirty
+   the sitemap for no reason. */
+function lastModified() {
+  try {
+    const d = execSync('git log -1 --format=%cs -- index.html i18n/translations.json',
+      { encoding: 'utf8' }).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
+  } catch (e) { /* not a git checkout */ }
+  return new Date().toISOString().slice(0, 10);
+}
+const today = lastModified();
 const alt = LANGS
   .map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${urlFor(l)}"/>`)
   .join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${urlFor('en')}"/>`;
@@ -309,9 +332,17 @@ ${entries}
 </urlset>
 `);
 
-/* Standalone page: not generated, but it carries the same @font-face block. */
+/* The privacy page is not generated, but it carries three blocks that must be
+   byte-identical to the main page: the @font-face rules, the cookie banner CSS
+   and the consent gate itself. Copy them across on every build — a fix applied
+   to one and not the other is exactly the drift this prevents. */
 const priv = 'privacy/index.html';
-fs.writeFileSync(priv, replaceRegion(fs.readFileSync(priv, 'utf8'), 'fonts', fontCss, 'css'));
+let privHtml = fs.readFileSync(priv, 'utf8');
+privHtml = replaceRegion(privHtml, 'fonts', fontCss, 'css');
+for (const region of ['cookiecss', 'consentjs']) {
+  privHtml = replaceRegion(privHtml, region, extractRegion(source, region), 'css');
+}
+fs.writeFileSync(priv, privHtml);
 
 console.log(report.join('\n'));
 console.log(`fonts: ${(fontCss.match(/@font-face/g) || []).length} faces inlined into ${LANGS.length + 1} pages`);
