@@ -10,7 +10,7 @@
     },
     "strings": {
       "welcome_tagline": "Best time to prepare for a disaster was yesterday. The second best time is today",
-      "hero_h1": "Go bag &<br><span>Household supplies</span>",
+      "hero_h1": "Go bag &amp;<br><span>Household supplies</span>",
       "hero_p": "Build your go bag, track home supplies, store emergency contacts, and secure vital documents in an encrypted vault — all in one app.",
       "hero_trial": "Free 1-month trial · No commitment",
       "hero_cta_btn": "Build My Go Bag",
@@ -114,7 +114,13 @@
       "cookie_text": "We use analytics cookies to understand how the site is used. You decide.",
       "cookie_accept": "Accept",
       "cookie_decline": "Decline",
-      "skip_link": "Skip to content"
+      "skip_link": "Skip to content",
+      "nav_prev": "Previous",
+      "nav_next": "Next",
+      "nav_menu": "Menu",
+      "nav_language": "Language",
+      "cookie_title": "Cookie consent",
+      "hero_img_alt": "The GoBag+ app showing a go bag 75% complete, 41 of 54 items across nine supply categories"
     }
   },
   "fr": {
@@ -128,7 +134,7 @@
     },
     "strings": {
       "welcome_tagline": "Le meilleur moment pour se préparer à une catastrophe, c'était hier. Le deuxième meilleur moment, c'est aujourd'hui",
-      "hero_h1": "Sac de survie & <span>Réserve</span>",
+      "hero_h1": "Sac de survie &amp; <span>Réserve</span>",
       "hero_p": "Préparez votre sac d'urgence, suivez vos réserves à domicile, stockez vos contacts d'urgence et sécurisez vos documents vitaux dans un coffre chiffré — dans une seule application.",
       "hero_trial": "1 mois d'essai gratuit · Sans engagement",
       "hero_cta_btn": "Créer mon sac de survie",
@@ -232,7 +238,13 @@
       "cookie_text": "Nous utilisons des cookies d'analyse pour comprendre l'usage du site. À vous de choisir.",
       "cookie_accept": "Accepter",
       "cookie_decline": "Refuser",
-      "skip_link": "Aller au contenu"
+      "skip_link": "Aller au contenu",
+      "nav_prev": "Précédent",
+      "nav_next": "Suivant",
+      "nav_menu": "Menu",
+      "nav_language": "Langue",
+      "cookie_title": "Consentement aux cookies",
+      "hero_img_alt": "L'app GoBag+ affichant un sac d'évacuation rempli à 75 %, 41 articles sur 54 répartis en neuf catégories"
     }
   },
   "de": {
@@ -246,7 +258,7 @@
     },
     "strings": {
       "welcome_tagline": "Der beste Zeitpunkt, sich auf eine Katastrophe vorzubereiten, war gestern. Der zweitbeste Zeitpunkt ist heute",
-      "hero_h1": "Notfalltasche & <span>Heimvorrat</span>",
+      "hero_h1": "Notfalltasche &amp; <span>Heimvorrat</span>",
       "hero_p": "Baue deinen Notfallrucksack, verfolge deine Heimvorräte, speichere Notfallkontakte und sichere wichtige Dokumente in einem verschlüsselten Tresor — alles in einer App.",
       "hero_trial": "1 Monat kostenlos testen · Keine Verpflichtung",
       "hero_cta_btn": "Jetzt kostenlos starten",
@@ -350,7 +362,13 @@
       "cookie_text": "Wir verwenden Analyse-Cookies, um die Nutzung der Website zu verstehen. Du entscheidest.",
       "cookie_accept": "Akzeptieren",
       "cookie_decline": "Ablehnen",
-      "skip_link": "Zum Inhalt springen"
+      "skip_link": "Zum Inhalt springen",
+      "nav_prev": "Zurück",
+      "nav_next": "Weiter",
+      "nav_menu": "Menü",
+      "nav_language": "Sprache",
+      "cookie_title": "Cookie-Einwilligung",
+      "hero_img_alt": "Die GoBag+ App zeigt einen zu 75 % gepackten Notfallrucksack, 41 von 54 Gegenständen in neun Kategorien"
     }
   },
   "es": {
@@ -364,7 +382,7 @@
     },
     "strings": {
       "welcome_tagline": "El mejor momento para prepararse ante un desastre fue ayer. El segundo mejor momento es hoy",
-      "hero_h1": "Mochila de emergencia &<br><span>Reserva</span>",
+      "hero_h1": "Mochila de emergencia &amp;<br><span>Reserva</span>",
       "hero_p": "Construye tu bolsa de emergencia, controla tus suministros en casa, guarda contactos de emergencia y protege tus documentos vitales en una bóveda cifrada — todo en una sola app.",
       "hero_trial": "1 mes de prueba gratis · Sin compromiso",
       "hero_cta_btn": "Empezar gratis ahora",
@@ -468,7 +486,13 @@
       "cookie_text": "Usamos cookies de análisis para entender cómo se usa el sitio. Tú decides.",
       "cookie_accept": "Aceptar",
       "cookie_decline": "Rechazar",
-      "skip_link": "Ir al contenido"
+      "skip_link": "Ir al contenido",
+      "nav_prev": "Anterior",
+      "nav_next": "Siguiente",
+      "nav_menu": "Menú",
+      "nav_language": "Idioma",
+      "cookie_title": "Consentimiento de cookies",
+      "hero_img_alt": "La app GoBag+ mostrando una mochila de emergencia al 75 %, 41 de 54 artículos en nueve categorías"
     }
   },
   "it": {
@@ -482,7 +506,7 @@
     },
     "strings": {
       "welcome_tagline": "Il momento migliore per prepararsi a un disastro era ieri. Il secondo momento migliore è oggi",
-      "hero_h1": "Zaino d'emergenza & <span>Riserva</span>",
+      "hero_h1": "Zaino d'emergenza &amp; <span>Riserva</span>",
       "hero_p": "Costruisci il tuo zaino d'emergenza, monitora le scorte di casa, salva i contatti d'emergenza e proteggi i documenti vitali in un archivio cifrato — tutto in un'unica app.",
       "hero_trial": "1 mese di prova gratuita · Nessun impegno",
       "hero_cta_btn": "Inizia gratis ora",
@@ -586,7 +610,13 @@
       "cookie_text": "Usiamo cookie di analisi per capire come viene usato il sito. Decidi tu.",
       "cookie_accept": "Accetta",
       "cookie_decline": "Rifiuta",
-      "skip_link": "Vai al contenuto"
+      "skip_link": "Vai al contenuto",
+      "nav_prev": "Precedente",
+      "nav_next": "Successivo",
+      "nav_menu": "Menu",
+      "nav_language": "Lingua",
+      "cookie_title": "Consenso ai cookie",
+      "hero_img_alt": "L'app GoBag+ mostra uno zaino di emergenza completo al 75%, 41 articoli su 54 in nove categorie"
     }
   },
   "pt": {
@@ -600,7 +630,7 @@
     },
     "strings": {
       "welcome_tagline": "O melhor momento para se preparar para um desastre foi ontem. O segundo melhor momento é hoje",
-      "hero_h1": "Mochila de emergência &<br><span>Reserva doméstica</span>",
+      "hero_h1": "Mochila de emergência &amp;<br><span>Reserva doméstica</span>",
       "hero_p": "Monte o seu saco de emergência, controle as suas reservas em casa, guarde contactos de emergência e proteja documentos vitais num cofre seguro — tudo numa única app.",
       "hero_trial": "1 mês de teste grátis · Sem compromisso",
       "hero_cta_btn": "Começar grátis agora",
@@ -704,7 +734,13 @@
       "cookie_text": "Usamos cookies de análise para perceber como o site é usado. Você decide.",
       "cookie_accept": "Aceitar",
       "cookie_decline": "Recusar",
-      "skip_link": "Ir para o conteúdo"
+      "skip_link": "Ir para o conteúdo",
+      "nav_prev": "Anterior",
+      "nav_next": "Seguinte",
+      "nav_menu": "Menu",
+      "nav_language": "Idioma",
+      "cookie_title": "Consentimento de cookies",
+      "hero_img_alt": "A app GoBag+ a mostrar uma mochila de emergência 75% completa, 41 de 54 itens em nove categorias"
     }
   },
   "ru": {
@@ -718,7 +754,7 @@
     },
     "strings": {
       "welcome_tagline": "Лучшее время готовиться к катастрофе было вчера. Второе лучшее время — сегодня",
-      "hero_h1": "Тревожный чемоданчик & <span>Запасы</span>",
+      "hero_h1": "Тревожный чемоданчик &amp; <span>Запасы</span>",
       "hero_p": "Соберите тревожный чемоданчик, следите за домашними запасами, храните экстренные контакты и защитите важные документы в зашифрованном хранилище — в одном приложении.",
       "hero_trial": "1 месяц бесплатно · Без обязательств",
       "hero_cta_btn": "Начать готовиться",
@@ -822,7 +858,13 @@
       "cookie_text": "Мы используем аналитические cookie, чтобы понять, как используется сайт. Решать вам.",
       "cookie_accept": "Принять",
       "cookie_decline": "Отклонить",
-      "skip_link": "Перейти к содержимому"
+      "skip_link": "Перейти к содержимому",
+      "nav_prev": "Назад",
+      "nav_next": "Вперёд",
+      "nav_menu": "Меню",
+      "nav_language": "Язык",
+      "cookie_title": "Согласие на использование cookie",
+      "hero_img_alt": "Приложение GoBag+ показывает тревожный чемоданчик, собранный на 75 %: 41 из 54 предметов в девяти категориях"
     }
   }
 }

@@ -1657,7 +1657,7 @@
     <div class="nav-end">
         <!-- i18n:switcher:start -->
         <div class="lang-switcher" id="langSwitcher">
-            <button class="lang-trigger" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false" aria-label="Language">
+            <button class="lang-trigger" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false" aria-label="Sprache">
                 <span id="currentLangCode">DE</span>
                 <span class="arrow" aria-hidden="true">▼</span>
             </button>
@@ -1678,7 +1678,7 @@
             <span data-i18n="cta_btn">Im App Store laden</span>
         </a>
 
-        <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="navDrawer">
+        <button class="nav-burger" id="navBurger" aria-label="Menü" data-i18n-attr="aria-label:nav_menu" aria-expanded="false" aria-controls="navDrawer">
             <i></i><i></i><i></i>
         </button>
     </div>
@@ -1686,7 +1686,7 @@
 
 <div class="nav-scrim" id="navScrim"></div>
 <div class="nav-stage" aria-hidden="true">
-    <aside class="nav-drawer" id="navDrawer" aria-label="Menu">
+    <aside class="nav-drawer" id="navDrawer" aria-label="Menü" data-i18n-attr="aria-label:nav_menu">
         <ul>
             <li><a class="nav-key" href="#features">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1718,7 +1718,7 @@
 <section class="hero">
     <div class="hero-content">
         <div class="hero-text">
-            <h1 data-i18n-html="hero_h1">Notfalltasche & <span>Heimvorrat</span></h1>
+            <h1 data-i18n-html="hero_h1">Notfalltasche &amp; <span>Heimvorrat</span></h1>
             <p data-i18n="hero_p">Baue deinen Notfallrucksack, verfolge deine Heimvorräte, speichere Notfallkontakte und sichere wichtige Dokumente in einem verschlüsselten Tresor — alles in einer App.</p>
             <div class="hero-buttons">
                 <a href="https://apps.apple.com/app/id6760232332" class="btn-primary" target="_blank">
@@ -1734,7 +1734,7 @@
                     <div class="phone-screen">
                         <picture>
                             <source srcset="/screenshots/1.webp" type="image/webp">
-                            <img id="heroPhoneImg" src="/screenshots/1.jpg" alt="The GoBag+ app showing a go bag 75% complete, 41 of 54 items across nine supply categories" width="660" height="1435" fetchpriority="high" decoding="async">
+                            <img id="heroPhoneImg" src="/screenshots/1.jpg" alt="Die GoBag+ App zeigt einen zu 75 % gepackten Notfallrucksack, 41 von 54 Gegenständen in neun Kategorien" data-i18n-attr="alt:hero_img_alt" width="660" height="1435" fetchpriority="high" decoding="async">
                         </picture>
                     </div>
                 </div>
@@ -1861,23 +1861,23 @@
             </div>
         </div>
         <div class="steps-nav">
-            <button class="steps-btn" id="stepsPrev" aria-label="Previous">&#8249;</button>
-            <!-- The aria-labels below are an English floor so the dots are never
-                 nameless in the raw HTML. On load the carousel replaces each one
-                 with that slide's own heading, which the build already
-                 translated — so the names localise without needing seven new
-                 keys per language. Keep literal tags out of this comment: the
-                 build balances tags by scanning raw text. -->
+            <button class="steps-btn" id="stepsPrev" aria-label="Zurück" data-i18n-attr="aria-label:nav_prev">&#8249;</button>
+            <!-- Each dot is named after the slide it goes to, reusing that
+                 slide's own heading key rather than seven new strings per
+                 language. The English values below are what the source page
+                 ships; the build rewrites them per language. Keep literal tags
+                 out of this comment: the build balances tags by scanning raw
+                 text. -->
             <div class="steps-dots" id="stepsDots">
-                <button class="step-dot active" data-i="0" aria-label="Step 1"></button>
-                <button class="step-dot" data-i="1" aria-label="Step 2"></button>
-                <button class="step-dot" data-i="2" aria-label="Step 3"></button>
-                <button class="step-dot" data-i="3" aria-label="Step 4"></button>
-                <button class="step-dot" data-i="4" aria-label="Step 5"></button>
-                <button class="step-dot" data-i="5" aria-label="Step 6"></button>
-                <button class="step-dot" data-i="6" aria-label="Step 7"></button>
+                <button class="step-dot active" data-i="0" aria-label="Verfolge deine Vorräte" data-i18n-attr="aria-label:step1_h"></button>
+                <button class="step-dot" data-i="1" aria-label="Auf allen Geräten synchron" data-i18n-attr="aria-label:step2_h"></button>
+                <button class="step-dot" data-i="2" aria-label="Notfallkontakte hinzufügen" data-i18n-attr="aria-label:step3_h"></button>
+                <button class="step-dot" data-i="3" aria-label="Wichtige Dokumente sichern" data-i18n-attr="aria-label:step4_h"></button>
+                <button class="step-dot" data-i="4" aria-label="Auf deinen Haushalt zugeschnitten" data-i18n-attr="aria-label:step5_h"></button>
+                <button class="step-dot" data-i="5" aria-label="Bereitschaft auf einen Blick" data-i18n-attr="aria-label:step6_h"></button>
+                <button class="step-dot" data-i="6" aria-label="Alles an einem Ort" data-i18n-attr="aria-label:step7_h"></button>
             </div>
-            <button class="steps-btn" id="stepsNext" aria-label="Next">&#8250;</button>
+            <button class="steps-btn" id="stepsNext" aria-label="Weiter" data-i18n-attr="aria-label:nav_next">&#8250;</button>
         </div>
     </div>
 </section>
@@ -2170,7 +2170,7 @@
 </footer>
 
 <!-- COOKIE CONSENT -->
-<div id="cookieConsent" class="cookie-consent" role="dialog" aria-live="polite" aria-label="Cookie consent">
+<div id="cookieConsent" class="cookie-consent" role="dialog" aria-live="polite" aria-label="Cookie-Einwilligung" data-i18n-attr="aria-label:cookie_title">
     <p data-i18n="cookie_text">Wir verwenden Analyse-Cookies, um die Nutzung der Website zu verstehen. Du entscheidest.</p>
     <div class="cookie-actions">
         <a href="/privacy/" class="cookie-link" data-i18n="footer_privacy">Datenschutzrichtlinie</a>
@@ -2398,13 +2398,6 @@ applyRegionalPricing(document.documentElement.lang);
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let paused = false;
 
-  /* Each dot borrows its slide's heading, which the build already translated.
-     This replaces the English "Step N" floor sitting in the HTML. */
-  dots.forEach((d, i) => {
-    const h = slides[i] && slides[i].querySelector('h3');
-    const label = h && h.textContent.trim();
-    if (label) d.setAttribute('aria-label', label);
-  });
 
   // Per-position config (FinWall style): dx=offset, sc=scale, op=opacity, zi=z-index
   const CONFIG = [

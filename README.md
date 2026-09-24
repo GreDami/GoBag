@@ -22,10 +22,27 @@ directories are generated and overwritten on every build — never edit them.
 2. Edit the matching key for the other six in `i18n/translations.json`.
    Elements are paired to keys by their `data-i18n` / `data-i18n-html`
    attribute; `data-i18n-html` values may contain markup, `data-i18n` may not.
+   A bare `&` in a `data-i18n-html` value ships straight into the page, so
+   write `&amp;`.
 3. Titles, meta descriptions and keywords live under each language's `seo`
    block in the same file. Keep titles under ~60 characters and descriptions
    between 120 and 160 so Google does not truncate them.
 4. Run the build and commit everything it touched.
+
+Attributes are translated too, through `data-i18n-attr`:
+
+```html
+<button aria-label="Next" data-i18n-attr="aria-label:nav_next">
+<img alt="…" data-i18n-attr="alt:hero_img_alt">
+```
+
+It takes `attribute:key` pairs separated by spaces, and an element may carry
+`data-i18n` and `data-i18n-attr` at once. The attribute has to already exist on
+the element — the build refuses rather than inventing one, so a typo cannot
+silently ship an element with no accessible name. **The value written in
+`index.html` is the English**, exactly as element content is; the build only
+rewrites the other six. Proper nouns are left alone on purpose: the footer's
+`aria-label="Instagram"` carries no `data-i18n-attr`.
 
 ```sh
 npm run build
@@ -60,6 +77,6 @@ keeps weight 900 *and* covers Cyrillic.
 ## Adding a language
 
 Add it to `LANGS`, `LANG_CODES` and `LANG_LABELS` in `tools/build-i18n.mjs`,
-add a full block (`seo` + all 106 strings) to `i18n/translations.json`, then
+add a full block (`seo` + all 112 strings) to `i18n/translations.json`, then
 build. The build fails loudly on any missing string rather than shipping a
 half-translated page.

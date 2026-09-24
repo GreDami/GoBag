@@ -85,6 +85,50 @@ function translateBody(html, strings, lang) {
   return { html: out, count: n };
 }
 
+/* ── replace named attributes on every [data-i18n-attr] element ───────────────
+
+   data-i18n-attr="aria-label:nav_next" rewrites that element's aria-label with
+   the translated string; several pairs are separated by spaces. Content and
+   attributes are independent, so an element may carry data-i18n and
+   data-i18n-attr at once.
+
+   This exists because everything a screen reader is handed used to be English
+   in all seven builds — a Russian visitor tabbing the carousel heard "Previous"
+   and "Next". The content pass above cannot reach it: an attribute is not an
+   element's content, and the elements concerned are icon-only, so there is no
+   content to translate in the first place.
+
+   The tag-level regex below does NOT collide with the content pass: its
+   `data-i18n(-html)?="` requires the attribute name to end right there, and
+   data-i18n-attr continues with "-attr". */
+
+const ATTR_SPEC = /<([a-zA-Z][\w-]*)\b((?:[^>"]|"[^"]*")*?\bdata-i18n-attr="([^"]+)"(?:[^>"]|"[^"]*")*?)>/g;
+
+function translateAttrs(html, strings, lang) {
+  let n = 0;
+  const out = html.replace(ATTR_SPEC, (full, tag, attrs, spec) => {
+    let next = attrs;
+    for (const pair of spec.trim().split(/\s+/)) {
+      const at = pair.indexOf(':');
+      if (at < 1) throw new Error(`[${lang}] malformed data-i18n-attr "${pair}" on <${tag}>`);
+      const name = pair.slice(0, at);
+      const key = pair.slice(at + 1);
+      const value = strings[key];
+      if (value === undefined) throw new Error(`[${lang}] missing string: ${key}`);
+      /* Anchored on preceding whitespace so translating "title" cannot land on
+         a "data-title" sitting next to it. */
+      const target = new RegExp(`(\\s)${name.replace(/[-[\]{}()*+?.,\\^$|#]/g, '\\$&')}="[^"]*"`);
+      if (!target.test(next)) {
+        throw new Error(`[${lang}] <${tag}> has no ${name}= to translate (key ${key})`);
+      }
+      next = next.replace(target, `$1${name}="${attr(value)}"`);
+      n++;
+    }
+    return `<${tag}${next}>`;
+  });
+  return { html: out, count: n };
+}
+
 /* Index of the closing tag that balances an element opened just before `from`. */
 function findClose(html, tag, from) {
   const scan = new RegExp(`<(/?)${tag}\\b([^>]*)>`, 'gi');
@@ -288,6 +332,9 @@ ${jsonld(faq)}
 /* ── language switcher ────────────────────────────────────────────────────── */
 
 function renderSwitcher(lang) {
+  /* Generated markup, so the label is translated here rather than through
+     data-i18n-attr — the whole region is overwritten on every build. */
+  const label = tr[lang].strings.nav_language;
   const options = LANGS.map((l) => {
     const active = l === lang;
     return `                <a class="lang-option${active ? ' active' : ''}" href="${pathFor(l)}"`
@@ -296,7 +343,7 @@ function renderSwitcher(lang) {
   }).join('\n');
 
   return `        <div class="lang-switcher" id="langSwitcher">
-            <button class="lang-trigger" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false" aria-label="Language">
+            <button class="lang-trigger" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false" aria-label="${attr(label)}">
                 <span id="currentLangCode">${LANG_CODES[lang]}</span>
                 <span class="arrow" aria-hidden="true">▼</span>
             </button>
@@ -340,7 +387,9 @@ for (const lang of LANGS) {
   if (lang !== 'en') {
     const r = translateBody(html, tr[lang].strings, lang);
     html = r.html;
-    report.push(`${lang}: ${r.count} elements`);
+    const a = translateAttrs(html, tr[lang].strings, lang);
+    html = a.html;
+    report.push(`${lang}: ${r.count} elements, ${a.count} attributes`);
   } else {
     report.push('en: source (not translated)');
   }
