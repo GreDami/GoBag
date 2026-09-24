@@ -23,6 +23,22 @@ const LANG_LABELS = {
   it: 'Italiano', pt: 'Português', ru: 'Русский',
 };
 
+/* Chrome, not page copy — the same reason LANG_LABELS lives here rather than in
+   translations.json. Shown on the root page only, in the visitor's own
+   language, offering the translation instead of forcing it on them. */
+const LANG_OFFER = {
+  fr: 'Voir cette page en français',
+  de: 'Diese Seite auf Deutsch ansehen',
+  es: 'Ver esta página en español',
+  it: 'Vedi questa pagina in italiano',
+  pt: 'Ver esta página em português',
+  ru: 'Открыть эту страницу на русском',
+};
+const LANG_DISMISS = {
+  fr: 'Fermer', de: 'Schließen', es: 'Cerrar',
+  it: 'Chiudi', pt: 'Fechar', ru: 'Закрыть',
+};
+
 const tr = JSON.parse(fs.readFileSync('i18n/translations.json', 'utf8'));
 /* Self-hosted @font-face rules, inlined into every page so no request leaves
    the origin and none of them costs a round trip. Refresh with
@@ -127,7 +143,11 @@ function renderHead(lang) {
     description: seo.ogDescription,
     keywords: seo.keywords,
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', ratingCount: '3' },
+    /* No aggregateRating. It was a hand-written 5.0 from 3 ratings, which meant
+       a figure that had to be re-typed here every time the App Store moved, and
+       Google requires the markup to match what the page visibly says. Three
+       ratings is also too thin a base to publish as an average. The two verbatim
+       reviews stay; only the aggregate claim is gone. */
     author: { '@type': 'Organization', name: 'GreDami', url: 'https://gredami.com' },
     sameAs: [
       'https://apps.apple.com/app/id6760232332',
@@ -148,30 +168,57 @@ function renderHead(lang) {
     publisher: { '@type': 'Organization', name: 'GreDami', url: 'https://gredami.com' },
   };
 
-  /* Root only: a first-time visitor with no stored choice is sent to their own
-     language. Language pages never redirect, so this cannot loop, and Googlebot
-     (Accept-Language: en) stays on the English root and indexes it.
+  /* Root only: a visitor whose browser asks for one of the other six is offered
+     that page. It used to call location.replace() and move them, which meant
+     someone who chose an English result in Google could land on /fr/ instead —
+     a bait-and-switch against the snippet they clicked, and a redirect Google
+     sees on the canonical URL. Offering costs nothing and keeps the choice with
+     the visitor; the dismissal is remembered, so it is asked once.
 
-     Emitted at the very top of <head> so the decision is made before the rest
-     of the head is parsed. It does not save the font request: Chrome's preload
-     scanner reads the whole head buffer before any inline script runs, so a
-     redirected visitor always opens — and then aborts — one request to
-     fonts.googleapis.com. Only a server-side redirect could avoid that, and
-     GitHub Pages has none. The aborted request is harmless. */
-  const redirect = lang !== 'en' ? '' : `    <script>
-    (function() {
+     Deferred to DOMContentLoaded because it appends an element. Anyone who has
+     already used the switcher has a stored choice: picking English stores 'en',
+     which is absent from OFFER, so they are never asked again. */
+  const offer = lang !== 'en' ? '' : `    <script>
+    (function () {
       var p = location.pathname;
       if (p !== '/' && p !== '/index.html') return;
-      var supported = ${JSON.stringify(LANGS.filter((l) => l !== 'en'))};
-      var pick;
-      try { pick = localStorage.getItem('gobag_lang'); } catch (e) {}
-      if (!pick) pick = (navigator.language || '').slice(0, 2).toLowerCase();
-      if (supported.indexOf(pick) !== -1) location.replace('/' + pick + '/');
+      var OFFER = ${JSON.stringify(LANG_OFFER)};
+      var DISMISS = ${JSON.stringify(LANG_DISMISS)};
+      var read = function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } };
+      var write = function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} };
+      if (read('gobag_lang_offer') === 'dismissed') return;
+      var pick = read('gobag_lang') || (navigator.language || '').slice(0, 2).toLowerCase();
+      var text = OFFER[pick];
+      if (!text) return;
+
+      var build = function () {
+        var box = document.createElement('div');
+        box.className = 'lang-offer';
+        var a = document.createElement('a');
+        a.href = '/' + pick + '/';
+        a.setAttribute('hreflang', pick);
+        a.textContent = text;
+        a.addEventListener('click', function () { write('gobag_lang', pick); });
+        var x = document.createElement('button');
+        x.type = 'button';
+        x.className = 'lang-offer-close';
+        x.setAttribute('aria-label', DISMISS[pick] || 'Close');
+        x.textContent = '\\u00d7';
+        x.addEventListener('click', function () {
+          write('gobag_lang_offer', 'dismissed');
+          box.remove();
+        });
+        box.appendChild(a);
+        box.appendChild(x);
+        document.body.appendChild(box);
+      };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+      else build();
     })();
     </script>
 `;
 
-  return `${redirect}    <title>${esc(seo.title)}</title>
+  return `${offer}    <title>${esc(seo.title)}</title>
     <meta name="description" content="${attr(seo.description)}">
     <meta name="keywords" content="${attr(seo.keywords)}">
     <link rel="canonical" href="${self}">
@@ -183,6 +230,11 @@ ${alternates}
     <meta name="theme-color" content="#f6f1e6">
     <meta name="robots" content="index, follow">
     <meta name="author" content="GreDami">
+
+    <!-- Safari on iOS turns this into a native App Store banner above the page,
+         with the real localised price and an Open/View button. It is the one
+         install path that needs no tap into a new tab. -->
+    <meta name="apple-itunes-app" content="app-id=6760232332">
 
     <!-- Open Graph -->
     <meta property="og:title" content="${attr(seo.title)}">

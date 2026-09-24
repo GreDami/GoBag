@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page not found — GoBag+</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#f6f1e6">
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <!-- GitHub Pages serves this one file for every missing path, including
+         /fr/typo, so it stays hand-written and standalone: no build step, no
+         translated copies, and every link is absolute. The @font-face rules are
+         linked rather than inlined — a page nobody is meant to linger on does
+         not need the extra 8KB in its own body. -->
+    <link rel="stylesheet" href="/fonts/fonts.css">
+    <style>
+        :root {
+            --blue: #3458c7;
+            --green: #2f8a52;
+            --navy: #16213d;
+            --cream: #f6f1e6;
+            --card: #fffdf8;
+            --text: #16213d;
+            --muted: rgba(22,33,61,0.62);
+            --display: 'Alumni Sans', 'Inter', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background:
+                radial-gradient(ellipse 70% 50% at 12% 0%, rgba(52,88,199,0.10) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 45% at 88% 28%, rgba(210,96,31,0.07) 0%, transparent 55%),
+                radial-gradient(ellipse 55% 40% at 50% 75%, rgba(47,138,82,0.07) 0%, transparent 55%),
+                var(--cream);
+            background-attachment: fixed;
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 16px;
+        }
+        main { max-width: 520px; text-align: center; }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0;                    /* "GoBag" and "+" are separate flex items;
+                                          a shared gap would split the wordmark */
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: -0.3px;
+            color: var(--text);
+            text-decoration: none;
+            margin-bottom: 36px;
+        }
+        .logo img { width: 26px; height: 26px; border-radius: 7px; margin-right: 9px; }
+        .logo span { color: var(--green); }
+        .code {
+            font-family: var(--display);
+            font-weight: 900;
+            font-size: clamp(5rem, 22vw, 9rem);
+            line-height: 0.85;
+            letter-spacing: -2px;
+            color: var(--navy);
+        }
+        h1 {
+            font-size: clamp(1.25rem, 4vw, 1.6rem);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin: 18px 0 10px;
+        }
+        p { color: var(--muted); font-weight: 300; font-size: 0.95rem; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 30px;
+            padding: 13px 26px;
+            border-radius: 999px;
+            background: var(--green);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(47,138,82,0.26);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(47,138,82,0.32); }
+        .langs {
+            margin-top: 34px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(22,33,61,0.10);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 18px;
+            justify-content: center;
+        }
+        .langs a { color: var(--muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; }
+        .langs a:hover { color: var(--blue); }
+        a:focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .btn { transition: none; }
+            .btn:hover { transform: none; }
+        }
+    </style>
+</head>
+<body>
+<main>
+    <a class="logo" href="/"><img src="/favicon.png" alt="">GoBag<span>+</span></a>
+
+    <div class="code" aria-hidden="true">404</div>
+    <h1>This page isn't in the bag</h1>
+    <p>The link may be out of date, or the address slightly off. Everything is still one tap away from the home page.</p>
+
+    <a class="btn" href="/">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Back to GoBag+
+    </a>
+
+    <nav class="langs" aria-label="Languages">
+        <a href="/" hreflang="en">English</a>
+        <a href="/fr/" hreflang="fr">Français</a>
+        <a href="/de/" hreflang="de">Deutsch</a>
+        <a href="/es/" hreflang="es">Español</a>
+        <a href="/it/" hreflang="it">Italiano</a>
+        <a href="/pt/" hreflang="pt">Português</a>
+        <a href="/ru/" hreflang="ru">Русский</a>
+    </nav>
+</main>
+</body>
+</html>

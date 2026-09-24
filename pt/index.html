@@ -25,6 +25,11 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="GreDami">
 
+    <!-- Safari on iOS turns this into a native App Store banner above the page,
+         with the real localised price and an Open/View button. It is the one
+         install path that needs no tap into a new tab. -->
+    <meta name="apple-itunes-app" content="app-id=6760232332">
+
     <!-- Open Graph -->
     <meta property="og:title" content="GoBag+ — Mochila de emergência e kit de sobrevivência">
     <meta property="og:description" content="Prepare a sua mochila de emergência e kit de sobrevivência, controle as reservas de casa e proteja documentos importantes — tudo numa app para iPhone.">
@@ -77,11 +82,6 @@
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "ratingCount": "3"
   },
   "author": {
     "@type": "Organization",
@@ -1129,21 +1129,8 @@
         }
         .review-name { font-size: 0.85rem; font-weight: 700; }
         .review-meta { font-size: 0.74rem; color: var(--muted); }
-        /* Overall App Store rating + real review cards */
-        .rating-summary {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            margin: 0 0 40px;
-            padding: 9px 20px;
-            border-radius: 999px;
-            background: var(--card);
-            border: 1px solid rgba(22,33,61,0.08);
-            box-shadow: 0 4px 18px rgba(22,33,61,0.06);
-        }
-        .rating-summary .rating-stars { color: var(--orange); letter-spacing: 2px; font-size: 0.95rem; }
-        .rating-summary .rating-score { font-size: 1.05rem; font-weight: 800; }
-        .rating-summary .rating-meta { font-size: 0.82rem; color: var(--muted); }
+        /* Real review cards. The .rating-summary pill that sat above them is
+           gone along with the aggregate 5.0 / 3 ratings claim. */
         .reviews-grid.two-up { grid-template-columns: repeat(2, 1fr); max-width: 720px; }
         .review-title { font-size: 1rem; font-weight: 800; letter-spacing: -0.2px; margin: 0 0 10px; }
         @media (max-width: 800px) { .reviews-grid.two-up { grid-template-columns: 1fr; max-width: 380px; } }
@@ -1195,6 +1182,9 @@
         .pricing-name { font-size: 0.88rem; font-weight: 500; color: var(--muted); margin-bottom: 8px; }
         .pricing-price { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
         .pricing-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+        /* The "from" hedge is part of the figure, not a unit like "/year", so it
+           opts back out of the small muted treatment above. */
+        .pricing-price .price-from { font-size: inherit; font-weight: inherit; color: inherit; }
         .pricing-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 24px; letter-spacing: 0.1px; }
         .pricing-features { list-style: none; }
         .pricing-features li {
@@ -1475,6 +1465,48 @@
         .faq-item[open] .faq-answer { animation: faqAnswerIn 0.25s ease-out both; }
         @keyframes faqAnswerIn {
             from { opacity: 0; transform: translateY(-6px); }
+        }
+
+        /* LANGUAGE OFFER — built by the script in <head>, root page only.
+           Anchored under the bar rather than above the cookie banner: that
+           banner is 82px tall on a desktop but 193px at 420px, and taller again
+           in German and Russian, so any offset from the bottom is a guess that
+           breaks in some language at some width. The top edge only has to clear
+           the bar, which is 83px at its tallest and shrinks from there.
+           Deliberately outside the i18n:cookiecss region below: that region is
+           copied verbatim into the privacy page, which never shows this. */
+        .lang-offer {
+            position: fixed;
+            left: 20px;
+            top: 92px;
+            z-index: 199;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 10px 8px 16px;
+            border-radius: 999px;
+            background: var(--card);
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 6px 22px rgba(22,33,61,0.10);
+            font-size: 0.8rem;
+        }
+        .lang-offer a { color: var(--blue); font-weight: 600; text-decoration: none; }
+        .lang-offer a:hover { text-decoration: underline; }
+        .lang-offer-close {
+            width: 22px; height: 22px;
+            flex-shrink: 0;
+            border: none;
+            border-radius: 50%;
+            background: rgba(22,33,61,0.06);
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .lang-offer-close:hover { background: rgba(22,33,61,0.12); color: var(--text); }
+        @media (max-width: 560px) {
+            .lang-offer { left: 12px; right: 12px; top: 84px; justify-content: space-between; }
         }
 
         /* COOKIE CONSENT */
@@ -1899,12 +1931,12 @@
         <div class="section-label reveal" data-i18n="reviews_label">Avaliações</div>
         <h2 class="section-title reveal d1" data-i18n="reviews_title">Adorada por quem se prepara com antecedência</h2>
         <p class="section-sub reveal d2" style="margin:0 auto 48px" data-i18n="reviews_sub">Feedback real da comunidade GoBag+.</p>
-        <!-- Real App Store reviews (verbatim). Add a .review-card block per new review. -->
-        <div class="rating-summary reveal d2">
-            <span class="rating-stars">★★★★★</span>
-            <span class="rating-score">5.0</span>
-            <span class="rating-meta">· 3 <span data-i18n="rating_ratings">avaliações na App Store</span></span>
-        </div>
+        <!-- Real App Store reviews (verbatim). Add a .review-card block per new review.
+             There is deliberately no aggregate score here: a 5.0 averaged over
+             three ratings had to be re-typed by hand whenever the store moved,
+             and the JSON-LD aggregateRating that mirrored it has gone with it.
+             Each card still shows its own stars, which is a fact about that
+             review rather than a claim about the app's standing. -->
         <div class="reviews-grid two-up">
             <div class="review-card reveal d1">
                 <div class="review-stars">★★★★★</div>
@@ -1955,7 +1987,7 @@
             <div class="pricing-card featured reveal d2">
                 <div class="pricing-badge" data-i18n="pricing_badge_popular">Mais popular</div>
                 <div class="pricing-name" data-i18n="yearly_name">Premium Anual</div>
-                <div class="pricing-price" data-i18n-html="yearly_price">12,99€ <span>/ano</span></div>
+                <div class="pricing-price" data-i18n-html="yearly_price"><span class="price-from">a partir de </span>12,99€ <span>/ano</span></div>
                 <div class="pricing-desc" data-i18n="yearly_desc">≈ 1,08€/mês · 1 mês de teste grátis</div>
                 <ul class="pricing-features">
                     <li data-i18n="yearly_f1">Mochilas ilimitadas</li>
@@ -1970,7 +2002,7 @@
             <div class="pricing-card reveal d3">
                 <div class="pricing-badge subtle" data-i18n="pricing_badge">Melhor oferta</div>
                 <div class="pricing-name" data-i18n="lifetime_name">Vitalício</div>
-                <div class="pricing-price" data-i18n-html="lifetime_price">39,99€ <span></span></div>
+                <div class="pricing-price" data-i18n-html="lifetime_price"><span class="price-from">a partir de </span>39,99€ <span></span></div>
                 <div class="pricing-desc" data-i18n="lifetime_desc">Pagamento único · Sem subscrição</div>
                 <ul class="pricing-features">
                     <li data-i18n="lifetime_f1">Funcionalidades Premium</li>
@@ -2149,23 +2181,39 @@ document.addEventListener('keydown', function (e) {
    device. */
 const US_TIMEZONE = /^(America\/(New_York|Detroit|Chicago|Denver|Boise|Phoenix|Los_Angeles|Anchorage|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak|Menominee|Indiana\/|Kentucky\/|North_Dakota\/)|Pacific\/Honolulu)/;
 
-function inUnitedStates() {
-  try { return US_TIMEZONE.test(Intl.DateTimeFormat().resolvedOptions().timeZone || ''); }
-  catch (e) { return false; }
+/* Territories the App Store bills in euro, so the € figure on the page is the
+   figure it charges. Deliberately conservative: anything uncertain is left out,
+   because being absent from this list only keeps the "from" hedge, while a wrong
+   entry prints a price the store will not honour. Bulgaria is the live example —
+   omitted rather than guessed at. */
+const EURO_TIMEZONE = /^(Europe\/(Amsterdam|Andorra|Athens|Berlin|Bratislava|Brussels|Dublin|Helsinki|Lisbon|Ljubljana|Luxembourg|Madrid|Malta|Mariehamn|Monaco|Nicosia|Paris|Podgorica|Riga|Rome|San_Marino|Tallinn|Vatican|Vienna|Vilnius|Zagreb)|Atlantic\/(Azores|Canary|Madeira))$/;
+
+function timeZone() {
+  try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }
+  catch (e) { return ''; }
 }
 
-// USD pricing shown on the English / fallback path. US sees the exact price;
-// every other non-euro region sees "from $X" so we never promise a figure
-// Apple won't honor. Euro languages keep their € prices from T untouched.
+/* Is the price printed on this page the one the visitor will actually be
+   charged? English quotes USD, so only the US; the euro languages quote €, so
+   only the euro area. Russian never qualifies — the store bills those visitors
+   in roubles where it serves them at all, so the € figure is a reference and
+   keeps its hedge for everyone.
+
+   The hedge itself ships inside the HTML as <span class="price-from">, which is
+   why nothing here knows a single price: the exact figure lives in
+   translations.json only, and being in-region just drops the qualifier. That
+   also makes the safe reading — the hedged one — what a visitor without JS
+   sees. */
+function priceIsExact(lang) {
+  const tz = timeZone();
+  if (lang === 'en') return US_TIMEZONE.test(tz);
+  if (lang === 'ru') return false;
+  return EURO_TIMEZONE.test(tz);
+}
+
 function applyRegionalPricing(lang) {
-  if (lang !== 'en') return;
-  const pre = inUnitedStates() ? '' : 'from ';
-  const y  = document.querySelector('[data-i18n-html="yearly_price"]');
-  const l  = document.querySelector('[data-i18n-html="lifetime_price"]');
-  const yd = document.querySelector('[data-i18n="yearly_desc"]');
-  if (y)  y.innerHTML  = pre + '$11.99 <span>/year</span>';
-  if (l)  l.innerHTML  = pre + '$34.99 <span></span>';
-  if (yd) yd.textContent = '≈ $1.00/month · 1 month free trial';
+  if (!priceIsExact(lang)) return;
+  document.querySelectorAll('.pricing-price .price-from').forEach((el) => el.remove());
 }
 
 /* ── headline character roll ───────────────────────────────────────────────
@@ -2257,9 +2305,11 @@ function rememberLang(lang) {
 
 buildTextRoll(document.querySelector('.hero h1'));
 
-/* The English page quotes USD and picks between the exact US price and
-   "from $X". Every other language ships its € prices in the HTML. */
-if (document.documentElement.lang === 'en') applyRegionalPricing('en');
+/* Runs on every language now, not just English: the euro pages were quoting an
+   exact € figure to Swiss and Brazilian visitors, who are billed in francs and
+   reais. Each page ships hedged and drops the hedge only in its own currency
+   area. */
+applyRegionalPricing(document.documentElement.lang);
 
 // ====== STEPS CAROUSEL ======
 (function(){
