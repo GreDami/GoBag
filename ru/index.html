@@ -6,7 +6,7 @@
     <!-- Google Analytics is consent-gated: it only loads after the visitor
          accepts in the cookie banner. See loadGA()/setConsent() near the end. -->
     <!-- i18n:head:start -->
-    <title>GoBag+ — Тревожный чемоданчик и домашние запасы</title>
+    <title>Тревожный чемоданчик и домашние запасы</title>
     <meta name="description" content="Соберите тревожный чемоданчик и следите за домашними запасами с GoBag+: напоминания о сроках годности, контакты SOS и хранилище документов.">
     <meta name="keywords" content="тревожный чемоданчик, тревожный рюкзак, экстренный запас, аварийный набор, набор на 72 часа, запасы на случай ЧС, подготовка к чрезвычайным ситуациям">
     <link rel="canonical" href="https://gobag.gredami.com/ru/">
@@ -25,13 +25,27 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="GreDami">
 
+    <!-- The hero headline is the LCP element and it is set in Alumni Sans 900.
+         The @font-face rules are inlined below, but the browser only fetches a
+         face once it has matched an element to it, which is a layout pass too
+         late: the headline paints in Inter and swaps. Preloading the one subset
+         this page can actually use removes that swap. Only the two faces above
+         the fold are listed — preloading more would compete with the hero
+         image for the same early bandwidth. The crossorigin attribute is
+         required even same-origin, or the fetch is made twice. No backticks in
+         this comment: it lives inside a JS template literal. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="/fonts/alumni-sans-700-900-cyrillic.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="/fonts/inter-300-900-cyrillic.woff2">
+
     <!-- Safari on iOS turns this into a native App Store banner above the page,
          with the real localised price and an Open/View button. It is the one
          install path that needs no tap into a new tab. -->
     <meta name="apple-itunes-app" content="app-id=6760232332">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="GoBag+ — Тревожный чемоданчик и домашние запасы">
+    <meta property="og:title" content="Тревожный чемоданчик и домашние запасы">
     <meta property="og:description" content="Соберите тревожный чемоданчик, ведите учёт домашних запасов и защитите важные документы — всё в одном приложении для iPhone.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gobag.gredami.com/ru/">
@@ -48,11 +62,11 @@
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="GoBag+ — Тревожный чемоданчик и домашние запасы">
+    <meta property="og:image:alt" content="Тревожный чемоданчик и домашние запасы">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GoBag+ — Тревожный чемоданчик и домашние запасы">
+    <meta name="twitter:title" content="Тревожный чемоданчик и домашние запасы">
     <meta name="twitter:description" content="Соберите тревожный чемоданчик и следите за домашними запасами с GoBag+: напоминания о сроках годности, контакты SOS и хранилище документов.">
     <meta name="twitter:image" content="https://gobag.gredami.com/screenshots/og.jpg">
     <meta name="twitter:site" content="@GreDamiStudio">
@@ -1281,6 +1295,27 @@
         p.hero-trial { animation: heroIn 0.7s cubic-bezier(0.16,1,0.3,1) 0.32s both; }
         .hero-visual { animation: heroIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
 
+        /* Off-screen until focused, then it lands over the bar. Not .sr-only:
+           that one stays 1px even when focused, which would hide the link at
+           the exact moment it is needed. */
+        .skip-link {
+            position: fixed;
+            top: 8px;
+            left: 8px;
+            z-index: 300;
+            transform: translateY(-160%);
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(47,138,82,0.3);
+            transition: transform 0.18s ease;
+        }
+        .skip-link:focus { transform: translateY(0); }
+
         /* Accessibility floor: visible keyboard focus, reduced motion respected */
         /* Reachable by assistive tech, invisible on screen. Used where the only
            visible content of a control is an icon. */
@@ -1590,10 +1625,14 @@
 </head>
 <body>
 
+<!-- First thing in the tab order: lets a keyboard or screen-reader visitor jump
+     the nav instead of walking six links and a language menu on every page. -->
+<a class="skip-link" href="#content" data-i18n="skip_link">Перейти к содержимому</a>
+
 <!-- NAV — extruded keycap menu. Labels carry data-i18n keys, so all seven
      language builds pick them up automatically. -->
 <nav id="siteNav">
-    <a href="#" class="nav-logo"><img src="/favicon.png" alt="">GoBag<span>+</span></a>
+    <a href="/" class="nav-logo"><img src="/favicon.png" alt="">GoBag<span>+</span></a>
 
     <ul class="nav-keys" id="navKeys">
         <li><a class="nav-key" href="#features">
@@ -1673,6 +1712,8 @@
     </aside>
 </div>
 
+<main id="content">
+
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content">
@@ -1691,7 +1732,10 @@
             <div class="hero-phone">
                 <div class="phone-mock">
                     <div class="phone-screen">
-                        <img id="heroPhoneImg" src="/screenshots/1.jpg" alt="GoBag+ App" width="660" height="1435" fetchpriority="high" decoding="async">
+                        <picture>
+                            <source srcset="/screenshots/1.webp" type="image/webp">
+                            <img id="heroPhoneImg" src="/screenshots/1.jpg" alt="The GoBag+ app showing a go bag 75% complete, 41 of 54 items across nine supply categories" width="660" height="1435" fetchpriority="high" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -1724,7 +1768,10 @@
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
-                        <img src="/screenshots/2.jpg" data-screenshot="2" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="/screenshots/2.webp" type="image/webp">
+                            <img src="/screenshots/2.jpg" data-screenshot="2" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -1735,7 +1782,10 @@
                 </div>
                 <div class="phone-mock phone-mock--island">
                     <div class="phone-screen">
-                        <img src="/screenshots/3.jpg" data-screenshot="3" alt="" width="660" height="1428" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="/screenshots/3.webp" type="image/webp">
+                            <img src="/screenshots/3.jpg" data-screenshot="3" alt="" width="660" height="1428" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -1746,7 +1796,10 @@
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
-                        <img src="/screenshots/4.jpg" data-screenshot="4" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="/screenshots/4.webp" type="image/webp">
+                            <img src="/screenshots/4.jpg" data-screenshot="4" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -1757,7 +1810,10 @@
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
-                        <img src="/screenshots/5.jpg" data-screenshot="5" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="/screenshots/5.webp" type="image/webp">
+                            <img src="/screenshots/5.jpg" data-screenshot="5" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -1768,7 +1824,10 @@
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
-                        <img src="/screenshots/6.jpg" data-screenshot="6" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="/screenshots/6.webp" type="image/webp">
+                            <img src="/screenshots/6.jpg" data-screenshot="6" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -1779,7 +1838,10 @@
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
-                        <img src="/screenshots/7.jpg" data-screenshot="7" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="/screenshots/7.webp" type="image/webp">
+                            <img src="/screenshots/7.jpg" data-screenshot="7" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -1790,7 +1852,10 @@
                 </div>
                 <div class="phone-mock">
                     <div class="phone-screen">
-                        <img src="/screenshots/8.jpg" data-screenshot="8" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="/screenshots/8.webp" type="image/webp">
+                            <img src="/screenshots/8.jpg" data-screenshot="8" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -2077,6 +2142,8 @@
         <span data-i18n="cta_btn">Загрузить в App Store</span>
     </a>
 </div>
+
+</main>
 
 <!-- FOOTER -->
 <footer>

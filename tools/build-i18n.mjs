@@ -231,6 +231,20 @@ ${alternates}
     <meta name="robots" content="index, follow">
     <meta name="author" content="GreDami">
 
+    <!-- The hero headline is the LCP element and it is set in Alumni Sans 900.
+         The @font-face rules are inlined below, but the browser only fetches a
+         face once it has matched an element to it, which is a layout pass too
+         late: the headline paints in Inter and swaps. Preloading the one subset
+         this page can actually use removes that swap. Only the two faces above
+         the fold are listed — preloading more would compete with the hero
+         image for the same early bandwidth. The crossorigin attribute is
+         required even same-origin, or the fetch is made twice. No backticks in
+         this comment: it lives inside a JS template literal. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="/fonts/alumni-sans-700-900-${lang === 'ru' ? 'cyrillic' : 'latin'}.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="/fonts/inter-300-900-${lang === 'ru' ? 'cyrillic' : 'latin'}.woff2">
+
     <!-- Safari on iOS turns this into a native App Store banner above the page,
          with the real localised price and an Open/View button. It is the one
          install path that needs no tap into a new tab. -->
@@ -349,14 +363,25 @@ for (const lang of LANGS) {
 /* lastmod is the date the source page was last committed, not the date of the
    build. Stamping today on every run tells Google the page changed when it did
    not, which teaches it to distrust the field — and it made every build dirty
-   the sitemap for no reason. */
+   the sitemap for no reason.
+
+   The uncommitted check is what keeps it honest. Reading the last commit date
+   alone made the field permanently one commit stale: the build runs before the
+   commit that carries its own output, so it stamped the date of the *previous*
+   change every time. If the source is dirty, the page is changing in this very
+   build and the commit about to carry it will be dated today. */
+const SOURCES = 'index.html i18n/translations.json';
+
 function lastModified() {
+  const today = new Date().toISOString().slice(0, 10);
   try {
-    const d = execSync('git log -1 --format=%cs -- index.html i18n/translations.json',
-      { encoding: 'utf8' }).trim();
+    if (execSync(`git status --porcelain -- ${SOURCES}`, { encoding: 'utf8' }).trim()) {
+      return today;
+    }
+    const d = execSync(`git log -1 --format=%cs -- ${SOURCES}`, { encoding: 'utf8' }).trim();
     if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
   } catch (e) { /* not a git checkout */ }
-  return new Date().toISOString().slice(0, 10);
+  return today;
 }
 const today = lastModified();
 const alt = LANGS

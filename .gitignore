@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node — there are no dependencies today, but `npm install` would create these
+node_modules/
+npm-debug.log*

@@ -3,7 +3,7 @@
     "seo": {
       "locale": "en_US",
       "hrefl": "en",
-      "title": "GoBag+ — Go Bag & Emergency Prep Kit App for iPhone",
+      "title": "Go Bag & Emergency Prep Kit App for iPhone",
       "description": "Build your go bag and emergency kit with GoBag+: track supplies with expiry alerts, store SOS contacts, and secure vital documents. Free on iPhone.",
       "ogDescription": "Build your go bag (bug-out bag) and prep kit, track home supplies, store emergency contacts, and secure vital documents — all in one app for iPhone.",
       "keywords": "go bag, bug-out bag, prep kit, prepper kit, emergency kit, 72-hour kit, survival kit, emergency preparedness, disaster kit app, GoBag"
@@ -113,14 +113,15 @@
       "footer_copy": "© 2026 GreDami. All rights reserved.",
       "cookie_text": "We use analytics cookies to understand how the site is used. You decide.",
       "cookie_accept": "Accept",
-      "cookie_decline": "Decline"
+      "cookie_decline": "Decline",
+      "skip_link": "Skip to content"
     }
   },
   "fr": {
     "seo": {
       "locale": "fr_FR",
       "hrefl": "fr",
-      "title": "GoBag+ — Sac d'évacuation et kit d'urgence pour iPhone",
+      "title": "Sac d'évacuation et kit d'urgence pour iPhone",
       "description": "Préparez votre sac d'évacuation et votre kit d'urgence avec GoBag+ : suivi des stocks, alertes de péremption, contacts SOS et coffre à documents.",
       "ogDescription": "Constituez votre sac d'évacuation et votre kit de survie, suivez vos réserves à la maison et protégez vos documents essentiels — dans une seule app iPhone.",
       "keywords": "sac d'évacuation, kit d'urgence, sac de survie, kit 72 heures, kit de survie, préparation aux catastrophes, réserve alimentaire, trousse d'urgence"
@@ -230,14 +231,15 @@
       "footer_copy": "© 2026 GreDami. Tous droits réservés.",
       "cookie_text": "Nous utilisons des cookies d'analyse pour comprendre l'usage du site. À vous de choisir.",
       "cookie_accept": "Accepter",
-      "cookie_decline": "Refuser"
+      "cookie_decline": "Refuser",
+      "skip_link": "Aller au contenu"
     }
   },
   "de": {
     "seo": {
       "locale": "de_DE",
       "hrefl": "de",
-      "title": "GoBag+ — Notfallrucksack & Notvorrat App für iPhone",
+      "title": "Notfallrucksack & Notvorrat App für iPhone",
       "description": "Packe deinen Notfallrucksack und verwalte deinen Notvorrat mit GoBag+: Ablaufwarnungen, Bestandsübersicht, SOS-Kontakte und Dokumententresor.",
       "ogDescription": "Stelle deinen Notfallrucksack zusammen, verfolge deinen Heimvorrat und sichere wichtige Dokumente — alles in einer App für iPhone.",
       "keywords": "Notfallrucksack, Fluchtrucksack, Notvorrat, Notfallausrüstung, Krisenvorsorge, Notgepäck, Bug-out-Bag, Katastrophenschutz, Notfallvorsorge App"
@@ -347,14 +349,15 @@
       "footer_copy": "© 2026 GreDami. Alle Rechte vorbehalten.",
       "cookie_text": "Wir verwenden Analyse-Cookies, um die Nutzung der Website zu verstehen. Du entscheidest.",
       "cookie_accept": "Akzeptieren",
-      "cookie_decline": "Ablehnen"
+      "cookie_decline": "Ablehnen",
+      "skip_link": "Zum Inhalt springen"
     }
   },
   "es": {
     "seo": {
       "locale": "es_ES",
       "hrefl": "es",
-      "title": "GoBag+ — Mochila de emergencia y kit de supervivencia",
+      "title": "Mochila de emergencia y kit de supervivencia",
       "description": "Prepara tu mochila de emergencia y tu reserva del hogar con GoBag+: alertas de caducidad, control de existencias, contactos SOS y bóveda de documentos.",
       "ogDescription": "Prepara tu mochila de emergencia y kit de supervivencia, controla tus suministros en casa y protege tus documentos vitales — todo en una app para iPhone.",
       "keywords": "mochila de emergencia, kit de emergencia, kit de supervivencia, mochila de evacuación, kit 72 horas, reserva de alimentos, preparación ante desastres"
@@ -464,14 +467,15 @@
       "footer_copy": "© 2026 GreDami. Todos los derechos reservados.",
       "cookie_text": "Usamos cookies de análisis para entender cómo se usa el sitio. Tú decides.",
       "cookie_accept": "Aceptar",
-      "cookie_decline": "Rechazar"
+      "cookie_decline": "Rechazar",
+      "skip_link": "Ir al contenido"
     }
   },
   "it": {
     "seo": {
       "locale": "it_IT",
       "hrefl": "it",
-      "title": "GoBag+ — Zaino di emergenza e kit di sopravvivenza",
+      "title": "Zaino di emergenza e kit di sopravvivenza",
       "description": "Prepara il tuo zaino di emergenza e le scorte di casa con GoBag+: avvisi di scadenza, controllo delle scorte, contatti SOS e cassaforte per documenti.",
       "ogDescription": "Prepara il tuo zaino di emergenza e il kit di sopravvivenza, monitora le scorte di casa e proteggi i documenti importanti — tutto in un'app per iPhone.",
       "keywords": "zaino di emergenza, kit di emergenza, kit di sopravvivenza, kit 72 ore, scorte di emergenza, preparazione alle emergenze, borsa di evacuazione"
@@ -581,14 +585,15 @@
       "footer_copy": "© 2026 GreDami. Tutti i diritti riservati.",
       "cookie_text": "Usiamo cookie di analisi per capire come viene usato il sito. Decidi tu.",
       "cookie_accept": "Accetta",
-      "cookie_decline": "Rifiuta"
+      "cookie_decline": "Rifiuta",
+      "skip_link": "Vai al contenuto"
     }
   },
   "pt": {
     "seo": {
       "locale": "pt_PT",
       "hrefl": "pt",
-      "title": "GoBag+ — Mochila de emergência e kit de sobrevivência",
+      "title": "Mochila de emergência e kit de sobrevivência",
       "description": "Prepare a sua mochila de emergência e as reservas de casa com GoBag+: alertas de validade, controlo de stock, contactos SOS e cofre de documentos.",
       "ogDescription": "Prepare a sua mochila de emergência e kit de sobrevivência, controle as reservas de casa e proteja documentos importantes — tudo numa app para iPhone.",
       "keywords": "mochila de emergência, kit de emergência, kit de sobrevivência, kit 72 horas, reserva de alimentos, preparação para desastres, mochila de evacuação"
@@ -698,14 +703,15 @@
       "footer_copy": "© 2026 GreDami. Todos os direitos reservados.",
       "cookie_text": "Usamos cookies de análise para perceber como o site é usado. Você decide.",
       "cookie_accept": "Aceitar",
-      "cookie_decline": "Recusar"
+      "cookie_decline": "Recusar",
+      "skip_link": "Ir para o conteúdo"
     }
   },
   "ru": {
     "seo": {
       "locale": "ru_RU",
       "hrefl": "ru",
-      "title": "GoBag+ — Тревожный чемоданчик и домашние запасы",
+      "title": "Тревожный чемоданчик и домашние запасы",
       "description": "Соберите тревожный чемоданчик и следите за домашними запасами с GoBag+: напоминания о сроках годности, контакты SOS и хранилище документов.",
       "ogDescription": "Соберите тревожный чемоданчик, ведите учёт домашних запасов и защитите важные документы — всё в одном приложении для iPhone.",
       "keywords": "тревожный чемоданчик, тревожный рюкзак, экстренный запас, аварийный набор, набор на 72 часа, запасы на случай ЧС, подготовка к чрезвычайным ситуациям"
@@ -815,7 +821,8 @@
       "footer_copy": "© 2026 GreDami. Все права защищены.",
       "cookie_text": "Мы используем аналитические cookie, чтобы понять, как используется сайт. Решать вам.",
       "cookie_accept": "Принять",
-      "cookie_decline": "Отклонить"
+      "cookie_decline": "Отклонить",
+      "skip_link": "Перейти к содержимому"
     }
   }
 }
