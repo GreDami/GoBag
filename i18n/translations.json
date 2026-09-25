@@ -4,8 +4,8 @@
       "locale": "en_US",
       "hrefl": "en",
       "title": "Go Bag & Emergency Prep Kit App",
-      "description": "Build your go bag and emergency kit with GoBag+: track supplies with expiry alerts, store SOS contacts, and secure vital documents. Free on iPhone.",
-      "ogDescription": "Build your go bag (bug-out bag) and prep kit, track home supplies, store emergency contacts, and secure vital documents — all in one app for iPhone.",
+      "description": "Build your go bag and emergency kit with GoBag+: track supplies with expiry alerts, store SOS contacts, and secure vital documents. Free to download.",
+      "ogDescription": "Build your go bag (bug-out bag) and prep kit, track home supplies, store emergency contacts, and secure vital documents — all in one app.",
       "keywords": "go bag, bug-out bag, prep kit, prepper kit, emergency kit, 72-hour kit, survival kit, emergency preparedness, disaster kit app, GoBag"
     },
     "strings": {
@@ -129,7 +129,7 @@
       "hrefl": "fr",
       "title": "Sac d'évacuation et kit d'urgence",
       "description": "Préparez votre sac d'évacuation et votre kit d'urgence avec GoBag+ : suivi des stocks, alertes de péremption, contacts SOS et coffre à documents.",
-      "ogDescription": "Constituez votre sac d'évacuation et votre kit de survie, suivez vos réserves à la maison et protégez vos documents essentiels — dans une seule app iPhone.",
+      "ogDescription": "Constituez votre sac d'évacuation et votre kit de survie, suivez vos réserves à la maison et protégez vos documents essentiels — dans une seule app.",
       "keywords": "sac d'évacuation, kit d'urgence, sac de survie, kit 72 heures, kit de survie, préparation aux catastrophes, réserve alimentaire, trousse d'urgence"
     },
     "strings": {
@@ -253,7 +253,7 @@
       "hrefl": "de",
       "title": "Notfallrucksack & Notvorrat App",
       "description": "Packe deinen Notfallrucksack und verwalte deinen Notvorrat mit GoBag+: Ablaufwarnungen, Bestandsübersicht, SOS-Kontakte und Dokumententresor.",
-      "ogDescription": "Stelle deinen Notfallrucksack zusammen, verfolge deinen Heimvorrat und sichere wichtige Dokumente — alles in einer App für iPhone.",
+      "ogDescription": "Stelle deinen Notfallrucksack zusammen, verfolge deinen Heimvorrat und sichere wichtige Dokumente — alles in einer App.",
       "keywords": "Notfallrucksack, Fluchtrucksack, Notvorrat, Notfallausrüstung, Krisenvorsorge, Notgepäck, Bug-out-Bag, Katastrophenschutz, Notfallvorsorge App"
     },
     "strings": {
@@ -377,7 +377,7 @@
       "hrefl": "es",
       "title": "Mochila de emergencia y kit de supervivencia",
       "description": "Prepara tu mochila de emergencia y tu reserva del hogar con GoBag+: alertas de caducidad, control de existencias, contactos SOS y bóveda de documentos.",
-      "ogDescription": "Prepara tu mochila de emergencia y kit de supervivencia, controla tus suministros en casa y protege tus documentos vitales — todo en una app para iPhone.",
+      "ogDescription": "Prepara tu mochila de emergencia y kit de supervivencia, controla tus suministros en casa y protege tus documentos vitales — todo en una app.",
       "keywords": "mochila de emergencia, kit de emergencia, kit de supervivencia, mochila de evacuación, kit 72 horas, reserva de alimentos, preparación ante desastres"
     },
     "strings": {
@@ -501,7 +501,7 @@
       "hrefl": "it",
       "title": "Zaino di emergenza e kit di sopravvivenza",
       "description": "Prepara il tuo zaino di emergenza e le scorte di casa con GoBag+: avvisi di scadenza, controllo delle scorte, contatti SOS e cassaforte per documenti.",
-      "ogDescription": "Prepara il tuo zaino di emergenza e il kit di sopravvivenza, monitora le scorte di casa e proteggi i documenti importanti — tutto in un'app per iPhone.",
+      "ogDescription": "Prepara il tuo zaino di emergenza e il kit di sopravvivenza, monitora le scorte di casa e proteggi i documenti importanti — tutto in un'app.",
       "keywords": "zaino di emergenza, kit di emergenza, kit di sopravvivenza, kit 72 ore, scorte di emergenza, preparazione alle emergenze, borsa di evacuazione"
     },
     "strings": {
@@ -625,7 +625,7 @@
       "hrefl": "pt",
       "title": "Mochila de emergência e kit de sobrevivência",
       "description": "Prepare a sua mochila de emergência e as reservas de casa com GoBag+: alertas de validade, controlo de stock, contactos SOS e cofre de documentos.",
-      "ogDescription": "Prepare a sua mochila de emergência e kit de sobrevivência, controle as reservas de casa e proteja documentos importantes — tudo numa app para iPhone.",
+      "ogDescription": "Prepare a sua mochila de emergência e kit de sobrevivência, controle as reservas de casa e proteja documentos importantes — tudo numa app.",
       "keywords": "mochila de emergência, kit de emergência, kit de sobrevivência, kit 72 horas, reserva de alimentos, preparação para desastres, mochila de evacuação"
     },
     "strings": {
@@ -749,7 +749,7 @@
       "hrefl": "ru",
       "title": "Тревожный чемоданчик и домашние запасы",
       "description": "Соберите тревожный чемоданчик и следите за домашними запасами с GoBag+: напоминания о сроках годности, контакты SOS и хранилище документов.",
-      "ogDescription": "Соберите тревожный чемоданчик, ведите учёт домашних запасов и защитите важные документы — всё в одном приложении для iPhone.",
+      "ogDescription": "Соберите тревожный чемоданчик, ведите учёт домашних запасов и защитите важные документы — всё в одном приложении.",
       "keywords": "тревожный чемоданчик, тревожный рюкзак, экстренный запас, аварийный набор, набор на 72 часа, запасы на случай ЧС, подготовка к чрезвычайным ситуациям"
     },
     "strings": {
