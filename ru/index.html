@@ -329,6 +329,14 @@
         :root {
             --blue: #3458c7;
             --green: #2f8a52;
+            /* The one green every CTA on the page is cast in: the nav keycap,
+               the hero button, the closing button and the featured pricing
+               card all read these four stops, so the same control never shows
+               up in three different colours. Every stop clears 4.5:1 on white. */
+            --cta-hi:      #2f8450;
+            --cta-bg:      #24603c;
+            --cta-side:    #1b4d30;
+            --cta-dk:      #143d26;
             --orange: #d2601f;
             --navy: #16213d;
             --cream: #f6f1e6;
@@ -389,10 +397,6 @@
             --key-on:      #cfe6d9;
             --key-on-side: #a3c9b2;
             --key-on-dk:   #7fae91;
-            --cta-hi:      #2f8450;   /* every stop clears 4.5:1 on white */
-            --cta-bg:      #24603c;
-            --cta-side:    #1b4d30;
-            --cta-dk:      #143d26;
         }
 
         nav {
@@ -821,27 +825,37 @@
             transition: transform .52s cubic-bezier(.2,.7,.3,1);
             transition-delay: var(--d, 0s);
         }
-        .hero h1 .rc i + i {           /* the twin, parked one face below */
+        /* The twin used to be a second <i> carrying the same letter, which
+           put every character into the DOM twice: the headline's textContent
+           read "GGoo bbaagg", find-in-page could not match "Household", a copy
+           of the line pasted with every letter doubled, and that is also what
+           a renderer — Google's included — saw. Generated content paints the
+           same face without joining the text: ::after is not part of
+           textContent, is not searched, and is not selected. */
+        .hero h1 .rc::after {          /* the twin, parked one face below */
+            content: attr(data-c);
             position: absolute;
             inset: 0;
             transform: translateY(100%);
+            transition: transform .52s cubic-bezier(.2,.7,.3,1);
+            transition-delay: var(--d, 0s);
         }
-        .hero h1.is-rolling .rc i     { transform: translateY(-100%); }
-        .hero h1.is-rolling .rc i + i { transform: translateY(0); }
+        .hero h1.is-rolling .rc i      { transform: translateY(-100%); }
+        .hero h1.is-rolling .rc::after { transform: translateY(0); }
         @media (hover: hover) {
-            .hero h1:hover .rc i     { transform: translateY(-100%); }
-            .hero h1:hover .rc i + i { transform: translateY(0); }
+            .hero h1:hover .rc i      { transform: translateY(-100%); }
+            .hero h1:hover .rc::after { transform: translateY(0); }
         }
         /* Kills the travel only. The faces stay stacked, so the headline still
            renders exactly once. */
         @media (prefers-reduced-motion: reduce) {
-            .hero h1 .rc i { transition: none; }
-            .hero h1:hover .rc i,     .hero h1.is-rolling .rc i     { transform: translateY(0); }
-            .hero h1:hover .rc i + i, .hero h1.is-rolling .rc i + i { transform: translateY(100%); }
+            .hero h1 .rc i, .hero h1 .rc::after { transition: none; }
+            .hero h1:hover .rc i,      .hero h1.is-rolling .rc i      { transform: translateY(0); }
+            .hero h1:hover .rc::after, .hero h1.is-rolling .rc::after { transform: translateY(100%); }
         }
         /* Used for one frame when the tap-to-play state is reset, so the
            letters do not visibly roll back to where they started. */
-        .hero h1.roll-reset .rc i { transition: none; }
+        .hero h1.roll-reset .rc i, .hero h1.roll-reset .rc::after { transition: none; }
         .hero p {
             font-size: clamp(0.95rem, 1.8vw, 1.15rem);
             font-weight: 300;
@@ -857,29 +871,62 @@
             justify-content: center;
             flex-wrap: wrap;
         }
-        .btn-primary {
+        /* ── the CTA, in two weights ──────────────────────────────────────────
+           Every App Store link on the page is one of these two. It used to be
+           three unrelated things — a filled green keycap in the bar, a navy
+           outline in the hero and a blue gradient at the foot — which left the
+           single most important control on the page looking like the least
+           important of the three. The filled weight is cast from the same four
+           stops as the nav key, so the bar and the page read as one control.
+
+           The old padding was 18px 12px: more air above and below the label
+           than to either side of it, which is why the hero button looked
+           pinched. */
+        .btn-primary, .btn-secondary {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            background: linear-gradient(135deg, var(--blue), var(--navy));
-            color: white;
-            text-decoration: none;
-            padding: 18px 12px;
+            min-height: 52px;
+            padding: 15px 28px;
+            border: 1px solid transparent;
             border-radius: 14px;
+            text-decoration: none;
+            font-family: inherit;
             font-size: 0.9rem;
             font-weight: 600;
-            box-shadow: 0 8px 32px rgba(52,88,199,0.35);
-            transition: transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 0.1px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(52,88,199,0.45); }
-        .hero-buttons .btn-primary {
+        .btn-primary {
+            background: linear-gradient(180deg, var(--cta-hi) 0%, var(--cta-bg) 100%);
+            border-color: rgba(0,0,0,0.16);
+            color: #fff;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.34), 0 8px 24px rgba(24,80,46,0.30);
+        }
+        .btn-primary svg { fill: #fff; flex-shrink: 0; }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.34), 0 14px 32px rgba(24,80,46,0.38);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), 0 4px 10px rgba(24,80,46,0.34);
+        }
+        /* The quiet weight, for the tier that is not the one being recommended. */
+        .btn-secondary {
             background: transparent;
-            border: 2px solid var(--navy);
+            border-color: rgba(22,33,61,0.28);
             color: var(--navy);
-            box-shadow: none;
         }
-        .hero-buttons .btn-primary svg { fill: var(--navy); }
-        .hero-buttons .btn-primary:hover { background: rgba(22,33,61,0.06); box-shadow: none; }
+        .btn-secondary svg { fill: var(--navy); flex-shrink: 0; }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            background: rgba(22,33,61,0.05);
+            border-color: rgba(22,33,61,0.45);
+        }
+        .btn-secondary:active { transform: translateY(0); }
         p.hero-trial {
             margin: 24px auto 0;
             font-size: 0.8rem;
@@ -1025,20 +1072,31 @@
         /* SCROLL HINT */
         .scroll-hint {
             position: absolute;
-            bottom: 28px;
+            bottom: 22px;
             left: 50%;
             transform: translateX(-50%);
             cursor: pointer;
-            color: rgba(232,240,255,0.55);
+            /* Was rgba(232,240,255,0.55): a near-white arrow on a cream hero,
+               1.2:1 against its own background and effectively not drawn at
+               all. Ink at 55% clears the 3:1 WCAG asks of a graphic that
+               carries meaning, on both ends of the hero's gradient. */
+            color: rgba(22,33,61,0.55);
             animation: bounce 2.4s ease-in-out infinite;
-            transition: color 0.2s;
+            transition: color 0.2s, background 0.2s;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 4px;
-            text-decoration: none;   /* it is a real link to #features now */
+            /* The icon is 30px; the box around it is what makes the target
+               44x44, which is the floor on a touch screen. */
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            text-decoration: none;   /* it is a real link to #how now */
         }
-        .scroll-hint:hover { color: var(--green); }
+        .scroll-hint svg { width: 30px; height: 30px; }
+        .scroll-hint:hover { color: var(--green); background: rgba(47,138,82,0.10); }
         /* The bounce owns `transform`, so the focus ring needs its own offset
            rather than inheriting the keyframe's translate. */
         .scroll-hint:focus-visible { outline-offset: 6px; }
@@ -1168,6 +1226,11 @@
             padding: 36px 28px;
             position: relative;
             overflow: visible;
+            /* A column, so the card's button can be pushed to the floor and
+               the three of them line up however many features a tier lists. */
+            display: flex;
+            flex-direction: column;
+            text-align: left;
         }
         .pricing-card.featured {
             border-color: rgba(47,138,82,0.4);
@@ -1193,13 +1256,13 @@
         .pricing-badge.subtle {
             background: rgba(22,33,61,0.5);
         }
-        .pricing-name { font-size: 0.88rem; font-weight: 500; color: var(--muted); margin-bottom: 8px; }
-        .pricing-price { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
+        .pricing-name { font-size: 0.88rem; font-weight: 500; color: var(--muted); margin-bottom: 8px; text-align: center; }
+        .pricing-price { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; text-align: center; }
         .pricing-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
         /* The "from" hedge is part of the figure, not a unit like "/year", so it
            opts back out of the small muted treatment above. */
         .pricing-price .price-from { font-size: inherit; font-weight: inherit; color: inherit; }
-        .pricing-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 24px; letter-spacing: 0.1px; }
+        .pricing-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 24px; letter-spacing: 0.1px; text-align: center; }
         .pricing-features { list-style: none; }
         .pricing-features li {
             font-size: 0.83rem;
@@ -1211,6 +1274,19 @@
         }
         .pricing-features li:last-child { border-bottom: none; }
         .pricing-features li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+        /* Until now the cards ended on their last feature line: the one place
+           on the page where a visitor has just decided something had nothing
+           to press, and sent them back up to the bar or on down to the foot. */
+        .pricing-features { margin-bottom: 26px; }
+        .pricing-cta { width: 100%; margin-top: auto; }
+        .pricing-note {
+            max-width: 560px;
+            margin: 30px auto 0;
+            font-size: 0.8rem;
+            line-height: 1.65;
+            color: var(--muted);
+        }
 
         /* FAMILY */
         .family-banner {
@@ -1278,6 +1354,37 @@
             transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
         }
         .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── no JavaScript ───────────────────────────────────────────────────
+           Everything above hides itself and waits for a script to hand it
+           back: .reveal starts at opacity 0 and only an IntersectionObserver
+           adds .visible, and the carousel's slides are stacked on one spot
+           until the carousel lays them out. With scripting off — a locked-down
+           browser, a proxy that strips JS, a reader mode, a text-only crawler —
+           that left a hero above six empty screens and a pile of seven
+           overlapping phones.
+
+           html.js is set by a one-line script at the end of <head>, so it is
+           already there before anything paints: no flash of revealed content.
+           Nothing is hidden unless that class says a script is coming for it. */
+        html:not(.js) .reveal { opacity: 1; transform: none; }
+        html:not(.js) .steps-carousel {
+            height: auto;
+            overflow-x: auto;
+            overflow-y: hidden;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 28px;
+            padding-bottom: 14px;
+        }
+        html:not(.js) .how-step-card {
+            position: static;
+            flex: 0 0 212px;
+            opacity: 1;
+            transform: none;
+        }
+        /* Buttons that would drive a carousel there is no script to drive. */
+        html:not(.js) .steps-nav { display: none; }
         .d1 { transition-delay: 0.07s; } .d2 { transition-delay: 0.16s; }
         .d3 { transition-delay: 0.25s; } .d4 { transition-delay: 0.34s; } .d5 { transition-delay: 0.43s; }
 
@@ -1339,6 +1446,9 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.001ms !important;
             }
+            /* The colour change still lands; only the travel goes, the way the
+               nav keys already handle it. */
+            .btn-primary:hover, .btn-secondary:hover { transform: none; }
         }
 
         /* HOW-STEPS CAROUSEL */
@@ -1622,6 +1732,11 @@
         }
 /* i18n:cookiecss:end */
     </style>
+    <!-- Marks the document as scripted before anything paints. Everything a
+         script is going to reveal — the .reveal blocks, the steps carousel —
+         hides itself only under this class, so with JavaScript off the page
+         renders as the plain, complete HTML it already is. -->
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -1685,7 +1800,7 @@
 </nav>
 
 <div class="nav-scrim" id="navScrim"></div>
-<div class="nav-stage" aria-hidden="true">
+<div class="nav-stage" aria-hidden="true" inert>
     <aside class="nav-drawer" id="navDrawer" aria-label="Меню" data-i18n-attr="aria-label:nav_menu">
         <ul>
             <li><a class="nav-key" href="#features">
@@ -1721,7 +1836,7 @@
             <h1 data-i18n-html="hero_h1">Тревожный чемоданчик &amp; <span>Запасы</span></h1>
             <p data-i18n="hero_p">Соберите тревожный чемоданчик, следите за домашними запасами, храните экстренные контакты и защитите важные документы в зашифрованном хранилище — в одном приложении.</p>
             <div class="hero-buttons">
-                <a href="https://apps.apple.com/app/id6760232332" class="btn-primary" target="_blank">
+                <a href="https://apps.apple.com/app/id6760232332" class="btn-primary" target="_blank" rel="noopener">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                     <span data-i18n="hero_cta_btn">Начать готовиться</span>
                 </a>
@@ -1744,8 +1859,8 @@
     <!-- A real link, not a div+onclick: keyboard reachable, works without JS,
          and `html { scroll-behavior: smooth }` already does the easing. The
          label rides an existing translated key, so it is localised for free. -->
-    <a class="scroll-hint" href="#features">
-        <span class="sr-only" data-i18n="features_label">Возможности</span>
+    <a class="scroll-hint" href="#how">
+        <span class="sr-only" data-i18n="how_label">Как это работает</span>
         <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
         </svg>
@@ -1755,7 +1870,7 @@
 <hr class="divider">
 
 <!-- HOW IT WORKS + APP PREVIEW -->
-<section>
+<section id="how">
     <div class="container">
         <div class="section-label reveal" data-i18n="how_label">Как это работает</div>
         <h2 class="section-title reveal d1" data-i18n="how_title">Готово за несколько минут</h2>
@@ -2048,6 +2163,8 @@
                     <li data-i18n="free_f2">Основные категории</li>
                     <li data-i18n="free_f3">Экстренные контакты</li>
                 </ul>
+                <a class="btn-secondary pricing-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener"
+                   data-i18n="price_cta_free">Скачать бесплатно</a>
             </div>
             <div class="pricing-card featured reveal d2">
                 <div class="pricing-badge" data-i18n="pricing_badge_popular">Самый популярный</div>
@@ -2063,6 +2180,8 @@
                     <li data-i18n="yearly_f6">Виджет + уведомления</li>
                     <li data-i18n="yearly_f7">Резервное копирование</li>
                 </ul>
+                <a class="btn-primary pricing-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener"
+                   data-i18n="price_cta_yearly">Начать бесплатно</a>
             </div>
             <div class="pricing-card reveal d3">
                 <div class="pricing-badge subtle" data-i18n="pricing_badge">Лучшее предложение</div>
@@ -2074,8 +2193,15 @@
                     <li data-i18n="lifetime_f2">Family Sharing (до 5 чел.)</li>
                     <li data-i18n="lifetime_f3">Все будущие обновления</li>
                 </ul>
+                <a class="btn-secondary pricing-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener"
+                   data-i18n="price_cta_lifetime">Выбрать «Навсегда»</a>
             </div>
         </div>
+        <!-- Every button above lands on the same App Store page, because that
+             is the only thing this site can actually do: the tiers themselves
+             are unlocked inside the app. Saying so is what keeps three
+             different labels honest. -->
+        <p class="pricing-note reveal d3" data-i18n="pricing_note">Приложение бесплатное. Premium и «Навсегда» активируются внутри приложения.</p>
     </div>
 </section>
 
@@ -2137,7 +2263,7 @@
 <div class="cta-section">
     <h2 class="reveal" data-i18n="cta_h2">Начните бесплатный пробный период</h2>
     <p class="reveal d1" data-i18n="cta_p">Без оплаты в первые 30 дней. Отмените в любое время в Настройках.</p>
-    <a href="https://apps.apple.com/app/id6760232332" class="btn-primary" target="_blank">
+    <a href="https://apps.apple.com/app/id6760232332" class="btn-primary" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         <span data-i18n="cta_btn">Загрузить в App Store</span>
     </a>
@@ -2312,10 +2438,14 @@ function buildTextRoll(el) {
             rc.className = 'rc';
             rc.setAttribute('aria-hidden', 'true');   /* the h1 carries the label */
             rc.style.setProperty('--d', (ROLL_STAGGER * i++).toFixed(3) + 's');
+            /* The second face is drawn by .rc::after from this attribute
+               rather than by a cloned <i>. One letter, one node: the headline
+               stays plain text to textContent, to find-in-page and to copy,
+               and still rolls on two faces. */
+            rc.dataset.c = ch;
             const face = document.createElement('i');
             face.textContent = ch;
             rc.appendChild(face);
-            rc.appendChild(face.cloneNode(true));
             word.appendChild(rc);
           });
           dest.appendChild(word);
@@ -2632,6 +2762,12 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     document.body.classList.add('nav-open', 'nav-locked');
     burger.setAttribute('aria-expanded', 'true');
     stage.setAttribute('aria-hidden', 'false');
+    /* aria-hidden takes the panel out of the accessibility tree but leaves its
+       links in the tab order, so on a desktop — where the panel is folded
+       edge-on and invisible — a keyboard walked through five controls that
+       were not there, inside a container announcing itself as hidden. inert
+       removes both at once, and is dropped only while the panel is open. */
+    stage.removeAttribute('inert');
     var f = focusables();
     if (f.length) f[0].focus();
   }
@@ -2642,6 +2778,9 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     if (wasLocked && restoreScroll !== false) window.scrollTo(0, savedY);
     burger.setAttribute('aria-expanded', 'false');
     stage.setAttribute('aria-hidden', 'true');
+    /* Set before the focus call below: making the panel inert drops focus to
+       the body if it was still inside, and the burger then takes it back. */
+    stage.setAttribute('inert', '');
     if (returnFocus && burger.offsetParent !== null) burger.focus();
   }
 
