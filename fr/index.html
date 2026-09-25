@@ -957,14 +957,31 @@
             align-items: center;
             flex-shrink: 0;
         }
-        .hero-phone {
-            width: 210px;
-            border-radius: 12% / 5.4%;
+        /* The hero used to hold a phone mock of screenshots/1. A picture of
+           the app is the wrong argument to open with: someone landing here is
+           weighing whether to prepare at all, not comparing interfaces, and
+           the screen was 210px wide — too small to read a single label on.
+           The frame itself is untouched below, because the steps carousel
+           still builds seven of them. */
+        .hero-photo {
+            display: block;
+            width: 100%;
+            /* The file is 568px wide and nothing upscales it: capped here so a
+               2x screen is never handed a photograph stretched past its own
+               pixels. */
+            max-width: 380px;
+        }
+        .hero-photo img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 22px;
+            /* The warm half of the glow is the fire in the photograph, the way
+               the phone's was the blue of its screen. */
             box-shadow:
-                0 30px 70px rgba(22,33,61,0.24),
-                0 0 50px rgba(52,88,199,0.14);
-            animation: phoneFloat 6s ease-in-out infinite;
-            transform: rotate(-3deg);
+                0 30px 70px rgba(22,33,61,0.26),
+                0 0 50px rgba(210,96,31,0.13);
+            animation: heroPhotoFloat 7s ease-in-out infinite;
         }
 
         /* ===== iPhone MOCKUP FRAME (shared: hero + steps carousel) =====
@@ -1028,9 +1045,9 @@
             border-radius: 99px;
             background: #000;
         }
-        @keyframes phoneFloat {
-            0%, 100% { transform: rotate(-3deg) translateY(0); }
-            50% { transform: rotate(-3deg) translateY(-14px); }
+        @keyframes heroPhotoFloat {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-12px); }
         }
         @media (max-width: 900px) {
             .hero-content { flex-direction: column-reverse; text-align: center; gap: 32px; }
@@ -1038,9 +1055,19 @@
             .hero-text p.hero-trial { text-align: center; }
             .hero-text h1 { margin-left: auto; margin-right: auto; }
             .hero-text p:not(.hero-trial) { margin: 0 auto 40px; }
-            .hero-phone { width: 140px; animation: none; transform: none; }
+            .hero-photo { max-width: 300px; }
+            .hero-photo img { animation: none; }
         }
-        @media (max-width: 560px) { .hero-visual { display: none; } }
+        /* The phone mock was hidden outright below 560px: at 140px wide it had
+           stopped saying anything. The photograph still reads at 240px, and on
+           a phone it is the first thing on the screen, so it stays. */
+        @media (max-width: 560px) { .hero-photo { max-width: 240px; } }
+        /* A 667px-tall phone cannot hold the photograph, the headline, the
+           paragraph and the button at once, and the button is the one thing
+           that must not fall below the fold. The photograph is what gives. */
+        @media (max-width: 560px) and (max-height: 700px) {
+            .hero-photo { max-width: 180px; }
+        }
 
         /* SECURITY */
         .security-grid {
@@ -1844,16 +1871,13 @@
             <p class="hero-trial" data-i18n="hero_trial">1 mois d'essai gratuit · Sans engagement</p>
         </div>
         <div class="hero-visual">
-            <div class="hero-phone">
-                <div class="phone-mock">
-                    <div class="phone-screen">
-                        <picture>
-                            <source srcset="/screenshots/1.webp" type="image/webp">
-                            <img id="heroPhoneImg" src="/screenshots/1.jpg" alt="L'app GoBag+ affichant un sac d'évacuation rempli à 75 %, 41 articles sur 54 répartis en neuf catégories" data-i18n-attr="alt:hero_img_alt" width="660" height="1435" fetchpriority="high" decoding="async">
-                        </picture>
-                    </div>
-                </div>
-            </div>
+            <picture class="hero-photo">
+                <source srcset="/img/hero-gobag.webp" type="image/webp">
+                <!-- width/height are the file's own, so the box is reserved
+                     before the bytes arrive and the headline never jumps.
+                     fetchpriority, because this is the hero's largest paint. -->
+                <img src="/img/hero-gobag.jpg" alt="Une femme portant un sac d'évacuation prêt s'éloigne d'un feu de forêt, des pompiers luttant contre les flammes derrière elle" data-i18n-attr="alt:hero_img_alt" width="568" height="581" fetchpriority="high" decoding="async">
+            </picture>
         </div>
     </div>
     <!-- A real link, not a div+onclick: keyboard reachable, works without JS,
