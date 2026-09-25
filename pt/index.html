@@ -338,12 +338,21 @@
             --cta-side:    #1b4d30;
             --cta-dk:      #143d26;
             --orange: #d2601f;
+            /* The two brand colours again, dark enough to carry small text.
+               --green at 3.82:1 and --orange at 3.80:1 are fine behind an icon
+               or under a headline, and both fail as 11px type. */
+            --green-ink:  #237042;
+            --orange-ink: #a8460f;
             --navy: #16213d;
             --cream: #f6f1e6;
             --cream2: #efe6d3;
             --card: #fffdf8;
             --text: #16213d;
-            --muted: rgba(22,33,61,0.62);
+            /* Was 0.62, which measured 4.39:1 on the cream and 4.14:1 at the
+               foot of the hero gradient — under the 4.5:1 AA asks of body
+               text, and this token paints nearly every paragraph on the page.
+               0.70 clears it everywhere, 5.63:1 on the cream. */
+            --muted: rgba(22,33,61,0.70);
             --display: 'Alumni Sans', 'Inter', sans-serif;
             --mono: 'IBM Plex Mono', ui-monospace, monospace;
         }
@@ -522,7 +531,7 @@
             letter-spacing: -0.2px;
         }
         .nav-logo img { width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0; margin-right: 9px; }
-        .nav-logo span { color: var(--green); }
+        .nav-logo span { color: var(--green-ink); }
 
         /* ── the key for the section you are currently in ────────────────── */
         .nav-key.current {
@@ -743,7 +752,12 @@
 
         /* HERO */
         .hero {
+            /* svh is the viewport with the browser chrome showing, so the hero
+               is sized for the smaller of the two states and nothing reflows
+               when a phone's URL bar slides away mid-scroll. vh first, for
+               anything that has not heard of svh. */
             min-height: 100vh;
+            min-height: 100svh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -929,7 +943,7 @@
         .btn-secondary:active { transform: translateY(0); }
         p.hero-trial {
             margin: 24px auto 0;
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             font-weight: 300;
             letter-spacing: 0.2px;
             color: var(--muted);
@@ -962,26 +976,27 @@
            weighing whether to prepare at all, not comparing interfaces, and
            the screen was 210px wide — too small to read a single label on.
            The frame itself is untouched below, because the steps carousel
-           still builds seven of them. */
-        .hero-photo {
+           still builds seven of them.
+
+           These are the rules for the stacked hero, below 901px, where the
+           artwork is a card above the words. The split layout that runs above
+           that width is further down, in its own min-width block. */
+        .hero-art {
             display: block;
             width: 100%;
-            /* The file is 568px wide and nothing upscales it: capped here so a
-               2x screen is never handed a photograph stretched past its own
-               pixels. */
-            max-width: 380px;
+            max-width: 300px;
+            margin: 0 auto;
         }
-        .hero-photo img {
+        .hero-art img {
             display: block;
             width: 100%;
             height: auto;
             border-radius: 22px;
-            /* The warm half of the glow is the fire in the photograph, the way
-               the phone's was the blue of its screen. */
+            /* The warm half of the shadow is the fire in the artwork itself,
+               the way the phone's was the blue of its screen. */
             box-shadow:
-                0 30px 70px rgba(22,33,61,0.26),
-                0 0 50px rgba(210,96,31,0.13);
-            animation: heroPhotoFloat 7s ease-in-out infinite;
+                0 24px 60px rgba(22,33,61,0.24),
+                0 0 44px rgba(210,96,31,0.12);
         }
 
         /* ===== iPhone MOCKUP FRAME (shared: hero + steps carousel) =====
@@ -1045,28 +1060,61 @@
             border-radius: 99px;
             background: #000;
         }
-        @keyframes heroPhotoFloat {
-            0%, 100% { transform: translateY(0); }
-            50%      { transform: translateY(-12px); }
-        }
         @media (max-width: 900px) {
             .hero-content { flex-direction: column-reverse; text-align: center; gap: 32px; }
             .hero-text .hero-buttons { justify-content: center; }
             .hero-text p.hero-trial { text-align: center; }
             .hero-text h1 { margin-left: auto; margin-right: auto; }
             .hero-text p:not(.hero-trial) { margin: 0 auto 40px; }
-            .hero-photo { max-width: 300px; }
-            .hero-photo img { animation: none; }
         }
         /* The phone mock was hidden outright below 560px: at 140px wide it had
-           stopped saying anything. The photograph still reads at 240px, and on
-           a phone it is the first thing on the screen, so it stays. */
-        @media (max-width: 560px) { .hero-photo { max-width: 240px; } }
-        /* A 667px-tall phone cannot hold the photograph, the headline, the
+           stopped saying anything. The artwork still reads at 240px, and on a
+           phone it is the first thing on the screen, so it stays. */
+        @media (max-width: 560px) { .hero-art { max-width: 240px; } }
+        /* A 667px-tall phone cannot hold the artwork, the headline, the
            paragraph and the button at once, and the button is the one thing
-           that must not fall below the fold. The photograph is what gives. */
+           that must not fall below the fold. The artwork is what gives. */
         @media (max-width: 560px) and (max-height: 700px) {
-            .hero-photo { max-width: 180px; }
+            .hero-art { max-width: 180px; }
+        }
+
+        /* ── the split hero ──────────────────────────────────────────────────
+           Above 900px the section is two halves: the words on the cream, the
+           artwork filling its own half from the top of the hero to the bottom
+           and out to the edge of the window. No card, no radius, no shadow —
+           at that size it is the backdrop the headline is standing in, not an
+           illustration pinned beside it.
+
+           .hero-content is display:contents here, so .hero-text and
+           .hero-visual become the grid's own children. That is what makes the
+           two halves impossible to overlap: the text cannot spill under the
+           artwork at any width, which a centred max-width container beside an
+           absolutely positioned image cannot promise.
+
+           The left padding resolves to exactly the gutter .container uses, so
+           the headline starts on the same line as every section heading below
+           it, at any window width. */
+        @media (min-width: 901px) {
+            .hero {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                padding: 0;
+            }
+            .hero-content { display: contents; }
+            .hero-text { padding: 120px 40px 100px max(24px, calc((100vw - 1100px) / 2)); }
+            .hero-visual { align-self: stretch; min-width: 0; }
+            .hero-art { max-width: none; height: 100%; margin: 0; }
+            .hero-art img {
+                height: 100%;
+                border-radius: 0;
+                box-shadow: none;
+                /* The frame is taller than the artwork is square, so the crop
+                   is horizontal and takes evenly off both sides; she stays in
+                   the middle of it at every ratio. */
+                object-fit: cover;
+                object-position: 50% 50%;
+            }
         }
 
         /* SECURITY */
@@ -1093,8 +1141,8 @@
             margin: 0 auto 16px;
         }
         .security-icon svg { width: 24px; height: 24px; }
-        .security-item h3 { font-size: 0.97rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.2px; }
-        .security-item p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+        .security-item h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.2px; }
+        .security-item p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
 
         /* SCROLL HINT */
         .scroll-hint {
@@ -1124,6 +1172,12 @@
         }
         .scroll-hint svg { width: 30px; height: 30px; }
         .scroll-hint:hover { color: var(--green); background: rgba(47,138,82,0.10); }
+        /* In the split hero, centred on the window means centred on the seam
+           between the two halves, with half the arrow on the artwork. It
+           belongs in the middle of the half it can be read against. Declared
+           here rather than with the rest of the split, so it comes after the
+           left: 50% it has to beat. */
+        @media (min-width: 901px) { .scroll-hint { left: 25%; } }
         /* The bounce owns `transform`, so the focus ring needs its own offset
            rather than inheriting the keyframe's translate. */
         .scroll-hint:focus-visible { outline-offset: 6px; }
@@ -1136,11 +1190,11 @@
         .container { max-width: 1100px; margin: 0 auto; }
         .section-label {
             font-family: var(--mono);
-            font-size: 0.67rem;
+            font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--green);
+            color: var(--green-ink);
             margin-bottom: 14px;
         }
         .section-title {
@@ -1152,7 +1206,7 @@
             margin-bottom: 16px;
         }
         .section-sub {
-            font-size: 0.97rem;
+            font-size: 1.02rem;
             font-weight: 400;
             color: var(--muted);
             line-height: 1.85;
@@ -1194,8 +1248,8 @@
         .key-feature:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: calc(50% - 10px); margin: 0 auto; }
         @media (max-width: 600px) { .key-feature:last-child:nth-child(odd) { max-width: none; grid-column: auto; margin: 0; } }
         .key-feature-icon svg { width: 26px; height: 26px; }
-        .key-feature h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
-        .key-feature p { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+        .key-feature h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
+        .key-feature p { font-size: 0.95rem; color: var(--muted); line-height: 1.65; }
 
         /* REVIEWS */
         .reviews-grid {
@@ -1215,8 +1269,8 @@
             transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
         }
         .review-card:hover { border-color: rgba(52,88,199,0.3); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(22,33,61,0.08); }
-        .review-stars { color: var(--orange); letter-spacing: 2px; margin-bottom: 14px; font-size: 0.9rem; }
-        .review-quote { font-size: 0.88rem; color: var(--text); line-height: 1.7; margin-bottom: 20px; }
+        .review-stars { color: var(--orange-ink); letter-spacing: 2px; margin-bottom: 14px; font-size: 1rem; }
+        .review-quote { font-size: 1rem; color: var(--text); line-height: 1.7; margin-bottom: 20px; }
         .review-author { display: flex; align-items: center; gap: 12px; }
         .review-avatar {
             width: 38px; height: 38px; border-radius: 50%;
@@ -1226,12 +1280,12 @@
             font-weight: 800; font-size: 0.95rem;
             flex-shrink: 0;
         }
-        .review-name { font-size: 0.85rem; font-weight: 700; }
-        .review-meta { font-size: 0.74rem; color: var(--muted); }
+        .review-name { font-size: 0.92rem; font-weight: 700; }
+        .review-meta { font-size: 0.82rem; color: var(--muted); }
         /* Real review cards. The .rating-summary pill that sat above them is
            gone along with the aggregate 5.0 / 3 ratings claim. */
         .reviews-grid.two-up { grid-template-columns: repeat(2, 1fr); max-width: 720px; }
-        .review-title { font-size: 1rem; font-weight: 800; letter-spacing: -0.2px; margin: 0 0 10px; }
+        .review-title { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.2px; margin: 0 0 10px; }
         @media (max-width: 800px) { .reviews-grid.two-up { grid-template-columns: 1fr; max-width: 380px; } }
 
         /* PRICING */
@@ -1245,6 +1299,10 @@
         }
         @media (max-width: 700px) {
             .pricing-grid { grid-template-columns: 1fr; }
+            /* Stacked, Free came first and the tier being recommended was a
+               screen and a half further down. Only the paint order moves: the
+               DOM, and with it the reading and tab order, is unchanged. */
+            .pricing-card.featured { order: -1; }
         }
         .pricing-card {
             background: rgba(22,33,61,0.04);
@@ -1272,7 +1330,7 @@
             background: linear-gradient(135deg, var(--navy), var(--blue));
             color: white;
             font-family: var(--mono);
-            font-size: 0.62rem;
+            font-size: 0.68rem;
             font-weight: 600;
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -1281,18 +1339,20 @@
             white-space: nowrap;
         }
         .pricing-badge.subtle {
-            background: rgba(22,33,61,0.5);
+            /* 0.5 over the cream left white at 3.50:1. 0.70 is the same grey
+               note, at 6.34:1. */
+            background: rgba(22,33,61,0.70);
         }
-        .pricing-name { font-size: 0.88rem; font-weight: 500; color: var(--muted); margin-bottom: 8px; text-align: center; }
+        .pricing-name { font-size: 0.95rem; font-weight: 500; color: var(--muted); margin-bottom: 8px; text-align: center; }
         .pricing-price { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; text-align: center; }
         .pricing-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
         /* The "from" hedge is part of the figure, not a unit like "/year", so it
            opts back out of the small muted treatment above. */
         .pricing-price .price-from { font-size: inherit; font-weight: inherit; color: inherit; }
-        .pricing-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 24px; letter-spacing: 0.1px; text-align: center; }
+        .pricing-desc { font-size: 0.875rem; color: var(--muted); margin-bottom: 24px; letter-spacing: 0.1px; text-align: center; }
         .pricing-features { list-style: none; }
         .pricing-features li {
-            font-size: 0.83rem;
+            font-size: 0.95rem;
             padding: 7px 0;
             border-bottom: 1px solid rgba(22,33,61,0.06);
             display: flex;
@@ -1310,7 +1370,7 @@
         .pricing-note {
             max-width: 560px;
             margin: 30px auto 0;
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             line-height: 1.65;
             color: var(--muted);
         }
@@ -1345,7 +1405,7 @@
         }
         .family-text { position: relative; }
         .family-text h2 { font-family: var(--display); font-size: clamp(1.5rem, 3.2vw, 2.2rem); font-weight: 900; letter-spacing: -0.2px; margin-bottom: 14px; }
-        .family-text p { font-size: 0.95rem; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.85; }
+        .family-text p { font-size: 1rem; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.85; }
 
         /* CTA */
         .cta-section {
@@ -1354,7 +1414,7 @@
             background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(52,88,199,0.12) 0%, transparent 70%);
         }
         .cta-section h2 { font-family: var(--display); font-size: clamp(2.1rem, 5.4vw, 3.4rem); font-weight: 900; letter-spacing: -0.2px; margin-bottom: 16px; }
-        .cta-section p { font-size: 0.97rem; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 36px; }
+        .cta-section p { font-size: 1.02rem; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 36px; }
 
         /* FOOTER */
         footer {
@@ -1363,12 +1423,33 @@
             text-align: center;
         }
         .footer-links { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 20px; }
-        .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.83rem; font-weight: 500; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--text); }
+        .footer-links a,
+        .footer-links button {
+            /* A row of links is not a sentence, so the 24px floor in WCAG
+               2.5.8 applies to them: 23px tall on the text alone, and 17px for
+               a bare button. The padding is the whole fix. */
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            color: var(--muted);
+            background: none;
+            border: 0;
+            padding: 3px 2px;
+            font-family: inherit;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover,
+        .footer-links button:hover { color: var(--text); }
         .footer-social { display: flex; justify-content: center; gap: 16px; margin-bottom: 20px; }
         .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: rgba(22,33,61,0.06); border: 1px solid rgba(22,33,61,0.10); color: var(--muted); transition: all 0.2s; text-decoration: none; }
         .footer-social a:hover { background: rgba(47,138,82,0.12); border-color: rgba(47,138,82,0.3); color: var(--text); }
-        footer p { font-family: var(--mono); font-size: 0.66rem; color: rgba(22,33,61,0.3); letter-spacing: 0.3px; }
+        /* 0.3 alpha measured 1.87:1. A line nobody reads still has to be a
+           line that can be read. */
+        footer p { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.3px; }
 
         /* DIVIDER */
         .divider { border: none; border-top: 1px solid rgba(22,33,61,0.06); margin: 0; }
@@ -1427,7 +1508,11 @@
         .hero-text p:not(.hero-trial) { animation: heroIn 0.7s cubic-bezier(0.16,1,0.3,1) 0.16s both; }
         .hero-buttons { animation: heroIn 0.7s cubic-bezier(0.16,1,0.3,1) 0.24s both; }
         p.hero-trial { animation: heroIn 0.7s cubic-bezier(0.16,1,0.3,1) 0.32s both; }
-        .hero-visual { animation: heroIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
+        /* The artwork does not fade in with the rest. Half the window arriving
+           a second late is not an entrance, it is a hole; and an image that is
+           still at opacity 0 on its first paint is skipped by the largest
+           contentful paint outright, so the metric was quietly measuring the
+           paragraph instead of the thing filling half the screen. */
 
         /* Off-screen until focused, then it lands over the bar. Not .sr-only:
            that one stays 1px even when focused, which would hide the link at
@@ -1484,9 +1569,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 640px;
+            height: 620px;
             overflow: hidden;
-            margin-top: 52px;
+            margin-top: 36px;
             user-select: none;
             touch-action: pan-y;
         }
@@ -1496,6 +1581,24 @@
             justify-content: center;
             gap: 16px;
             margin-top: 32px;
+        }
+        /* Drawn in borders rather than an SVG: two bars while the carousel is
+           running, a triangle once it is stopped. aria-pressed carries the
+           state for assistive tech and switches the glyph at the same time, so
+           the two can never disagree. */
+        .steps-play i {
+            display: block;
+            width: 12px; height: 13px;
+            border-left: 4px solid currentColor;
+            border-right: 4px solid currentColor;
+        }
+        .steps-play[aria-pressed="true"] i {
+            width: 0; height: 0;
+            margin-left: 3px;
+            border-left: 12px solid currentColor;
+            border-right: 0;
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
         }
         .steps-btn {
             width: 42px; height: 42px;
@@ -1512,16 +1615,37 @@
         }
         .steps-btn:hover:not(:disabled) { background: rgba(47,138,82,0.14); border-color: rgba(47,138,82,0.4); color: var(--green); }
         .steps-btn:disabled { opacity: 0.25; cursor: default; }
-        .steps-dots { display: flex; gap: 8px; align-items: center; }
+        .steps-dots { display: flex; gap: 2px; align-items: center; }
+        /* The bar used to be the button: 20x3px, against a 24x24 floor in WCAG
+           2.5.8 and 44x44 in the iOS guidelines. The bar is now drawn by the
+           pseudo-element and the button around it is the target — it looks
+           identical and can be hit with a thumb. */
         .step-dot {
+            width: 28px; height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none; padding: 0;
+            background: none;
+            cursor: pointer;
+        }
+        .step-dot::before {
+            content: '';
+            display: block;
             height: 3px; width: 20px;
             border-radius: 2px;
-            border: none; padding: 0;
-            background: rgba(22,33,61,0.2);
-            cursor: pointer;
+            background: rgba(22,33,61,0.28);
             transition: background 0.25s, width 0.25s;
         }
-        .step-dot.active { background: var(--green); width: 28px; }
+        .step-dot.active::before { background: var(--green-ink); width: 26px; }
+        .step-dot:hover::before { background: rgba(22,33,61,0.45); }
+        .step-dot.active:hover::before { background: var(--green-ink); }
+        @media (max-width: 380px) {
+            .steps-nav { gap: 8px; }
+            .step-dot { width: 24px; }
+            .step-dot::before { width: 16px; }
+            .step-dot.active::before { width: 20px; }
+        }
         .how-step-card {
             position: absolute;
             width: 212px;
@@ -1536,7 +1660,7 @@
         .step-card-header {
             /* fixed height keeps every phone on the same baseline
                regardless of how many lines the translated copy takes */
-            min-height: 96px;
+            min-height: 116px;
             padding: 0 2px;
             display: flex;
             flex-direction: column;
@@ -1546,7 +1670,7 @@
             flex-shrink: 0;
         }
         .step-card-header h3 {
-            font-size: 0.88rem;
+            font-size: 1rem;
             font-weight: 700;
             text-align: center;
             letter-spacing: -0.2px;
@@ -1554,7 +1678,7 @@
             color: var(--text);
         }
         .step-card-header p {
-            font-size: 0.72rem;
+            font-size: 0.9rem;
             font-weight: 400;
             text-align: center;
             color: var(--muted);
@@ -1581,7 +1705,7 @@
             text-align: left;
         }
         .faq-intro .section-sub { max-width: none; margin-bottom: 22px; }
-        .faq-contact { font-size: 0.9rem; line-height: 1.7; color: var(--muted); margin: 0; }
+        .faq-contact { font-size: 0.95rem; line-height: 1.7; color: var(--muted); margin: 0; }
         .faq-contact a { color: var(--blue); font-weight: 600; text-decoration: none; }
         .faq-contact a:hover { text-decoration: underline; }
         @media (max-width: 860px) {
@@ -1617,7 +1741,7 @@
         .faq-chevron { flex-shrink: 0; color: var(--muted); transition: transform 0.3s ease; }
         .faq-item[open] .faq-chevron { transform: rotate(180deg); }
         .faq-answer { padding: 0 24px 22px; }
-        .faq-answer p { font-size: 0.92rem; line-height: 1.75; color: var(--muted); margin: 0; }
+        .faq-answer p { font-size: 1rem; line-height: 1.75; color: var(--muted); margin: 0; }
 
         /* BlurredStagger: each character fades in from blur, one after the next.
            Characters are grouped into nowrap words so lines still break between
@@ -1660,7 +1784,7 @@
             background: var(--card);
             border: 1px solid rgba(22,33,61,0.10);
             box-shadow: 0 6px 22px rgba(22,33,61,0.10);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
         .lang-offer a { color: var(--blue); font-weight: 600; text-decoration: none; }
         .lang-offer a:hover { text-decoration: underline; }
@@ -1707,11 +1831,12 @@
         .cookie-consent.show { display: flex; }
         .cookie-consent p {
             margin: 0;
-            font-size: 0.86rem;
+            font-size: 0.9rem;
             color: var(--muted);
             line-height: 1.5;
             flex: 1 1 260px;
         }
+        .cookie-consent p .cookie-link { margin-left: 2px; }
         .cookie-actions {
             display: flex;
             align-items: center;
@@ -1719,16 +1844,16 @@
             flex-shrink: 0;
         }
         .cookie-link {
-            font-size: 0.82rem;
+            font-size: inherit;
             font-weight: 600;
             color: var(--blue);
-            text-decoration: none;
-            margin-right: 4px;
+            text-decoration: underline;
+            text-underline-offset: 2px;
         }
         .cookie-link:hover { text-decoration: underline; }
         .cookie-btn {
             font-family: inherit;
-            font-size: 0.82rem;
+            font-size: 0.88rem;
             font-weight: 700;
             /* 34px tall on padding alone, under the 44px iOS HIG minimum. */
             min-height: 44px;
@@ -1747,15 +1872,19 @@
             border: 1px solid rgba(22,33,61,0.18);
             color: var(--text);
         }
-        .cookie-btn.accept { background: var(--green); color: #fff; }
+        /* White on --green measures 4.30:1 — under AA for a 14px label. The
+           ink green carries it at 6.06:1 and is the same hue. */
+        .cookie-btn.accept { background: var(--green-ink); color: #fff; }
         @media (max-width: 560px) {
-            .cookie-consent { left: 12px; right: 12px; bottom: 12px; padding: 16px; }
-            /* German, Portuguese and Russian run the link and both buttons past
-               the width of a phone. Let the row wrap and give the link a line of
-               its own, so the two buttons stay together instead of one of them
-               being stranded on the line above. */
-            .cookie-actions { width: 100%; flex-wrap: wrap; flex-shrink: 1; justify-content: flex-end; row-gap: 12px; }
-            .cookie-link { flex: 1 0 100%; margin-right: 0; display: flex; align-items: center; min-height: 44px; }
+            .cookie-consent {
+                left: 12px; right: 12px; bottom: 12px;
+                padding: 13px 15px;
+                gap: 11px;
+            }
+            .cookie-consent p { line-height: 1.45; }
+            /* Two buttons, one row, in every language: nothing else is left in
+               here to be stranded on a line of its own. */
+            .cookie-actions { width: 100%; justify-content: flex-end; }
         }
 /* i18n:cookiecss:end */
     </style>
@@ -1770,6 +1899,28 @@
 <!-- First thing in the tab order: lets a keyboard or screen-reader visitor jump
      the nav instead of walking six links and a language menu on every page. -->
 <a class="skip-link" href="#content" data-i18n="skip_link">Ir para o conteúdo</a>
+
+<!-- COOKIE CONSENT
+     First in the document, because it is fixed to the bottom of the window and
+     its position on screen owes nothing to where it sits in the source: a
+     keyboard used to reach the one thing on the page asking to be answered
+     only after walking the whole site. role="region" rather than "dialog" —
+     it traps nothing and takes no focus, and claiming otherwise tells a screen
+     reader to expect behaviour that is not there. -->
+<div id="cookieConsent" class="cookie-consent" role="region" aria-live="polite" aria-label="Consentimento de cookies" data-i18n-attr="aria-label:cookie_title">
+    <!-- The link sits inside the sentence rather than in the button row. On a
+         phone that row cost 44px of its own — the banner stood 195px tall in
+         English and 217px in German, over the hero's button — and a link
+         inside a block of text is exactly what WCAG 2.5.8 exempts from the
+         target size it was there to satisfy. Both halves keep their own key,
+         so no string had to be rewritten in seven languages. -->
+    <p><span data-i18n="cookie_text">Usamos cookies de análise para perceber como o site é usado. Você decide.</span>
+       <a href="/privacy/" class="cookie-link" data-i18n="footer_privacy">Política de Privacidade</a></p>
+    <div class="cookie-actions">
+        <button class="cookie-btn decline" onclick="setConsent(false)" data-i18n="cookie_decline">Recusar</button>
+        <button class="cookie-btn accept" onclick="setConsent(true)" data-i18n="cookie_accept">Aceitar</button>
+    </div>
+</div>
 
 <!-- NAV — extruded keycap menu. Labels carry data-i18n keys, so all seven
      language builds pick them up automatically. -->
@@ -1871,12 +2022,24 @@
             <p class="hero-trial" data-i18n="hero_trial">1 mês de teste grátis · Sem compromisso</p>
         </div>
         <div class="hero-visual">
-            <picture class="hero-photo">
-                <source srcset="/img/hero-gobag.webp" type="image/webp">
-                <!-- width/height are the file's own, so the box is reserved
-                     before the bytes arrive and the headline never jumps.
-                     fetchpriority, because this is the hero's largest paint. -->
-                <img src="/img/hero-gobag.jpg" alt="Uma mulher com uma mochila de emergência pronta afasta-se de um incêndio florestal enquanto os bombeiros combatem as chamas atrás dela" data-i18n-attr="alt:hero_img_alt" width="568" height="581" fetchpriority="high" decoding="async">
+            <!-- Three widths, because this is a 300px card on a phone and
+                 half a window on a desktop: a phone that took the 1239 would
+                 be paying 102KB to draw 300 points of it. width/height are the
+                 file's own, so the box is reserved before the bytes arrive and
+                 the headline never jumps. fetchpriority, because above 900px
+                 this is the largest paint on the page. -->
+            <picture class="hero-art">
+                <source type="image/webp"
+                        sizes="(max-width: 900px) 300px, 60vw"
+                        srcset="/img/hero-gobag-620.webp 620w,
+                                /img/hero-gobag-900.webp 900w,
+                                /img/hero-gobag-1239.webp 1239w">
+                <img src="/img/hero-gobag-1239.jpg"
+                     sizes="(max-width: 900px) 300px, 60vw"
+                     srcset="/img/hero-gobag-620.jpg 620w,
+                             /img/hero-gobag-900.jpg 900w,
+                             /img/hero-gobag-1239.jpg 1239w"
+                     alt="Uma mulher com uma mochila de emergência pronta afasta-se de um incêndio florestal enquanto os bombeiros combatem as chamas atrás dela" data-i18n-attr="alt:hero_img_alt" width="1239" height="1269" fetchpriority="high" decoding="async">
             </picture>
         </div>
     </div>
@@ -1899,7 +2062,11 @@
         <div class="section-label reveal" data-i18n="how_label">Como funciona</div>
         <h2 class="section-title reveal d1" data-i18n="how_title">Pronto em minutos</h2>
         <p class="section-sub reveal d2" data-i18n="how_sub">Configure o seu kit de emergência em poucos passos.</p>
-        <div class="steps-carousel" id="stepsStage">
+        <!-- A labelled group rather than a bare div, so the seven slides are
+             announced as one thing; the status line below carries the heading
+             of whichever slide a deliberate move lands on. Autoplay does not
+             write to it — a live region firing every few seconds is noise. -->
+        <div class="steps-carousel" id="stepsStage" role="group" data-i18n-attr="aria-label:how_label" aria-label="Como funciona">
             <div class="how-step-card">
                 <div class="step-card-header">
                     <h3 data-i18n="step1_h">Controle as suas reservas</h3>
@@ -2017,7 +2184,16 @@
                 <button class="step-dot" data-i="6" aria-label="Tudo num só lugar" data-i18n-attr="aria-label:step7_h"></button>
             </div>
             <button class="steps-btn" id="stepsNext" aria-label="Seguinte" data-i18n-attr="aria-label:nav_next">&#8250;</button>
+            <!-- WCAG 2.2.2 wants a way to stop anything that moves by itself
+                 for more than five seconds. Hovering paused it, which is no
+                 mechanism at all on a touch screen — there is no hover there.
+                 Both labels ride the same element so the build translates the
+                 stopped state along with the running one. -->
+            <button class="steps-btn steps-play" id="stepsPlay" type="button" aria-pressed="false"
+                    aria-label="Pausar" data-label-pause="Pausar" data-label-play="Reproduzir"
+                    data-i18n-attr="aria-label:steps_pause data-label-pause:steps_pause data-label-play:steps_play"><i></i></button>
         </div>
+        <p class="sr-only" id="stepsStatus" role="status" aria-live="polite"></p>
     </div>
 </section>
 
@@ -2159,7 +2335,7 @@
                 <h3 class="review-title" data-i18n="review2_title">Limpa e simples</h3>
                 <p class="review-quote" data-i18n="review2_quote">Fixe! Muito fácil de usar. Mesmo o que precisa!</p>
                 <div class="review-author">
-                    <div class="review-avatar" style="background:rgba(210,96,31,0.15); color:var(--orange)">A</div>
+                    <div class="review-avatar" style="background:rgba(210,96,31,0.15); color:var(--orange-ink)">A</div>
                     <div>
                         <div class="review-name">ASPcom</div>
                         <div class="review-meta">App Store</div>
@@ -2298,36 +2474,31 @@
 <!-- FOOTER -->
 <footer>
     <div class="footer-social">
-<a href="https://www.instagram.com/getemergencyready/" target="_blank" aria-label="Instagram">
+<a href="https://www.instagram.com/getemergencyready/" target="_blank" rel="noopener" aria-label="Instagram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-        <a href="https://www.youtube.com/channel/UC-hk7FsblFeTFA8LYsb7U-g" target="_blank" aria-label="YouTube">
+        <a href="https://www.youtube.com/channel/UC-hk7FsblFeTFA8LYsb7U-g" target="_blank" rel="noopener" aria-label="YouTube">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
-        <a href="https://www.tiktok.com/@emergency_ready" target="_blank" aria-label="TikTok">
+        <a href="https://www.tiktok.com/@emergency_ready" target="_blank" rel="noopener" aria-label="TikTok">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
         </a>
-        <a href="https://x.com/GreDamiStudio" target="_blank" aria-label="X (Twitter)">
+        <a href="https://x.com/GreDamiStudio" target="_blank" rel="noopener" aria-label="X (Twitter)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
     </div>
     <div class="footer-links">
         <a href="/privacy/" data-i18n="footer_privacy">Política de Privacidade</a>
-        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" data-i18n="footer_terms">Termos de Utilização</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener" data-i18n="footer_terms">Termos de Utilização</a>
         <a href="mailto:contact@gredami.com" data-i18n="footer_support">Suporte</a>
+        <!-- GDPR art. 7(3): withdrawing has to be as easy as giving. Until now
+             a visitor who pressed Accept had no way back — the banner stores
+             the answer and never asks again. -->
+        <button type="button" onclick="reopenConsent()" data-i18n="footer_cookies">Definições de cookies</button>
     </div>
     <p data-i18n="footer_copy">© 2026 GreDami. Todos os direitos reservados.</p>
 </footer>
 
-<!-- COOKIE CONSENT -->
-<div id="cookieConsent" class="cookie-consent" role="dialog" aria-live="polite" aria-label="Consentimento de cookies" data-i18n-attr="aria-label:cookie_title">
-    <p data-i18n="cookie_text">Usamos cookies de análise para perceber como o site é usado. Você decide.</p>
-    <div class="cookie-actions">
-        <a href="/privacy/" class="cookie-link" data-i18n="footer_privacy">Política de Privacidade</a>
-        <button class="cookie-btn decline" onclick="setConsent(false)" data-i18n="cookie_decline">Recusar</button>
-        <button class="cookie-btn accept" onclick="setConsent(true)" data-i18n="cookie_accept">Aceitar</button>
-    </div>
-</div>
 
 <script>
 /* i18n:consentjs:start */
@@ -2349,7 +2520,24 @@ function setConsent(granted) {
   try { localStorage.setItem('gobag_consent', granted ? 'granted' : 'denied'); } catch (e) {}
   var b = document.getElementById('cookieConsent');
   if (b) b.classList.remove('show');
-  if (granted) loadGA();
+  if (granted) { loadGA(); return; }
+  /* Declining after it has already loaded — which is what withdrawing looks
+     like — cannot be done by setting a flag: the tag is running in this page.
+     The only honest way to stop it is to drop the page it is running in, and
+     on the way back the stored 'denied' keeps it from loading again. */
+  if (window.__gaLoaded) location.reload();
+}
+
+/* GDPR art. 7(3): withdrawing consent has to be as easy as giving it. The
+   banner asks once and remembers, so without this there was no second chance
+   — the footer link is that chance, on every page that carries the banner. */
+function reopenConsent() {
+  try { localStorage.removeItem('gobag_consent'); } catch (e) {}
+  var b = document.getElementById('cookieConsent');
+  if (!b) return;
+  b.classList.add('show');
+  var first = b.querySelector('.cookie-btn');
+  if (first) first.focus();
 }
 (function() {
   var c = null;
@@ -2541,6 +2729,8 @@ applyRegionalPricing(document.documentElement.lang);
   const prevBtn = document.getElementById('stepsPrev');
   const nextBtn = document.getElementById('stepsNext');
   const nav     = document.querySelector('.steps-nav');
+  const playBtn = document.getElementById('stepsPlay');
+  const status  = document.getElementById('stepsStatus');
   const N = slides.length;
   let cur = 0, autoTimer = null, isDragging = false, dragStartX = 0, dragDeltaX = 0;
 
@@ -2550,11 +2740,17 @@ applyRegionalPricing(document.documentElement.lang);
      to a pointer or keyboard resting on the carousel, and to a hidden tab —
      the last one purely so a backgrounded tab stops burning battery. */
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let paused = false;
-
+  /* Below this width the deck has no room for neighbours: at 390px they were
+     sliced off by the edge of the screen and showed half a phone and two
+     letters of a caption each, which read as broken rather than as depth. */
+  const narrow = window.matchMedia('(max-width: 760px)');
+  let paused = false;                          // a pointer is resting on it
+  let userPaused = reduceMotion.matches;       // the button was pressed — or
+                                               // the visitor asked for less
+                                               // motion, which starts it stopped
 
   // Per-position config (FinWall style): dx=offset, sc=scale, op=opacity, zi=z-index
-  const CONFIG = [
+  const WIDE = [
     { dx: -660, sc: 0.56, op: 0.08, zi: 0 },  // -3
     { dx: -480, sc: 0.68, op: 0.20, zi: 1 },  // -2
     { dx: -240, sc: 0.82, op: 0.50, zi: 2 },  // -1
@@ -2563,7 +2759,13 @@ applyRegionalPricing(document.documentElement.lang);
     { dx:  480, sc: 0.68, op: 0.20, zi: 1 },  // +2
     { dx:  660, sc: 0.56, op: 0.08, zi: 0 },  // +3
   ];
-  const EDGE = (CONFIG.length - 1) / 2;
+  /* Same seven positions, but only the live slide is drawn. They keep a small
+     offset so a drag still has somewhere to come from and go to. */
+  const NARROW = WIDE.map((c, i) => (
+    i === 3 ? c : { dx: c.dx < 0 ? -300 : 300, sc: 0.84, op: 0, zi: 0 }
+  ));
+  const deck = () => (narrow.matches ? NARROW : WIDE);
+  const EDGE = (WIDE.length - 1) / 2;
 
   function render(extraDx) {
     extraDx = extraDx || 0;
@@ -2572,11 +2774,14 @@ applyRegionalPricing(document.documentElement.lang);
       if (rel >  N / 2) rel -= N;   // wrap for infinite loop
       if (rel < -N / 2) rel += N;
       const abs = Math.min(Math.max(rel, -EDGE), EDGE);
-      const c   = CONFIG[abs + EDGE];
+      const c   = deck()[abs + EDGE];
       const dx  = c.dx + extraDx * (1 - Math.abs(abs) * 0.25);
       s.style.transform  = `translateX(${dx}px) scale(${c.sc})`;
       s.style.opacity    = c.op;
       s.style.zIndex     = c.zi;
+      // An invisible slide still takes a click, and on a phone every slide but
+      // one is invisible.
+      s.style.pointerEvents = c.op === 0 ? 'none' : 'auto';
       s.style.transition = extraDx ? 'none' : 'transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease';
       // depth belongs on the phone frame — the slide itself is a transparent
       // wrapper around the caption + mockup, so a shadow on it would box the text
@@ -2606,16 +2811,42 @@ applyRegionalPricing(document.documentElement.lang);
 
   function startAuto() {
     stopAuto();
-    if (reduceMotion.matches || paused || document.hidden) return;
-    autoTimer = setInterval(() => goTo(cur + 1), 2800);
+    if (userPaused || paused || document.hidden) return;
+    /* 2.8s was shorter than it takes to read the caption under the phone,
+       which made the deck feel like it was snatching slides away. */
+    autoTimer = setInterval(() => goTo(cur + 1), 5500);
+  }
+
+  /* Only a deliberate move writes to the status line. Autoplay changing a
+     slide every few seconds through a live region is noise, not information. */
+  function announce() {
+    if (!status) return;
+    const h = slides[cur].querySelector('h3');
+    status.textContent = h ? h.textContent.trim() : '';
   }
 
   /* A deliberate move restarts the clock, so the slide the visitor just chose
      gets a full interval instead of whatever was left of the previous one. */
   function navigate(n) {
     goTo(n);
+    announce();
     startAuto();
   }
+
+  /* The button is the mechanism WCAG 2.2.2 asks for; hover and focus are a
+     courtesy that a touch screen can never offer. aria-pressed and the glyph
+     are set from the same place, so they cannot drift apart. */
+  function syncPlayBtn() {
+    if (!playBtn) return;
+    playBtn.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
+    const label = userPaused ? playBtn.dataset.labelPlay : playBtn.dataset.labelPause;
+    if (label) playBtn.setAttribute('aria-label', label);
+  }
+  if (playBtn) playBtn.addEventListener('click', () => {
+    userPaused = !userPaused;
+    syncPlayBtn();
+    if (userPaused) stopAuto(); else startAuto();
+  });
 
   function pause()  { paused = true;  stopAuto();  }
   function resume() { paused = false; startAuto(); }
@@ -2632,8 +2863,15 @@ applyRegionalPricing(document.documentElement.lang);
     if (document.hidden) stopAuto(); else startAuto();
   });
 
-  // Honour the setting being changed while the page is open, not just at load.
-  reduceMotion.addEventListener('change', startAuto);
+  /* Honour either setting being changed while the page is open. Turning
+     reduced motion on stops the deck where it stands; pressing play after
+     that is an explicit request for movement and still works. */
+  reduceMotion.addEventListener('change', () => {
+    userPaused = reduceMotion.matches;
+    syncPlayBtn();
+    startAuto();
+  });
+  narrow.addEventListener('change', () => render());
 
   if (prevBtn) prevBtn.addEventListener('click', () => navigate(cur - 1));
   if (nextBtn) nextBtn.addEventListener('click', () => navigate(cur + 1));
@@ -2664,6 +2902,7 @@ applyRegionalPricing(document.documentElement.lang);
   });
 
   render();
+  syncPlayBtn();
   startAuto();
 })();
 
