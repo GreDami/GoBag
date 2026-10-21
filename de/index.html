@@ -1475,57 +1475,6 @@
             color: var(--muted);
         }
 
-        /* ── the price strip ─────────────────────────────────────────────────
-           What is left of pricing on the home page now that the plans have a
-           page of their own: the three figures in a row and the way through to
-           the rest. The figures are the very strings the cards print, so the
-           two pages cannot quote different prices, and the "from" hedge comes
-           off here wherever it comes off there. */
-        .price-strip { padding: 84px 24px; }
-        .price-strip-card {
-            max-width: 920px;
-            margin: 0 auto;
-            text-align: center;
-            background: rgba(22,33,61,0.04);
-            border: 1px solid rgba(22,33,61,0.08);
-            border-radius: 28px;
-            padding: 44px 32px 40px;
-        }
-        .price-strip h2 {
-            font-family: var(--display);
-            font-size: clamp(2rem, 4.4vw, 2.9rem);
-            font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -0.2px;
-            margin: 10px 0 28px;
-        }
-        .price-strip-plans {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 0 0 30px;
-        }
-        .price-strip-plans li {
-            padding: 16px 12px;
-            border-radius: 18px;
-            background: var(--card);
-            border: 1px solid rgba(22,33,61,0.07);
-        }
-        .price-strip-plans li.featured { border-color: rgba(47,138,82,0.4); background: rgba(47,138,82,0.06); }
-        .price-strip-name { display: block; font-size: 0.85rem; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
-        .price-strip-price { display: block; font-size: 1.55rem; font-weight: 800; letter-spacing: -0.6px; }
-        .price-strip-price span { font-size: 0.85rem; font-weight: 400; letter-spacing: 0; color: var(--muted); }
-        .price-strip-price .price-from { font-weight: 500; }
-        .price-strip-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-        .price-strip-links svg { fill: none; stroke: currentColor; }
-        @media (max-width: 640px) {
-            .price-strip { padding: 64px 20px; }
-            .price-strip-card { padding: 34px 18px 28px; }
-            .price-strip-plans { grid-template-columns: 1fr; }
-            .price-strip-links .btn-secondary { width: 100%; }
-        }
-
         /* ── the pricing page ─────────────────────────────────────────────── */
         .plans-section { padding-top: 64px; }
         .page-section-head { text-align: center; }
@@ -2261,6 +2210,18 @@
 
 <main id="content">
 
+<!-- Pricing and the FAQ used to be sections of this page, and their keys in
+     the bar were anchors, so a link copied from the address bar may still end
+     in #pricing or #faq. Those are pages of their own now; send it there,
+     before anything below has painted. In the home page's own <main>, so no
+     other page runs it. -->
+<script>
+(function () {
+  var to = { '#pricing': 'pricing/', '#faq': 'faq/' }[location.hash];
+  if (to) location.replace(location.pathname.replace(/[^/]*$/, '') + to);
+})();
+</script>
+
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content">
@@ -2607,36 +2568,6 @@
 
 <hr class="divider">
 
-<!-- PRICES — the plans and the questions have pages of their own. What
-     stays here is the three figures and the way through to both. The ids keep
-     an old link to /#pricing or /#faq landing somewhere that answers it. -->
-<section class="price-strip" id="pricing">
-    <div class="price-strip-card reveal">
-        <div class="section-label" data-i18n="pricing_label">Preise</div>
-        <h2 data-i18n="pricing_sub">Starte kostenlos. Wechsle zu Premium, wenn du bereit bist.</h2>
-        <ul class="price-strip-plans" data-nosnippet>
-            <li>
-                <span class="price-strip-name" data-i18n="free_name">Kostenlos</span>
-                <span class="price-strip-price" data-i18n-html="free_price">0€</span>
-            </li>
-            <li class="featured">
-                <span class="price-strip-name" data-i18n="yearly_name">Premium Jährlich</span>
-                <span class="price-strip-price" data-i18n-html="yearly_price"><span class="price-from">ab </span>12,99€ <span>/Jahr</span></span>
-            </li>
-            <li>
-                <span class="price-strip-name" data-i18n="lifetime_name">Lebenslang</span>
-                <span class="price-strip-price" data-i18n-html="lifetime_price"><span class="price-from">ab </span>39,99€ <span></span></span>
-            </li>
-        </ul>
-        <div class="price-strip-links" id="faq">
-            <a class="btn-secondary" href="/de/pricing/"><span data-i18n="compare_title">Tarife im Vergleich</span><svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            <a class="btn-secondary" href="/de/faq/"><span data-i18n="strip_faq">Zur FAQ</span><svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-    </div>
-</section>
-
-<hr class="divider">
-
 <!-- CTA -->
 <div class="cta-section">
     <h2 class="reveal" data-i18n="cta_h2">Starte heute deinen kostenlosen Test</h2>
@@ -2798,8 +2729,7 @@ function priceIsExact(lang) {
 
 function applyRegionalPricing(lang) {
   if (!priceIsExact(lang)) return;
-  document.querySelectorAll('.pricing-price .price-from, .price-strip-price .price-from')
-    .forEach((el) => el.remove());
+  document.querySelectorAll('.pricing-price .price-from').forEach((el) => el.remove());
 }
 
 /* ── headline character roll ───────────────────────────────────────────────
@@ -3228,8 +3158,8 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     /* The end of the page used to be handed to the last key outright, because
        the FAQ was the last section and too short to fill the band. The keys
        that are left on this page are Features and Reviews, and what follows
-       Reviews is the price strip and the closing button — neither of them
-       Reviews. So the band decides at the foot of the page too. */
+       Reviews is the closing button, which is not Reviews. So the band decides
+       at the foot of the page too. */
     keys.forEach(function (k) {
       k.classList.toggle('current', k.getAttribute('href') === current);
     });

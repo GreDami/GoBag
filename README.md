@@ -112,6 +112,6 @@ keeps weight 900 *and* covers Cyrillic.
 ## Adding a language
 
 Add it to `LANGS`, `LANG_CODES` and `LANG_LABELS` in `tools/build-i18n.mjs`,
-add a full block (`seo` + all 175 strings) to `i18n/translations.json`, then
+add a full block (`seo` + all 174 strings) to `i18n/translations.json`, then
 build. The build fails loudly on any missing string rather than shipping a
 half-translated page.

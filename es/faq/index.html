@@ -1558,57 +1558,6 @@
             color: var(--muted);
         }
 
-        /* ── the price strip ─────────────────────────────────────────────────
-           What is left of pricing on the home page now that the plans have a
-           page of their own: the three figures in a row and the way through to
-           the rest. The figures are the very strings the cards print, so the
-           two pages cannot quote different prices, and the "from" hedge comes
-           off here wherever it comes off there. */
-        .price-strip { padding: 84px 24px; }
-        .price-strip-card {
-            max-width: 920px;
-            margin: 0 auto;
-            text-align: center;
-            background: rgba(22,33,61,0.04);
-            border: 1px solid rgba(22,33,61,0.08);
-            border-radius: 28px;
-            padding: 44px 32px 40px;
-        }
-        .price-strip h2 {
-            font-family: var(--display);
-            font-size: clamp(2rem, 4.4vw, 2.9rem);
-            font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -0.2px;
-            margin: 10px 0 28px;
-        }
-        .price-strip-plans {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 0 0 30px;
-        }
-        .price-strip-plans li {
-            padding: 16px 12px;
-            border-radius: 18px;
-            background: var(--card);
-            border: 1px solid rgba(22,33,61,0.07);
-        }
-        .price-strip-plans li.featured { border-color: rgba(47,138,82,0.4); background: rgba(47,138,82,0.06); }
-        .price-strip-name { display: block; font-size: 0.85rem; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
-        .price-strip-price { display: block; font-size: 1.55rem; font-weight: 800; letter-spacing: -0.6px; }
-        .price-strip-price span { font-size: 0.85rem; font-weight: 400; letter-spacing: 0; color: var(--muted); }
-        .price-strip-price .price-from { font-weight: 500; }
-        .price-strip-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-        .price-strip-links svg { fill: none; stroke: currentColor; }
-        @media (max-width: 640px) {
-            .price-strip { padding: 64px 20px; }
-            .price-strip-card { padding: 34px 18px 28px; }
-            .price-strip-plans { grid-template-columns: 1fr; }
-            .price-strip-links .btn-secondary { width: 100%; }
-        }
-
         /* ── the pricing page ─────────────────────────────────────────────── */
         .plans-section { padding-top: 64px; }
         .page-section-head { text-align: center; }
@@ -2670,8 +2619,7 @@ function priceIsExact(lang) {
 
 function applyRegionalPricing(lang) {
   if (!priceIsExact(lang)) return;
-  document.querySelectorAll('.pricing-price .price-from, .price-strip-price .price-from')
-    .forEach((el) => el.remove());
+  document.querySelectorAll('.pricing-price .price-from').forEach((el) => el.remove());
 }
 
 /* ── headline character roll ───────────────────────────────────────────────
@@ -3100,8 +3048,8 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     /* The end of the page used to be handed to the last key outright, because
        the FAQ was the last section and too short to fill the band. The keys
        that are left on this page are Features and Reviews, and what follows
-       Reviews is the price strip and the closing button — neither of them
-       Reviews. So the band decides at the foot of the page too. */
+       Reviews is the closing button, which is not Reviews. So the band decides
+       at the foot of the page too. */
     keys.forEach(function (k) {
       k.classList.toggle('current', k.getAttribute('href') === current);
     });
