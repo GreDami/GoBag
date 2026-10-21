@@ -343,6 +343,14 @@
                or under a headline, and both fail as 11px type. */
             --green-ink:  #237042;
             --orange-ink: #a8460f;
+            /* The hero's ground: the smoke the picture is burning in. Near
+               black with the fire's brown in it, so the picture's own darks
+               run into it without a seam and white type clears 18:1. */
+            --smoke: #15100c;
+            /* --green is 4.4:1 on the smoke: legible, and the dimmest thing in
+               the column, on the line that says what the app is for. The same
+               hue, lifted to 11:1. */
+            --green-lit: #79d9a0;
             --navy: #16213d;
             --cream: #f6f1e6;
             --cream2: #efe6d3;
@@ -765,7 +773,11 @@
             padding: 120px 24px 100px;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(180deg, #faf6ec 0%, #f5efdf 50%, #ecdfc4 100%);
+            /* the smoke, the picture and the shade over it stack against the
+               band, not against the page */
+            isolation: isolate;
+            background: var(--smoke);
+            color: #fff;
         }
         /* .hero-bg, .hero-content's first declaration and .hero-badge stood
            here: a backdrop element, a max-width and a pill that no markup has
@@ -782,7 +794,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .hero h1 span { color: var(--green); }
+        .hero h1 span { color: var(--green-lit); }
 
 
         /* ── the headline character roll ─────────────────────────────────────
@@ -854,8 +866,10 @@
         .hero h1.roll-reset .rc i, .hero h1.roll-reset .rc::after { transition: none; }
         .hero p {
             font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-            font-weight: 300;
-            color: var(--muted);
+            /* 300 was right for ink on cream. White on the smoke at 300 thins
+               to a hairline as it is antialiased; 400 keeps its edges. */
+            font-weight: 400;
+            color: rgba(255,255,255,0.88);
             max-width: 520px;
             margin: 0 auto 40px;
             line-height: 1.7;
@@ -926,9 +940,9 @@
         p.hero-trial {
             margin: 24px auto 0;
             font-size: 0.875rem;
-            font-weight: 300;
+            font-weight: 400;
             letter-spacing: 0.2px;
-            color: var(--muted);
+            color: rgba(255,255,255,0.74);
         }
 
 
@@ -946,13 +960,6 @@
         .hero-text p.hero-trial { text-align: left; margin: 24px 0 0; }
         .hero-text h1 { margin-left: 0; margin-right: 0; }
         .hero-text p:not(.hero-trial) { margin: 0 0 40px; }
-        .hero-visual {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-        }
         /* The hero used to hold a phone mock of screenshots/1. A picture of
            the app is the wrong argument to open with: someone landing here is
            weighing whether to prepare at all, not comparing interfaces, and
@@ -960,25 +967,29 @@
            The frame itself is untouched below, because the steps carousel
            still builds seven of them.
 
-           These are the rules for the stacked hero, below 901px, where the
-           artwork is a card above the words. The split layout that runs above
+           The picture is the band at every width now, not a card in it or a
+           half of it, and the words stand on it. These are the rules for the
+           stacked hero, 900px and under: the picture runs edge to edge across
+           the top, from under the bar, and fades out at its foot into the
+           smoke the words are set on. The full-bleed layout that runs above
            that width is further down, in its own min-width block. */
-        .hero-art {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto;
-        }
+        .hero-visual { width: 100%; }
+        .hero-art { display: block; }
         .hero-art img {
             display: block;
             width: 100%;
-            height: auto;
-            border-radius: 22px;
-            /* The warm half of the shadow is the fire in the artwork itself,
-               the way the phone's was the blue of its screen. */
-            box-shadow:
-                0 24px 60px rgba(22,33,61,0.24),
-                0 0 44px rgba(210,96,31,0.12);
+            /* tall enough for her and the bag, short enough that the button
+               under the words still lands on the first screen */
+            height: min(58vh, 560px);
+            height: min(58svh, 560px);
+            /* the crop takes the sky and keeps her head, the bag and the line
+               of fire behind her */
+            object-fit: cover;
+            object-position: 46% 22%;
+            /* The foot dissolves into the smoke, so the headline that starts
+               inside it is standing on dark and not on the picture. */
+            -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
+                    mask-image: linear-gradient(180deg, #000 62%, transparent 100%);
         }
 
         /* ===== iPhone MOCKUP FRAME (shared: hero + steps carousel) =====
@@ -1043,59 +1054,106 @@
             background: #000;
         }
         @media (max-width: 900px) {
-            .hero-content { flex-direction: column-reverse; text-align: center; gap: 32px; }
+            /* The band closes on its contents: the picture has no room to
+               reserve underneath it. */
+            .hero { min-height: 0; padding: 0 0 56px; }
+            .hero-content { flex-direction: column-reverse; text-align: center; gap: 0; }
+            /* Drawn up into the fade by about a line of the headline, so the
+               picture and the words read as one piece. The z-index is needed:
+               the mask makes the picture its own layer, and it comes later in
+               the source, so it would otherwise paint over the words. */
+            .hero-text { position: relative; z-index: 1; margin-top: -72px; padding: 0 24px; }
             .hero-text .hero-buttons { justify-content: center; }
             .hero-text p.hero-trial { text-align: center; }
             .hero-text h1 { margin-left: auto; margin-right: auto; }
             .hero-text p:not(.hero-trial) { margin: 0 auto 40px; }
         }
-        /* The phone mock was hidden outright below 560px: at 140px wide it had
-           stopped saying anything. The artwork still reads at 240px, and on a
-           phone it is the first thing on the screen, so it stays. */
-        @media (max-width: 560px) { .hero-art { max-width: 240px; } }
-        /* A 667px-tall phone cannot hold the artwork, the headline, the
-           paragraph and the button at once, and the button is the one thing
-           that must not fall below the fold. The artwork is what gives. */
-        @media (max-width: 560px) and (max-height: 700px) {
-            .hero-art { max-width: 180px; }
+        /* A 667px-tall phone cannot hold the picture at that height and the
+           headline, the paragraph and the button under it, and the button is
+           the one thing that must not fall below the fold. The picture is what
+           gives. */
+        @media (max-width: 900px) and (max-height: 700px) {
+            .hero-art img { height: 50vh; height: 50svh; }
+        }
+        /* Held sideways, the stacked picture is a strip. Cut it through the
+           bag rather than the sky, and set the headline under it rather than
+           in it, where it would land on the bag's own lettering. */
+        @media (max-width: 900px) and (orientation: landscape) {
+            .hero-art img { object-position: 46% 40%; }
+            .hero-text { margin-top: -24px; }
         }
 
-        /* ── the split hero ──────────────────────────────────────────────────
-           Above 900px the section is two halves: the words on the cream, the
-           artwork filling its own half from the top of the hero to the bottom
-           and out to the edge of the window. No card, no radius, no shadow —
-           at that size it is the backdrop the headline is standing in, not an
-           illustration pinned beside it.
+        /* ── the full-bleed hero ─────────────────────────────────────────────
+           Above 900px the picture is the band, edge to edge, the way the bird
+           is on gredami.com, and the words stand on it instead of beside it.
 
-           .hero-content is display:contents here, so .hero-text and
-           .hero-visual become the grid's own children. That is what makes the
-           two halves impossible to overlap: the text cannot spill under the
-           artwork at any width, which a centred max-width container beside an
-           absolutely positioned image cannot promise.
+           It stands at the right at the full height of the band. Fitted by
+           height rather than stretched across the window, it is drawn no
+           larger than it was as half of the old split: the file is 1239px,
+           and spread over a whole window it would go soft on every screen.
+           What the window has to the left of it is smoke — the picture again,
+           blurred out and taken down to half its light, so the two meet
+           without a seam — and over that a shade, near black under the words
+           and gone before it reaches her. White type clears 15:1 at the
+           lightest point of the column.
 
            The left padding resolves to exactly the gutter .container uses, so
            the headline starts on the same line as every section heading below
            it, at any window width. */
         @media (min-width: 901px) {
-            .hero {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                align-items: center;
-                padding: 0;
+            .hero { justify-content: flex-start; padding: 0; }
+            .hero-content { display: block; max-width: none; }
+            .hero-text {
+                position: relative;
+                z-index: 1;
+                box-sizing: content-box;
+                width: min(600px, 44vw);
+                padding: 120px 0 100px max(24px, calc((100vw - 1100px) / 2));
             }
-            .hero-content { display: contents; }
-            .hero-text { padding: 120px 40px 100px max(24px, calc((100vw - 1100px) / 2)); }
-            .hero-visual { align-self: stretch; min-width: 0; }
-            .hero-art { max-width: none; height: 100%; margin: 0; }
+            .hero-visual {
+                position: absolute;
+                inset: 0;
+                /* sized by the band and never by what is in it, so the
+                   picture can measure itself against it in cq units */
+                container-type: size;
+            }
+            .hero-visual::before {          /* the smoke */
+                content: "";
+                position: absolute;
+                /* A blur fades to clear at the edge of its own box. This puts
+                   that edge outside the band, where overflow hides it. */
+                inset: -80px;
+                background: url(/img/hero-gobag-620.webp) 0% 40% / cover;
+                filter: blur(48px) brightness(0.5) saturate(1.1);
+            }
+            .hero-visual::after {           /* the shade the words stand on */
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg,
+                    rgba(21,16,12,0.80) 0%,
+                    rgba(21,16,12,0.62) 38%,
+                    rgba(21,16,12,0) 64%);
+            }
+            .hero-art { position: absolute; inset: 0; }
             .hero-art img {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: auto;
                 height: 100%;
-                border-radius: 0;
-                box-shadow: none;
-                /* The frame is taller than the artwork is square, so the crop
-                   is horizontal and takes evenly off both sides; she stays in
-                   the middle of it at every ratio. */
-                object-fit: cover;
-                object-position: 50% 50%;
+                /* The mountains, her hand and the ends of her hair dissolve
+                   into the smoke instead of stopping on a straight edge. */
+                -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 32%);
+                        mask-image: linear-gradient(90deg, transparent 0%, #000 32%);
+            }
+            /* Flush right while the window is wide enough for her to stand
+               clear of the words. Narrower than that the picture holds at 42%
+               and runs out past the right edge instead, so what lies under the
+               end of the column is its faded left third — the mountains and
+               her hand — and not her bag. The firefighters are what goes. */
+            @supports (left: 1cqw) {
+                .hero-art img { right: auto; left: max(100cqw - 100cqh * 1239 / 1269, 42cqw); }
             }
         }
 
@@ -1133,11 +1191,10 @@
             left: 50%;
             transform: translateX(-50%);
             cursor: pointer;
-            /* Was rgba(232,240,255,0.55): a near-white arrow on a cream hero,
-               1.2:1 against its own background and effectively not drawn at
-               all. Ink at 55% clears the 3:1 WCAG asks of a graphic that
-               carries meaning, on both ends of the hero's gradient. */
-            color: rgba(22,33,61,0.55);
+            /* White on the smoke. It was ink at 55% while the hero was cream,
+               and a graphic that carries meaning needs 3:1 against whatever it
+               is drawn on; this clears it several times over. */
+            color: rgba(255,255,255,0.7);
             animation: bounce 2.4s ease-in-out infinite;
             transition: color 0.2s, background 0.2s;
             display: flex;
@@ -1153,13 +1210,18 @@
             text-decoration: none;   /* it is a real link to #how now */
         }
         .scroll-hint svg { width: 30px; height: 30px; }
-        .scroll-hint:hover { color: var(--green); background: rgba(47,138,82,0.10); }
-        /* In the split hero, centred on the window means centred on the seam
-           between the two halves, with half the arrow on the artwork. It
-           belongs in the middle of the half it can be read against. Declared
-           here rather than with the rest of the split, so it comes after the
+        .scroll-hint:hover { color: var(--green-lit); background: rgba(121,217,160,0.12); }
+        /* Centred on the window, the arrow would sit on her. It belongs under
+           the words, in the middle of the shaded half. Declared here rather
+           than with the rest of the full-bleed rules, so it comes after the
            left: 50% it has to beat. */
         @media (min-width: 901px) { .scroll-hint { left: 25%; } }
+        /* The stacked hero closes on its contents, so an arrow pinned to its
+           foot would land on the trial line. */
+        @media (max-width: 900px) { .scroll-hint { display: none; } }
+        /* The page's focus ring is --green, which a ring on the smoke can
+           barely be told apart from the button it surrounds. */
+        .hero a:focus-visible { outline-color: var(--green-lit); }
         /* The bounce owns `transform`, so the focus ring needs its own offset
            rather than inheriting the keyframe's translate. */
         .scroll-hint:focus-visible { outline-offset: 6px; }
@@ -1692,7 +1754,7 @@
 
         @media (max-width: 700px) {
             nav { padding: 14px 16px; }
-            .hero { padding: 100px 20px 80px; }
+            .hero-text { padding: 0 20px; }
             .family-banner { padding: 28px 20px; }
         }
 
@@ -2028,20 +2090,20 @@
             <p class="hero-trial" data-i18n="hero_trial">1 mois d'essai gratuit · Sans engagement</p>
         </div>
         <div class="hero-visual">
-            <!-- Three widths, because this is a 300px card on a phone and
-                 half a window on a desktop: a phone that took the 1239 would
-                 be paying 102KB to draw 300 points of it. width/height are the
+            <!-- Three widths. On a phone the picture is the width of the
+                 screen; above 900px it is fitted to the height of the band,
+                 which is what the vh in sizes says. width/height are the
                  file's own, so the box is reserved before the bytes arrive and
                  the headline never jumps. fetchpriority, because above 900px
                  this is the largest paint on the page. -->
             <picture class="hero-art">
                 <source type="image/webp"
-                        sizes="(max-width: 900px) 300px, 60vw"
+                        sizes="(max-width: 900px) 100vw, 98vh"
                         srcset="/img/hero-gobag-620.webp 620w,
                                 /img/hero-gobag-900.webp 900w,
                                 /img/hero-gobag-1239.webp 1239w">
                 <img src="/img/hero-gobag-1239.jpg"
-                     sizes="(max-width: 900px) 300px, 60vw"
+                     sizes="(max-width: 900px) 100vw, 98vh"
                      srcset="/img/hero-gobag-620.jpg 620w,
                              /img/hero-gobag-900.jpg 900w,
                              /img/hero-gobag-1239.jpg 1239w"
