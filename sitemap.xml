@@ -100,6 +100,202 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://gobag.gredami.com/pricing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/pricing/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/fr/pricing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/pricing/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/de/pricing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/pricing/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/es/pricing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/pricing/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/it/pricing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/pricing/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/pt/pricing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/pricing/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/ru/pricing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/pricing/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/faq/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/faq/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/faq/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/fr/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/faq/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/faq/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/faq/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/de/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/faq/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/faq/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/faq/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/es/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/faq/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/faq/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/faq/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/it/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/faq/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/faq/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/faq/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/pt/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/faq/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/faq/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/faq/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gobag.gredami.com/ru/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gobag.gredami.com/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gobag.gredami.com/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://gobag.gredami.com/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://gobag.gredami.com/es/faq/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gobag.gredami.com/it/faq/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://gobag.gredami.com/pt/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gobag.gredami.com/ru/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gobag.gredami.com/faq/"/>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://gobag.gredami.com/privacy/</loc>
     <lastmod>2026-10-21</lastmod>
     <changefreq>yearly</changefreq>

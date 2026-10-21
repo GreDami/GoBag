@@ -130,63 +130,6 @@
   }
 }
     </script>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "inLanguage": "fr",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Qu'est-ce qu'un sac de survie ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Un sac de survie — aussi appelé sac d'évacuation ou kit 72 heures — est un kit d'urgence portable contenant l'essentiel à emporter en cas de catastrophe ou d'évacuation. GoBag+ vous aide à le constituer selon 9 catégories pour ne rien oublier d'important."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Que doit contenir un kit d'urgence ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Un bon kit d'urgence couvre l'eau, la nourriture, les premiers soins, les documents importants, les outils, l'abri, la communication, l'hygiène et l'argent liquide. GoBag+ organise tout cela et adapte les quantités recommandées au nombre de personnes à préparer."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Comment GoBag+ m'aide-t-il à constituer mon kit ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "GoBag+ vous permet de créer des sacs de survie personnalisés selon 9 catégories et de suivre chaque article, avec votre niveau de préparation en un coup d'œil. Les objectifs s'ajustent automatiquement à la taille de votre foyer, pour toujours savoir ce qui est prêt et ce qui manque."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Puis-je suivre mes réserves à domicile et recevoir des alertes de péremption ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui. Au-delà de votre sac, GoBag+ suit votre réserve domestique de nourriture, d'eau et de médicaments avec des niveaux de stock minimum par personne, et vous prévient automatiquement avant que les articles n'expirent ou ne manquent."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "GoBag+ se synchronise-t-il entre appareils et fonctionne-t-il pour ma famille ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui. Vos sacs et votre réserve se synchronisent entre iPhone et iPad via iCloud, et le Partage familial Apple couvre jusqu'à 5 membres avec un seul abonnement. Vous pouvez aussi conserver pièces d'identité et passeports dans un coffre protégé par Face ID, et joindre vos contacts d'urgence instantanément avec le bouton SOS, même hors ligne."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "GoBag+ est-il gratuit ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "GoBag+ est gratuit au téléchargement avec l'essentiel. Premium débloque un nombre illimité de sacs, le suivi complet de la réserve, la synchronisation familiale, le widget, la sauvegarde et restauration, et les alertes de péremption — avec un mois d'essai gratuit."
-      }
-    }
-  ]
-}
-    </script>
 
 <!-- i18n:head:end -->
     <link rel="icon" type="image/png" href="/favicon.png" sizes="192x192">
@@ -1157,6 +1100,97 @@
             }
         }
 
+        /* ── the page head ───────────────────────────────────────────────────
+           Every page but the home page opens on this: the hero cut down to a
+           band. The same smoke, the same picture standing at the right of it
+           and the same shade under the words, so a page reached from the bar
+           reads as the same site and not as a document stapled to it.
+
+           The picture is cropped here rather than shown whole — at this height
+           whole would make her a figurine — and each page sets its own crop in
+           --focus, so the two bands are not the same photograph twice. */
+        .page-head {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background: var(--smoke);
+            color: #fff;
+            padding: 150px 24px 84px;
+        }
+        .page-head-art { position: absolute; inset: 0; }
+        .page-head-art::before {        /* the smoke */
+            content: "";
+            position: absolute;
+            inset: -80px;
+            background: url(/img/hero-gobag-620.webp) 0% 40% / cover;
+            filter: blur(48px) brightness(0.5) saturate(1.1);
+        }
+        .page-head-art img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 58%;
+            height: 100%;
+            object-fit: cover;
+            object-position: var(--focus, 50% 36%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 45%);
+                    mask-image: linear-gradient(90deg, transparent 0%, #000 45%);
+        }
+        .page-head-art::after {         /* the shade the words stand on */
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                rgba(21,16,12,0.80) 0%,
+                rgba(21,16,12,0.55) 42%,
+                rgba(21,16,12,0) 72%);
+        }
+        .page-head-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
+        .page-head-text { max-width: min(620px, 56%); }
+        .page-head-label {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--green-lit);
+            margin-bottom: 16px;
+        }
+        .page-head h1 {
+            font-family: var(--display);
+            font-size: clamp(2.8rem, 5.6vw, 4.6rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.4px;
+        }
+        .page-head h1 span { color: var(--green-lit); }
+        .page-head-lead {
+            margin-top: 20px;
+            max-width: 520px;
+            font-size: clamp(1rem, 1.6vw, 1.12rem);
+            line-height: 1.7;
+            color: rgba(255,255,255,0.88);
+        }
+        /* On a phone there is no left half to keep the words on. The picture
+           is the whole band, and the words sit at its foot on a shade that
+           runs from clear at the top to near black under them. */
+        @media (max-width: 700px) {
+            .page-head { padding: 210px 20px 44px; }
+            .page-head-text { max-width: none; }
+            .page-head-art img {
+                width: 100%;
+                object-position: var(--focus-narrow, 46% 30%);
+                -webkit-mask-image: none;
+                        mask-image: none;
+            }
+            .page-head-art::after {
+                background: linear-gradient(180deg,
+                    rgba(21,16,12,0.20) 0%,
+                    rgba(21,16,12,0.68) 32%,
+                    rgba(21,16,12,0.94) 58%);
+            }
+        }
+
         /* SECURITY */
         .security-grid {
             display: grid;
@@ -1440,6 +1474,113 @@
             line-height: 1.65;
             color: var(--muted);
         }
+
+        /* ── the price strip ─────────────────────────────────────────────────
+           What is left of pricing on the home page now that the plans have a
+           page of their own: the three figures in a row and the way through to
+           the rest. The figures are the very strings the cards print, so the
+           two pages cannot quote different prices, and the "from" hedge comes
+           off here wherever it comes off there. */
+        .price-strip { padding: 84px 24px; }
+        .price-strip-card {
+            max-width: 920px;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+            border-radius: 28px;
+            padding: 44px 32px 40px;
+        }
+        .price-strip h2 {
+            font-family: var(--display);
+            font-size: clamp(2rem, 4.4vw, 2.9rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.2px;
+            margin: 10px 0 28px;
+        }
+        .price-strip-plans {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 0 0 30px;
+        }
+        .price-strip-plans li {
+            padding: 16px 12px;
+            border-radius: 18px;
+            background: var(--card);
+            border: 1px solid rgba(22,33,61,0.07);
+        }
+        .price-strip-plans li.featured { border-color: rgba(47,138,82,0.4); background: rgba(47,138,82,0.06); }
+        .price-strip-name { display: block; font-size: 0.85rem; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
+        .price-strip-price { display: block; font-size: 1.55rem; font-weight: 800; letter-spacing: -0.6px; }
+        .price-strip-price span { font-size: 0.85rem; font-weight: 400; letter-spacing: 0; color: var(--muted); }
+        .price-strip-price .price-from { font-weight: 500; }
+        .price-strip-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+        .price-strip-links svg { fill: none; stroke: currentColor; }
+        @media (max-width: 640px) {
+            .price-strip { padding: 64px 20px; }
+            .price-strip-card { padding: 34px 18px 28px; }
+            .price-strip-plans { grid-template-columns: 1fr; }
+            .price-strip-links .btn-secondary { width: 100%; }
+        }
+
+        /* ── the pricing page ─────────────────────────────────────────────── */
+        .plans-section { padding-top: 64px; }
+        .page-section-head { text-align: center; }
+        .page-section-head .section-sub { margin: 0 auto 36px; }
+        /* The cards say what each plan is; the table says what one has that
+           the others do not, a row at a time. Only rows the cards already
+           vouch for: the vault and the SOS button are in the app, but which
+           plan carries them is not something this site states, so they are
+           not rows here either. */
+        .compare-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card);
+            border: 1px solid rgba(22,33,61,0.08);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(22,33,61,0.06);
+        }
+        .compare { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .compare th, .compare td {
+            padding: 15px 18px;
+            border-bottom: 1px solid rgba(22,33,61,0.06);
+            text-align: center;
+            vertical-align: middle;
+        }
+        .compare thead th { font-size: 0.9rem; font-weight: 700; background: rgba(22,33,61,0.03); }
+        .compare tbody th { text-align: left; font-weight: 500; }
+        .compare td { font-weight: 600; }
+        /* The recommended plan is tinted down its whole column, the way its
+           card is set apart above. */
+        .compare .is-featured { background: rgba(47,138,82,0.06); }
+        .compare thead .is-featured { color: var(--green-ink); background: rgba(47,138,82,0.12); }
+        .compare tbody tr:last-child > * { border-bottom: none; }
+        .compare .yes { color: var(--green); }
+        .compare .no { color: rgba(22,33,61,0.30); }
+        .compare svg { width: 20px; height: 20px; vertical-align: middle; }
+        @media (max-width: 640px) {
+            .compare { font-size: 0.84rem; }
+            .compare th, .compare td { padding: 12px 8px; }
+            .compare thead th { font-size: 0.74rem; }
+            .compare tbody th { padding-left: 14px; }
+        }
+        .billing-list { max-width: 760px; margin: 28px auto 0; }
+        /* the way on from the end of a page's own questions */
+        .page-more { margin: 28px 0 0; text-align: center; font-size: 0.95rem; }
+        .page-more a {
+            color: var(--blue);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+        }
+        .page-more a:hover { color: var(--navy); }
 
         /* FAMILY */
         .family-banner {
@@ -1758,25 +1899,11 @@
             .family-banner { padding: 28px 20px; }
         }
 
-        /* FAQ — two-column layout: heading rail on the left, accordion on the
-           right, ported from the text-reveal-faqs component (md:grid-cols-5,
-           split 2/3). */
-        .faq-layout {
-            max-width: 1040px;
-            display: grid;
-            grid-template-columns: 2fr 3fr;
-            align-items: start;
-            gap: 24px 56px;
-            text-align: left;
-        }
-        .faq-intro .section-sub { max-width: none; margin-bottom: 22px; }
+        /* .faq-layout and .faq-intro stood here: the home page's two-column
+           FAQ section, which is a page of its own now (.faq-page, below). */
         .faq-contact { font-size: 0.95rem; line-height: 1.7; color: var(--muted); margin: 0; }
         .faq-contact a { color: var(--blue); font-weight: 600; text-decoration: none; }
         .faq-contact a:hover { text-decoration: underline; }
-        @media (max-width: 860px) {
-            .faq-layout { grid-template-columns: 1fr; gap: 28px; }
-            .faq-intro .section-sub { margin-bottom: 14px; }
-        }
 
         /* FAQ */
         .faq-list { display: flex; flex-direction: column; gap: 12px; text-align: left; }
@@ -1826,6 +1953,65 @@
         .faq-item[open] .faq-answer { animation: faqAnswerIn 0.25s ease-out both; }
         @keyframes faqAnswerIn {
             from { opacity: 0; transform: translateY(-6px); }
+        }
+
+        /* ── the FAQ page ────────────────────────────────────────────────────
+           Fourteen questions are too many for one column of accordions, so
+           they come in groups, and the groups are listed in a rail that stays
+           in view on a wide screen and lights the one being read. On a phone
+           the rail is a row of chips above the first group. */
+        .faq-page {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 64px;
+            align-items: start;
+        }
+        .faq-rail { position: sticky; top: 104px; }
+        .faq-topics { list-style: none; display: grid; gap: 4px; margin-bottom: 28px; }
+        .faq-topics a {
+            display: flex;
+            align-items: center;
+            min-height: 42px;
+            padding: 8px 14px;
+            border-radius: 12px;
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .faq-topics a:hover { background: rgba(22,33,61,0.05); color: var(--text); }
+        .faq-topics a.current { background: rgba(47,138,82,0.10); color: var(--green-ink); }
+        .faq-rail .faq-contact {
+            padding: 18px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.07);
+        }
+        .faq-group { scroll-margin-top: 96px; }
+        .faq-group + .faq-group { margin-top: 56px; }
+        .faq-group h2 {
+            font-family: var(--display);
+            font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.2px;
+            margin-bottom: 18px;
+        }
+        .faq-group .page-more { text-align: left; }
+        @media (max-width: 900px) {
+            .faq-page { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+            .faq-rail { position: static; }
+            .faq-topics { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+            .faq-topics a {
+                min-height: 40px;
+                font-size: 0.9rem;
+                background: var(--card);
+                border: 1px solid rgba(22,33,61,0.10);
+            }
+            .faq-group + .faq-group { margin-top: 44px; }
         }
 
         /* LANGUAGE OFFER — built by the script in <head>, root page only.
@@ -1993,7 +2179,7 @@
     <!-- The mark used to be /favicon.png: 192px and 51KB, drawn at 28. The
          favicon link in <head> still points at the big one, which is what that
          file is for. -->
-    <a href="/" class="nav-logo"><img src="/img/logo-64.png" alt="" width="64" height="64">GoBag<span>+</span></a>
+    <a href="/fr/" class="nav-logo"><img src="/img/logo-64.png" alt="" width="64" height="64">GoBag<span>+</span></a>
 
     <ul class="nav-keys" id="navKeys">
         <li><a class="nav-key" href="#features">
@@ -2005,11 +2191,11 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 3.8l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8z"/>
             </svg><span data-i18n="reviews_label">Avis</span></a></li>
-        <li><a class="nav-key" href="#pricing">
+        <li><a class="nav-key" href="/fr/pricing/">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M20.4 13.2l-7.2 7.2a2 2 0 0 1-2.9 0l-6.1-6.1a2 2 0 0 1-.6-1.5V5.6a2 2 0 0 1 2-2h7.2a2 2 0 0 1 1.5.6l6.1 6.1a2 2 0 0 1 0 2.9z"/><circle cx="8.6" cy="8.6" r="1.5"/>
             </svg><span data-i18n="pricing_label">Tarifs</span></a></li>
-        <li><a class="nav-key" href="#faq">
+        <li><a class="nav-key" href="/fr/faq/">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.6 2.6 0 0 1 5 1c0 1.8-2.5 2.2-2.5 4"/><path d="M12 17.6h.01"/>
             </svg><span data-i18n="faq_label">FAQ</span></a></li>
@@ -2058,11 +2244,11 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M12 3.8l2.5 5.1 5.6.8-4.1 4 1 5.6-5-2.7-5 2.7 1-5.6-4.1-4 5.6-.8z"/>
                 </svg><span data-i18n="reviews_label">Avis</span></a></li>
-            <li><a class="nav-key" href="#pricing">
+            <li><a class="nav-key" href="/fr/pricing/">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M20.4 13.2l-7.2 7.2a2 2 0 0 1-2.9 0l-6.1-6.1a2 2 0 0 1-.6-1.5V5.6a2 2 0 0 1 2-2h7.2a2 2 0 0 1 1.5.6l6.1 6.1a2 2 0 0 1 0 2.9z"/><circle cx="8.6" cy="8.6" r="1.5"/>
                 </svg><span data-i18n="pricing_label">Tarifs</span></a></li>
-            <li><a class="nav-key" href="#faq">
+            <li><a class="nav-key" href="/fr/faq/">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.6 2.6 0 0 1 5 1c0 1.8-2.5 2.2-2.5 4"/><path d="M12 17.6h.01"/>
                 </svg><span data-i18n="faq_label">FAQ</span></a></li>
@@ -2421,111 +2607,30 @@
 
 <hr class="divider">
 
-<!-- PRICING -->
-<section id="pricing">
-    <div class="container" style="text-align:center">
-        <h2 class="section-title reveal" data-i18n="pricing_title">Tarifs</h2>
-        <p class="section-sub reveal d1" style="margin:0 auto 60px" data-i18n="pricing_sub">Commencez gratuitement. Passez à Premium quand vous voulez.</p>
-        <div class="pricing-grid" data-nosnippet>
-            <div class="pricing-card reveal d1">
-                <div class="pricing-name" data-i18n="free_name">Gratuit</div>
-                <div class="pricing-price" data-i18n-html="free_price">0€</div>
-                <div class="pricing-desc" data-i18n="free_price_desc">Gratuit pour toujours</div>
-                <ul class="pricing-features">
-                    <li data-i18n="free_f1">1 sac d'urgence</li>
-                    <li data-i18n="free_f2">Catégories principales</li>
-                    <li data-i18n="free_f3">Contacts d'urgence</li>
-                </ul>
-                <a class="btn-secondary pricing-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener"
-                   data-i18n="price_cta_free">Télécharger gratuitement</a>
-            </div>
-            <div class="pricing-card featured reveal d2">
-                <div class="pricing-badge" data-i18n="pricing_badge_popular">Le plus populaire</div>
-                <div class="pricing-name" data-i18n="yearly_name">Premium Annuel</div>
-                <div class="pricing-price" data-i18n-html="yearly_price"><span class="price-from">à partir de </span>12,99€ <span>/an</span></div>
-                <div class="pricing-desc" data-i18n="yearly_desc">≈ 1,08€/mois · 1 mois d'essai gratuit</div>
-                <ul class="pricing-features">
-                    <li data-i18n="yearly_f1">Sacs d'urgence illimités</li>
-                    <li data-i18n="yearly_f2">Toutes les catégories</li>
-                    <li data-i18n="yearly_f3">Suivi des réserves</li>
-                    <li data-i18n="yearly_f4">Synchronisation iCloud familiale</li>
-                    <li data-i18n="yearly_f5">Partage familial (jusqu'à 5)</li>
-                    <li data-i18n="yearly_f6">Widget + notifications</li>
-                    <li data-i18n="yearly_f7">Sauvegarde &amp; restauration</li>
-                </ul>
-                <a class="btn-primary pricing-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener"
-                   data-i18n="price_cta_yearly">Commencer l'essai gratuit</a>
-            </div>
-            <div class="pricing-card reveal d3">
-                <div class="pricing-badge subtle" data-i18n="pricing_badge">Meilleure offre</div>
-                <div class="pricing-name" data-i18n="lifetime_name">À vie</div>
-                <div class="pricing-price" data-i18n-html="lifetime_price"><span class="price-from">à partir de </span>39,99€ <span></span></div>
-                <div class="pricing-desc" data-i18n="lifetime_desc">Paiement unique · Sans abonnement</div>
-                <ul class="pricing-features">
-                    <li data-i18n="lifetime_f1">Tout le Premium Annuel</li>
-                    <li data-i18n="lifetime_f2">Partage familial (jusqu'à 5)</li>
-                    <li data-i18n="lifetime_f3">Toutes les mises à jour futures</li>
-                </ul>
-                <a class="btn-secondary pricing-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener"
-                   data-i18n="price_cta_lifetime">Choisir À vie</a>
-            </div>
-        </div>
-        <!-- Every button above lands on the same App Store page, because that
-             is the only thing this site can actually do: the tiers themselves
-             are unlocked inside the app. Saying so is what keeps three
-             different labels honest. -->
-        <p class="pricing-note reveal d3" data-i18n="pricing_note">L'app est gratuite à télécharger. Premium et À vie s'activent dans l'app, au prix pratiqué par votre région App Store.</p>
-    </div>
-</section>
-
-<hr class="divider">
-
-<!-- FAQ -->
-<section id="faq">
-    <div class="container faq-layout">
-        <div class="faq-intro">
-            <div class="section-label reveal" data-i18n="faq_label">FAQ</div>
-            <h2 class="section-title reveal d1" data-i18n="faq_title">Questions fréquentes</h2>
-            <p class="section-sub reveal d2" data-i18n="faq_sub">Tout ce qu'il faut savoir sur les sacs de survie, les kits d'urgence et GoBag+.</p>
-            <p class="faq-contact reveal d3" data-i18n-html="faq_contact">Vous ne trouvez pas ce que vous cherchez ? Écrivez à notre <a href='mailto:contact@gredami.com'>équipe d'assistance</a>.</p>
-        </div>
-        <div class="faq-list">
-            <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q1">Qu'est-ce qu'un sac de survie ?</span>
-                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </summary>
-                <div class="faq-answer"><p data-i18n="faq_a1">Un sac de survie — aussi appelé sac d'évacuation ou kit 72 heures — est un kit d'urgence portable contenant l'essentiel à emporter en cas de catastrophe ou d'évacuation. GoBag+ vous aide à le constituer selon 9 catégories pour ne rien oublier d'important.</p></div>
-            </details>
-            <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q2">Que doit contenir un kit d'urgence ?</span>
-                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </summary>
-                <div class="faq-answer"><p data-i18n="faq_a2">Un bon kit d'urgence couvre l'eau, la nourriture, les premiers soins, les documents importants, les outils, l'abri, la communication, l'hygiène et l'argent liquide. GoBag+ organise tout cela et adapte les quantités recommandées au nombre de personnes à préparer.</p></div>
-            </details>
-            <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q3">Comment GoBag+ m'aide-t-il à constituer mon kit ?</span>
-                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </summary>
-                <div class="faq-answer"><p data-i18n="faq_a3">GoBag+ vous permet de créer des sacs de survie personnalisés selon 9 catégories et de suivre chaque article, avec votre niveau de préparation en un coup d'œil. Les objectifs s'ajustent automatiquement à la taille de votre foyer, pour toujours savoir ce qui est prêt et ce qui manque.</p></div>
-            </details>
-            <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q4">Puis-je suivre mes réserves à domicile et recevoir des alertes de péremption ?</span>
-                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </summary>
-                <div class="faq-answer"><p data-i18n="faq_a4">Oui. Au-delà de votre sac, GoBag+ suit votre réserve domestique de nourriture, d'eau et de médicaments avec des niveaux de stock minimum par personne, et vous prévient automatiquement avant que les articles n'expirent ou ne manquent.</p></div>
-            </details>
-            <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q5">GoBag+ se synchronise-t-il entre appareils et fonctionne-t-il pour ma famille ?</span>
-                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </summary>
-                <div class="faq-answer"><p data-i18n="faq_a5">Oui. Vos sacs et votre réserve se synchronisent entre iPhone et iPad via iCloud, et le Partage familial Apple couvre jusqu'à 5 membres avec un seul abonnement. Vous pouvez aussi conserver pièces d'identité et passeports dans un coffre protégé par Face ID, et joindre vos contacts d'urgence instantanément avec le bouton SOS, même hors ligne.</p></div>
-            </details>
-            <details class="faq-item reveal">
-                <summary><span data-i18n="faq_q6">GoBag+ est-il gratuit ?</span>
-                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </summary>
-                <div class="faq-answer"><p data-i18n="faq_a6">GoBag+ est gratuit au téléchargement avec l'essentiel. Premium débloque un nombre illimité de sacs, le suivi complet de la réserve, la synchronisation familiale, le widget, la sauvegarde et restauration, et les alertes de péremption — avec un mois d'essai gratuit.</p></div>
-            </details>
+<!-- PRICES — the plans and the questions have pages of their own. What
+     stays here is the three figures and the way through to both. The ids keep
+     an old link to /#pricing or /#faq landing somewhere that answers it. -->
+<section class="price-strip" id="pricing">
+    <div class="price-strip-card reveal">
+        <div class="section-label" data-i18n="pricing_label">Tarifs</div>
+        <h2 data-i18n="pricing_sub">Commencez gratuitement. Passez à Premium quand vous voulez.</h2>
+        <ul class="price-strip-plans" data-nosnippet>
+            <li>
+                <span class="price-strip-name" data-i18n="free_name">Gratuit</span>
+                <span class="price-strip-price" data-i18n-html="free_price">0€</span>
+            </li>
+            <li class="featured">
+                <span class="price-strip-name" data-i18n="yearly_name">Premium Annuel</span>
+                <span class="price-strip-price" data-i18n-html="yearly_price"><span class="price-from">à partir de </span>12,99€ <span>/an</span></span>
+            </li>
+            <li>
+                <span class="price-strip-name" data-i18n="lifetime_name">À vie</span>
+                <span class="price-strip-price" data-i18n-html="lifetime_price"><span class="price-from">à partir de </span>39,99€ <span></span></span>
+            </li>
+        </ul>
+        <div class="price-strip-links" id="faq">
+            <a class="btn-secondary" href="/fr/pricing/"><span data-i18n="compare_title">Comparer les formules</span><svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a class="btn-secondary" href="/fr/faq/"><span data-i18n="strip_faq">Lire la FAQ</span><svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
     </div>
 </section>
@@ -2693,7 +2798,8 @@ function priceIsExact(lang) {
 
 function applyRegionalPricing(lang) {
   if (!priceIsExact(lang)) return;
-  document.querySelectorAll('.pricing-price .price-from').forEach((el) => el.remove());
+  document.querySelectorAll('.pricing-price .price-from, .price-strip-price .price-from')
+    .forEach((el) => el.remove());
 }
 
 /* ── headline character roll ───────────────────────────────────────────────
@@ -2993,6 +3099,10 @@ applyRegionalPricing(document.documentElement.lang);
                          //    reveal under ~1.1s on long answers
 
   function reveal(p) {
+    /* The split rebuilds the paragraph from its text, so an answer carrying
+       markup — a link — would come back without it. Those are left as they
+       are. */
+    if (p.children.length) return;
     const text = p.textContent;
     const step = Math.min(STAGGER, CAP / text.length);
     const frag = document.createDocumentFragment();
@@ -3036,6 +3146,38 @@ applyRegionalPricing(document.documentElement.lang);
       if (p) reveal(p);
     });
   });
+})();
+
+// ====== FAQ TOPICS ======
+/* The FAQ page's rail lights the group being read: the last one whose top has
+   passed a line a third of the way down the window, under the bar. At the very
+   foot of the page the last group may be too short to reach that line, so the
+   bottom of the page belongs to it. */
+(function () {
+  const links = Array.from(document.querySelectorAll('.faq-topics a[href^="#"]'));
+  if (!links.length) return;
+  const groups = links.map((a) => document.getElementById(a.getAttribute('href').slice(1)));
+  let ticking = false;
+
+  function paint() {
+    ticking = false;
+    const line = window.innerHeight / 3;
+    let current = -1;
+    groups.forEach((g, i) => { if (g && g.getBoundingClientRect().top <= line) current = i; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) {
+      current = groups.length - 1;
+    }
+    links.forEach((a, i) => {
+      a.classList.toggle('current', i === current);
+      if (i === current) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(paint); }
+  }, { passive: true });
+  window.addEventListener('resize', paint, { passive: true });
+  paint();
 })();
 
 // ====== SCROLL REVEAL ======
@@ -3083,10 +3225,11 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
       var seen = Math.min(bandBottom, top + el.offsetHeight) - Math.max(bandTop, top);
       if (seen > best) { best = seen; current = k.getAttribute('href'); }
     });
-    // The end of the page always belongs to the last entry, however short it is.
-    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) {
-      current = keys.length ? keys[keys.length - 1].getAttribute('href') : null;
-    }
+    /* The end of the page used to be handed to the last key outright, because
+       the FAQ was the last section and too short to fill the band. The keys
+       that are left on this page are Features and Reviews, and what follows
+       Reviews is the price strip and the closing button — neither of them
+       Reviews. So the band decides at the foot of the page too. */
     keys.forEach(function (k) {
       k.classList.toggle('current', k.getAttribute('href') === current);
     });

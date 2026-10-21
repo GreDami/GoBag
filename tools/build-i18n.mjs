@@ -1,12 +1,16 @@
 /**
- * Generates one static page per language from index.html.
+ * Generates every page of the site in every language.
  *
- *   index.html            English source AND the English page (/)
- *   fr|de|es|it|pt|ru/    generated, overwritten on every run
+ *   index.html            the shell every page is cut from — head, styles,
+ *                         bar, footer, scripts — AND the English home page (/)
+ *   _pages/<id>.html      the <main> of each other page, in English
+ *   pricing/  faq/        generated English pages
+ *   fr|de|es|it|pt|ru/    generated, overwritten on every run, each with its
+ *                         own pricing/ and faq/
  *   sitemap.xml           regenerated with hreflang alternates
  *
- * index.html is the only file you hand-edit: change the English copy there and
- * the matching string in i18n/translations.json, then re-run `npm run build`.
+ * Hand-edit index.html and _pages/*.html in English, and the matching strings
+ * in i18n/translations.json for the other six, then re-run `npm run build`.
  * Everything between the <!-- i18n:head --> and <!-- i18n:switcher --> markers
  * is machine-written — including in index.html itself, so English never drifts
  * out of sync with the other six.
@@ -44,8 +48,25 @@ const tr = JSON.parse(fs.readFileSync('i18n/translations.json', 'utf8'));
    the origin and none of them costs a round trip. Refresh with
    `node tools/fetch-fonts.mjs`, then rebuild. */
 const fontCss = fs.readFileSync('fonts/fonts.css', 'utf8').trimEnd();
-const urlFor = (lang) => (lang === 'en' ? `${ORIGIN}/` : `${ORIGIN}/${lang}/`);
-const pathFor = (lang) => (lang === 'en' ? '/' : `/${lang}/`);
+/* ── pages ────────────────────────────────────────────────────────────────────
+
+   The home page is index.html itself. Every other page is only its <main>,
+   kept in _pages/ and dropped into the shell in place of the home page's — so
+   the styles, the bar and the scripts exist once, and a fix to any of them
+   reaches every page on the next build. The underscore keeps the sources off
+   the published site: GitHub Pages leaves underscore folders out.
+
+   `key` is the page's own key in the bar: on that page it is lit and marked
+   as the current page. */
+const PAGES = [
+  { id: 'home', path: '' },
+  { id: 'pricing', path: 'pricing/', key: '/pricing/', crumb: 'pricing_title' },
+  { id: 'faq', path: 'faq/', key: '/faq/', crumb: 'faq_label' },
+];
+const HOME = PAGES[0];
+
+const pathFor = (lang, page = HOME) => (lang === 'en' ? '/' : `/${lang}/`) + page.path;
+const urlFor = (lang, page = HOME) => ORIGIN + pathFor(lang, page);
 
 const esc = (s) => String(s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -148,23 +169,41 @@ function findClose(html, tag, from) {
 
 /* ── head ─────────────────────────────────────────────────────────────────── */
 
-function renderHead(lang) {
+/* The home page's title and descriptions are the language's main ones. Every
+   other page has its own pair beside them in the seo block — <id>Title and
+   <id>Description — and a page without them fails the build rather than
+   shipping the home page's title twice. */
+function seoFor(lang, page) {
+  const { seo } = tr[lang];
+  if (page === HOME) return { title: seo.title, description: seo.description, og: seo.ogDescription };
+  const title = seo[`${page.id}Title`];
+  const description = seo[`${page.id}Description`];
+  if (!title || !description) {
+    throw new Error(`[${lang}] missing seo.${page.id}Title or seo.${page.id}Description`);
+  }
+  return { title, description, og: description };
+}
+
+function renderHead(lang, page) {
   const { seo, strings } = tr[lang];
-  const self = urlFor(lang);
+  const self = urlFor(lang, page);
+  const meta = seoFor(lang, page);
 
   const alternates = LANGS
-    .map((l) => `    <link rel="alternate" hreflang="${l}" href="${urlFor(l)}">`)
+    .map((l) => `    <link rel="alternate" hreflang="${l}" href="${urlFor(l, page)}">`)
     .join('\n');
 
   const ogAlternates = LANGS.filter((l) => l !== lang)
     .map((l) => `    <meta property="og:locale:alternate" content="${tr[l].seo.locale}">`)
     .join('\n');
 
+  /* The FAQ page's questions, in the order it shows them — FAQ_NUMS is read
+     off the page source, so a question added there is here too. */
   const faq = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     inLanguage: lang,
-    mainEntity: [1, 2, 3, 4, 5, 6].map((i) => ({
+    mainEntity: FAQ_NUMS.map((i) => ({
       '@type': 'Question',
       name: strings[`faq_q${i}`],
       acceptedAnswer: { '@type': 'Answer', text: strings[`faq_a${i}`] },
@@ -212,6 +251,20 @@ function renderHead(lang) {
     publisher: { '@type': 'Organization', name: 'GreDami', url: 'https://gredami.com' },
   };
 
+  const crumbs = page === HOME ? null : {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'GoBag+', item: urlFor(lang) },
+      { '@type': 'ListItem', position: 2, name: strings[page.crumb], item: self },
+    ],
+  };
+
+  /* The app and the site are described once, on the home page. The FAQ
+     markup goes with the questions, on the FAQ page. */
+  const blocks = page === HOME ? [app, site] : [crumbs];
+  if (page.id === 'faq') blocks.push(faq);
+
   /* Root only: a visitor whose browser asks for one of the other six is offered
      that page. It used to call location.replace() and move them, which meant
      someone who chose an English result in Google could land on /fr/ instead —
@@ -222,7 +275,7 @@ function renderHead(lang) {
      Deferred to DOMContentLoaded because it appends an element. Anyone who has
      already used the switcher has a stored choice: picking English stores 'en',
      which is absent from OFFER, so they are never asked again. */
-  const offer = lang !== 'en' ? '' : `    <script>
+  const offer = lang !== 'en' || page !== HOME ? '' : `    <script>
     (function () {
       var p = location.pathname;
       if (p !== '/' && p !== '/index.html') return;
@@ -262,14 +315,14 @@ function renderHead(lang) {
     </script>
 `;
 
-  return `${offer}    <title>${esc(seo.title)}</title>
-    <meta name="description" content="${attr(seo.description)}">
+  return `${offer}    <title>${esc(meta.title)}</title>
+    <meta name="description" content="${attr(meta.description)}">
     <meta name="keywords" content="${attr(seo.keywords)}">
     <link rel="canonical" href="${self}">
 
     <!-- Every language is its own URL; hreflang tells Google which to show where. -->
 ${alternates}
-    <link rel="alternate" hreflang="x-default" href="${urlFor('en')}">
+    <link rel="alternate" hreflang="x-default" href="${urlFor('en', page)}">
 
     <meta name="theme-color" content="#f6f1e6">
     <meta name="robots" content="index, follow">
@@ -295,8 +348,8 @@ ${alternates}
     <meta name="apple-itunes-app" content="app-id=6760232332">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="${attr(seo.title)}">
-    <meta property="og:description" content="${attr(seo.ogDescription)}">
+    <meta property="og:title" content="${attr(meta.title)}">
+    <meta property="og:description" content="${attr(meta.og)}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${self}">
     <meta property="og:site_name" content="GoBag+">
@@ -307,37 +360,29 @@ ${ogAlternates}
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="${attr(seo.title)}">
+    <meta property="og:image:alt" content="${attr(meta.title)}">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="${attr(seo.title)}">
-    <meta name="twitter:description" content="${attr(seo.description)}">
+    <meta name="twitter:title" content="${attr(meta.title)}">
+    <meta name="twitter:description" content="${attr(meta.description)}">
     <meta name="twitter:image" content="${ORIGIN}/screenshots/og.jpg">
     <meta name="twitter:site" content="@GreDamiStudio">
 
     <!-- Structured data -->
-    <script type="application/ld+json">
-${jsonld(app)}
-    </script>
-    <script type="application/ld+json">
-${jsonld(site)}
-    </script>
-    <script type="application/ld+json">
-${jsonld(faq)}
-    </script>
+${blocks.map((b) => `    <script type="application/ld+json">\n${jsonld(b)}\n    </script>`).join('\n')}
 `;
 }
 
 /* ── language switcher ────────────────────────────────────────────────────── */
 
-function renderSwitcher(lang) {
+function renderSwitcher(lang, page) {
   /* Generated markup, so the label is translated here rather than through
      data-i18n-attr — the whole region is overwritten on every build. */
   const label = tr[lang].strings.nav_language;
   const options = LANGS.map((l) => {
     const active = l === lang;
-    return `                <a class="lang-option${active ? ' active' : ''}" href="${pathFor(l)}"`
+    return `                <a class="lang-option${active ? ' active' : ''}" href="${pathFor(l, page)}"`
       + ` hreflang="${l}" onclick="rememberLang('${l}')"${active ? ' aria-current="page"' : ''}>`
       + `${LANG_LABELS[l]}</a>`;
   }).join('\n');
@@ -378,32 +423,105 @@ function extractRegion(html, name) {
   return html.slice(a + start.length, b).replace(/^\n|\n$/g, '');
 }
 
-const source = fs.readFileSync('index.html', 'utf8');
-const report = [];
+/* The shell's <main>, which every page but the home page swaps for its own. */
+const MAIN_OPEN = '<main id="content">';
+const MAIN_CLOSE = '</main>';
 
-for (const lang of LANGS) {
-  let html = source;
+function withMain(html, body) {
+  const a = html.indexOf(MAIN_OPEN);
+  const b = html.indexOf(MAIN_CLOSE, a);
+  if (a < 0 || b < 0) throw new Error('<main id="content"> not found in index.html');
+  return html.slice(0, a + MAIN_OPEN.length) + '\n\n' + body.trim() + '\n\n' + html.slice(b);
+}
 
-  if (lang !== 'en') {
-    const r = translateBody(html, tr[lang].strings, lang);
-    html = r.html;
-    const a = translateAttrs(html, tr[lang].strings, lang);
-    html = a.html;
-    report.push(`${lang}: ${r.count} elements, ${a.count} attributes`);
-  } else {
-    report.push('en: source (not translated)');
+/* The bar is written for the home page, where Features and Reviews are
+   sections of the page itself. Anywhere else they are sections of the home
+   page, and the key for the page being shown is lit and says so to assistive
+   tech — the scroll-driven highlight only ever touches keys that are anchors. */
+function navFor(html, page) {
+  if (page === HOME) return html;
+  html = html.replace(/href="#(features|reviews)"/g, 'href="/#$1"');
+  const key = `class="nav-key" href="${page.key}"`;
+  if (!html.includes(key)) throw new Error(`the bar has no key for ${page.key}`);
+  return html.split(key).join(`class="nav-key current" href="${page.key}" aria-current="page"`);
+}
+
+/* Links between pages stay in the visitor's language: /pricing/ on a French
+   page is /fr/pricing/, and the logo goes home to /fr/ rather than to the
+   English page. Only the pages that exist in every language are rewritten —
+   /privacy/ is English only, and nothing under /img/ or /fonts/ is a page.
+   Runs before the head and the switcher are written, which carry their own
+   correct links. */
+const LOCAL_LINK = /href=(["'])\/((?:pricing\/|faq\/)?(?:#[^"']*)?)\1/g;
+
+function localizeLinks(html, lang) {
+  if (lang === 'en') return html;
+  return html.replace(LOCAL_LINK, (m, q, rest) => `href=${q}/${lang}/${rest}${q}`);
+}
+
+/* English is not translated: index.html and _pages/ are the English pages as
+   written. translations.json still carries an English block, because the
+   titles and the structured data are built from it — so the two have to say
+   the same thing. A string changed in only one of them fails the build here,
+   rather than shipping a FAQ whose markup answers differently from its page. */
+const decode = (s) => s.replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+  .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+const squash = (s) => s.replace(/\s+/g, ' ').trim();
+
+function checkEnglish(html, where) {
+  const open = /<([a-zA-Z][\w-]*)\b([^>]*?\bdata-i18n(-html)?="([^"]+)"[^>]*?)>/g;
+  let m;
+  let n = 0;
+  while ((m = open.exec(html)) !== null) {
+    const [full, tag, , isHtml, key] = m;
+    const start = m.index + full.length;
+    const shown = html.slice(start, findClose(html, tag, start));
+    const want = tr.en.strings[key];
+    if (want === undefined) throw new Error(`[en] ${where}: no English string for ${key}`);
+    const got = isHtml ? squash(shown) : squash(decode(shown));
+    if (got !== squash(want)) {
+      throw new Error(`[en] ${where}: ${key} reads\n  "${got}"\non the page but\n  "${squash(want)}"\nin translations.json`);
+    }
+    n++;
   }
+  return n;
+}
 
-  html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`);
-  html = replaceRegion(html, 'head', renderHead(lang));
-  html = replaceRegion(html, 'switcher', renderSwitcher(lang));
-  html = replaceRegion(html, 'fonts', fontCss, 'css');
+const source = fs.readFileSync('index.html', 'utf8');
+const bodies = Object.fromEntries(PAGES.filter((p) => p !== HOME)
+  .map((p) => [p.id, fs.readFileSync(path.join('_pages', `${p.id}.html`), 'utf8')]));
+/* The FAQ page's questions in the order it shows them, for its structured data. */
+const FAQ_NUMS = [...bodies.faq.matchAll(/data-i18n="faq_q(\d+)"/g)].map((m) => Number(m[1]));
 
-  if (lang === 'en') {
-    fs.writeFileSync('index.html', html);
-  } else {
-    fs.mkdirSync(lang, { recursive: true });
-    fs.writeFileSync(path.join(lang, 'index.html'), html);
+const report = Object.fromEntries(LANGS.map((l) => [l, []]));
+let written = 0;
+
+for (const page of PAGES) {
+  const english = navFor(page === HOME ? source : withMain(source, bodies[page.id]), page);
+  const checked = checkEnglish(page === HOME ? source : bodies[page.id], page.id);
+  report.en.push(`${page.id} ${checked} checked`);
+
+  for (const lang of LANGS) {
+    let html = english;
+
+    if (lang !== 'en') {
+      const r = translateBody(html, tr[lang].strings, lang);
+      const a = translateAttrs(r.html, tr[lang].strings, lang);
+      html = a.html;
+      report[lang].push(`${page.id} ${r.count}+${a.count}`);
+    }
+
+    html = localizeLinks(html, lang);
+    html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`);
+    html = replaceRegion(html, 'head', renderHead(lang, page));
+    html = replaceRegion(html, 'switcher', renderSwitcher(lang, page));
+    html = replaceRegion(html, 'fonts', fontCss, 'css');
+
+    /* English home is index.html itself, written back with its regions. */
+    const out = path.join(lang === 'en' ? '.' : lang, page.path, 'index.html');
+    fs.mkdirSync(path.dirname(out), { recursive: true });
+    fs.writeFileSync(out, html);
+    written++;
   }
 }
 
@@ -419,7 +537,7 @@ for (const lang of LANGS) {
    commit that carries its own output, so it stamped the date of the *previous*
    change every time. If the source is dirty, the page is changing in this very
    build and the commit about to carry it will be dated today. */
-const SOURCES = 'index.html i18n/translations.json';
+const SOURCES = 'index.html _pages i18n/translations.json';
 
 function lastModified() {
   const today = new Date().toISOString().slice(0, 10);
@@ -433,17 +551,17 @@ function lastModified() {
   return today;
 }
 const today = lastModified();
-const alt = LANGS
-  .map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${urlFor(l)}"/>`)
-  .join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${urlFor('en')}"/>`;
+const altFor = (page) => LANGS
+  .map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${urlFor(l, page)}"/>`)
+  .join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${urlFor('en', page)}"/>`;
 
-const entries = LANGS.map((l) => `  <url>
-    <loc>${urlFor(l)}</loc>
-${alt}
+const entries = PAGES.flatMap((page) => LANGS.map((l) => `  <url>
+    <loc>${urlFor(l, page)}</loc>
+${altFor(page)}
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>`).join('\n');
+    <priority>${page === HOME ? '1.0' : '0.8'}</priority>
+  </url>`)).join('\n');
 
 fs.writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -470,6 +588,6 @@ for (const region of ['cookiecss', 'consentjs']) {
 }
 fs.writeFileSync(priv, privHtml);
 
-console.log(report.join('\n'));
-console.log(`fonts: ${(fontCss.match(/@font-face/g) || []).length} faces inlined into ${LANGS.length + 1} pages`);
-console.log(`sitemap.xml: ${LANGS.length + 1} URLs`);
+console.log(LANGS.map((l) => `${l}: ${report[l].join(' · ')}`).join('\n'));
+console.log(`fonts: ${(fontCss.match(/@font-face/g) || []).length} faces inlined into ${written + 1} pages`);
+console.log(`sitemap.xml: ${PAGES.length * LANGS.length + 1} URLs`);

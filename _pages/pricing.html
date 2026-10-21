@@ -1,0 +1,235 @@
+<!-- The pricing page's <main>. tools/build-i18n.mjs drops it into index.html
+     in place of the home page's own, so the head, styles, bar, footer and
+     scripts are the home page's and are never copied here. English is written
+     out below; the other six languages come from i18n/translations.json by the
+     data-i18n keys, exactly as on the home page. -->
+
+<!-- PAGE HEAD -->
+<section class="page-head">
+    <div class="page-head-art" style="--focus: 50% 30%; --focus-narrow: 46% 50%">
+        <picture>
+            <source type="image/webp"
+                    sizes="(max-width: 700px) 100vw, 58vw"
+                    srcset="/img/hero-gobag-620.webp 620w,
+                            /img/hero-gobag-900.webp 900w,
+                            /img/hero-gobag-1239.webp 1239w">
+            <img src="/img/hero-gobag-1239.jpg"
+                 sizes="(max-width: 700px) 100vw, 58vw"
+                 srcset="/img/hero-gobag-620.jpg 620w,
+                         /img/hero-gobag-900.jpg 900w,
+                         /img/hero-gobag-1239.jpg 1239w"
+                 alt="" width="1239" height="1269" fetchpriority="high" decoding="async">
+        </picture>
+    </div>
+    <div class="page-head-inner">
+        <div class="page-head-text">
+            <p class="page-head-label" data-i18n="pricing_title">Pricing</p>
+            <h1 data-i18n-html="pricing_h1">Start free. <span>Upgrade when you're ready.</span></h1>
+            <p class="page-head-lead" data-i18n="pricing_lead">GoBag+ is free to download. Premium and Lifetime unlock inside the app, and Premium Yearly starts with a free month.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PLANS -->
+<section class="plans-section" id="plans">
+    <div class="container" style="text-align:center">
+        <div class="pricing-grid" data-nosnippet>
+            <div class="pricing-card reveal d1">
+                <div class="pricing-name" data-i18n="free_name">Free</div>
+                <div class="pricing-price" data-i18n-html="free_price">$0</div>
+                <div class="pricing-desc" data-i18n="free_price_desc">Forever free basics</div>
+                <ul class="pricing-features">
+                    <li data-i18n="free_f1">1 Go Bag</li>
+                    <li data-i18n="free_f2">Core item categories</li>
+                    <li data-i18n="free_f3">Emergency contacts</li>
+                </ul>
+                <a class="btn-secondary pricing-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener"
+                   data-i18n="price_cta_free">Download free</a>
+            </div>
+            <div class="pricing-card featured reveal d2">
+                <div class="pricing-badge" data-i18n="pricing_badge_popular">Most Popular</div>
+                <div class="pricing-name" data-i18n="yearly_name">Premium Yearly</div>
+                <div class="pricing-price" data-i18n-html="yearly_price"><span class="price-from">from </span>$11.99 <span>/year</span></div>
+                <div class="pricing-desc" data-i18n="yearly_desc">≈ $1.00/month · 1 month free trial</div>
+                <ul class="pricing-features">
+                    <li data-i18n="yearly_f1">Unlimited Go Bags</li>
+                    <li data-i18n="yearly_f2">All item categories</li>
+                    <li data-i18n="yearly_f3">Home reserve tracking</li>
+                    <li data-i18n="yearly_f4">Family iCloud sync</li>
+                    <li data-i18n="yearly_f5">Family Sharing (up to 5)</li>
+                    <li data-i18n="yearly_f6">Widget + notifications</li>
+                    <li data-i18n="yearly_f7">Backup &amp; restore</li>
+                </ul>
+                <a class="btn-primary pricing-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener"
+                   data-i18n="price_cta_yearly">Start free trial</a>
+            </div>
+            <div class="pricing-card reveal d3">
+                <div class="pricing-badge subtle" data-i18n="pricing_badge">Best Value</div>
+                <div class="pricing-name" data-i18n="lifetime_name">Lifetime</div>
+                <div class="pricing-price" data-i18n-html="lifetime_price"><span class="price-from">from </span>$34.99 <span></span></div>
+                <div class="pricing-desc" data-i18n="lifetime_desc">One-time payment · No subscription</div>
+                <ul class="pricing-features">
+                    <li data-i18n="lifetime_f1">Everything in Premium Yearly</li>
+                    <li data-i18n="lifetime_f2">Family Sharing (up to 5)</li>
+                    <li data-i18n="lifetime_f3">All future updates</li>
+                </ul>
+                <a class="btn-secondary pricing-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener"
+                   data-i18n="price_cta_lifetime">Get Lifetime</a>
+            </div>
+        </div>
+        <!-- Every button above lands on the same App Store page, because that
+             is the only thing this site can actually do: the tiers themselves
+             are unlocked inside the app. Saying so is what keeps three
+             different labels honest. -->
+        <p class="pricing-note reveal d3" data-i18n="pricing_note">The app is free to download. Premium and Lifetime are unlocked inside it, at the price your App Store region charges.</p>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- COMPARE — every row is something the cards above already say -->
+<section id="compare">
+    <div class="container">
+        <div class="page-section-head">
+            <h2 class="section-title reveal" data-i18n="compare_title">Compare plans</h2>
+            <p class="section-sub reveal d1" data-i18n="compare_sub">What each plan includes, side by side.</p>
+        </div>
+        <div class="compare-wrap reveal d2">
+            <table class="compare">
+                <thead>
+                    <tr>
+                        <th scope="col"><span class="sr-only" data-i18n="cmp_feature">Feature</span></th>
+                        <th scope="col" data-i18n="free_name">Free</th>
+                        <th scope="col" class="is-featured" data-i18n="yearly_name">Premium Yearly</th>
+                        <th scope="col" data-i18n="lifetime_name">Lifetime</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" data-i18n="cmp_bags">Go bags</th>
+                        <td>1</td>
+                        <td class="is-featured" data-i18n="cmp_unlimited">Unlimited</td>
+                        <td data-i18n="cmp_unlimited">Unlimited</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" data-i18n="cmp_categories">Item categories</th>
+                        <td data-i18n="cmp_core">Core</td>
+                        <td class="is-featured" data-i18n="cmp_all">All</td>
+                        <td data-i18n="cmp_all">All</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" data-i18n="free_f3">Emergency contacts</th>
+                        <td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                        <td class="is-featured yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                        <td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" data-i18n="yearly_f3">Home reserve tracking</th>
+                        <td class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="12" x2="18" y2="12"/></svg><span class="sr-only" data-i18n="cmp_no">Not included</span></td>
+                        <td class="is-featured yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                        <td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" data-i18n="cmp_alerts">Expiry &amp; low-stock alerts</th>
+                        <td class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="12" x2="18" y2="12"/></svg><span class="sr-only" data-i18n="cmp_no">Not included</span></td>
+                        <td class="is-featured yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                        <td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" data-i18n="cmp_widget">Home-screen widget</th>
+                        <td class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="12" x2="18" y2="12"/></svg><span class="sr-only" data-i18n="cmp_no">Not included</span></td>
+                        <td class="is-featured yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                        <td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" data-i18n="yearly_f4">Family iCloud sync</th>
+                        <td class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="12" x2="18" y2="12"/></svg><span class="sr-only" data-i18n="cmp_no">Not included</span></td>
+                        <td class="is-featured yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                        <td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" data-i18n="yearly_f5">Family Sharing (up to 5)</th>
+                        <td class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="12" x2="18" y2="12"/></svg><span class="sr-only" data-i18n="cmp_no">Not included</span></td>
+                        <td class="is-featured yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                        <td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" data-i18n="yearly_f7">Backup &amp; restore</th>
+                        <td class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="12" x2="18" y2="12"/></svg><span class="sr-only" data-i18n="cmp_no">Not included</span></td>
+                        <td class="is-featured yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                        <td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="sr-only" data-i18n="cmp_yes">Included</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" data-i18n="cmp_trial">Free trial</th>
+                        <td class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="12" x2="18" y2="12"/></svg><span class="sr-only" data-i18n="cmp_no">Not included</span></td>
+                        <td class="is-featured" data-i18n="cmp_month">1 month</td>
+                        <td class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="12" x2="18" y2="12"/></svg><span class="sr-only" data-i18n="cmp_no">Not included</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" data-i18n="cmp_payment">Payment</th>
+                        <td data-i18n="free_name">Free</td>
+                        <td class="is-featured" data-i18n="cmp_every_year">Yearly</td>
+                        <td data-i18n="cmp_once">Once</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- BILLING — five questions people ask before they pay, each answered from
+     what the cards, the note and the closing line already promise -->
+<section id="billing">
+    <div class="container">
+        <div class="page-section-head">
+            <h2 class="section-title reveal" data-i18n="billing_title">Questions about plans</h2>
+        </div>
+        <div class="faq-list billing-list">
+            <details class="faq-item reveal">
+                <summary><span data-i18n="bill_q1">Is the free plan really free?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </summary>
+                <div class="faq-answer"><p data-i18n="bill_a1">Yes. GoBag+ is free to download, and the free plan — one go bag, the core item categories and your emergency contacts — stays free for as long as you use it.</p></div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span data-i18n="bill_q2">How does the free trial work?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </summary>
+                <div class="faq-answer"><p data-i18n="bill_a2">Premium Yearly starts with a free month. No payment is needed for the first 30 days, and you can cancel any time in Settings on your iPhone.</p></div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span data-i18n="bill_q3">What is the difference between Premium Yearly and Lifetime?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </summary>
+                <div class="faq-answer"><p data-i18n="bill_a3">They unlock the same Premium features. Premium Yearly is billed once a year and starts with a free month; Lifetime is a single payment with no subscription, and includes all future updates.</p></div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span data-i18n="bill_q4">Can my family share one purchase?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </summary>
+                <div class="faq-answer"><p data-i18n="bill_a4">Yes. With Apple Family Sharing, Premium Yearly and Lifetime each cover up to 5 family members — no extra purchases and no shared passwords.</p></div>
+            </details>
+            <details class="faq-item reveal">
+                <summary><span data-i18n="bill_q5">Is the price the same in every country?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </summary>
+                <div class="faq-answer"><p data-i18n="bill_a5">No. The App Store sets the price for each region and charges it in your local currency, and it shows you the exact amount before you confirm a purchase.</p></div>
+            </details>
+        </div>
+        <p class="page-more reveal"><a href="/faq/" data-i18n="pricing_more_faq">More questions? Read the full FAQ</a></p>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<div class="cta-section">
+    <h2 class="reveal" data-i18n="cta_h2">Start your free trial today</h2>
+    <p class="reveal d1" data-i18n="cta_p">No payment needed for the first 30 days. Cancel anytime in Settings.</p>
+    <a href="https://apps.apple.com/app/id6760232332" class="btn-primary" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span data-i18n="cta_btn">Download on the App Store</span>
+    </a>
+</div>

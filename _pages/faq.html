@@ -1,0 +1,174 @@
+<!-- The FAQ page's <main>, dropped into index.html by tools/build-i18n.mjs
+     in place of the home page's own — see _pages/pricing.html. The FAQPage
+     structured data in its head is built from the questions below, in this
+     order, so adding one here is all it takes to add it there too. -->
+
+<!-- PAGE HEAD -->
+<section class="page-head">
+    <div class="page-head-art" style="--focus: 50% 85%; --focus-narrow: 80% 50%">
+        <picture>
+            <source type="image/webp"
+                    sizes="(max-width: 700px) 100vw, 58vw"
+                    srcset="/img/hero-gobag-620.webp 620w,
+                            /img/hero-gobag-900.webp 900w,
+                            /img/hero-gobag-1239.webp 1239w">
+            <img src="/img/hero-gobag-1239.jpg"
+                 sizes="(max-width: 700px) 100vw, 58vw"
+                 srcset="/img/hero-gobag-620.jpg 620w,
+                         /img/hero-gobag-900.jpg 900w,
+                         /img/hero-gobag-1239.jpg 1239w"
+                 alt="" width="1239" height="1269" fetchpriority="high" decoding="async">
+        </picture>
+    </div>
+    <div class="page-head-inner">
+        <div class="page-head-text">
+            <p class="page-head-label" data-i18n="faq_label">FAQ</p>
+            <h1 data-i18n-html="faq_h1">Frequently asked <span>questions</span></h1>
+            <p class="page-head-lead" data-i18n="faq_sub">Everything you need to know about go bags, prep kits, and GoBag+.</p>
+        </div>
+    </div>
+</section>
+
+<!-- QUESTIONS, in groups -->
+<section class="faq-section">
+    <div class="faq-page">
+        <aside class="faq-rail">
+            <!-- A div with the role rather than <nav>: the stylesheet styles the
+                 bare nav element as the fixed bar at the top of the page. -->
+            <div class="faq-topics-nav" role="navigation" aria-label="Topics" data-i18n-attr="aria-label:faq_topics">
+                <ul class="faq-topics">
+                    <li><a href="#kits" data-i18n="faq_topic_kits">Go bags &amp; prep kits</a></li>
+                    <li><a href="#app" data-i18n="faq_topic_app">Using GoBag+</a></li>
+                    <li><a href="#family" data-i18n="faq_topic_family">Family &amp; devices</a></li>
+                    <li><a href="#privacy" data-i18n="security_label">Privacy &amp; Security</a></li>
+                    <li><a href="#plans" data-i18n="faq_topic_plans">Plans &amp; pricing</a></li>
+                </ul>
+            </div>
+            <p class="faq-contact" data-i18n-html="faq_contact">Can't find what you're looking for? Reach out to our <a href='mailto:contact@gredami.com'>support team</a>.</p>
+        </aside>
+        <div class="faq-groups">
+            <div class="faq-group" id="kits">
+                <h2 data-i18n="faq_topic_kits">Go bags &amp; prep kits</h2>
+                <div class="faq-list">
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q1">What is a go bag?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a1">A go bag — also called a bug-out bag or 72-hour kit — is a portable emergency kit with the essentials you need to grab and go during a disaster or evacuation. GoBag+ helps you build one across 9 categories so nothing important is left behind.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q2">What should an emergency prep kit include?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a2">A good prep kit covers water, food, first aid, important documents, tools, shelter, communication, personal care, and cash. GoBag+ organizes all of these and adjusts the recommended quantities to how many people you're preparing for.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q7">How much should I pack for my household?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a7">It depends on how many people you are preparing for. Tell GoBag+ the size of your household, and the recommended quantities for your bag and the minimum stock levels for your home reserve adjust automatically.</p></div>
+                    </details>
+                </div>
+            </div>
+            <div class="faq-group" id="app">
+                <h2 data-i18n="faq_topic_app">Using GoBag+</h2>
+                <div class="faq-list">
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q3">How does GoBag+ help me build my go bag and prep kit?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a3">GoBag+ lets you create personalized go bags across 9 categories and track every item, with your readiness shown at a glance. Targets adjust automatically to your household size, so you always know what's stocked and what's still missing.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q4">Can I track home supplies and get expiry alerts?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a4">Yes. Beyond your go bag, GoBag+ tracks your home reserve of food, water, and medicine with minimum stock levels per person, and notifies you automatically before items expire or run low.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q8">Can I keep more than one go bag?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a8">Yes. The free plan includes one go bag; with Premium you can create as many as you need, each organized by category.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q9">Where do I keep copies of my documents?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a9">In the Document Vault: photos and PDFs of your IDs, passports and insurance cards. It opens only with Face ID, and only you can access it.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q10">What does the SOS button do?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a10">It keeps your emergency contacts one tap away, so you can reach them instantly — even offline.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q11">Is there a home-screen widget?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a11">Yes. With Premium, a home-screen widget keeps your go bag and home reserve levels in view, so you can check your readiness at a glance.</p></div>
+                    </details>
+                </div>
+            </div>
+            <div class="faq-group" id="family">
+                <h2 data-i18n="faq_topic_family">Family &amp; devices</h2>
+                <div class="faq-list">
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q5">Does GoBag+ sync across devices and work for my whole family?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a5">Yes. Your bags and reserve sync across iPhone and iPad via iCloud, and Apple Family Sharing covers up to 5 members on one subscription. You can also keep IDs and passports in a Face ID–protected vault and reach emergency contacts instantly with the SOS button, even offline.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q12">Which devices does GoBag+ work on?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a12">iPhone and iPad. GoBag+ is on the App Store, and with Premium your go bags and home reserve stay in sync on every iPhone and iPad you own, through iCloud.</p></div>
+                    </details>
+                </div>
+            </div>
+            <div class="faq-group" id="privacy">
+                <h2 data-i18n="security_label">Privacy &amp; Security</h2>
+                <div class="faq-list">
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q13">Where is my data stored?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a13">On your device. When it syncs, it travels through Apple's encrypted iCloud — we never see your information or store it on our servers.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q14">Does GoBag+ collect or sell my data?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a14">No. The app has no analytics, no ad networks and no tracking of any kind, and it never sells your information. Purchases are handled by Apple, so we never see your payment details.</p></div>
+                    </details>
+                </div>
+            </div>
+            <div class="faq-group" id="plans">
+                <h2 data-i18n="faq_topic_plans">Plans &amp; pricing</h2>
+                <div class="faq-list">
+                    <details class="faq-item reveal">
+                        <summary><span data-i18n="faq_q6">Is GoBag+ free?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div class="faq-answer"><p data-i18n="faq_a6">GoBag+ is free to download with the core essentials. Premium unlocks unlimited go bags, full home-reserve tracking, family sync, the home-screen widget, backup &amp; restore, and expiry alerts — and starts with a 1-month free trial.</p></div>
+                    </details>
+                </div>
+                <p class="page-more"><a href="/pricing/" data-i18n="faq_plans_link">Plans, the free trial and Family Sharing, in detail</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<div class="cta-section">
+    <h2 class="reveal" data-i18n="cta_h2">Start your free trial today</h2>
+    <p class="reveal d1" data-i18n="cta_p">No payment needed for the first 30 days. Cancel anytime in Settings.</p>
+    <a href="https://apps.apple.com/app/id6760232332" class="btn-primary" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span data-i18n="cta_btn">Download on the App Store</span>
+    </a>
+</div>
