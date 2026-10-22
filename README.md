@@ -28,7 +28,7 @@ generated and overwritten on every build. Never edit it.
 
 Links between pages are written in English form (`/pricing/`, `/#features`,
 `/`) and the build rewrites them per language (`/fr/pricing/`). In the bar,
-Features and Reviews are anchors on the home page and become `/#features`
+Features is an anchor on the home page and becomes `/#features`
 elsewhere; the key for the page being shown is lit and gets
 `aria-current="page"`.
 
@@ -112,6 +112,6 @@ keeps weight 900 *and* covers Cyrillic.
 ## Adding a language
 
 Add it to `LANGS`, `LANG_CODES` and `LANG_LABELS` in `tools/build-i18n.mjs`,
-add a full block (`seo` + all 169 strings) to `i18n/translations.json`, then
+add a full block (`seo` + all 156 strings) to `i18n/translations.json`, then
 build. The build fails loudly on any missing string rather than shipping a
 half-translated page.

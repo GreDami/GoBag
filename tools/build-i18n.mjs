@@ -229,8 +229,7 @@ function renderHead(lang, page) {
     /* No aggregateRating. It was a hand-written 5.0 from 3 ratings, which meant
        a figure that had to be re-typed here every time the App Store moved, and
        Google requires the markup to match what the page visibly says. Three
-       ratings is also too thin a base to publish as an average. The two verbatim
-       reviews stay; only the aggregate claim is gone. */
+       ratings is also too thin a base to publish as an average. */
     author: { '@type': 'Organization', name: 'GreDami', url: 'https://gredami.com' },
     sameAs: [
       'https://apps.apple.com/app/id6760232332',
@@ -414,9 +413,11 @@ function replaceRegion(html, name, body, style = 'html') {
 }
 
 /* Body of a marked region, without the markers. */
-function extractRegion(html, name) {
-  const start = `/* i18n:${name}:start */`;
-  const end = `/* i18n:${name}:end */`;
+function extractRegion(html, name, style = 'css') {
+  const wrap = style === 'css' ? (t) => `/* i18n:${name}:${t} */`
+                               : (t) => `<!-- i18n:${name}:${t} -->`;
+  const start = wrap('start');
+  const end = wrap('end');
   const a = html.indexOf(start);
   const b = html.indexOf(end);
   if (a < 0 || b < 0) throw new Error(`marker i18n:${name} not found in index.html`);
@@ -434,13 +435,12 @@ function withMain(html, body) {
   return html.slice(0, a + MAIN_OPEN.length) + '\n\n' + body.trim() + '\n\n' + html.slice(b);
 }
 
-/* The bar is written for the home page, where Features and Reviews are
-   sections of the page itself. Anywhere else they are sections of the home
-   page, and the key for the page being shown is lit and says so to assistive
+/* The bar is written for the home page, where Features is a section of the
+   page itself. Anywhere else it is a section of the home page, and the key for the page being shown is lit and says so to assistive
    tech — the scroll-driven highlight only ever touches keys that are anchors. */
 function navFor(html, page) {
   if (page === HOME) return html;
-  html = html.replace(/href="#(features|reviews)"/g, 'href="/#$1"');
+  html = html.replace(/href="#features"/g, 'href="/#features"');
   const key = `class="nav-key" href="${page.key}"`;
   if (!html.includes(key)) throw new Error(`the bar has no key for ${page.key}`);
   return html.split(key).join(`class="nav-key current" href="${page.key}" aria-current="page"`);
@@ -576,15 +576,30 @@ ${entries}
 </urlset>
 `);
 
-/* The privacy page is not generated, but it carries three blocks that must be
-   byte-identical to the main page: the @font-face rules, the cookie banner CSS
-   and the consent gate itself. Copy them across on every build — a fix applied
-   to one and not the other is exactly the drift this prevents. */
+/* The privacy page is not generated, but it carries blocks that must be
+   byte-identical to the main page: the @font-face rules, the cookie banner CSS,
+   the consent gate itself, and the footer with its CSS. Copy them across on
+   every build — a fix applied to one and not the other is exactly the drift
+   this prevents (the footer had already lost two links and 8px off each icon
+   by the time it joined this list). The footer goes across in English, the
+   language the privacy page is written in. */
 const priv = 'privacy/index.html';
 let privHtml = fs.readFileSync(priv, 'utf8');
 privHtml = replaceRegion(privHtml, 'fonts', fontCss, 'css');
-for (const region of ['cookiecss', 'consentjs']) {
+for (const region of ['cookiecss', 'consentjs', 'footercss']) {
   privHtml = replaceRegion(privHtml, region, extractRegion(source, region), 'css');
+}
+privHtml = replaceRegion(privHtml, 'footer', extractRegion(source, 'footer', 'html'));
+/* The copied CSS reads the main page's tokens, and the privacy page declares
+   its own, shorter set. A token it lacks fails silently: the cookie banner's
+   Accept button read var(--green-ink), had no fill there, and showed as white
+   text on nothing. Fail the build instead. */
+for (const region of ['cookiecss', 'footercss']) {
+  for (const [, token] of extractRegion(source, region).matchAll(/var\((--[\w-]+)/g)) {
+    if (!new RegExp(`^\\s*${token}\\s*:`, 'm').test(privHtml)) {
+      throw new Error(`${priv}: the copied ${region} block uses ${token}, which the page never declares`);
+    }
+  }
 }
 fs.writeFileSync(priv, privHtml);
 
