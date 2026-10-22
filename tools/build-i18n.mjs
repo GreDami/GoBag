@@ -4,13 +4,16 @@
  *   index.html            the shell every page is cut from — head, styles,
  *                         bar, footer, scripts — AND the English home page (/)
  *   _pages/<id>.html      the <main> of each other page, in English
- *   pricing/  faq/        generated English pages
+ *   _guides/_layout.html  the <main> every guide is set in, in English
+ *   _guides/<lang>/*.html each guide, written whole in its own language
+ *   pricing/ faq/ guides/ generated English pages
  *   fr|de|es|it|pt|ru/    generated, overwritten on every run, each with its
- *                         own pricing/ and faq/
+ *                         own pricing/, faq/ and guides/
  *   sitemap.xml           regenerated with hreflang alternates
  *
  * Hand-edit index.html and _pages/*.html in English, and the matching strings
  * in i18n/translations.json for the other six, then re-run `npm run build`.
+ * The guides are the exception: each language has its own file, see GUIDES.
  * Everything between the <!-- i18n:head --> and <!-- i18n:switcher --> markers
  * is machine-written — including in index.html itself, so English never drifts
  * out of sync with the other six.
@@ -58,12 +61,45 @@ const fontCss = fs.readFileSync('fonts/fonts.css', 'utf8').trimEnd();
 
    `key` is the page's own key in the bar: on that page it is lit and marked
    as the current page. */
+/* ── guides ───────────────────────────────────────────────────────────────────
+
+   The articles people find the site through: "go bag checklist", "how much
+   water to store". They are long-form, so they are not translated a key per
+   paragraph like the rest of the site. Each language has the whole article in
+   _guides/<lang>/<slug>.html, which lets a German guide cite the BBK's ten
+   days and a French one the government's 72-hour kit instead of reading as
+   the American page translated.
+
+   A guide file is in two parts, split at its guide:body comment: above it the
+   h1 and the lead that go in the band at the top, below it the article. Its
+   h2s carry ids, and the rail's table of contents is built from them. Links
+   are written in English form (/guides/…/, /pricing/) and rewritten per
+   language like everywhere else.
+
+   Its title and meta description are seo.<id>Title and seo.<id>Description,
+   like any page's; guide_<id>_title and guide_<id>_desc are the short name and
+   the line on its card, in the guides index and under every other guide. The
+   slug is the same in every language, as /fr/pricing/ is. */
+const GUIDES = [
+  { id: 'checklist', slug: 'go-bag-checklist' },
+  { id: 'kinds', slug: 'go-bag-vs-bug-out-bag' },
+  { id: 'start', slug: 'prep-kit-for-beginners' },
+  { id: 'storage', slug: 'emergency-water-and-food' },
+  { id: 'documents', slug: 'emergency-documents' },
+  { id: 'upkeep', slug: 'emergency-kit-maintenance' },
+];
+
 const PAGES = [
   { id: 'home', path: '' },
   { id: 'pricing', path: 'pricing/', key: '/pricing/', crumb: 'pricing_title' },
   { id: 'faq', path: 'faq/', key: '/faq/', crumb: 'faq_label' },
+  { id: 'guides', path: 'guides/', key: '/guides/', crumb: 'guides_label' },
+  ...GUIDES.map((g) => ({
+    id: g.id, path: `guides/${g.slug}/`, key: '/guides/', crumb: `guide_${g.id}_title`, guide: g,
+  })),
 ];
 const HOME = PAGES[0];
+const GUIDES_INDEX = PAGES.find((p) => p.id === 'guides');
 
 const pathFor = (lang, page = HOME) => (lang === 'en' ? '/' : `/${lang}/`) + page.path;
 const urlFor = (lang, page = HOME) => ORIGIN + pathFor(lang, page);
@@ -250,19 +286,53 @@ function renderHead(lang, page) {
     publisher: { '@type': 'Organization', name: 'GreDami', url: 'https://gredami.com' },
   };
 
+  /* A guide sits one level down, under the guides index. */
+  const trail = page === HOME ? [] : [
+    { name: 'GoBag+', item: urlFor(lang) },
+    ...(page.guide ? [{ name: strings[GUIDES_INDEX.crumb], item: urlFor(lang, GUIDES_INDEX) }] : []),
+    { name: strings[page.crumb], item: self },
+  ];
   const crumbs = page === HOME ? null : {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'GoBag+', item: urlFor(lang) },
-      { '@type': 'ListItem', position: 2, name: strings[page.crumb], item: self },
-    ],
+    itemListElement: trail.map((t, i) => ({ '@type': 'ListItem', position: i + 1, ...t })),
+  };
+
+  const dates = page.guide ? guideDates(page, lang) : null;
+  const article = page.guide && {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: meta.title,
+    description: meta.description,
+    inLanguage: lang,
+    url: self,
+    mainEntityOfPage: self,
+    image: `${ORIGIN}/screenshots/og.jpg`,
+    datePublished: dates.published,
+    dateModified: dates.modified,
+    author: { '@type': 'Organization', name: 'GreDami', url: 'https://gredami.com' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'GreDami',
+      url: 'https://gredami.com',
+      logo: { '@type': 'ImageObject', url: `${ORIGIN}/img/logo-64.png` },
+    },
+  };
+
+  const guideList = page === GUIDES_INDEX && {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: PAGES.filter((p) => p.guide).map((p, i) => ({
+      '@type': 'ListItem', position: i + 1, url: urlFor(lang, p), name: strings[p.crumb],
+    })),
   };
 
   /* The app and the site are described once, on the home page. The FAQ
      markup goes with the questions, on the FAQ page. */
   const blocks = page === HOME ? [app, site] : [crumbs];
   if (page.id === 'faq') blocks.push(faq);
+  if (article) blocks.push(article);
+  if (guideList) blocks.push(guideList);
 
   /* Root only: a visitor whose browser asks for one of the other six is offered
      that page. It used to call location.replace() and move them, which meant
@@ -349,7 +419,7 @@ ${alternates}
     <!-- Open Graph -->
     <meta property="og:title" content="${attr(meta.title)}">
     <meta property="og:description" content="${attr(meta.og)}">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="${page.guide ? 'article' : 'website'}">
     <meta property="og:url" content="${self}">
     <meta property="og:site_name" content="GoBag+">
     <meta property="og:locale" content="${seo.locale}">
@@ -443,7 +513,10 @@ function navFor(html, page) {
   html = html.replace(/href="#features"/g, 'href="/#features"');
   const key = `class="nav-key" href="${page.key}"`;
   if (!html.includes(key)) throw new Error(`the bar has no key for ${page.key}`);
-  return html.split(key).join(`class="nav-key current" href="${page.key}" aria-current="page"`);
+  /* A guide lights the Guides key too, but the key is the index, not the
+     page being read, so it is the current section rather than the page. */
+  const here = `/${page.path}` === page.key ? 'page' : 'true';
+  return html.split(key).join(`class="nav-key current" href="${page.key}" aria-current="${here}"`);
 }
 
 /* Links between pages stay in the visitor's language: /pricing/ on a French
@@ -451,8 +524,11 @@ function navFor(html, page) {
    English page. Only the pages that exist in every language are rewritten —
    /privacy/ is English only, and nothing under /img/ or /fonts/ is a page.
    Runs before the head and the switcher are written, which carry their own
-   correct links. */
-const LOCAL_LINK = /href=(["'])\/((?:pricing\/|faq\/)?(?:#[^"']*)?)\1/g;
+   correct links. Longest path first, so /guides/x/ is not cut at /guides/. */
+const rx = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#]/g, '\\$&');
+const PAGE_PATHS = PAGES.filter((p) => p.path).map((p) => p.path)
+  .sort((a, b) => b.length - a.length);
+const LOCAL_LINK = new RegExp(`href=(["'])\\/((?:${PAGE_PATHS.map(rx).join('|')})?(?:#[^"']*)?)\\1`, 'g');
 
 function localizeLinks(html, lang) {
   if (lang === 'en') return html;
@@ -487,22 +563,147 @@ function checkEnglish(html, where) {
   return n;
 }
 
+/* ── dates ────────────────────────────────────────────────────────────────────
+
+   lastmod is the date the source page was last committed, not the date of the
+   build. Stamping today on every run tells Google the page changed when it did
+   not, which teaches it to distrust the field — and it made every build dirty
+   the sitemap for no reason.
+
+   The uncommitted check is what keeps it honest. Reading the last commit date
+   alone made the field permanently one commit stale: the build runs before the
+   commit that carries its own output, so it stamped the date of the *previous*
+   change every time. If the source is dirty, the page is changing in this very
+   build and the commit about to carry it will be dated today. */
+const TODAY = new Date().toISOString().slice(0, 10);
+const SOURCES = 'index.html _pages i18n/translations.json';
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+const gitMemo = new Map();
+
+function git(cmd) {
+  if (!gitMemo.has(cmd)) {
+    let out = null;
+    try { out = execSync(cmd, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); }
+    catch (e) { /* not a git checkout */ }
+    gitMemo.set(cmd, out);
+  }
+  return gitMemo.get(cmd);
+}
+
+/* When any of the given sources last changed: today if one is uncommitted. */
+function changed(sources) {
+  const dirty = git(`git status --porcelain -- ${sources}`);
+  if (dirty === null || dirty) return TODAY;
+  const d = git(`git log -1 --format=%cs -- ${sources}`);
+  return ISO_DAY.test(d || '') ? d : TODAY;
+}
+
+/* When a file was first committed: a guide's publication date. */
+function firstCommitted(file) {
+  const d = (git(`git log --diff-filter=A --format=%cs -- "${file}"`) || '').split('\n').pop();
+  return ISO_DAY.test(d) ? d : TODAY;
+}
+
+const latest = (...days) => days.sort().pop();
+const siteChanged = changed(SOURCES);
+
+const GUIDE_LAYOUT_FILE = '_guides/_layout.html';
+const guideFile = (page, lang) => path.join('_guides', lang, `${page.guide.slug}.html`);
+
+/* What the guide says it is dated: the article itself, not the shell around it. */
+function guideDates(page, lang) {
+  const file = guideFile(page, lang);
+  return { published: firstCommitted(file), modified: changed(`"${file}"`) };
+}
+
+/* ── guide pages ──────────────────────────────────────────────────────────── */
+
+const GUIDE_LAYOUT = fs.readFileSync(GUIDE_LAYOUT_FILE, 'utf8');
+const slot = (name) => `<!-- guide:${name} -->`;
+
+function fill(html, name, value, where) {
+  const mark = slot(name);
+  const at = html.indexOf(mark);
+  if (at < 0 || html.indexOf(mark, at + 1) >= 0) throw new Error(`${where}: needs exactly one ${mark}`);
+  return html.slice(0, at) + value + html.slice(at + mark.length);
+}
+
+/* The cards that lead to the guides: all of them in the index, the other five
+   under each guide. Built here in the page's own language, so they carry no
+   data-i18n for the translation pass to find. */
+function guideCards(lang, except, heading) {
+  const s = tr[lang].strings;
+  const cards = PAGES.filter((p) => p.guide && p !== except).map((p) => {
+    const title = s[`guide_${p.id}_title`];
+    const desc = s[`guide_${p.id}_desc`];
+    if (!title || !desc) throw new Error(`[${lang}] missing guide_${p.id}_title or guide_${p.id}_desc`);
+    return `        <li><a class="guide-card" href="/${p.path}">
+            <${heading}>${esc(title)}</${heading}>
+            <p>${esc(desc)}</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>`;
+  });
+  return `<ul class="guide-cards">\n${cards.join('\n')}\n    </ul>`;
+}
+
+function guideMain(page, lang) {
+  const file = guideFile(page, lang);
+  if (!fs.existsSync(file)) throw new Error(`[${lang}] missing ${file}`);
+  const src = fs.readFileSync(file, 'utf8');
+  if (/\bdata-i18n/.test(src)) {
+    throw new Error(`${file}: a guide is written in its own language, so it takes no data-i18n`);
+  }
+  const mark = slot('body');
+  const cut = src.indexOf(mark);
+  if (cut < 0 || src.indexOf(mark, cut + 1) >= 0) throw new Error(`${file}: needs exactly one ${mark}`);
+  const head = src.slice(0, cut).trim();
+  const body = src.slice(cut + mark.length).trim();
+
+  /* The rail's contents, read off the article's own h2s. */
+  const sections = [...body.matchAll(/<h2 id="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/g)];
+  if (!sections.length || sections.length !== (body.match(/<h2\b/g) || []).length) {
+    throw new Error(`${file}: every <h2> needs an id — the table of contents is built from them`);
+  }
+  const toc = `<ul class="faq-topics">\n${sections.map(([, id, text]) =>
+    `                    <li><a href="#${id}">${text.replace(/<[^>]+>/g, '').trim()}</a></li>`).join('\n')}\n                </ul>`;
+
+  const { modified } = guideDates(page, lang);
+  const shown = new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeZone: 'UTC' })
+    .format(new Date(`${modified}T00:00:00Z`));
+  const updated = `<p class="guide-updated">${esc(tr[lang].strings.guide_updated)} `
+    + `<time datetime="${modified}">${shown}</time></p>`;
+
+  let html = fill(GUIDE_LAYOUT, 'head', `${head}\n            ${updated}`, GUIDE_LAYOUT_FILE);
+  html = fill(html, 'toc', toc, GUIDE_LAYOUT_FILE);
+  html = fill(html, 'body', body, GUIDE_LAYOUT_FILE);
+  return fill(html, 'more', guideCards(lang, page, 'h3'), GUIDE_LAYOUT_FILE);
+}
+
+/* ── assembly, every page in every language ───────────────────────────────── */
+
 const source = fs.readFileSync('index.html', 'utf8');
-const bodies = Object.fromEntries(PAGES.filter((p) => p !== HOME)
+const bodies = Object.fromEntries(PAGES.filter((p) => p !== HOME && !p.guide)
   .map((p) => [p.id, fs.readFileSync(path.join('_pages', `${p.id}.html`), 'utf8')]));
 /* The FAQ page's questions in the order it shows them, for its structured data. */
 const FAQ_NUMS = [...bodies.faq.matchAll(/data-i18n="faq_q(\d+)"/g)].map((m) => Number(m[1]));
 
+/* The <main> a page is set in, still in English apart from a guide's article. */
+function mainFor(page, lang) {
+  if (page.guide) return guideMain(page, lang);
+  if (page === GUIDES_INDEX) return fill(bodies[page.id], 'cards', guideCards(lang, null, 'h2'), '_pages/guides.html');
+  return bodies[page.id];
+}
+
 const report = Object.fromEntries(LANGS.map((l) => [l, []]));
+const links = [];
 let written = 0;
 
 for (const page of PAGES) {
-  const english = navFor(page === HOME ? source : withMain(source, bodies[page.id]), page);
-  const checked = checkEnglish(page === HOME ? source : bodies[page.id], page.id);
+  const checked = checkEnglish(page === HOME ? source : mainFor(page, 'en'), page.id);
   report.en.push(`${page.id} ${checked} checked`);
 
   for (const lang of LANGS) {
-    let html = english;
+    let html = navFor(page === HOME ? source : withMain(source, mainFor(page, lang)), page);
 
     if (lang !== 'en') {
       const r = translateBody(html, tr[lang].strings, lang);
@@ -521,36 +722,26 @@ for (const page of PAGES) {
     const out = path.join(lang === 'en' ? '.' : lang, page.path, 'index.html');
     fs.mkdirSync(path.dirname(out), { recursive: true });
     fs.writeFileSync(out, html);
+    for (const [, href] of html.matchAll(/\bhref="(\/(?!\/)[^"#?]*)/g)) links.push([pathFor(lang, page), href]);
     written++;
   }
 }
 
+/* Every link to a page of this site has to land on one. The guides are
+   forty-two hand-written files, and a link with a typo in it would otherwise
+   ship as a 404 that nobody sees. */
+const broken = links.filter(([, href]) => !fs.existsSync(
+  path.join('.', decodeURI(href), href.endsWith('/') ? 'index.html' : '')));
+if (broken.length) {
+  throw new Error(`links to nothing:\n${[...new Set(broken.map(([from, to]) => `  ${from} → ${to}`))].join('\n')}`);
+}
+
 /* ── sitemap ──────────────────────────────────────────────────────────────── */
 
-/* lastmod is the date the source page was last committed, not the date of the
-   build. Stamping today on every run tells Google the page changed when it did
-   not, which teaches it to distrust the field — and it made every build dirty
-   the sitemap for no reason.
-
-   The uncommitted check is what keeps it honest. Reading the last commit date
-   alone made the field permanently one commit stale: the build runs before the
-   commit that carries its own output, so it stamped the date of the *previous*
-   change every time. If the source is dirty, the page is changing in this very
-   build and the commit about to carry it will be dated today. */
-const SOURCES = 'index.html _pages i18n/translations.json';
-
-function lastModified() {
-  const today = new Date().toISOString().slice(0, 10);
-  try {
-    if (execSync(`git status --porcelain -- ${SOURCES}`, { encoding: 'utf8' }).trim()) {
-      return today;
-    }
-    const d = execSync(`git log -1 --format=%cs -- ${SOURCES}`, { encoding: 'utf8' }).trim();
-    if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
-  } catch (e) { /* not a git checkout */ }
-  return today;
-}
-const today = lastModified();
+/* A guide changes with its article, and with the shell and layout around it. */
+const lastmodFor = (page, lang) => (page.guide
+  ? latest(siteChanged, changed(GUIDE_LAYOUT_FILE), changed(`"${guideFile(page, lang)}"`))
+  : siteChanged);
 const altFor = (page) => LANGS
   .map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${urlFor(l, page)}"/>`)
   .join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${urlFor('en', page)}"/>`;
@@ -558,7 +749,7 @@ const altFor = (page) => LANGS
 const entries = PAGES.flatMap((page) => LANGS.map((l) => `  <url>
     <loc>${urlFor(l, page)}</loc>
 ${altFor(page)}
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmodFor(page, l)}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>${page === HOME ? '1.0' : '0.8'}</priority>
   </url>`)).join('\n');
@@ -569,7 +760,7 @@ fs.writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 ${entries}
   <url>
     <loc>${ORIGIN}/privacy/</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${siteChanged}</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

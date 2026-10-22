@@ -4,14 +4,15 @@ Static site for <https://gobag.gredami.com>, served from GitHub Pages.
 
 ## Pages and languages
 
-Three pages — home, pricing and FAQ — in seven languages. Each language is its
+Home, pricing, FAQ and the guides — an index and six articles — in seven
+languages. Each language is its
 own URL, with the copy already in the HTML — no runtime translation. That is
 what lets Google index and rank all seven separately; before, all seven shared
 one URL and only English was ever indexed.
 
 ```
-/            /pricing/        /faq/          en
-/fr/         /fr/pricing/     /fr/faq/       … and the same for de es it pt ru
+/            /pricing/        /faq/          /guides/      /guides/<slug>/      en
+/fr/         /fr/pricing/     /fr/faq/       /fr/guides/   /fr/guides/<slug>/   … and de es it pt ru
 ```
 
 You edit, by hand, in English:
@@ -23,7 +24,7 @@ You edit, by hand, in English:
   style, the bar or a script exists once and reaches every page. The
   underscore keeps these sources off the published site.
 
-Everything else — `pricing/`, `faq/` and the six language directories — is
+Everything else — `pricing/`, `faq/`, `guides/` and the six language directories — is
 generated and overwritten on every build. Never edit it.
 
 Links between pages are written in English form (`/pricing/`, `/#features`,
@@ -77,6 +78,46 @@ The FAQ page's structured data (`FAQPage`) is built from the questions in
 `faq_qN`/`faq_aN` strings, and it is in the markup too. Answers are plain text:
 the accordion's reveal rebuilds an answer from its text, so a link belongs
 outside the answer, as the "in detail" link under the plans group is.
+
+## Guides
+
+The articles people find the site through from search: a go bag checklist,
+how much water and food to store, which documents to copy, and so on. They
+are long-form, so unlike the rest of the site they are **not** translated a
+key per paragraph. Each language has the whole article in its own file:
+
+```
+_guides/_layout.html          the <main> every guide is set in (English, data-i18n)
+_guides/<lang>/<slug>.html    one article, written whole in that language
+```
+
+That is what lets each language be written for its readers rather than
+translated from the American page: the German guides cite the BBK's ten days
+and 2 litres, the French ones the government's *Tous responsables* kit, the
+Russian ones the MChS.
+
+A guide file is in two parts, split at its `guide:body` comment: above it
+the `<h1>` and the `.page-head-lead` that go in the band at the top, below it
+the article. Every `<h2>` carries an `id` — the rail's table of contents is
+built from them, and the build fails on one without. Links to other pages are
+written in English form (`/guides/<slug>/`, `/pricing/`) and rewritten per
+language; a link to a page that does not exist fails the build. Plain `<ul>`
+lists get bullets, `<ul class="checklist">` gets boxes to tick (and prints
+that way), and `.guide-note.is-app` is the "In GoBag+" box. Anything the
+article says the app does has to match what the FAQ says — expiry alerts and
+the widget are Premium.
+
+The band's "Updated" date, `Article` structured data and the sitemap's
+`lastmod` come from git: the date the file was first committed and last
+changed (today while it is uncommitted).
+
+Titles and meta descriptions are `seo.<id>Title` / `seo.<id>Description` in
+`i18n/translations.json`, as for any page; `guide_<id>_title` and
+`guide_<id>_desc` are the card in the guides index and under every other
+guide. To add a guide, add `{ id, slug }` to `GUIDES` in
+`tools/build-i18n.mjs`, write `_guides/<lang>/<slug>.html` for all seven
+languages, add those four strings to every language, and build. The slug is
+the same in every language, as `/fr/pricing/` is.
 
 ## Adding a page
 

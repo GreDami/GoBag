@@ -1,0 +1,50 @@
+<!-- The guides index's <main>, dropped into index.html by tools/build-i18n.mjs
+     in place of the home page's own — see _pages/pricing.html. The cards are
+     not written here: the build makes one per guide in GUIDES, in the page's
+     own language, where the guide:cards comment stands. -->
+
+<!-- PAGE HEAD -->
+<section class="page-head">
+    <div class="page-head-art" style="--focus: 50% 20%; --focus-narrow: 40% 30%">
+        <picture>
+            <source type="image/webp"
+                    sizes="(max-width: 700px) 100vw, 58vw"
+                    srcset="/img/hero-gobag-620.webp 620w,
+                            /img/hero-gobag-900.webp 900w,
+                            /img/hero-gobag-1239.webp 1239w">
+            <img src="/img/hero-gobag-1239.jpg"
+                 sizes="(max-width: 700px) 100vw, 58vw"
+                 srcset="/img/hero-gobag-620.jpg 620w,
+                         /img/hero-gobag-900.jpg 900w,
+                         /img/hero-gobag-1239.jpg 1239w"
+                 alt="" width="1239" height="1269" fetchpriority="high" decoding="async">
+        </picture>
+    </div>
+    <div class="page-head-inner">
+        <div class="page-head-text">
+            <p class="page-head-label" data-i18n="guides_label">Guides</p>
+            <h1 data-i18n-html="guides_h1">Go bag &amp; prep kit <span>guides</span></h1>
+            <p class="page-head-lead" data-i18n="guides_lead">What to pack, how much to store and how to keep it ready: plain checklists based on official emergency guidance.</p>
+        </div>
+    </div>
+</section>
+
+<!-- THE GUIDES -->
+<section class="guides-section">
+    <div class="container">
+        <p class="guides-intro" data-i18n="guides_intro">Start with the go bag checklist if you have nothing packed yet. Each guide stands on its own, and together they cover a whole household: the bag you grab when you have to leave, the supplies that let you stay, and the papers you need either way.</p>
+        <!-- guide:cards -->
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<div class="cta-section">
+    <h2 class="reveal" data-i18n="cta_h2">Start your free trial today</h2>
+    <p class="reveal d1" data-i18n="cta_p">No payment needed for the first 30 days. Cancel anytime in Settings.</p>
+    <a href="https://apps.apple.com/app/id6760232332" class="btn-primary" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span data-i18n="cta_btn">Download on the App Store</span>
+    </a>
+</div>
