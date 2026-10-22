@@ -412,11 +412,10 @@
 
            One light source, directly above:
              rest    side 3px   the key sits proud of the deck
-             hover   side 8px   it rises, the shadow spreads and softens
              active  side 0px   it bottoms out, the shadow tightens under it
 
-           Keys also translateZ inside a real perspective, so they grow toward
-           you rather than just gaining a drop shadow.
+           There is no hover state: a key stays put under the pointer and only
+           moves when it is pressed.
 
            Scoped entirely to the nav: no page tokens or page rules are
            touched. Labels carry data-i18n keys, so the build translates the
@@ -526,19 +525,7 @@
             opacity: 0.55;
             transition: opacity .17s ease;
         }
-        .nav-key svg { width: 17px; height: 17px; flex-shrink: 0; opacity: 0.72; transition: opacity .17s ease; }
-
-        .nav-key:hover, .nav-cta:hover, .lang-trigger:hover, .nav-burger:hover, .nav-logo:hover {
-            transform: translateY(-5px) translateZ(18px);
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,0.98),
-                inset 0 -1px 0 rgba(22,33,61,0.05),
-                0 8px 0 var(--key-side),
-                0 9px 0 var(--key-side-dk),
-                0 15px 22px rgba(22,33,61,0.20);
-        }
-        .nav-key:hover::after, .nav-cta:hover::after, .lang-trigger:hover::after, .nav-logo:hover::after { opacity: 0.9; }
-        .nav-key:hover svg { opacity: 1; }
+        .nav-key svg { width: 17px; height: 17px; flex-shrink: 0; opacity: 0.72; }
 
         /* bottoming out */
         .nav-key:active, .nav-cta:active, .lang-trigger:active, .nav-burger:active, .nav-logo:active {
@@ -580,14 +567,6 @@
                 0 6px 12px rgba(47,138,82,0.24);
         }
         .nav-key.current svg { opacity: 1; color: var(--green); }
-        .nav-key.current:hover {
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,0.95),
-                inset 0 -1px 0 rgba(22,33,61,0.05),
-                0 8px 0 var(--key-on-side),
-                0 9px 0 var(--key-on-dk),
-                0 15px 24px rgba(47,138,82,0.3);
-        }
         /* status LED, lit only on the current key */
         .nav-key.current::before {
             content: '';
@@ -615,14 +594,6 @@
         }
         .nav-cta::after { background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0)); }
         .nav-cta svg { fill: #fff; flex-shrink: 0; }
-        .nav-cta:hover {
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,0.4),
-                inset 0 -1px 0 rgba(0,0,0,0.18),
-                0 8px 0 var(--cta-side),
-                0 9px 0 var(--cta-dk),
-                0 15px 26px rgba(24,80,46,0.42);
-        }
         .nav-cta:active {
             box-shadow:
                 inset 0 1px 0 rgba(255,255,255,0.3),
@@ -778,7 +749,6 @@
             .nav-key, .nav-cta, .lang-trigger, .nav-logo, .nav-burger i, .nav-drawer, .lang-dropdown {
                 transition-duration: .001ms !important;
             }
-            .nav-key:hover, .nav-cta:hover, .lang-trigger:hover, .nav-logo:hover,
             .nav-key:active, .nav-cta:active, .lang-trigger:active, .nav-logo:active { transform: none; }
             .nav-drawer { transform: translateX(100%); }
             body.nav-open .nav-drawer { transform: translateX(0); }
@@ -1328,11 +1298,6 @@
         }
         .scroll-hint svg { width: 30px; height: 30px; }
         .scroll-hint:hover { color: var(--green-lit); background: rgba(121,217,160,0.12); }
-        /* Centred on the window, the arrow would sit on her. It belongs under
-           the words, in the middle of the shaded half. Declared here rather
-           than with the rest of the full-bleed rules, so it comes after the
-           left: 50% it has to beat. */
-        @media (min-width: 901px) { .scroll-hint { left: 25%; } }
         /* The stacked hero closes on its contents, so an arrow pinned to its
            foot would land on the trial line. */
         @media (max-width: 900px) { .scroll-hint { display: none; } }
@@ -1406,13 +1371,25 @@
         .key-feature:nth-child(1) .key-feature-icon { --kf-glow: rgba(52,88,199,0.35); }
         .key-feature:nth-child(2) .key-feature-icon { --kf-glow: rgba(210,96,31,0.35); }
         .key-feature:nth-child(3) .key-feature-icon { --kf-glow: rgba(47,138,82,0.35); }
-        .key-feature:nth-child(4) .key-feature-icon { --kf-glow: rgba(47,138,82,0.35); }
-        .key-feature:nth-child(5) .key-feature-icon { --kf-glow: rgba(124,58,237,0.35); }
-        .key-feature:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: calc(50% - 10px); margin: 0 auto; }
-        @media (max-width: 600px) { .key-feature:last-child:nth-child(odd) { max-width: none; grid-column: auto; margin: 0; } }
+        .key-feature:nth-child(4) .key-feature-icon { --kf-glow: rgba(124,58,237,0.35); }
         .key-feature-icon svg { width: 26px; height: 26px; }
         .key-feature h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
         .key-feature p { font-size: 0.95rem; color: var(--muted); line-height: 1.65; }
+        /* Family sharing closes the grid across both columns. It was a card of
+           its own here and a banner of its own below, saying the same thing
+           twice; the banner's words and tint are what survived the merge. */
+        .key-feature.family {
+            grid-column: 1 / -1;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(52,88,199,0.10), rgba(47,138,82,0.08));
+            border-color: rgba(47,138,82,0.2);
+        }
+        .key-feature.family .key-feature-icon { --kf-glow: rgba(47,138,82,0.35); }
+        .key-feature.family h3 { font-family: var(--display); font-size: clamp(1.4rem, 2.6vw, 1.8rem); font-weight: 900; letter-spacing: -0.2px; line-height: 1.1; }
+        .key-feature.family p { font-size: 1rem; max-width: 640px; }
+        /* In one column the text runs long, and an icon centred against it
+           floats loose from the heading it belongs to. */
+        @media (max-width: 600px) { .key-feature.family { align-items: flex-start; } }
 
         /* REVIEWS */
         .reviews-grid {
@@ -1445,24 +1422,7 @@
         }
         .review-name { font-size: 0.92rem; font-weight: 700; }
         .review-meta { font-size: 0.82rem; color: var(--muted); }
-        /* Real review cards. The .rating-summary pill that sat above them is
-           gone along with the aggregate 5.0 / 3 ratings claim. */
-        .reviews-grid.two-up { grid-template-columns: repeat(2, 1fr); max-width: 720px; }
-        /* Two cards is all there honestly are. Rather than dress them up, the
-           section says where the rest of them live. */
-        .reviews-more { margin: 28px 0 0; font-size: 0.95rem; }
-        .reviews-more a {
-            color: var(--blue);
-            font-weight: 600;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            display: inline-flex;
-            align-items: center;
-            min-height: 30px;
-        }
-        .reviews-more a:hover { color: var(--navy); }
         .review-title { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.2px; margin: 0 0 10px; }
-        @media (max-width: 800px) { .reviews-grid.two-up { grid-template-columns: 1fr; max-width: 380px; } }
 
         /* PRICING */
         .pricing-grid {
@@ -1614,46 +1574,31 @@
         }
         .page-more a:hover { color: var(--navy); }
 
-        /* FAMILY */
-        .family-banner {
-            background: linear-gradient(135deg, rgba(52,88,199,0.12), rgba(47,138,82,0.08));
-            border: 1px solid rgba(47,138,82,0.2);
-            border-radius: 24px;
-            padding: 36px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .family-banner::before {
-            content: '';
-            position: absolute;
-            top: -60px; right: -60px;
-            width: 240px; height: 240px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(47,138,82,0.10) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .family-icon {
-            font-size: 40px;
-            width: 72px; height: 72px;
-            border-radius: 18px;
-            background: rgba(47,138,82,0.12);
-            border: 1px solid rgba(47,138,82,0.2);
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 16px;
-        }
-        .family-text { position: relative; }
-        .family-text h2 { font-family: var(--display); font-size: clamp(1.5rem, 3.2vw, 2.2rem); font-weight: 900; letter-spacing: -0.2px; margin-bottom: 14px; }
-        .family-text p { font-size: 1rem; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.85; }
-
         /* CTA */
-        .cta-section {
+        .cta-section, .cta-reviews {
             text-align: center;
             padding: 100px 24px;
             background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(52,88,199,0.12) 0%, transparent 70%);
         }
-        .cta-section h2 { font-family: var(--display); font-size: clamp(2.1rem, 5.4vw, 3.4rem); font-weight: 900; letter-spacing: -0.2px; margin-bottom: 16px; }
-        .cta-section p { font-size: 1.02rem; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 36px; }
+        .cta-section h2, .cta-offer h2 { font-family: var(--display); font-size: clamp(2.1rem, 5.4vw, 3.4rem); font-weight: 900; letter-spacing: -0.2px; margin-bottom: 16px; }
+        .cta-section p, .cta-offer p { font-size: 1.02rem; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 36px; }
+
+        /* On the home page the closing button and the reviews are one
+           section: the offer on the left, what people said about it on the
+           right. Pricing and the FAQ keep the plain centred .cta-section. */
+        .cta-reviews .container {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+            gap: 56px;
+            align-items: center;
+        }
+        .cta-offer { text-align: left; }
+        .cta-reviews .reviews-grid { grid-template-columns: 1fr; gap: 16px; max-width: none; margin: 0; }
+        @media (max-width: 800px) {
+            .cta-reviews .container { grid-template-columns: 1fr; gap: 44px; }
+            .cta-offer { text-align: center; }
+            .cta-reviews .reviews-grid { max-width: 420px; margin: 0 auto; width: 100%; }
+        }
 
         /* FOOTER */
         footer {
@@ -1928,7 +1873,6 @@
         @media (max-width: 700px) {
             nav { padding: 14px 16px; }
             .hero-text { padding: 0 20px; }
-            .family-banner { padding: 28px 20px; }
         }
 
         /* .faq-layout and .faq-intro stood here: the home page's two-column
@@ -3046,10 +2990,9 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
       if (seen > best) { best = seen; current = k.getAttribute('href'); }
     });
     /* The end of the page used to be handed to the last key outright, because
-       the FAQ was the last section and too short to fill the band. The keys
-       that are left on this page are Features and Reviews, and what follows
-       Reviews is the closing button, which is not Reviews. So the band decides
-       at the foot of the page too. */
+       the FAQ was the last section and too short to fill the band. The band
+       decides at the foot of the page too; Reviews is the last section now,
+       closing button and all, so it is Reviews that stays lit there. */
     keys.forEach(function (k) {
       k.classList.toggle('current', k.getAttribute('href') === current);
     });
