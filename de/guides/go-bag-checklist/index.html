@@ -109,7 +109,43 @@
   "mainEntityOfPage": "https://gobag.gredami.com/de/guides/go-bag-checklist/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Ratgeber",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/de/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Notgepäck",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/So-koennen-Sie-sich-vorbereiten/Notgepaeck/notgepaeck_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Essen und Trinken bevorraten",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/So-koennen-Sie-sich-vorbereiten/Bevorraten/bevorraten_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Europäische Kommission: Krisenvorsorge",
+      "url": "https://commission.europa.eu/topics/preparedness_de"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (Englisch)",
+      "url": "https://www.ready.gov/kit"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/de/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +160,55 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "de",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist im Notfallrucksack am wichtigsten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wasser, verschreibungspflichtige Medikamente, Kopien deiner Dokumente, eine Taschenlampe, eine geladene Powerbank und Bargeld: das, was unterwegs am schwersten zu bekommen ist. Essen, Kleidung und Werkzeug kommen danach."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie schwer darf ein Notfallrucksack sein?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "So leicht, dass jede Person eine Stunde damit gehen kann, ohne abzusetzen. Ist er zu schwer, bleibt der Großteil des Wassers zu Hause oder im Auto, und in den Rucksack kommt ein Filter: Wasser ist das Schwerste darin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Reicht ein fertig gepackter Notfallrucksack?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Als Anfang ja, aber ein gekauftes Set enthält weder deine Medikamente noch deine Brille, Kopien deiner Dokumente oder die Sachen deiner Kinder. Kauf es, wenn es dir den Einstieg erleichtert, und ergänze, was dein Haushalt braucht."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie oft sollte ich den Rucksack prüfen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alle sechs Monate: Haltbarkeit von Wasser, Essen und Medikamenten, Ladung der Powerbank, Kleidung für die Jahreszeit und ob die Sachen der Kinder noch passen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Brauchen Kinder einen eigenen Rucksack?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, einen kleinen mit ein paar leichten Dingen: ein Snack, eine Trinkflasche, eine Taschenlampe, ein Kuscheltier und eine Karte mit deinem Namen und deiner Telefonnummer. Die schweren Vorräte tragen die Erwachsenen."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2022,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2133,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2440,7 @@
             <p class="page-head-label"><a href="/de/guides/" data-i18n="guides_label">Ratgeber</a></p>
             <h1>Checkliste <span>Notfallrucksack</span></h1>
 <p class="page-head-lead">Was in ein Notgepäck gehört, das du in einer Minute greifen kannst: neun Kategorien, Stück für Stück, als Liste zum Ausdrucken.</p>
-            <p class="guide-updated">Aktualisiert am <time datetime="2026-10-22">22. Oktober 2026</time></p>
+            <p class="guide-updated">Aktualisiert am <time datetime="2026-11-13">13. November 2026</time></p>
         </div>
     </div>
 </section>
@@ -2308,6 +2458,7 @@
                     <li><a href="#family">Extra für Kinder, Ältere und Haustiere</a></li>
                     <li><a href="#where">Wo der Rucksack hingehört</a></li>
                     <li><a href="#ready">Bereit halten</a></li>
+                    <li><a href="#faq">Häufige Fragen</a></li>
                     <li><a href="#sources">Quellen</a></li>
                 </ul>
             </div>
@@ -2317,7 +2468,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Der Notfallrucksack ist das, was du nimmst, wenn dir nur Minuten bleiben, um die Wohnung zu verlassen: ein Brand, ein Hochwasser, ein Gasleck, eine Evakuierung. Er enthält, was du brauchst, um ein paar Tage auf dich gestellt durchzuhalten: Wasser, Essen, Medikamente, Kopien deiner Dokumente und die wenigen Werkzeuge, die diese Tage erträglich machen. Das Bundesamt für Bevölkerungsschutz und Katastrophenhilfe (BBK) empfiehlt ein solches Notgepäck, und die EU rät seit 2025, 72 Stunden ohne Hilfe von außen auskommen zu können.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Kurz gesagt</p>
+    <p>In einen Notfallrucksack gehört, was eine Person für zwei bis drei Tage braucht: Wasser (2 bis 3 Liter zum Tragen, dazu Filter oder Tabletten, um mehr trinkbar zu machen), Essen ohne Kochen, Erste-Hilfe-Material und Medikamente für eine Woche, Kopien der Dokumente in einer wasserdichten Hülle, Bargeld, Taschenlampe, Powerbank, Radio, Wechselkleidung und Hygieneartikel. Ein Rucksack pro Person, griffbereit neben der Tür.</p>
+</div>
+<p class="guide-inline-app">GoBag+ macht aus diesem Ratgeber eine Ausrüstung, die du im Blick behältst: Mengen passend zu deinem Haushalt und eine Erinnerung, bevor etwas abläuft. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a></p>
+<p>Der Notfallrucksack ist das, was du nimmst, wenn dir nur Minuten bleiben, um die Wohnung zu verlassen: ein Brand, ein Hochwasser, ein Gasleck, eine Evakuierung. Er enthält, was du brauchst, um ein paar Tage auf dich gestellt durchzuhalten: Wasser, Essen, Medikamente, Kopien deiner Dokumente und die wenigen Werkzeuge, die diese Tage erträglich machen. Das Bundesamt für Bevölkerungsschutz und Katastrophenhilfe (BBK) empfiehlt ein solches Notgepäck, und die EU rät seit 2025, 72 Stunden ohne Hilfe von außen auskommen zu können.</p>
 <p>Pack einen Rucksack pro Person, so schwer, wie sie ihn lange tragen kann. Ein stabiler Rucksack ist besser als ein Koffer: Er lässt die Hände frei. Kinder können einen kleinen eigenen Rucksack mit ein paar leichten Sachen und etwas Vertrautem tragen.</p>
 <button type="button" class="btn-secondary guide-print" onclick="window.print()">Checkliste drucken</button>
 
@@ -2350,6 +2506,7 @@
     <li>FFP2-Masken, gegen Rauch und Staub</li>
     <li>Handdesinfektion und Desinfektionstücher</li>
 </ul>
+<p>Was die Hausapotheke zu Hause enthalten sollte, Stück für Stück, steht in der <a href="/de/guides/first-aid-kit-checklist/">Checkliste Hausapotheke</a>.</p>
 
 <h3>4. Dokumente</h3>
 <ul class="checklist">
@@ -2414,15 +2571,32 @@
     <li>Ältere Angehörige: Batterien fürs Hörgerät, Ladegeräte für medizinische Geräte, Gehhilfen und eine Ersatzbrille</li>
     <li>Haustiere: Futter und Wasser für drei Tage, Leine oder Transportbox, Kotbeutel, Impfausweis und ein Foto</li>
 </ul>
+<p>Beides hat einen eigenen Ratgeber: den <a href="/de/guides/go-bag-for-kids/">Notfallrucksack für Kinder und Babys</a> und die <a href="/de/guides/pet-emergency-kit/">Notfallausrüstung für Haustiere</a>.</p>
 
 <h2 id="where">Wo der Rucksack hingehört</h2>
 <p>Neben die Tür, durch die du hinausgehen würdest, oder in einen Schrank auf dem Weg dorthin, an einen Platz, den alle im Haushalt kennen. Die US-Behörde Ready.gov rät zu einer Ausrüstung an drei Orten: zu Hause, bei der Arbeit, wo du mindestens 24 Stunden bleiben können solltest, und im Auto, falls du liegen bleibst. Die Taschen für Arbeit und Auto dürfen kleiner sein; man nennt sie oft <a href="/de/guides/go-bag-vs-bug-out-bag/">Get-Home-Bag</a>.</p>
+<p>Was in die Tasche fürs Auto gehört, steht in der <a href="/de/guides/car-emergency-kit/">Checkliste Notfallausrüstung fürs Auto</a>.</p>
 <p>Lagere ihn kühl und trocken. Hitze verkürzt die Haltbarkeit von Wasser, Essen, Batterien und Medikamenten: Ein Kofferraum im Sommer ist kein guter Ort für etwas, auf das du dich verlassen musst.</p>
 
 <h2 id="ready">Bereit halten</h2>
 <p>Ein gepackter Rucksack ist kein fertiger. Prüfe alle sechs Monate die Daten auf Wasser, Essen und Medikamenten, lade die Powerbank, tausche die Kleidung für die Jahreszeit und schau, ob den Kindern ihre Sachen noch passen. Der Ratgeber <a href="/de/guides/emergency-kit-maintenance/">Ausrüstung aktuell halten</a> hat die ganze Routine.</p>
 <div class="guide-note is-app">
-    <p><strong>In GoBag+</strong> sind diese neun Kategorien schon angelegt. Sag der App, für wie viele Personen du packst, und die empfohlenen Mengen passen sich an; hak ab, was du hast, und sie zeigt, was noch fehlt. Mit Premium erinnert sie dich, bevor etwas abläuft.</p>
+    <p><strong>In GoBag+</strong> ist dein Notfallrucksack schon in neun Kategorien sortiert: Dokumente, Wasser und Essen, Kleidung, Medizin und Hygiene, Werkzeug und Ausrüstung, Elektronik, Geld, Persönliches und Familie sowie Sonstiges, und du kannst eigene anlegen. Sag der App, für wie viele Personen du packst, und die empfohlenen Mengen passen sich an; hak ab, was du hast, und ein Ring zeigt, wie vollständig der Rucksack ist und was noch fehlt. Mit Premium erinnert sie dich, bevor etwas abläuft.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Häufige Fragen</h2>
+<div class="guide-faq">
+    <h3>Was ist im Notfallrucksack am wichtigsten?</h3>
+    <p>Wasser, verschreibungspflichtige Medikamente, Kopien deiner Dokumente, eine Taschenlampe, eine geladene Powerbank und Bargeld: das, was unterwegs am schwersten zu bekommen ist. Essen, Kleidung und Werkzeug kommen danach.</p>
+    <h3>Wie schwer darf ein Notfallrucksack sein?</h3>
+    <p>So leicht, dass jede Person eine Stunde damit gehen kann, ohne abzusetzen. Ist er zu schwer, bleibt der Großteil des Wassers zu Hause oder im Auto, und in den Rucksack kommt ein Filter: Wasser ist das Schwerste darin.</p>
+    <h3>Reicht ein fertig gepackter Notfallrucksack?</h3>
+    <p>Als Anfang ja, aber ein gekauftes Set enthält weder deine Medikamente noch deine Brille, Kopien deiner Dokumente oder die Sachen deiner Kinder. Kauf es, wenn es dir den Einstieg erleichtert, und ergänze, was dein Haushalt braucht.</p>
+    <h3>Wie oft sollte ich den Rucksack prüfen?</h3>
+    <p>Alle sechs Monate: Haltbarkeit von Wasser, Essen und Medikamenten, Ladung der Powerbank, Kleidung für die Jahreszeit und ob die Sachen der Kinder noch passen.</p>
+    <h3>Brauchen Kinder einen eigenen Rucksack?</h3>
+    <p>Ja, einen kleinen mit ein paar leichten Dingen: ein Snack, eine Trinkflasche, eine Taschenlampe, ein Kuscheltier und eine Karte mit deinem Namen und deiner Telefonnummer. Die schweren Vorräte tragen die Erwachsenen.</p>
 </div>
 
 <h2 id="sources">Quellen</h2>
@@ -2464,6 +2638,11 @@
         <li><a class="guide-card" href="/de/guides/emergency-kit-maintenance/">
             <h3>Ausrüstung aktuell halten</h3>
             <p>Eine Routine alle sechs Monate: Haltbarkeit prüfen, Vorrat umwälzen, Rucksack anpassen.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/power-outage-checklist/">
+            <h3>Checkliste Stromausfall</h3>
+            <p>Was du parat haben solltest, wie lange Lebensmittel halten und wie du sicher bleibst, bis der Strom zurück ist.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

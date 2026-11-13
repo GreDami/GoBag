@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/ru/guides/emergency-kit-maintenance/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Памятки",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/ru/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (на английском)",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Water (на английском)",
+      "url": "https://www.ready.gov/water"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "USDA: Shelf-Stable Food Safety (на английском)",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/shelf-stable-food"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/ru/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ru",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Как часто проверять тревожный чемоданчик и запасы?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Раз в полгода — и в ту же неделю, когда меняется жизнь: рождение ребёнка, новый питомец, переезд или новое лекарство."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Когда менять воду в запасе?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Налитую самостоятельно — раз в полгода. Покупная хранится до даты на этикетке, пока бутылка закрыта."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Разряжаются ли батарейки и пауэрбанк при хранении?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Проверяйте батарейки раз в полгода и храните их вне приборов, чтобы не потекли. Пауэрбанк разряжается сам — заряжайте его при каждой проверке."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно ли есть продукты из запаса?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, так и работает обновление: съедайте консервы и перекусы за несколько месяцев до конца срока и покупайте свежие. Ничего не пропадает."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2009,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2120,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2427,7 @@
             <p class="page-head-label"><a href="/ru/guides/" data-i18n="guides_label">Памятки</a></p>
             <h1>Как следить <span>за запасами</span></h1>
 <p class="page-head-lead">Набор, собранный однажды и забытый, подводит незаметно: вода стареет, батарейки текут, дети вырастают. Проверка дважды в год держит его в рабочем состоянии.</p>
-            <p class="guide-updated">Обновлено <time datetime="2026-10-22">22 октября 2026 г.</time></p>
+            <p class="guide-updated">Обновлено <time datetime="2026-11-13">13 ноября 2026 г.</time></p>
         </div>
     </div>
 </section>
@@ -2309,6 +2446,7 @@
                     <li><a href="#storage">Храните там, где не портится</a></li>
                     <li><a href="#rotate">Обновляйте вместо того, чтобы выбрасывать</a></li>
                     <li><a href="#life-changes">Меняйте набор, когда меняется жизнь</a></li>
+                    <li><a href="#faq">Частые вопросы</a></li>
                     <li><a href="#sources">Источники</a></li>
                 </ul>
             </div>
@@ -2318,7 +2456,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Набор на случай ЧС подводит не в тот день, когда он нужен, а за месяцы до этого, и никто этого не замечает. У воды истекает срок, пауэрбанк разряжается сам, лекарства портятся, а ребёнок вырастает из сложенной одежды. Американское агентство Ready.gov советует заменять просроченное и пересматривать набор каждый год, по мере того как меняются нужды семьи. Если проверять его раз в полгода, например весной и осенью, большинство проблем всплывёт раньше, чем станет важным.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Коротко</p>
+    <p>Проверяйте запасы раз в полгода, например при смене сезона: заменяйте всё, у чего срок истекает в ближайшие шесть месяцев, меняйте воду, налитую самостоятельно, проверяйте фонарики и батарейки, заряжайте пауэрбанк, меняйте одежду по сезону и обновляйте копии документов и контакты. Храните всё в прохладном сухом месте: быстрее всего набор портит жара.</p>
+</div>
+<p class="guide-inline-app">GoBag+ превращает эту памятку в набор, за которым легко следить: количество под размер семьи и напоминание до истечения срока годности. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Попробовать GoBag+ бесплатно 30 дней <span aria-hidden="true">→</span></a></p>
+<p>Набор на случай ЧС подводит не в тот день, когда он нужен, а за месяцы до этого, и никто этого не замечает. У воды истекает срок, пауэрбанк разряжается сам, лекарства портятся, а ребёнок вырастает из сложенной одежды. Американское агентство Ready.gov советует заменять просроченное и пересматривать набор каждый год, по мере того как меняются нужды семьи. Если проверять его раз в полгода, например весной и осенью, большинство проблем всплывёт раньше, чем станет важным.</p>
 
 <h2 id="routine">Проверка раз в полгода</h2>
 <ul class="checklist">
@@ -2363,6 +2506,20 @@
 <p>Некоторые перемены не ждут плановой проверки: рождение ребёнка, новый питомец, переезд, новая болезнь или лекарство, новая работа далеко от дома, ради которой стоит собрать <a href="/ru/guides/go-bag-vs-bug-out-bag/">сумку, чтобы добраться домой</a>. Каждая из них — повод открыть чемоданчик на этой же неделе.</p>
 <div class="guide-note is-app">
     <p><strong>GoBag+</strong> следит за сроком годности каждой вещи в ваших тревожных чемоданчиках и домашнем запасе. С Premium приложение напомнит, прежде чем что-то испортится или опустится ниже заданного минимума, а виджет на экране «Домой» покажет готовность одним взглядом.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Попробовать GoBag+ бесплатно 30 дней <span aria-hidden="true">→</span></a>
+</div>
+<p>Как всё настроить, показано в <a href="/ru/guides/gobag-app-guide/">гиде по GoBag+</a>.</p>
+
+<h2 id="faq">Частые вопросы</h2>
+<div class="guide-faq">
+    <h3>Как часто проверять тревожный чемоданчик и запасы?</h3>
+    <p>Раз в полгода — и в ту же неделю, когда меняется жизнь: рождение ребёнка, новый питомец, переезд или новое лекарство.</p>
+    <h3>Когда менять воду в запасе?</h3>
+    <p>Налитую самостоятельно — раз в полгода. Покупная хранится до даты на этикетке, пока бутылка закрыта.</p>
+    <h3>Разряжаются ли батарейки и пауэрбанк при хранении?</h3>
+    <p>Да. Проверяйте батарейки раз в полгода и храните их вне приборов, чтобы не потекли. Пауэрбанк разряжается сам — заряжайте его при каждой проверке.</p>
+    <h3>Можно ли есть продукты из запаса?</h3>
+    <p>Да, так и работает обновление: съедайте консервы и перекусы за несколько месяцев до конца срока и покупайте свежие. Ничего не пропадает.</p>
 </div>
 
 <h2 id="sources">Источники</h2>
@@ -2380,29 +2537,34 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Другие памятки</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/ru/guides/go-bag-checklist/">
-            <h3>Список для тревожного чемоданчика</h3>
-            <p>Всё, что нужно положить в тревожный чемоданчик, по девяти категориям, со списком для печати.</p>
+        <li><a class="guide-card" href="/ru/guides/power-outage-checklist/">
+            <h3>Если отключили электричество</h3>
+            <p>Что приготовить заранее, сколько хранятся продукты и как оставаться в безопасности, пока нет света.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/ru/guides/go-bag-vs-bug-out-bag/">
-            <h3>Тревожный чемоданчик или рюкзак выживания</h3>
-            <p>Тревожный чемоданчик, рюкзак выживания, набор на 72 часа, запас дома: для чего каждый и что нужно вам.</p>
+        <li><a class="guide-card" href="/ru/guides/car-emergency-kit/">
+            <h3>Аварийный набор для машины</h3>
+            <p>Что возить в багажнике на случай поломки, снега и перекрытой дороги — зимой и летом.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/ru/guides/prep-kit-for-beginners/">
-            <h3>С чего начать подготовку к ЧС</h3>
-            <p>Шесть шагов от нуля до готовности: риски, семейный план, тревожный чемоданчик, запасы и их проверка.</p>
+        <li><a class="guide-card" href="/ru/guides/pet-emergency-kit/">
+            <h3>Тревожный набор для питомца</h3>
+            <p>Тревожный рюкзак для собаки или кошки и как эвакуироваться с животными.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/ru/guides/emergency-water-and-food/">
-            <h3>Запас воды и еды дома</h3>
-            <p>Сколько воды и еды держать дома на человека в день и что хранится дольше всего.</p>
+        <li><a class="guide-card" href="/ru/guides/go-bag-for-kids/">
+            <h3>Тревожный рюкзак для детей</h3>
+            <p>Что собрать для малышей и детей постарше и как подготовить их, не напугав.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/ru/guides/emergency-documents/">
-            <h3>Документы на случай ЧС</h3>
-            <p>Какие документы скопировать для тревожного чемоданчика и как хранить их в сохранности и при себе.</p>
+        <li><a class="guide-card" href="/ru/guides/first-aid-kit-checklist/">
+            <h3>Аптечка первой помощи</h3>
+            <p>Что должно быть в домашней аптечке, по пунктам, и как следить за сроками.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/family-emergency-plan/">
+            <h3>Семейный план на случай ЧС</h3>
+            <p>Места встречи, контакт в другом городе и пути эвакуации — на одной странице.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

@@ -109,7 +109,43 @@
   "mainEntityOfPage": "https://gobag.gredami.com/ru/guides/emergency-water-and-food/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Памятки",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/ru/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Essen und Trinken bevorraten (на немецком)",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/So-koennen-Sie-sich-vorbereiten/Bevorraten/bevorraten_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Water (на английском)",
+      "url": "https://www.ready.gov/water"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Американский Красный Крест: Survival Kit Supplies (на английском)",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "USDA: Shelf-Stable Food Safety (на английском)",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/shelf-stable-food"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/ru/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +160,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ru",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Сколько воды нужно на две недели?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "По 2 литра на человека в сутки — 28 литров на человека: 56 на двоих и 112 на четверых. Больше — для гигиены, в жару, для детей, кормящих матерей, больных и питомцев."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько хранится запас воды?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Покупная бутилированная вода — до даты на этикетке, пока бутылка закрыта. Воду, налитую самостоятельно в чистые пищевые ёмкости, меняют раз в полгода."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какие продукты держать на случай ЧС?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Те, что семья и так ест, хранятся без холодильника и почти не требуют готовки: мясные и рыбные консервы, бобовые и овощи в банках, арахисовая паста, орехи, галеты, крупы и хлопья, молоко длительного хранения."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько хранятся консервы?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "По данным Министерства сельского хозяйства США, консервы с низкой кислотностью (мясо, рыба, большинство овощей) — от 2 до 5 лет, кислые (томаты, фрукты) — от 12 до 18 месяцев, если банки целы и стоят в прохладном сухом месте."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2014,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2125,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2432,7 @@
             <p class="page-head-label"><a href="/ru/guides/" data-i18n="guides_label">Памятки</a></p>
             <h1>Запас воды <span>и еды дома</span></h1>
 <p class="page-head-lead">Сколько держать дома, чтобы семья могла две недели не выходить, в расчёте на человека, и что хранится дольше всего.</p>
-            <p class="guide-updated">Обновлено <time datetime="2026-10-22">22 октября 2026 г.</time></p>
+            <p class="guide-updated">Обновлено <time datetime="2026-11-13">13 ноября 2026 г.</time></p>
         </div>
     </div>
 </section>
@@ -2309,6 +2451,7 @@
                     <li><a href="#shelf-life">Сколько всё хранится</a></li>
                     <li><a href="#rotate">Обновляйте, а не выбрасывайте</a></li>
                     <li><a href="#more">Кроме воды и еды</a></li>
+                    <li><a href="#faq">Частые вопросы</a></li>
                     <li><a href="#sources">Источники</a></li>
                 </ul>
             </div>
@@ -2318,7 +2461,14 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Большинство ЧС — это не эвакуация. Буря оставляет без света, неделю нельзя пить воду из-под крана, дороги перекрыты, полки в магазинах пустеют. Тогда важно то, что уже есть дома. Американский Красный Крест рекомендует держать дома запас воды и еды на две недели, а сумку для эвакуации собирать на трое суток.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Коротко</p>
+    <p>Храните минимум 2 литра воды на человека в сутки для питья и готовки: 28 литров на человека на две недели, 112 литров на семью из четырёх. Американское агентство Ready.gov с учётом гигиены считает почти 4 литра в сутки. Добавьте долгохранящиеся продукты, которые семья и так ест, — около 2000 калорий в день на взрослого, — и обновляйте их, чтобы ничего не испортилось.</p>
+</div>
+<p class="guide-inline-app">GoBag+ превращает эту памятку в набор, за которым легко следить: количество под размер семьи и напоминание до истечения срока годности. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Попробовать GoBag+ бесплатно 30 дней <span aria-hidden="true">→</span></a></p>
+<p>Большинство ЧС — это не эвакуация. Буря оставляет без света, неделю нельзя пить воду из-под крана, дороги перекрыты, полки в магазинах пустеют. Тогда важно то, что уже есть дома. Американский Красный Крест рекомендует держать дома запас воды и еды на две недели, а сумку для эвакуации собирать на трое суток.</p>
+
+<p>Если отключили свет, в <a href="/ru/guides/power-outage-checklist/">памятке на случай отключения электричества</a> сказано, что делать с холодильником и морозилкой.</p>
 
 <h2 id="water">Сколько воды хранить</h2>
 <p>Рассчитывайте <strong>минимум на 2 литра на человека в сутки</strong> для питья и готовки: столько закладывает немецкое ведомство гражданской защиты BBK (1,5 литра на питьё и пол-литра на готовку). Американское агентство Ready.gov считает почти вдвое больше, 3,8 литра, потому что учитывает гигиену. Детям, кормящим матерям, больным и в жару нужно больше; не забудьте воду для питомцев.</p>
@@ -2383,6 +2533,19 @@
 <p>Домашнему запасу нужны ещё фонарики и батарейки, радиоприёмник на батарейках, аптечка и запас лекарств, мусорные пакеты и туалетная бумага, немного наличных, тёплые одеяла и способ зарядить телефоны. В <a href="/ru/guides/go-bag-checklist/">списке для тревожного чемоданчика</a> собрано то, что нужно обоим наборам.</p>
 <div class="guide-note is-app">
     <p><strong>В GoBag+</strong> домашний запас отслеживает воду, еду и лекарства с минимальным остатком на человека. Поменяйте размер семьи — и нормы пересчитаются; с Premium приложение напомнит, прежде чем что-то испортится или закончится.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Попробовать GoBag+ бесплатно 30 дней <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Частые вопросы</h2>
+<div class="guide-faq">
+    <h3>Сколько воды нужно на две недели?</h3>
+    <p>По 2 литра на человека в сутки — 28 литров на человека: 56 на двоих и 112 на четверых. Больше — для гигиены, в жару, для детей, кормящих матерей, больных и питомцев.</p>
+    <h3>Сколько хранится запас воды?</h3>
+    <p>Покупная бутилированная вода — до даты на этикетке, пока бутылка закрыта. Воду, налитую самостоятельно в чистые пищевые ёмкости, меняют раз в полгода.</p>
+    <h3>Какие продукты держать на случай ЧС?</h3>
+    <p>Те, что семья и так ест, хранятся без холодильника и почти не требуют готовки: мясные и рыбные консервы, бобовые и овощи в банках, арахисовая паста, орехи, галеты, крупы и хлопья, молоко длительного хранения.</p>
+    <h3>Сколько хранятся консервы?</h3>
+    <p>По данным Министерства сельского хозяйства США, консервы с низкой кислотностью (мясо, рыба, большинство овощей) — от 2 до 5 лет, кислые (томаты, фрукты) — от 12 до 18 месяцев, если банки целы и стоят в прохладном сухом месте.</p>
 </div>
 
 <h2 id="sources">Источники</h2>
@@ -2401,21 +2564,6 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Другие памятки</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/ru/guides/go-bag-checklist/">
-            <h3>Список для тревожного чемоданчика</h3>
-            <p>Всё, что нужно положить в тревожный чемоданчик, по девяти категориям, со списком для печати.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/ru/guides/go-bag-vs-bug-out-bag/">
-            <h3>Тревожный чемоданчик или рюкзак выживания</h3>
-            <p>Тревожный чемоданчик, рюкзак выживания, набор на 72 часа, запас дома: для чего каждый и что нужно вам.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/ru/guides/prep-kit-for-beginners/">
-            <h3>С чего начать подготовку к ЧС</h3>
-            <p>Шесть шагов от нуля до готовности: риски, семейный план, тревожный чемоданчик, запасы и их проверка.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/ru/guides/emergency-documents/">
             <h3>Документы на случай ЧС</h3>
             <p>Какие документы скопировать для тревожного чемоданчика и как хранить их в сохранности и при себе.</p>
@@ -2424,6 +2572,26 @@
         <li><a class="guide-card" href="/ru/guides/emergency-kit-maintenance/">
             <h3>Как следить за запасами</h3>
             <p>Проверка раз в полгода: сроки годности, обновление запасов, вещи по сезону.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/power-outage-checklist/">
+            <h3>Если отключили электричество</h3>
+            <p>Что приготовить заранее, сколько хранятся продукты и как оставаться в безопасности, пока нет света.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/car-emergency-kit/">
+            <h3>Аварийный набор для машины</h3>
+            <p>Что возить в багажнике на случай поломки, снега и перекрытой дороги — зимой и летом.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/pet-emergency-kit/">
+            <h3>Тревожный набор для питомца</h3>
+            <p>Тревожный рюкзак для собаки или кошки и как эвакуироваться с животными.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/go-bag-for-kids/">
+            <h3>Тревожный рюкзак для детей</h3>
+            <p>Что собрать для малышей и детей постарше и как подготовить их, не напугав.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

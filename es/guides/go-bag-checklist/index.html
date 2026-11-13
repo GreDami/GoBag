@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/es/guides/go-bag-checklist/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guías",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/es/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Comisión Europea: preparación ante crisis",
+      "url": "https://commission.europa.eu/topics/preparedness_es"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (en inglés)",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Cruz Roja estadounidense: Survival Kit Supplies (en inglés)",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/es/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,55 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "es",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es lo más importante en una mochila de emergencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El agua, las medicinas con receta, las copias de tus documentos, una linterna, una batería externa cargada y efectivo: lo más difícil de conseguir una vez fuera de casa. La comida, la ropa y las herramientas vienen después."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto debe pesar una mochila de emergencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lo bastante poco como para que cada persona camine una hora con ella sin pararse. Si pesa demasiado, deja la mayor parte del agua en casa o en el coche y lleva un filtro: el agua es lo que más pesa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Sirve una mochila de emergencia ya preparada?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es un buen comienzo, pero un kit comprado no tendrá tus medicinas, tus gafas, las copias de tus documentos ni las cosas de tus hijos. Cómpralo si te ayuda a empezar y añade lo que es propio de tu hogar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cada cuánto hay que revisar la mochila?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cada seis meses: fechas del agua, la comida y las medicinas, carga de la batería, ropa de temporada y que la de los niños aún les quede bien."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Los niños necesitan su propia mochila?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, una pequeña con pocas cosas ligeras: algo de comer, una botella de agua, una linterna, un peluche y una tarjeta con tu nombre y tu teléfono. Las provisiones pesadas van en las mochilas de los adultos."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2017,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2128,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2435,7 @@
             <p class="page-head-label"><a href="/es/guides/" data-i18n="guides_label">Guías</a></p>
             <h1>Lista de la mochila <span>de emergencia</span></h1>
 <p class="page-head-lead">Qué meter en una mochila de emergencia que puedas coger en un minuto: nueve categorías, artículo por artículo, en una lista para imprimir.</p>
-            <p class="guide-updated">Actualizado el <time datetime="2026-10-22">22 de octubre de 2026</time></p>
+            <p class="guide-updated">Actualizado el <time datetime="2026-11-13">13 de noviembre de 2026</time></p>
         </div>
     </div>
 </section>
@@ -2308,6 +2453,7 @@
                     <li><a href="#family">Extras para niños, mayores y mascotas</a></li>
                     <li><a href="#where">Dónde guardar la mochila</a></li>
                     <li><a href="#ready">Mantenerla lista</a></li>
+                    <li><a href="#faq">Preguntas frecuentes</a></li>
                     <li><a href="#sources">Fuentes</a></li>
                 </ul>
             </div>
@@ -2317,7 +2463,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>La mochila de emergencia es la que coges cuando te quedan minutos para salir de casa: un incendio, una inundación, una fuga de gas, una orden de evacuación. Lleva lo necesario para aguantar unos tres días por tu cuenta: agua, comida, medicinas, copias de tus documentos y las pocas herramientas que hacen esos días llevaderos. Es el plazo que fijan las autoridades: desde 2025, la estrategia de preparación de la Unión Europea pide que la población pueda ser autosuficiente al menos 72 horas.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Respuesta corta</p>
+    <p>Una mochila de emergencia lleva lo esencial para unos tres días por persona: agua (2 o 3 litros en la mochila, más un filtro o pastillas para potabilizar más), comida que no necesite cocción, un botiquín y medicinas para una semana, copias de tus documentos en una funda impermeable, efectivo, linterna, batería externa, radio, ropa de recambio y artículos de higiene. Una mochila por persona, junto a la puerta.</p>
+</div>
+<p class="guide-inline-app">GoBag+ convierte esta guía en un kit que puedes controlar: cantidades ajustadas a tu hogar y un aviso antes de que algo caduque. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prueba GoBag+ gratis 30 días <span aria-hidden="true">→</span></a></p>
+<p>La mochila de emergencia es la que coges cuando te quedan minutos para salir de casa: un incendio, una inundación, una fuga de gas, una orden de evacuación. Lleva lo necesario para aguantar unos tres días por tu cuenta: agua, comida, medicinas, copias de tus documentos y las pocas herramientas que hacen esos días llevaderos. Es el plazo que fijan las autoridades: desde 2025, la estrategia de preparación de la Unión Europea pide que la población pueda ser autosuficiente al menos 72 horas.</p>
 <p>Prepara una mochila por persona, del peso que cada uno pueda cargar durante mucho rato. Una mochila resistente es mejor que una maleta: deja las manos libres. Los niños pueden llevar una pequeña con algunas cosas ligeras y algo familiar.</p>
 <button type="button" class="btn-secondary guide-print" onclick="window.print()">Imprimir esta lista</button>
 
@@ -2349,6 +2500,7 @@
     <li>Mascarillas FFP2, contra el humo y el polvo</li>
     <li>Gel desinfectante y toallitas desinfectantes</li>
 </ul>
+<p>Lo que lleva un botiquín completo, artículo por artículo, está en la <a href="/es/guides/first-aid-kit-checklist/">lista del botiquín de primeros auxilios</a>.</p>
 
 <h3>4. Documentos</h3>
 <ul class="checklist">
@@ -2413,15 +2565,32 @@
     <li>Mayores: pilas para el audífono, cargadores de aparatos médicos, ayudas para caminar y gafas de repuesto</li>
     <li>Mascotas: comida y agua para tres días, correa o transportín, bolsas para excrementos, cartilla de vacunación y una foto</li>
 </ul>
+<p>Cada uno tiene su guía: la <a href="/es/guides/go-bag-for-kids/">mochila de emergencia para niños y bebés</a> y el <a href="/es/guides/pet-emergency-kit/">kit de emergencia para mascotas</a>.</p>
 
 <h2 id="where">Dónde guardar la mochila</h2>
 <p>Junto a la puerta por la que saldrías, o en un armario de camino a ella, en un sitio que todos en casa conozcan. Ready.gov aconseja tener un kit en tres lugares: en casa, en el trabajo, donde conviene poder quedarse al menos 24 horas, y en el coche, por si te quedas atrapado. Los del trabajo y el coche pueden ser más pequeños; a menudo se llaman <a href="/es/guides/go-bag-vs-bug-out-bag/">mochilas para volver a casa</a>.</p>
+<p>Lo que debe llevar la del coche está en el <a href="/es/guides/car-emergency-kit/">kit de emergencia para el coche</a>.</p>
 <p>Guárdala en un sitio fresco y seco. El calor acorta la vida del agua, la comida, las pilas y los medicamentos: el maletero de un coche en verano no es buen sitio para algo de lo que vas a depender.</p>
 
 <h2 id="ready">Mantenerla lista</h2>
 <p>Una mochila llena no es una mochila terminada. Cada seis meses, revisa las fechas del agua, la comida y los medicamentos, carga la batería externa, cambia la ropa según la estación y comprueba que a los niños les sigue valiendo la suya. La <a href="/es/guides/emergency-kit-maintenance/">guía de mantenimiento del kit</a> tiene la rutina completa.</p>
 <div class="guide-note is-app">
-    <p><strong>En GoBag+</strong>, estas nueve categorías ya están creadas. Dile a la app para cuántas personas preparas la mochila y las cantidades recomendadas se ajustan; marca lo que tienes y te muestra lo que aún falta. Con Premium, te avisa antes de que algo caduque.</p>
+    <p><strong>En GoBag+</strong>, tu mochila ya viene ordenada en nueve categorías: documentos, agua y comida, ropa, salud e higiene, herramientas y equipo, electrónica, dinero, personal y familia, y varios, y puedes añadir las tuyas. Dile a la app para cuántas personas preparas la mochila y las cantidades recomendadas se ajustan; marca lo que tienes y un anillo muestra lo completa que está y lo que aún falta. Con Premium, te avisa antes de que algo caduque.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prueba GoBag+ gratis 30 días <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Preguntas frecuentes</h2>
+<div class="guide-faq">
+    <h3>¿Qué es lo más importante en una mochila de emergencia?</h3>
+    <p>El agua, las medicinas con receta, las copias de tus documentos, una linterna, una batería externa cargada y efectivo: lo más difícil de conseguir una vez fuera de casa. La comida, la ropa y las herramientas vienen después.</p>
+    <h3>¿Cuánto debe pesar una mochila de emergencia?</h3>
+    <p>Lo bastante poco como para que cada persona camine una hora con ella sin pararse. Si pesa demasiado, deja la mayor parte del agua en casa o en el coche y lleva un filtro: el agua es lo que más pesa.</p>
+    <h3>¿Sirve una mochila de emergencia ya preparada?</h3>
+    <p>Es un buen comienzo, pero un kit comprado no tendrá tus medicinas, tus gafas, las copias de tus documentos ni las cosas de tus hijos. Cómpralo si te ayuda a empezar y añade lo que es propio de tu hogar.</p>
+    <h3>¿Cada cuánto hay que revisar la mochila?</h3>
+    <p>Cada seis meses: fechas del agua, la comida y las medicinas, carga de la batería, ropa de temporada y que la de los niños aún les quede bien.</p>
+    <h3>¿Los niños necesitan su propia mochila?</h3>
+    <p>Sí, una pequeña con pocas cosas ligeras: algo de comer, una botella de agua, una linterna, un peluche y una tarjeta con tu nombre y tu teléfono. Las provisiones pesadas van en las mochilas de los adultos.</p>
 </div>
 
 <h2 id="sources">Fuentes</h2>
@@ -2462,6 +2631,11 @@
         <li><a class="guide-card" href="/es/guides/emergency-kit-maintenance/">
             <h3>Mantener el kit al día</h3>
             <p>Una rutina cada seis meses para revisar caducidades, rotar reservas y adaptar la mochila.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/power-outage-checklist/">
+            <h3>Qué hacer en un apagón</h3>
+            <p>Qué tener antes de que se vaya la luz, cuánto aguanta la comida y cómo estar seguro hasta que vuelva.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

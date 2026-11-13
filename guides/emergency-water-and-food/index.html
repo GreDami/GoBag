@@ -109,7 +109,43 @@
   "mainEntityOfPage": "https://gobag.gredami.com/guides/emergency-water-and-food/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guides",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Water",
+      "url": "https://www.ready.gov/water"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Food",
+      "url": "https://www.ready.gov/food"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "American Red Cross: Survival Kit Supplies",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "USDA Food Safety and Inspection Service: Shelf-Stable Food Safety",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/shelf-stable-food"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +160,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "en",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much water do I need for two weeks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At one gallon per person per day, 14 gallons (53 liters) per person: 28 gallons for two people and 56 for a family of four. Store more for hot weather, illness, nursing mothers and pets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does stored water last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Commercially bottled water keeps until the date on the label if it stays sealed. Water you bottle yourself in clean food-grade containers should be replaced every six months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best food to stockpile for an emergency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Food your household already eats that keeps without a fridge and needs little or no cooking: canned meat, fish, beans and vegetables, peanut butter, nuts, crackers, cereal and shelf-stable milk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does canned food last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "According to the USDA, low-acid canned food such as meat, fish and most vegetables keeps 2 to 5 years, and high-acid food such as tomatoes and fruit 12 to 18 months, if the cans are in good condition and kept cool and dry."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2014,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2125,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2432,7 @@
             <p class="page-head-label"><a href="/guides/" data-i18n="guides_label">Guides</a></p>
             <h1>Emergency water <span>&amp; food</span></h1>
 <p class="page-head-lead">How much to keep at home so your household can stay put for two weeks, worked out per person, with what keeps longest.</p>
-            <p class="guide-updated">Updated <time datetime="2026-10-22">October 22, 2026</time></p>
+            <p class="guide-updated">Updated <time datetime="2026-11-13">November 13, 2026</time></p>
         </div>
     </div>
 </section>
@@ -2309,6 +2451,7 @@
                     <li><a href="#shelf-life">How long it keeps</a></li>
                     <li><a href="#rotate">Rotate, don't throw away</a></li>
                     <li><a href="#more">Beyond water and food</a></li>
+                    <li><a href="#faq">Frequently asked questions</a></li>
                     <li><a href="#sources">Sources</a></li>
                 </ul>
             </div>
@@ -2318,7 +2461,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Most emergencies are not evacuations. A storm knocks out the power, a boil-water notice runs for a week, roads close and the shelves empty. Then what matters is what you already have at home. The American Red Cross recommends a two-week supply of water and food for staying home, and three days for a bag you take with you.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Short answer</p>
+    <p>Store at least one gallon (about 3.8 liters) of water per person per day: 14 gallons (53 liters) per person for the two-week home supply the American Red Cross recommends. Add two weeks of non-perishable food you already eat, about 2,000 calories a day for an adult, and rotate it so you use the oldest first and nothing expires.</p>
+</div>
+<p class="guide-inline-app">GoBag+ turns this guide into a kit you can track: quantities sized to your household, and an alert before anything expires. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Try GoBag+ free for 30 days <span aria-hidden="true">→</span></a></p>
+<p>Most emergencies are not evacuations. A storm knocks out the power, a boil-water notice runs for a week, roads close and the shelves empty. Then what matters is what you already have at home. The American Red Cross recommends a two-week supply of water and food for staying home, and three days for a bag you take with you. If the power is out, the <a href="/guides/power-outage-checklist/">power outage checklist</a> covers what to do with the fridge and freezer.</p>
 
 <h2 id="water">How much water to store</h2>
 <p>Ready.gov's figure is <strong>one gallon (about 3.8 liters) per person per day</strong>, for drinking and for sanitation. Store more for children, nursing mothers, anyone who is ill, and for hot weather; and add water for pets.</p>
@@ -2382,6 +2530,19 @@
 <p>A home kit for two weeks also needs flashlights and batteries, a battery-powered radio, a first aid kit and extra medicine, garbage bags and toilet paper, some cash, warm blankets, and a way to charge your phones. The <a href="/guides/go-bag-checklist/">go bag checklist</a> covers the items both kits share.</p>
 <div class="guide-note is-app">
     <p><strong>In GoBag+</strong>, the home reserve tracks your water, food and medicine with a minimum stock level per person. Change the size of your household and the levels follow; with Premium, it alerts you before anything expires or runs low.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Try GoBag+ free for 30 days <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Frequently asked questions</h2>
+<div class="guide-faq">
+    <h3>How much water do I need for two weeks?</h3>
+    <p>At one gallon per person per day, 14 gallons (53 liters) per person: 28 gallons for two people and 56 for a family of four. Store more for hot weather, illness, nursing mothers and pets.</p>
+    <h3>How long does stored water last?</h3>
+    <p>Commercially bottled water keeps until the date on the label if it stays sealed. Water you bottle yourself in clean food-grade containers should be replaced every six months.</p>
+    <h3>What is the best food to stockpile for an emergency?</h3>
+    <p>Food your household already eats that keeps without a fridge and needs little or no cooking: canned meat, fish, beans and vegetables, peanut butter, nuts, crackers, cereal and shelf-stable milk.</p>
+    <h3>How long does canned food last?</h3>
+    <p>According to the USDA, low-acid canned food such as meat, fish and most vegetables keeps 2 to 5 years, and high-acid food such as tomatoes and fruit 12 to 18 months, if the cans are in good condition and kept cool and dry.</p>
 </div>
 
 <h2 id="sources">Sources</h2>
@@ -2400,21 +2561,6 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">More guides</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/guides/go-bag-checklist/">
-            <h3>Go bag checklist</h3>
-            <p>Everything to pack in an emergency bag, in nine categories, with a list you can print.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/guides/go-bag-vs-bug-out-bag/">
-            <h3>Go bag vs bug-out bag</h3>
-            <p>Go bag, bug-out bag, 72-hour kit, get-home bag: what each one is for, and which you need.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/guides/prep-kit-for-beginners/">
-            <h3>Prep kit for beginners</h3>
-            <p>Where to start with emergency preparedness: six steps, from knowing your risks to a kit that stays ready.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/guides/emergency-documents/">
             <h3>Emergency documents</h3>
             <p>Which papers to copy for your go bag, and how to keep them safe, dry and with you.</p>
@@ -2423,6 +2569,26 @@
         <li><a class="guide-card" href="/guides/emergency-kit-maintenance/">
             <h3>Keeping your kit ready</h3>
             <p>A six-month routine for checking expiry dates, rotating supplies and updating the bag as life changes.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/power-outage-checklist/">
+            <h3>Power outage checklist</h3>
+            <p>What to have before the lights go out, how long food lasts, and how to stay safe until the power returns.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/car-emergency-kit/">
+            <h3>Car emergency kit</h3>
+            <p>What to keep in the trunk for breakdowns, snow and closed roads, with winter and summer extras.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/pet-emergency-kit/">
+            <h3>Pet emergency kit</h3>
+            <p>A go bag for your dog or cat, and how to plan an evacuation with pets.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/go-bag-for-kids/">
+            <h3>Go bag for kids</h3>
+            <p>What to pack for babies and children, and how to prepare them without scaring them.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

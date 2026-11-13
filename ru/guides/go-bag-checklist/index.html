@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/ru/guides/go-bag-checklist/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Памятки",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/ru/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "МЧС России",
+      "url": "https://mchs.gov.ru/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (на английском)",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Американский Красный Крест: Survival Kit Supplies (на английском)",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/ru/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,55 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ru",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Что самое важное в тревожном чемоданчике?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вода, рецептурные лекарства, копии документов, фонарик, заряженный пауэрбанк и наличные — то, что труднее всего найти, когда вы уже ушли из дома. Еда, одежда и инструменты — следом."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько должен весить тревожный чемоданчик?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Столько, чтобы каждый мог пройти с ним час без остановки. Если тяжело, оставьте основной запас воды дома или в машине, а в рюкзак положите фильтр: вода — самое тяжёлое, что в нём есть."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Подойдёт ли готовый тревожный чемоданчик?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Как начало — да, но в покупном наборе не будет ваших лекарств, очков, копий документов и детских вещей. Купите его, если так проще начать, и доложите то, что нужно именно вашей семье."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как часто проверять тревожный чемоданчик?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Раз в полгода: сроки годности воды, еды и лекарств, заряд пауэрбанка, одежда по сезону и подходят ли детям их вещи."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Нужен ли ребёнку свой рюкзак?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, небольшой, с лёгкими вещами: перекус, бутылка воды, фонарик, любимая игрушка и карточка с вашим именем и телефоном. Тяжёлые запасы несут взрослые."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2017,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2128,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2435,7 @@
             <p class="page-head-label"><a href="/ru/guides/" data-i18n="guides_label">Памятки</a></p>
             <h1>Список для <span>тревожного чемоданчика</span></h1>
 <p class="page-head-lead">Что положить в тревожный чемоданчик, который можно схватить за минуту: девять категорий, по пунктам, со списком для печати.</p>
-            <p class="guide-updated">Обновлено <time datetime="2026-10-22">22 октября 2026 г.</time></p>
+            <p class="guide-updated">Обновлено <time datetime="2026-11-13">13 ноября 2026 г.</time></p>
         </div>
     </div>
 </section>
@@ -2308,6 +2453,7 @@
                     <li><a href="#family">Дополнительно для детей, пожилых и питомцев</a></li>
                     <li><a href="#where">Где хранить чемоданчик</a></li>
                     <li><a href="#ready">Поддерживать в порядке</a></li>
+                    <li><a href="#faq">Частые вопросы</a></li>
                     <li><a href="#sources">Источники</a></li>
                 </ul>
             </div>
@@ -2317,7 +2463,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Тревожный чемоданчик — это сумка, которую вы берёте, когда на сборы остаются минуты: пожар, наводнение, утечка газа, эвакуация. В нём то, что нужно, чтобы продержаться несколько суток своими силами: вода, еда, лекарства, копии документов и немного инструментов, без которых эти дни будут намного тяжелее. МЧС России советует собирать такой набор из расчёта на двое-трое суток на каждого человека.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Коротко</p>
+    <p>В тревожном чемоданчике — всё необходимое примерно на трое суток на каждого: вода (2–3 литра с собой и фильтр или таблетки, чтобы обеззаразить ещё), еда без готовки, аптечка и лекарства на неделю, копии документов в непромокаемом пакете, наличные, фонарик, пауэрбанк, радиоприёмник, смена одежды и средства гигиены. По рюкзаку на человека, у входной двери.</p>
+</div>
+<p class="guide-inline-app">GoBag+ превращает эту памятку в набор, за которым легко следить: количество под размер семьи и напоминание до истечения срока годности. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Попробовать GoBag+ бесплатно 30 дней <span aria-hidden="true">→</span></a></p>
+<p>Тревожный чемоданчик — это сумка, которую вы берёте, когда на сборы остаются минуты: пожар, наводнение, утечка газа, эвакуация. В нём то, что нужно, чтобы продержаться несколько суток своими силами: вода, еда, лекарства, копии документов и немного инструментов, без которых эти дни будут намного тяжелее. МЧС России советует собирать такой набор из расчёта на двое-трое суток на каждого человека.</p>
 <p>Соберите по сумке на каждого члена семьи, такого веса, чтобы её можно было долго нести. Рюкзак лучше чемодана: руки остаются свободными, и его труднее потерять. Дети могут нести небольшой рюкзак с лёгкими вещами и чем-то знакомым.</p>
 <button type="button" class="btn-secondary guide-print" onclick="window.print()">Распечатать список</button>
 
@@ -2349,6 +2500,7 @@
     <li>Респираторы FFP2 — от дыма и пыли</li>
     <li>Антисептик для рук и дезинфицирующие салфетки</li>
 </ul>
+<p>Что входит в полную аптечку, по пунктам, — в <a href="/ru/guides/first-aid-kit-checklist/">списке для аптечки первой помощи</a>.</p>
 
 <h3>4. Документы</h3>
 <ul class="checklist">
@@ -2415,15 +2567,32 @@
     <li>Пожилые родственники: батарейки для слухового аппарата, зарядки для медицинских приборов, трость или ходунки, запасные очки</li>
     <li>Питомцы: корм и вода на трое суток, поводок или переноска, пакеты для уборки, ветпаспорт и фотография</li>
 </ul>
+<p>У каждого из них есть отдельный гид: <a href="/ru/guides/go-bag-for-kids/">тревожный рюкзак для детей и малышей</a> и <a href="/ru/guides/pet-emergency-kit/">тревожный набор для питомца</a>.</p>
 
 <h2 id="where">Где хранить чемоданчик</h2>
 <p>У двери, через которую вы будете выходить, или в шкафу по пути к ней, в месте, которое знают все домашние. Американское агентство Ready.gov советует держать набор в трёх местах: дома, на работе, где стоит быть готовым провести хотя бы сутки, и в машине — на случай, если застрянете в пути. Наборы для работы и машины могут быть меньше; их часто называют <a href="/ru/guides/go-bag-vs-bug-out-bag/">сумкой, чтобы добраться домой</a>.</p>
+<p>Что положить в автомобильный — в <a href="/ru/guides/car-emergency-kit/">списке аварийного набора для машины</a>.</p>
 <p>Храните его в прохладном сухом месте. Жара сокращает срок годности воды, еды, батареек и лекарств: багажник машины летом — плохое место для того, на что придётся полагаться.</p>
 
 <h2 id="ready">Поддерживать в порядке</h2>
 <p>Собранный чемоданчик — ещё не готовый. Раз в полгода проверяйте сроки годности воды, еды и лекарств, заряжайте пауэрбанк, меняйте одежду по сезону и смотрите, не выросли ли дети из своей. Весь порядок проверки — в памятке <a href="/ru/guides/emergency-kit-maintenance/">о том, как следить за запасами</a>.</p>
 <div class="guide-note is-app">
-    <p><strong>В GoBag+</strong> эти девять категорий уже созданы. Укажите, на сколько человек вы собираете сумку, и рекомендуемое количество пересчитается; отмечайте, что у вас есть, — приложение покажет, чего ещё не хватает. С Premium оно напомнит, прежде чем что-то испортится.</p>
+    <p><strong>В GoBag+</strong> тревожный чемоданчик уже разложен по девяти категориям: документы, вода и еда, одежда, медицина и гигиена, инструменты и снаряжение, электроника, деньги, личное и семья, разное, — и можно добавить свои. Укажите, на сколько человек вы собираете сумку, и рекомендуемое количество пересчитается; отмечайте, что у вас есть, — кольцо покажет, насколько сумка собрана и чего ещё не хватает. С Premium приложение напомнит, прежде чем что-то испортится.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Попробовать GoBag+ бесплатно 30 дней <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Частые вопросы</h2>
+<div class="guide-faq">
+    <h3>Что самое важное в тревожном чемоданчике?</h3>
+    <p>Вода, рецептурные лекарства, копии документов, фонарик, заряженный пауэрбанк и наличные — то, что труднее всего найти, когда вы уже ушли из дома. Еда, одежда и инструменты — следом.</p>
+    <h3>Сколько должен весить тревожный чемоданчик?</h3>
+    <p>Столько, чтобы каждый мог пройти с ним час без остановки. Если тяжело, оставьте основной запас воды дома или в машине, а в рюкзак положите фильтр: вода — самое тяжёлое, что в нём есть.</p>
+    <h3>Подойдёт ли готовый тревожный чемоданчик?</h3>
+    <p>Как начало — да, но в покупном наборе не будет ваших лекарств, очков, копий документов и детских вещей. Купите его, если так проще начать, и доложите то, что нужно именно вашей семье.</p>
+    <h3>Как часто проверять тревожный чемоданчик?</h3>
+    <p>Раз в полгода: сроки годности воды, еды и лекарств, заряд пауэрбанка, одежда по сезону и подходят ли детям их вещи.</p>
+    <h3>Нужен ли ребёнку свой рюкзак?</h3>
+    <p>Да, небольшой, с лёгкими вещами: перекус, бутылка воды, фонарик, любимая игрушка и карточка с вашим именем и телефоном. Тяжёлые запасы несут взрослые.</p>
 </div>
 
 <h2 id="sources">Источники</h2>
@@ -2464,6 +2633,11 @@
         <li><a class="guide-card" href="/ru/guides/emergency-kit-maintenance/">
             <h3>Как следить за запасами</h3>
             <p>Проверка раз в полгода: сроки годности, обновление запасов, вещи по сезону.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/power-outage-checklist/">
+            <h3>Если отключили электричество</h3>
+            <p>Что приготовить заранее, сколько хранятся продукты и как оставаться в безопасности, пока нет света.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

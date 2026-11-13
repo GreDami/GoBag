@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/it/guides/go-bag-vs-bug-out-bag/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-11-02",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guide",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/it/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Commissione europea: preparazione alle crisi",
+      "url": "https://commission.europa.eu/topics/preparedness_it"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (in inglese)",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Croce Rossa americana: Survival Kit Supplies (in inglese)",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/it/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "it",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Zaino di emergenza e bug-out bag sono la stessa cosa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quasi. Entrambi servono a uscire in fretta e resistere circa tre giorni. La bug-out bag dei prepper porta in più ciò che serve per cavarsela senza aiuti: telo o tenda, fornelletto e più modi per rendere l'acqua potabile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cos'è un kit 72 ore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il nome ufficiale degli stessi tre giorni di scorte. La strategia di preparazione della Commissione europea del 2025 fissa l'obiettivo di almeno 72 ore di autosufficienza per la popolazione."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Che differenza c'è con lo zaino per tornare a casa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lo zaino di emergenza ti porta fuori casa; quello per tornare ti riporta indietro. Sta in auto o al lavoro e copre circa un giorno: acqua, spuntini, scarpe comode, torcia, power bank e primo soccorso di base."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Da quale kit comincio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da uno zaino di emergenza per ogni persona, poi le scorte di acqua e cibo in casa. Aggiungi uno zaino per tornare a casa se fai lunghi tragitti o guidi molto."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2009,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2120,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2427,7 @@
             <p class="page-head-label"><a href="/it/guides/" data-i18n="guides_label">Guide</a></p>
             <h1>Zaino di emergenza o <span>bug-out bag</span></h1>
 <p class="page-head-lead">Sei nomi per i kit di emergenza, e cosa li distingue davvero, così prepari quelli che servono alla tua famiglia e non tutti.</p>
-            <p class="guide-updated">Aggiornato il <time datetime="2026-11-02">2 novembre 2026</time></p>
+            <p class="guide-updated">Aggiornato il <time datetime="2026-11-13">13 novembre 2026</time></p>
         </div>
     </div>
 </section>
@@ -2312,6 +2449,7 @@
                     <li><a href="#get-home-bag">Zaino per tornare a casa</a></li>
                     <li><a href="#home-kit">Scorte in casa: quando resti</a></li>
                     <li><a href="#which">Quali ti servono?</a></li>
+                    <li><a href="#faq">Domande frequenti</a></li>
                     <li><a href="#sources">Fonti</a></li>
                 </ul>
             </div>
@@ -2321,7 +2459,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Chiedi a cinque persone come si chiama un kit di emergenza e sentirai cinque nomi. Alcuni sono la stessa cosa con un'altra etichetta; altri sono kit davvero diversi, pensati per altre situazioni. Tutto si riduce a due domande: te ne vai o resti? E per quanto tempo?</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">In breve</p>
+    <p>Zaino di emergenza, bug-out bag e kit 72 ore sono la stessa idea: uno zaino da prendere per uscire in fretta di casa e vivere per circa tre giorni. La bug-out bag conta su meno aiuti e aggiunge riparo e trattamento dell'acqua. A cambiare davvero sono lo zaino per tornare a casa, tenuto in auto o al lavoro, e le scorte in casa, per restare due settimane senza uscire.</p>
+</div>
+<p class="guide-inline-app">GoBag+ trasforma questa guida in un kit da tenere sotto controllo: quantità calibrate sulla tua famiglia e un avviso prima che qualcosa scada. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prova GoBag+ gratis per 30 giorni <span aria-hidden="true">→</span></a></p>
+<p>Chiedi a cinque persone come si chiama un kit di emergenza e sentirai cinque nomi. Alcuni sono la stessa cosa con un'altra etichetta; altri sono kit davvero diversi, pensati per altre situazioni. Tutto si riduce a due domande: te ne vai o resti? E per quanto tempo?</p>
 
 <h2 id="short-answer">La risposta breve</h2>
 <p>Per la maggior parte delle persone, lo <strong>zaino di emergenza</strong>, la <strong>bug-out bag</strong> (o zaino di fuga) e il <strong>kit 72 ore</strong> sono la stessa idea: uno zaino da prendere per uscire in fretta di casa e con cui vivere per circa tre giorni. I nomi vengono da mondi diversi: la protezione civile parla di zaino di emergenza, i prepper di bug-out bag, e 72 ore è la durata delle campagne ufficiali. Davvero diversi sono lo <strong>zaino per tornare a casa</strong>, che sta in auto o al lavoro, e le <strong>scorte in casa</strong>, che non sono uno zaino.</p>
@@ -2354,6 +2497,7 @@
 
 <h2 id="get-home-bag">Zaino per tornare a casa</h2>
 <p>Le emergenze non aspettano che tu sia a casa. Uno zaino per tornare a casa sta in auto o sotto la scrivania e serve a rientrare: acqua e qualcosa da mangiare, scarpe comode, poncho, torcia, power bank, un po' di contanti, una mappa cartacea, primo soccorso di base e i farmaci che prendi ogni giorno. L'agenzia statunitense Ready.gov consiglia di essere pronti a restare almeno 24 ore al lavoro e di tenere un kit in auto nel caso si resti bloccati.</p>
+<p>Il <a href="/it/guides/car-emergency-kit/">kit di emergenza per l'auto</a> lo elenca voce per voce.</p>
 
 <h2 id="home-kit">Scorte in casa: quando resti</h2>
 <p>La maggior parte delle emergenze non ti manda da nessuna parte. Un temporale toglie la corrente per giorni, l'acqua del rubinetto non è potabile per una settimana, le strade chiudono. A quel punto conta quello che hai già in casa. La Croce Rossa americana raccomanda due settimane di acqua e cibo in casa; la <a href="/it/guides/emergency-water-and-food/">guida alle scorte di acqua e cibo</a> calcola quanto significa per la tua famiglia.</p>
@@ -2366,6 +2510,19 @@
 </ul>
 <div class="guide-note is-app">
     <p><strong>In GoBag+</strong> zaini e scorte in casa stanno fianco a fianco: uno zaino per ogni persona o auto, e le tue scorte domestiche con una soglia minima in base al numero di persone. Entrambi fanno parte di Premium, che puoi provare gratis per un mese.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prova GoBag+ gratis per 30 giorni <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Domande frequenti</h2>
+<div class="guide-faq">
+    <h3>Zaino di emergenza e bug-out bag sono la stessa cosa?</h3>
+    <p>Quasi. Entrambi servono a uscire in fretta e resistere circa tre giorni. La bug-out bag dei prepper porta in più ciò che serve per cavarsela senza aiuti: telo o tenda, fornelletto e più modi per rendere l'acqua potabile.</p>
+    <h3>Cos'è un kit 72 ore?</h3>
+    <p>Il nome ufficiale degli stessi tre giorni di scorte. La strategia di preparazione della Commissione europea del 2025 fissa l'obiettivo di almeno 72 ore di autosufficienza per la popolazione.</p>
+    <h3>Che differenza c'è con lo zaino per tornare a casa?</h3>
+    <p>Lo zaino di emergenza ti porta fuori casa; quello per tornare ti riporta indietro. Sta in auto o al lavoro e copre circa un giorno: acqua, spuntini, scarpe comode, torcia, power bank e primo soccorso di base.</p>
+    <h3>Da quale kit comincio?</h3>
+    <p>Da uno zaino di emergenza per ogni persona, poi le scorte di acqua e cibo in casa. Aggiungi uno zaino per tornare a casa se fai lunghi tragitti o guidi molto.</p>
 </div>
 
 <h2 id="sources">Fonti</h2>
@@ -2383,11 +2540,6 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Altre guide</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/it/guides/go-bag-checklist/">
-            <h3>Lista dello zaino di emergenza</h3>
-            <p>Tutto quello che va nello zaino di emergenza, in nove categorie, con una lista da stampare.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/it/guides/prep-kit-for-beginners/">
             <h3>Kit di emergenza per principianti</h3>
             <p>Da dove cominciare: sei passi, dal conoscere i rischi a un kit sempre pronto.</p>
@@ -2406,6 +2558,16 @@
         <li><a class="guide-card" href="/it/guides/emergency-kit-maintenance/">
             <h3>Tenere il kit pronto</h3>
             <p>Una routine ogni sei mesi per controllare le scadenze, ruotare le scorte e aggiornare lo zaino.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/it/guides/power-outage-checklist/">
+            <h3>Cosa fare in caso di blackout</h3>
+            <p>Cosa avere prima che salti la luce, quanto dura il cibo e come restare al sicuro finché torna la corrente.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/it/guides/car-emergency-kit/">
+            <h3>Kit di emergenza per l'auto</h3>
+            <p>Cosa tenere nel bagagliaio per guasti, neve e strade chiuse, d'inverno e d'estate.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

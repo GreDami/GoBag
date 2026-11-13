@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/it/guides/emergency-kit-maintenance/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guide",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/it/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (in inglese)",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Water (in inglese)",
+      "url": "https://www.ready.gov/water"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "USDA: Shelf-Stable Food Safety (in inglese)",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/shelf-stable-food"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/it/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "it",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ogni quanto controllare il kit di emergenza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ogni sei mesi, e la settimana stessa quando la vita cambia: un bambino, un nuovo animale, un trasloco o un nuovo farmaco."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quando cambiare l'acqua del kit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quella imbottigliata da te, ogni sei mesi. Quella del commercio dura fino alla data in etichetta finché resta chiusa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pile e power bank si scaricano in magazzino?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì. Prova le pile ogni sei mesi e tienile fuori dagli apparecchi perché non perdano liquido. Un power bank si scarica da solo; ricaricalo a ogni controllo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso mangiare il cibo del kit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, è così che funziona la rotazione: mangia scatolette e snack qualche mese prima della scadenza e ricomprali nuovi. Non si butta niente."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2009,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2120,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2427,7 @@
             <p class="page-head-label"><a href="/it/guides/" data-i18n="guides_label">Guide</a></p>
             <h1>Tenere il kit <span>pronto</span></h1>
 <p class="page-head-lead">Un kit preparato una volta e dimenticato cede in silenzio: l'acqua invecchia, le pile perdono, i bambini crescono. Una routine due volte l'anno lo tiene efficiente.</p>
-            <p class="guide-updated">Aggiornato il <time datetime="2026-10-22">22 ottobre 2026</time></p>
+            <p class="guide-updated">Aggiornato il <time datetime="2026-11-13">13 novembre 2026</time></p>
         </div>
     </div>
 </section>
@@ -2309,6 +2446,7 @@
                     <li><a href="#storage">Conservalo dove dura</a></li>
                     <li><a href="#rotate">Ruota invece di buttare</a></li>
                     <li><a href="#life-changes">Aggiornalo quando la vita cambia</a></li>
+                    <li><a href="#faq">Domande frequenti</a></li>
                     <li><a href="#sources">Fonti</a></li>
                 </ul>
             </div>
@@ -2318,7 +2456,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Un kit di emergenza non cede il giorno in cui ti serve. Cede nei mesi prima, senza che nessuno se ne accorga. L'acqua supera la data, il power bank si scarica da solo, i farmaci scadono e un bambino non entra più nei vestiti che avevi messo via. L'agenzia statunitense Ready.gov consiglia di sostituire ciò che è scaduto e di ripensare il kit ogni anno, man mano che cambiano le esigenze della famiglia. Controllarlo ogni sei mesi, per esempio al cambio dell'ora, intercetta quasi tutti i problemi prima che contino.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">In breve</p>
+    <p>Controlla il kit di emergenza ogni sei mesi, per esempio al cambio dell'ora: sostituisci ciò che scade entro sei mesi, cambia l'acqua imbottigliata da te, prova torce e pile, ricarica il power bank, cambia i vestiti con la stagione e aggiorna copie dei documenti e contatti. Tienilo in un posto fresco e asciutto: il caldo è ciò che lo invecchia più in fretta.</p>
+</div>
+<p class="guide-inline-app">GoBag+ trasforma questa guida in un kit da tenere sotto controllo: quantità calibrate sulla tua famiglia e un avviso prima che qualcosa scada. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prova GoBag+ gratis per 30 giorni <span aria-hidden="true">→</span></a></p>
+<p>Un kit di emergenza non cede il giorno in cui ti serve. Cede nei mesi prima, senza che nessuno se ne accorga. L'acqua supera la data, il power bank si scarica da solo, i farmaci scadono e un bambino non entra più nei vestiti che avevi messo via. L'agenzia statunitense Ready.gov consiglia di sostituire ciò che è scaduto e di ripensare il kit ogni anno, man mano che cambiano le esigenze della famiglia. Controllarlo ogni sei mesi, per esempio al cambio dell'ora, intercetta quasi tutti i problemi prima che contino.</p>
 
 <h2 id="routine">La routine dei sei mesi</h2>
 <ul class="checklist">
@@ -2363,6 +2506,20 @@
 <p>Alcuni cambiamenti non aspettano il controllo dei sei mesi: un bambino, un nuovo animale, un trasloco, una nuova malattia o un nuovo farmaco, un lavoro più lontano da casa che giustifica uno <a href="/it/guides/go-bag-vs-bug-out-bag/">zaino per tornare a casa</a>. Ognuno è un motivo per aprire lo zaino nella stessa settimana.</p>
 <div class="guide-note is-app">
     <p><strong>GoBag+</strong> tiene traccia della data di scadenza di ogni articolo nei tuoi zaini e nelle scorte di casa. Con Premium, ti avvisa prima che qualcosa scada o scenda sotto la soglia che hai fissato, e un widget nella schermata Home ti mostra a colpo d'occhio quanto sei pronto.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prova GoBag+ gratis per 30 giorni <span aria-hidden="true">→</span></a>
+</div>
+<p>La <a href="/it/guides/gobag-app-guide/">guida a GoBag+</a> mostra come preparare tutto.</p>
+
+<h2 id="faq">Domande frequenti</h2>
+<div class="guide-faq">
+    <h3>Ogni quanto controllare il kit di emergenza?</h3>
+    <p>Ogni sei mesi, e la settimana stessa quando la vita cambia: un bambino, un nuovo animale, un trasloco o un nuovo farmaco.</p>
+    <h3>Quando cambiare l'acqua del kit?</h3>
+    <p>Quella imbottigliata da te, ogni sei mesi. Quella del commercio dura fino alla data in etichetta finché resta chiusa.</p>
+    <h3>Pile e power bank si scaricano in magazzino?</h3>
+    <p>Sì. Prova le pile ogni sei mesi e tienile fuori dagli apparecchi perché non perdano liquido. Un power bank si scarica da solo; ricaricalo a ogni controllo.</p>
+    <h3>Posso mangiare il cibo del kit?</h3>
+    <p>Sì, è così che funziona la rotazione: mangia scatolette e snack qualche mese prima della scadenza e ricomprali nuovi. Non si butta niente.</p>
 </div>
 
 <h2 id="sources">Fonti</h2>
@@ -2380,29 +2537,34 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Altre guide</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/it/guides/go-bag-checklist/">
-            <h3>Lista dello zaino di emergenza</h3>
-            <p>Tutto quello che va nello zaino di emergenza, in nove categorie, con una lista da stampare.</p>
+        <li><a class="guide-card" href="/it/guides/power-outage-checklist/">
+            <h3>Cosa fare in caso di blackout</h3>
+            <p>Cosa avere prima che salti la luce, quanto dura il cibo e come restare al sicuro finché torna la corrente.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/it/guides/go-bag-vs-bug-out-bag/">
-            <h3>Zaino di emergenza o bug-out bag</h3>
-            <p>Zaino di emergenza, bug-out bag, kit 72 ore, scorte in casa: a cosa serve ciascuno e quale ti serve.</p>
+        <li><a class="guide-card" href="/it/guides/car-emergency-kit/">
+            <h3>Kit di emergenza per l'auto</h3>
+            <p>Cosa tenere nel bagagliaio per guasti, neve e strade chiuse, d'inverno e d'estate.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/it/guides/prep-kit-for-beginners/">
-            <h3>Kit di emergenza per principianti</h3>
-            <p>Da dove cominciare: sei passi, dal conoscere i rischi a un kit sempre pronto.</p>
+        <li><a class="guide-card" href="/it/guides/pet-emergency-kit/">
+            <h3>Kit di emergenza per animali</h3>
+            <p>Uno zaino di emergenza per il tuo cane o gatto, e come evacuare con gli animali.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/it/guides/emergency-water-and-food/">
-            <h3>Scorte di acqua e cibo</h3>
-            <p>Quanta acqua e quanto cibo tenere in casa, a persona e al giorno, e cosa si conserva più a lungo.</p>
+        <li><a class="guide-card" href="/it/guides/go-bag-for-kids/">
+            <h3>Zaino di emergenza per bambini</h3>
+            <p>Cosa preparare per neonati e bambini, e come prepararli senza spaventarli.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/it/guides/emergency-documents/">
-            <h3>Documenti importanti</h3>
-            <p>Quali documenti copiare per lo zaino e come tenerli al sicuro, all'asciutto e sempre con te.</p>
+        <li><a class="guide-card" href="/it/guides/first-aid-kit-checklist/">
+            <h3>Cassetta di primo soccorso</h3>
+            <p>Cosa contiene una cassetta di primo soccorso, voce per voce, e come tenerla aggiornata.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/it/guides/family-emergency-plan/">
+            <h3>Piano familiare di emergenza</h3>
+            <p>Punti di ritrovo, contatto fuori zona e vie di evacuazione, scritti su una pagina.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

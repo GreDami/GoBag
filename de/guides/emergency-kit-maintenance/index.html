@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/de/guides/emergency-kit-maintenance/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Ratgeber",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/de/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Essen und Trinken bevorraten",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/So-koennen-Sie-sich-vorbereiten/Bevorraten/bevorraten_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (Englisch)",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "USDA: Shelf-Stable Food Safety (Englisch)",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/shelf-stable-food"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/de/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "de",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie oft sollte ich meine Notfallausrüstung prüfen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alle sechs Monate, und in derselben Woche, wenn sich das Leben ändert: ein Baby, ein neues Haustier, ein Umzug oder ein neues Medikament."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wann tausche ich das Wasser aus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Selbst abgefülltes Wasser alle sechs Monate. Gekauftes Wasser hält bis zum Datum auf dem Etikett, solange es verschlossen bleibt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Verlieren Batterien und Powerbanks beim Lagern Ladung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Teste Batterien alle sechs Monate und lagere sie außerhalb der Geräte, damit sie nicht auslaufen. Eine Powerbank entlädt sich von selbst; lade sie bei jeder Prüfung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Darf ich Lebensmittel aus dem Vorrat essen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, so funktioniert Umwälzen: Konserven und Snacks ein paar Monate vor dem Datum essen und frisch nachkaufen. So wird nichts weggeworfen."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2009,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2120,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2427,7 @@
             <p class="page-head-label"><a href="/de/guides/" data-i18n="guides_label">Ratgeber</a></p>
             <h1>Ausrüstung <span>aktuell halten</span></h1>
 <p class="page-head-lead">Einmal gepackt und vergessen, versagt eine Ausrüstung leise: Wasser wird alt, Batterien laufen aus, Kinder wachsen aus den Schuhen. Eine Routine zweimal im Jahr hält sie einsatzbereit.</p>
-            <p class="guide-updated">Aktualisiert am <time datetime="2026-10-22">22. Oktober 2026</time></p>
+            <p class="guide-updated">Aktualisiert am <time datetime="2026-11-13">13. November 2026</time></p>
         </div>
     </div>
 </section>
@@ -2309,6 +2446,7 @@
                     <li><a href="#storage">Lagern, wo es hält</a></li>
                     <li><a href="#rotate">Umwälzen statt wegwerfen</a></li>
                     <li><a href="#life-changes">Anpassen, wenn sich das Leben ändert</a></li>
+                    <li><a href="#faq">Häufige Fragen</a></li>
                     <li><a href="#sources">Quellen</a></li>
                 </ul>
             </div>
@@ -2318,7 +2456,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Eine Notfallausrüstung versagt nicht an dem Tag, an dem du sie brauchst. Sie versagt in den Monaten davor, ohne dass es jemand merkt. Das Wasser überschreitet sein Datum, die Powerbank entlädt sich von selbst, Medikamente laufen ab, und ein Kind passt nicht mehr in die eingepackte Kleidung. Das BBK rät, den Vorrat regelmäßig auf Haltbarkeit zu prüfen, zum Beispiel einmal im Jahr. Wer alle sechs Monate nachsieht, etwa bei der Zeitumstellung, erwischt die meisten Probleme, bevor sie zählen.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Kurz gesagt</p>
+    <p>Prüf deine Notfallausrüstung alle sechs Monate, zum Beispiel bei der Zeitumstellung: Tausch aus, was in den nächsten sechs Monaten abläuft, ersetz selbst abgefülltes Wasser, teste Taschenlampen und Batterien, lade die Powerbank, wechsle die Kleidung für die Jahreszeit und aktualisiere Dokumente und Kontakte. Lagere alles kühl und trocken: Hitze altert die Ausrüstung am schnellsten.</p>
+</div>
+<p class="guide-inline-app">GoBag+ macht aus diesem Ratgeber eine Ausrüstung, die du im Blick behältst: Mengen passend zu deinem Haushalt und eine Erinnerung, bevor etwas abläuft. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a></p>
+<p>Eine Notfallausrüstung versagt nicht an dem Tag, an dem du sie brauchst. Sie versagt in den Monaten davor, ohne dass es jemand merkt. Das Wasser überschreitet sein Datum, die Powerbank entlädt sich von selbst, Medikamente laufen ab, und ein Kind passt nicht mehr in die eingepackte Kleidung. Das BBK rät, den Vorrat regelmäßig auf Haltbarkeit zu prüfen, zum Beispiel einmal im Jahr. Wer alle sechs Monate nachsieht, etwa bei der Zeitumstellung, erwischt die meisten Probleme, bevor sie zählen.</p>
 
 <h2 id="routine">Die Halbjahresroutine</h2>
 <ul class="checklist">
@@ -2363,6 +2506,20 @@
 <p>Manche Änderungen warten nicht auf die Halbjahresprüfung: ein Baby, ein neues Haustier, ein Umzug, eine neue Erkrankung oder ein neues Medikament, ein neuer Job weiter weg, für den sich eine <a href="/de/guides/go-bag-vs-bug-out-bag/">Notfalltasche fürs Auto oder Büro</a> lohnt. Jede davon ist ein Grund, den Rucksack in derselben Woche zu öffnen.</p>
 <div class="guide-note is-app">
     <p><strong>GoBag+</strong> führt das Ablaufdatum jedes Gegenstands in deinen Notfallrucksäcken und deinem Vorrat. Mit Premium erinnert dich die App, bevor etwas abläuft oder unter den Mindestbestand fällt, und ein Widget auf dem Home-Bildschirm zeigt auf einen Blick, wie gut du vorbereitet bist.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a>
+</div>
+<p>Der <a href="/de/guides/gobag-app-guide/">Ratgeber zu GoBag+</a> zeigt, wie du alles einrichtest.</p>
+
+<h2 id="faq">Häufige Fragen</h2>
+<div class="guide-faq">
+    <h3>Wie oft sollte ich meine Notfallausrüstung prüfen?</h3>
+    <p>Alle sechs Monate, und in derselben Woche, wenn sich das Leben ändert: ein Baby, ein neues Haustier, ein Umzug oder ein neues Medikament.</p>
+    <h3>Wann tausche ich das Wasser aus?</h3>
+    <p>Selbst abgefülltes Wasser alle sechs Monate. Gekauftes Wasser hält bis zum Datum auf dem Etikett, solange es verschlossen bleibt.</p>
+    <h3>Verlieren Batterien und Powerbanks beim Lagern Ladung?</h3>
+    <p>Ja. Teste Batterien alle sechs Monate und lagere sie außerhalb der Geräte, damit sie nicht auslaufen. Eine Powerbank entlädt sich von selbst; lade sie bei jeder Prüfung.</p>
+    <h3>Darf ich Lebensmittel aus dem Vorrat essen?</h3>
+    <p>Ja, so funktioniert Umwälzen: Konserven und Snacks ein paar Monate vor dem Datum essen und frisch nachkaufen. So wird nichts weggeworfen.</p>
 </div>
 
 <h2 id="sources">Quellen</h2>
@@ -2380,29 +2537,34 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Weitere Ratgeber</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/de/guides/go-bag-checklist/">
-            <h3>Checkliste Notfallrucksack</h3>
-            <p>Alles, was in den Notfallrucksack gehört, in neun Kategorien, mit Liste zum Ausdrucken.</p>
+        <li><a class="guide-card" href="/de/guides/power-outage-checklist/">
+            <h3>Checkliste Stromausfall</h3>
+            <p>Was du parat haben solltest, wie lange Lebensmittel halten und wie du sicher bleibst, bis der Strom zurück ist.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/de/guides/go-bag-vs-bug-out-bag/">
-            <h3>Notfallrucksack oder Fluchtrucksack?</h3>
-            <p>Notfallrucksack, Fluchtrucksack, 72-Stunden-Kit, Notvorrat: wofür jedes gut ist und was du brauchst.</p>
+        <li><a class="guide-card" href="/de/guides/car-emergency-kit/">
+            <h3>Notfallausrüstung fürs Auto</h3>
+            <p>Was für Panne, Schnee und gesperrte Straßen in den Kofferraum gehört, im Winter wie im Sommer.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/de/guides/prep-kit-for-beginners/">
-            <h3>Notfallvorsorge für Einsteiger</h3>
-            <p>Sechs Schritte von null zu vorbereitet: Risiken kennen, Notfallplan, Notgepäck, Vorrat und Pflege.</p>
+        <li><a class="guide-card" href="/de/guides/pet-emergency-kit/">
+            <h3>Notfallausrüstung für Haustiere</h3>
+            <p>Ein Notfallrucksack für Hund oder Katze, und wie du mit Tieren evakuierst.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/de/guides/emergency-water-and-food/">
-            <h3>Notvorrat: Wasser und Essen</h3>
-            <p>Wie viel Wasser und Essen du für zehn Tage brauchst, pro Person, und was sich am längsten hält.</p>
+        <li><a class="guide-card" href="/de/guides/go-bag-for-kids/">
+            <h3>Notfallrucksack für Kinder</h3>
+            <p>Was du für Babys und Kinder einpackst, und wie du sie vorbereitest, ohne Angst zu machen.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/de/guides/emergency-documents/">
-            <h3>Wichtige Dokumente</h3>
-            <p>Welche Unterlagen in die Dokumentenmappe gehören und wie du Kopien sicher, trocken und griffbereit hältst.</p>
+        <li><a class="guide-card" href="/de/guides/first-aid-kit-checklist/">
+            <h3>Checkliste Hausapotheke</h3>
+            <p>Was in die Hausapotheke gehört, Stück für Stück, und wie du sie aktuell hältst.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/family-emergency-plan/">
+            <h3>Notfallplan für die Familie</h3>
+            <p>Treffpunkte, Kontaktperson außerhalb und Fluchtwege, auf einer Seite festgehalten.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

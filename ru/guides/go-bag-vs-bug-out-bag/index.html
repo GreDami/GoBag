@@ -109,7 +109,43 @@
   "mainEntityOfPage": "https://gobag.gredami.com/ru/guides/go-bag-vs-bug-out-bag/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-11-02",
+  "dateModified": "2026-11-13",
+  "articleSection": "Памятки",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/ru/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "МЧС России",
+      "url": "https://mchs.gov.ru/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Европейская комиссия: Preparedness Union Strategy (на английском)",
+      "url": "https://commission.europa.eu/topics/preparedness_en"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (на английском)",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Американский Красный Крест: Survival Kit Supplies (на английском)",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/ru/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +160,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ru",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Тревожный чемоданчик и рюкзак выживания — одно и то же?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Почти. Оба нужны, чтобы быстро уйти и продержаться около трёх суток. Рюкзак выживания, bug-out bag выживальщиков, дополнительно несёт то, что нужно без посторонней помощи: тент или палатку, горелку и больше способов очистить воду."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что такое набор на 72 часа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Официальное название тех же трёх суток запасов. Службы спасения рассчитывают, что первые трое суток семьи продержатся сами, а стратегия готовности Евросоюза 2025 года ставит цель не менее 72 часов самообеспечения."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем тревожный чемоданчик отличается от сумки, чтобы добраться домой?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Тревожный чемоданчик выводит из дома, а сумка в машине или на работе возвращает домой. Её хватает примерно на сутки: вода, перекус, удобная обувь, фонарик, пауэрбанк и аптечка."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "С какого набора начать?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "С тревожного чемоданчика на каждого члена семьи, затем домашний запас воды и еды. Если много ездите или далеко добираетесь до работы, добавьте сумку в машину."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2014,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2125,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2432,7 @@
             <p class="page-head-label"><a href="/ru/guides/" data-i18n="guides_label">Памятки</a></p>
             <h1>Тревожный чемоданчик или <span>рюкзак выживания</span></h1>
 <p class="page-head-lead">Шесть названий наборов на случай ЧС и чем они на самом деле отличаются — чтобы собрать то, что нужно вашей семье, а не всё сразу.</p>
-            <p class="guide-updated">Обновлено <time datetime="2026-11-02">2 ноября 2026 г.</time></p>
+            <p class="guide-updated">Обновлено <time datetime="2026-11-13">13 ноября 2026 г.</time></p>
         </div>
     </div>
 </section>
@@ -2312,6 +2454,7 @@
                     <li><a href="#get-home-bag">Сумка, чтобы добраться домой</a></li>
                     <li><a href="#home-kit">Домашний запас: когда остаётесь</a></li>
                     <li><a href="#which">Что нужно именно вам?</a></li>
+                    <li><a href="#faq">Частые вопросы</a></li>
                     <li><a href="#sources">Источники</a></li>
                 </ul>
             </div>
@@ -2321,7 +2464,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Спросите пятерых, как называется набор на случай ЧС, и услышите пять названий. Одни — то же самое под другой вывеской, другие — действительно разные наборы для разных ситуаций. Всё сводится к двум вопросам: вы уходите или остаётесь — и надолго ли?</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Коротко</p>
+    <p>Тревожный чемоданчик, рюкзак выживания и набор на 72 часа — одна идея: сумка, с которой можно быстро уйти из дома и прожить около трёх суток. Рюкзак выживания рассчитан на меньшую помощь в пути и добавляет укрытие и очистку воды. По-настоящему отличаются сумка, чтобы добраться домой, — она живёт в машине или на работе, — и домашний запас на две недели, если вы остаётесь дома.</p>
+</div>
+<p class="guide-inline-app">GoBag+ превращает эту памятку в набор, за которым легко следить: количество под размер семьи и напоминание до истечения срока годности. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Попробовать GoBag+ бесплатно 30 дней <span aria-hidden="true">→</span></a></p>
+<p>Спросите пятерых, как называется набор на случай ЧС, и услышите пять названий. Одни — то же самое под другой вывеской, другие — действительно разные наборы для разных ситуаций. Всё сводится к двум вопросам: вы уходите или остаётесь — и надолго ли?</p>
 
 <h2 id="short-answer">Коротко</h2>
 <p>Для большинства людей <strong>тревожный чемоданчик</strong> (он же тревожный рюкзак), <strong>рюкзак выживания</strong> (по-английски bug-out bag) и <strong>набор на 72 часа</strong> — одна идея: сумка, которую берут, чтобы быстро покинуть дом и прожить с ней около трёх суток. Названия пришли из разных мест: МЧС говорит о тревожном чемоданчике, выживальщики — о рюкзаке выживания, а 72 часа — срок из официальных рекомендаций многих стран. Действительно отличаются <strong>сумка, чтобы добраться домой</strong>, которая живёт в машине или на работе, и <strong>домашний запас</strong>, который вообще не сумка.</p>
@@ -2354,6 +2502,7 @@
 
 <h2 id="get-home-bag">Сумка, чтобы добраться домой</h2>
 <p>ЧС не ждут, пока вы окажетесь дома. Такая сумка лежит в машине или под рабочим столом и нужна, чтобы вернуться: вода и перекус, удобная обувь, дождевик, фонарик, пауэрбанк, немного наличных, бумажная карта, простая аптечка и лекарства, которые вы принимаете каждый день. Американское агентство Ready.gov советует быть готовым провести на работе хотя бы сутки и держать набор в машине на случай, если застрянете.</p>
+<p>Полный список — в <a href="/ru/guides/car-emergency-kit/">аварийном наборе для машины</a>.</p>
 
 <h2 id="home-kit">Домашний запас: когда остаётесь</h2>
 <p>Большинство ЧС никуда вас не отправляют. Буря на несколько дней оставляет без света, неделю нельзя пить воду из-под крана, перекрыты дороги. Тогда важно то, что уже есть дома. Американский Красный Крест рекомендует держать дома запас воды и еды на две недели; в памятке <a href="/ru/guides/emergency-water-and-food/">о запасах воды и еды</a> посчитано, сколько это для вашей семьи.</p>
@@ -2366,6 +2515,19 @@
 </ul>
 <div class="guide-note is-app">
     <p><strong>В GoBag+</strong> тревожные чемоданчики и домашний запас — рядом: по сумке на каждого человека или машину и домашние запасы с минимальным остатком под размер семьи. И то и другое входит в Premium, а первый месяц — бесплатно.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Попробовать GoBag+ бесплатно 30 дней <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Частые вопросы</h2>
+<div class="guide-faq">
+    <h3>Тревожный чемоданчик и рюкзак выживания — одно и то же?</h3>
+    <p>Почти. Оба нужны, чтобы быстро уйти и продержаться около трёх суток. Рюкзак выживания, bug-out bag выживальщиков, дополнительно несёт то, что нужно без посторонней помощи: тент или палатку, горелку и больше способов очистить воду.</p>
+    <h3>Что такое набор на 72 часа?</h3>
+    <p>Официальное название тех же трёх суток запасов. Службы спасения рассчитывают, что первые трое суток семьи продержатся сами, а стратегия готовности Евросоюза 2025 года ставит цель не менее 72 часов самообеспечения.</p>
+    <h3>Чем тревожный чемоданчик отличается от сумки, чтобы добраться домой?</h3>
+    <p>Тревожный чемоданчик выводит из дома, а сумка в машине или на работе возвращает домой. Её хватает примерно на сутки: вода, перекус, удобная обувь, фонарик, пауэрбанк и аптечка.</p>
+    <h3>С какого набора начать?</h3>
+    <p>С тревожного чемоданчика на каждого члена семьи, затем домашний запас воды и еды. Если много ездите или далеко добираетесь до работы, добавьте сумку в машину.</p>
 </div>
 
 <h2 id="sources">Источники</h2>
@@ -2384,11 +2546,6 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Другие памятки</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/ru/guides/go-bag-checklist/">
-            <h3>Список для тревожного чемоданчика</h3>
-            <p>Всё, что нужно положить в тревожный чемоданчик, по девяти категориям, со списком для печати.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/ru/guides/prep-kit-for-beginners/">
             <h3>С чего начать подготовку к ЧС</h3>
             <p>Шесть шагов от нуля до готовности: риски, семейный план, тревожный чемоданчик, запасы и их проверка.</p>
@@ -2407,6 +2564,16 @@
         <li><a class="guide-card" href="/ru/guides/emergency-kit-maintenance/">
             <h3>Как следить за запасами</h3>
             <p>Проверка раз в полгода: сроки годности, обновление запасов, вещи по сезону.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/power-outage-checklist/">
+            <h3>Если отключили электричество</h3>
+            <p>Что приготовить заранее, сколько хранятся продукты и как оставаться в безопасности, пока нет света.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/car-emergency-kit/">
+            <h3>Аварийный набор для машины</h3>
+            <p>Что возить в багажнике на случай поломки, снега и перекрытой дороги — зимой и летом.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

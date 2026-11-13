@@ -7,7 +7,7 @@
          accepts in the cookie banner. See loadGA()/setConsent() near the end. -->
     <!-- i18n:head:start -->
     <title>Ratgeber Notfallrucksack &amp; Notvorrat | GoBag+</title>
-    <meta name="description" content="Kostenlose Ratgeber zur Notfallvorsorge: Checkliste für den Notfallrucksack zum Ausdrucken, Notvorrat für 10 Tage, wichtige Dokumente und Pflege der Ausrüstung.">
+    <meta name="description" content="Kostenlose Ratgeber zur Notfallvorsorge: Checklisten zum Ausdrucken für Notfallrucksack, Auto, Haustiere, Kinder, Hausapotheke, Stromausfall und Familienplan.">
     <meta name="keywords" content="Notfallrucksack, Fluchtrucksack, Notvorrat, Notfallausrüstung, Krisenvorsorge, Notgepäck, Bug-out-Bag, Katastrophenschutz, Notfallvorsorge App">
     <link rel="canonical" href="https://gobag.gredami.com/de/guides/">
 
@@ -46,7 +46,7 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="Ratgeber Notfallrucksack &amp; Notvorrat | GoBag+">
-    <meta property="og:description" content="Kostenlose Ratgeber zur Notfallvorsorge: Checkliste für den Notfallrucksack zum Ausdrucken, Notvorrat für 10 Tage, wichtige Dokumente und Pflege der Ausrüstung.">
+    <meta property="og:description" content="Kostenlose Ratgeber zur Notfallvorsorge: Checklisten zum Ausdrucken für Notfallrucksack, Auto, Haustiere, Kinder, Hausapotheke, Stromausfall und Familienplan.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gobag.gredami.com/de/guides/">
     <meta property="og:site_name" content="GoBag+">
@@ -67,7 +67,7 @@
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ratgeber Notfallrucksack &amp; Notvorrat | GoBag+">
-    <meta name="twitter:description" content="Kostenlose Ratgeber zur Notfallvorsorge: Checkliste für den Notfallrucksack zum Ausdrucken, Notvorrat für 10 Tage, wichtige Dokumente und Pflege der Ausrüstung.">
+    <meta name="twitter:description" content="Kostenlose Ratgeber zur Notfallvorsorge: Checklisten zum Ausdrucken für Notfallrucksack, Auto, Haustiere, Kinder, Hausapotheke, Stromausfall und Familienplan.">
     <meta name="twitter:image" content="https://gobag.gredami.com/screenshots/og.jpg">
     <meta name="twitter:site" content="@GreDamiStudio">
 
@@ -132,6 +132,54 @@
       "position": 6,
       "url": "https://gobag.gredami.com/de/guides/emergency-kit-maintenance/",
       "name": "Ausrüstung aktuell halten"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "url": "https://gobag.gredami.com/de/guides/power-outage-checklist/",
+      "name": "Checkliste Stromausfall"
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "url": "https://gobag.gredami.com/de/guides/car-emergency-kit/",
+      "name": "Notfallausrüstung fürs Auto"
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "url": "https://gobag.gredami.com/de/guides/pet-emergency-kit/",
+      "name": "Notfallausrüstung für Haustiere"
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "url": "https://gobag.gredami.com/de/guides/go-bag-for-kids/",
+      "name": "Notfallrucksack für Kinder"
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "url": "https://gobag.gredami.com/de/guides/first-aid-kit-checklist/",
+      "name": "Checkliste Hausapotheke"
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "url": "https://gobag.gredami.com/de/guides/family-emergency-plan/",
+      "name": "Notfallplan für die Familie"
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "url": "https://gobag.gredami.com/de/guides/go-bag-hacks/",
+      "name": "Tipps für den Notfallrucksack"
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "url": "https://gobag.gredami.com/de/guides/gobag-app-guide/",
+      "name": "So nutzt du GoBag+"
     }
   ]
 }
@@ -1947,6 +1995,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1993,7 +2106,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2334,6 +2447,46 @@
         <li><a class="guide-card" href="/de/guides/emergency-kit-maintenance/">
             <h2>Ausrüstung aktuell halten</h2>
             <p>Eine Routine alle sechs Monate: Haltbarkeit prüfen, Vorrat umwälzen, Rucksack anpassen.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/power-outage-checklist/">
+            <h2>Checkliste Stromausfall</h2>
+            <p>Was du parat haben solltest, wie lange Lebensmittel halten und wie du sicher bleibst, bis der Strom zurück ist.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/car-emergency-kit/">
+            <h2>Notfallausrüstung fürs Auto</h2>
+            <p>Was für Panne, Schnee und gesperrte Straßen in den Kofferraum gehört, im Winter wie im Sommer.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/pet-emergency-kit/">
+            <h2>Notfallausrüstung für Haustiere</h2>
+            <p>Ein Notfallrucksack für Hund oder Katze, und wie du mit Tieren evakuierst.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/go-bag-for-kids/">
+            <h2>Notfallrucksack für Kinder</h2>
+            <p>Was du für Babys und Kinder einpackst, und wie du sie vorbereitest, ohne Angst zu machen.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/first-aid-kit-checklist/">
+            <h2>Checkliste Hausapotheke</h2>
+            <p>Was in die Hausapotheke gehört, Stück für Stück, und wie du sie aktuell hältst.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/family-emergency-plan/">
+            <h2>Notfallplan für die Familie</h2>
+            <p>Treffpunkte, Kontaktperson außerhalb und Fluchtwege, auf einer Seite festgehalten.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/go-bag-hacks/">
+            <h2>Tipps für den Notfallrucksack</h2>
+            <p>Zwanzig kleine Kniffe für einen leichteren, trockeneren, günstigeren Rucksack, der schnell griffbereit ist.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/gobag-app-guide/">
+            <h2>So nutzt du GoBag+</h2>
+            <p>Notfallrucksack, Vorrat, SOS-Kontakte und Dokumententresor in zehn Minuten einrichten.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

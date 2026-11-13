@@ -109,7 +109,43 @@
   "mainEntityOfPage": "https://gobag.gredami.com/pt/guides/go-bag-vs-bug-out-bag/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-11-02",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guias",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/pt/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "ANEPC: Autoridade Nacional de Emergência e Proteção Civil",
+      "url": "https://prociv.gov.pt/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Comissão Europeia: preparação para crises",
+      "url": "https://commission.europa.eu/topics/preparedness_pt"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (em inglês)",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Cruz Vermelha americana: Survival Kit Supplies (em inglês)",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/pt/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +160,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "pt",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mochila de emergência e bug-out bag são a mesma coisa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quase. As duas servem para sair depressa e aguentar cerca de três dias. A bug-out bag dos preparacionistas leva ainda o necessário para se desenrascar sem ajuda: lona ou tenda, fogareiro e mais formas de tornar a água potável."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que é um kit de 72 horas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O nome oficial dos mesmos três dias de provisões. A ANEPC recomenda um kit de emergência para 72 horas, e a estratégia de preparação da Comissão Europeia de 2025 fixa o mesmo objetivo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual é a diferença para a mochila para voltar a casa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A mochila de emergência tira-o de casa; a de voltar leva-o de regresso. Fica no carro ou no trabalho e cobre cerca de um dia: água, lanches, calçado confortável, lanterna, power bank e primeiros socorros básicos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Por qual kit começar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Por uma mochila de emergência para cada pessoa e depois uma reserva de água e comida em casa. Junte uma mochila para voltar a casa se faz trajetos longos ou conduz muito."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2014,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2125,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2432,7 @@
             <p class="page-head-label"><a href="/pt/guides/" data-i18n="guides_label">Guias</a></p>
             <h1>Mochila de emergência ou <span>bug-out bag</span></h1>
 <p class="page-head-lead">Seis nomes para kits de emergência, e o que realmente os distingue, para preparar os que a sua família precisa e não todos.</p>
-            <p class="guide-updated">Atualizado a <time datetime="2026-11-02">2 de novembro de 2026</time></p>
+            <p class="guide-updated">Atualizado a <time datetime="2026-11-13">13 de novembro de 2026</time></p>
         </div>
     </div>
 </section>
@@ -2312,6 +2454,7 @@
                     <li><a href="#get-home-bag">Mochila para voltar a casa</a></li>
                     <li><a href="#home-kit">Reserva em casa: quando fica</a></li>
                     <li><a href="#which">De quais precisa?</a></li>
+                    <li><a href="#faq">Perguntas frequentes</a></li>
                     <li><a href="#sources">Fontes</a></li>
                 </ul>
             </div>
@@ -2321,7 +2464,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Pergunte a cinco pessoas como se chama um kit de emergência e vai ouvir cinco nomes. Alguns são a mesma coisa com outro rótulo; outros são kits realmente diferentes, pensados para outras situações. Tudo se resume a duas perguntas: vai sair ou ficar? E durante quanto tempo?</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Resposta curta</p>
+    <p>A mochila de emergência, a bug-out bag e o kit de 72 horas são a mesma ideia: uma mochila que se agarra para sair depressa de casa e viver cerca de três dias. A bug-out bag conta com menos ajuda e junta abrigo e tratamento de água. O que muda de verdade é a mochila para voltar a casa, guardada no carro ou no trabalho, e a reserva em casa, para ficar duas semanas sem sair.</p>
+</div>
+<p class="guide-inline-app">O GoBag+ transforma este guia num kit que pode acompanhar: quantidades ajustadas ao seu agregado e um alerta antes de algo expirar. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Experimente o GoBag+ grátis por 30 dias <span aria-hidden="true">→</span></a></p>
+<p>Pergunte a cinco pessoas como se chama um kit de emergência e vai ouvir cinco nomes. Alguns são a mesma coisa com outro rótulo; outros são kits realmente diferentes, pensados para outras situações. Tudo se resume a duas perguntas: vai sair ou ficar? E durante quanto tempo?</p>
 
 <h2 id="short-answer">A resposta curta</h2>
 <p>Para a maioria das pessoas, a <strong>mochila de emergência</strong>, a <strong>bug-out bag</strong> (ou mochila de sobrevivência) e o <strong>kit de 72 horas</strong> são a mesma ideia: uma mochila que se agarra para sair depressa de casa e com a qual se vive cerca de três dias. Os nomes vêm de mundos diferentes: a proteção civil fala de mochila de emergência, os preparacionistas de bug-out bag, e 72 horas é o prazo das campanhas oficiais. O que é realmente diferente é a <strong>mochila para voltar a casa</strong>, que vive no carro ou no trabalho, e a <strong>reserva em casa</strong>, que nem sequer é uma mochila.</p>
@@ -2354,6 +2502,7 @@
 
 <h2 id="get-home-bag">Mochila para voltar a casa</h2>
 <p>As emergências não esperam que esteja em casa. Uma mochila para voltar a casa fica no carro ou debaixo da secretária e serve para regressar: água e algo para comer, calçado confortável, impermeável, lanterna, power bank, algum dinheiro, um mapa em papel, primeiros socorros básicos e os medicamentos que toma todos os dias. A agência norte-americana Ready.gov aconselha estar preparado para ficar pelo menos 24 horas no trabalho e ter um kit no carro para o caso de ficar retido.</p>
+<p>O <a href="/pt/guides/car-emergency-kit/">kit de emergência para o carro</a> detalha-a item a item.</p>
 
 <h2 id="home-kit">Reserva em casa: quando fica</h2>
 <p>A maioria das emergências não o manda para lado nenhum. Uma tempestade deixa a casa sem luz durante dias, a água da torneira deixa de ser potável durante uma semana, as estradas fecham. Aí conta o que já tem em casa. A Cruz Vermelha americana recomenda duas semanas de água e comida em casa; o <a href="/pt/guides/emergency-water-and-food/">guia de reservas de água e comida</a> calcula quanto isso é para a sua família.</p>
@@ -2366,6 +2515,19 @@
 </ul>
 <div class="guide-note is-app">
     <p><strong>No GoBag+</strong>, as mochilas e a reserva em casa ficam lado a lado: uma mochila por pessoa ou por carro, e as suas provisões em casa com um stock mínimo de acordo com a dimensão do agregado. Ambas fazem parte do Premium, que pode experimentar grátis durante um mês.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Experimente o GoBag+ grátis por 30 dias <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Perguntas frequentes</h2>
+<div class="guide-faq">
+    <h3>Mochila de emergência e bug-out bag são a mesma coisa?</h3>
+    <p>Quase. As duas servem para sair depressa e aguentar cerca de três dias. A bug-out bag dos preparacionistas leva ainda o necessário para se desenrascar sem ajuda: lona ou tenda, fogareiro e mais formas de tornar a água potável.</p>
+    <h3>O que é um kit de 72 horas?</h3>
+    <p>O nome oficial dos mesmos três dias de provisões. A ANEPC recomenda um kit de emergência para 72 horas, e a estratégia de preparação da Comissão Europeia de 2025 fixa o mesmo objetivo.</p>
+    <h3>Qual é a diferença para a mochila para voltar a casa?</h3>
+    <p>A mochila de emergência tira-o de casa; a de voltar leva-o de regresso. Fica no carro ou no trabalho e cobre cerca de um dia: água, lanches, calçado confortável, lanterna, power bank e primeiros socorros básicos.</p>
+    <h3>Por qual kit começar?</h3>
+    <p>Por uma mochila de emergência para cada pessoa e depois uma reserva de água e comida em casa. Junte uma mochila para voltar a casa se faz trajetos longos ou conduz muito.</p>
 </div>
 
 <h2 id="sources">Fontes</h2>
@@ -2384,11 +2546,6 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Mais guias</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/pt/guides/go-bag-checklist/">
-            <h3>Lista da mochila de emergência</h3>
-            <p>Tudo o que deve levar numa mochila de emergência, em nove categorias, com uma lista para imprimir.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/pt/guides/prep-kit-for-beginners/">
             <h3>Kit de emergência para principiantes</h3>
             <p>Por onde começar: seis passos, desde conhecer os riscos até um kit sempre pronto.</p>
@@ -2407,6 +2564,16 @@
         <li><a class="guide-card" href="/pt/guides/emergency-kit-maintenance/">
             <h3>Manter o kit pronto</h3>
             <p>Uma rotina a cada seis meses para verificar validades, rodar reservas e atualizar a mochila.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/pt/guides/power-outage-checklist/">
+            <h3>O que fazer num apagão</h3>
+            <p>O que ter antes de a luz faltar, quanto tempo aguenta a comida e como ficar em segurança até a luz voltar.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/pt/guides/car-emergency-kit/">
+            <h3>Kit de emergência para o carro</h3>
+            <p>O que levar na bagageira para avarias, neve e estradas cortadas, no inverno e no verão.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

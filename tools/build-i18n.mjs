@@ -23,6 +23,7 @@ import path from 'path';
 import { execSync } from 'child_process';
 
 const ORIGIN = 'https://gobag.gredami.com';
+const APP_STORE = 'https://apps.apple.com/app/id6760232332';
 const LANGS = ['en', 'fr', 'de', 'es', 'it', 'pt', 'ru'];
 const LANG_CODES = { en: 'EN', fr: 'FR', de: 'DE', es: 'ES', it: 'IT', pt: 'PT', ru: 'RU' };
 const LANG_LABELS = {
@@ -87,6 +88,14 @@ const GUIDES = [
   { id: 'storage', slug: 'emergency-water-and-food' },
   { id: 'documents', slug: 'emergency-documents' },
   { id: 'upkeep', slug: 'emergency-kit-maintenance' },
+  { id: 'power', slug: 'power-outage-checklist' },
+  { id: 'car', slug: 'car-emergency-kit' },
+  { id: 'pets', slug: 'pet-emergency-kit' },
+  { id: 'kids', slug: 'go-bag-for-kids' },
+  { id: 'firstaid', slug: 'first-aid-kit-checklist' },
+  { id: 'plan', slug: 'family-emergency-plan' },
+  { id: 'hacks', slug: 'go-bag-hacks' },
+  { id: 'app', slug: 'gobag-app-guide' },
 ];
 
 const PAGES = [
@@ -310,6 +319,19 @@ function renderHead(lang, page) {
     image: `${ORIGIN}/screenshots/og.jpg`,
     datePublished: dates.published,
     dateModified: dates.modified,
+    articleSection: strings[GUIDES_INDEX.crumb],
+    isPartOf: { '@type': 'WebSite', name: 'GoBag+', url: urlFor(lang) },
+    /* What it is based on, and the app it points to: the two things an
+       answer engine needs to quote a guide and say where to go next. */
+    citation: guideCitations(page, lang),
+    mentions: {
+      '@type': 'MobileApplication',
+      name: 'GoBag+',
+      operatingSystem: 'iOS',
+      applicationCategory: 'UtilitiesApplication',
+      url: urlFor(lang),
+      downloadUrl: APP_STORE,
+    },
     author: { '@type': 'Organization', name: 'GreDami', url: 'https://gredami.com' },
     publisher: {
       '@type': 'Organization',
@@ -331,7 +353,19 @@ function renderHead(lang, page) {
      markup goes with the questions, on the FAQ page. */
   const blocks = page === HOME ? [app, site] : [crumbs];
   if (page.id === 'faq') blocks.push(faq);
-  if (article) blocks.push(article);
+  if (article) {
+    blocks.push(article);
+    blocks.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      inLanguage: lang,
+      mainEntity: guideFaq(page, lang).map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    });
+  }
   if (guideList) blocks.push(guideList);
 
   /* Root only: a visitor whose browser asks for one of the other six is offered
@@ -616,6 +650,45 @@ function guideDates(page, lang) {
   return { published: firstCommitted(file), modified: changed(`"${file}"`) };
 }
 
+/* A guide's source, read once: renderHead and guideMain both need it. */
+const guideSources = new Map();
+function guideSource(page, lang) {
+  const file = guideFile(page, lang);
+  if (!guideSources.has(file)) {
+    if (!fs.existsSync(file)) throw new Error(`[${lang}] missing ${file}`);
+    guideSources.set(file, fs.readFileSync(file, 'utf8'));
+  }
+  return guideSources.get(file);
+}
+
+const plain = (html) => html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ')
+  .replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+  .trim();
+
+/* The questions a guide answers at its foot, in .guide-faq as h3 + p pairs.
+   They become the page's FAQPage markup — read by Bing and the AI answer
+   engines even where Google no longer shows them as rich results — so what
+   the markup says is exactly what the reader sees. */
+function guideFaq(page, lang) {
+  const file = guideFile(page, lang);
+  const block = guideSource(page, lang).match(/<div class="guide-faq">([\s\S]*?)\n<\/div>/);
+  if (!block) throw new Error(`${file}: needs a <div class="guide-faq"> of questions and answers`);
+  const pairs = [...block[1].matchAll(/<h3>([\s\S]*?)<\/h3>\s*<p>([\s\S]*?)<\/p>/g)]
+    .map(([, q, a]) => ({ q: plain(q), a: plain(a) }));
+  if (pairs.length < 3 || pairs.length !== (block[1].match(/<h3\b/g) || []).length) {
+    throw new Error(`${file}: .guide-faq needs at least three <h3> questions, each followed by one <p> answer`);
+  }
+  return pairs;
+}
+
+/* The works a guide cites, for the Article markup's citation list. */
+const guideCitations = (page, lang) => {
+  const list = guideSource(page, lang).match(/<ul class="guide-sources">([\s\S]*?)<\/ul>/);
+  if (!list) throw new Error(`${guideFile(page, lang)}: needs a <ul class="guide-sources">`);
+  return [...list[1].matchAll(/<a href="(https?:[^"]+)"[^>]*>([\s\S]*?)<\/a>/g)]
+    .map(([, url, name]) => ({ '@type': 'CreativeWork', name: plain(name), url }));
+};
+
 /* ── guide pages ──────────────────────────────────────────────────────────── */
 
 const GUIDE_LAYOUT = fs.readFileSync(GUIDE_LAYOUT_FILE, 'utf8');
@@ -628,12 +701,19 @@ function fill(html, name, value, where) {
   return html.slice(0, at) + value + html.slice(at + mark.length);
 }
 
-/* The cards that lead to the guides: all of them in the index, the other five
-   under each guide. Built here in the page's own language, so they carry no
-   data-i18n for the translation pass to find. */
+/* The cards that lead to the guides: all of them in the index, and under each
+   guide the next MORE_GUIDES in GUIDES order, wrapping round — every guide is
+   then linked from the same number of others, and a reader is offered a
+   handful rather than the whole shelf. Built here in the page's own language,
+   so they carry no data-i18n for the translation pass to find. */
+const MORE_GUIDES = 6;
 function guideCards(lang, except, heading) {
   const s = tr[lang].strings;
-  const cards = PAGES.filter((p) => p.guide && p !== except).map((p) => {
+  const all = PAGES.filter((p) => p.guide);
+  const at = all.indexOf(except);
+  const shown = at < 0 ? all
+    : Array.from({ length: Math.min(MORE_GUIDES, all.length - 1) }, (_, i) => all[(at + 1 + i) % all.length]);
+  const cards = shown.map((p) => {
     const title = s[`guide_${p.id}_title`];
     const desc = s[`guide_${p.id}_desc`];
     if (!title || !desc) throw new Error(`[${lang}] missing guide_${p.id}_title or guide_${p.id}_desc`);
@@ -646,10 +726,25 @@ function guideCards(lang, except, heading) {
   return `<ul class="guide-cards">\n${cards.join('\n')}\n    </ul>`;
 }
 
+/* Every "In GoBag+" box ends on the way to the App Store. On a phone the
+   rail's offer is hidden and the page's own call to action is at the very
+   bottom, so without this a reader who is convinced halfway down has nowhere
+   to tap. Added here rather than written forty times by hand. */
+function withAppLinks(body, lang, file) {
+  const label = tr[lang].strings.guide_cta;
+  if (!label) throw new Error(`[${lang}] missing strings.guide_cta`);
+  let count = 0;
+  const out = body.replace(/(<div class="guide-note is-app">)([\s\S]*?)(\n<\/div>)/g, (m, open, inner, close) => {
+    count++;
+    return `${open}${inner}\n    <a class="guide-note-cta" href="${APP_STORE}" target="_blank" rel="noopener">${esc(label)} <span aria-hidden="true">→</span></a>${close}`;
+  });
+  if (!count) throw new Error(`${file}: needs at least one <div class="guide-note is-app">`);
+  return out;
+}
+
 function guideMain(page, lang) {
   const file = guideFile(page, lang);
-  if (!fs.existsSync(file)) throw new Error(`[${lang}] missing ${file}`);
-  const src = fs.readFileSync(file, 'utf8');
+  const src = guideSource(page, lang);
   if (/\bdata-i18n/.test(src)) {
     throw new Error(`${file}: a guide is written in its own language, so it takes no data-i18n`);
   }
@@ -657,7 +752,22 @@ function guideMain(page, lang) {
   const cut = src.indexOf(mark);
   if (cut < 0 || src.indexOf(mark, cut + 1) >= 0) throw new Error(`${file}: needs exactly one ${mark}`);
   const head = src.slice(0, cut).trim();
-  const body = src.slice(cut + mark.length).trim();
+  let body = src.slice(cut + mark.length).trim();
+  /* The short answer opens the article: the two or three sentences a search
+     snippet or an AI answer quotes. */
+  if (!body.startsWith('<div class="guide-answer">')) {
+    throw new Error(`${file}: the article opens with its <div class="guide-answer">`);
+  }
+  guideFaq(page, lang);
+  body = withAppLinks(body, lang, file);
+  /* On a phone the rail's offer is hidden, so the same line follows the short
+     answer there instead: the first screen of an article is where most
+     readers decide, and the next offer is otherwise far down the page. */
+  const s = tr[lang].strings;
+  const strip = `\n<p class="guide-inline-app">${esc(s.guide_app)} `
+    + `<a href="${APP_STORE}" target="_blank" rel="noopener">${esc(s.guide_cta)} <span aria-hidden="true">→</span></a></p>`;
+  const answerEnd = body.indexOf('\n</div>') + '\n</div>'.length;
+  body = body.slice(0, answerEnd) + strip + body.slice(answerEnd);
 
   /* The rail's contents, read off the article's own h2s. */
   const sections = [...body.matchAll(/<h2 id="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/g)];
@@ -766,6 +876,47 @@ ${entries}
   </url>
 </urlset>
 `);
+
+/* ── llms.txt ─────────────────────────────────────────────────────────────────
+
+   The llmstxt.org summary an AI assistant can read in one request: what the
+   app is, what it costs, and every guide with the line that says what it
+   answers. Built from the same strings as the pages, so it cannot drift. */
+{
+  const en = tr.en;
+  const line = (page, title, desc) => `- [${title}](${urlFor('en', page)}): ${desc}`;
+  const guides = PAGES.filter((p) => p.guide)
+    .map((p) => line(p, en.seo[`${p.id}Title`], en.seo[`${p.id}Description`]));
+  const facts = FAQ_NUMS.map((i) => `- **${en.strings[`faq_q${i}`]}** ${en.strings[`faq_a${i}`]}`);
+  const others = LANGS.filter((l) => l !== 'en')
+    .map((l) => `- ${LANG_LABELS[l]}: ${urlFor(l)} (guides: ${urlFor(l, GUIDES_INDEX)})`);
+  fs.writeFileSync('llms.txt', `# GoBag+
+
+> GoBag+ is an iPhone and iPad app for emergency preparedness: it builds a go bag (bug-out bag, 72-hour kit) in nine categories, tracks a home reserve of water, food and medicine sized to the household, warns before items expire, keeps emergency contacts one tap away offline and stores document copies in a Face ID vault. Made by GreDami. Download: ${APP_STORE}
+
+The site also publishes free, sourced guides to emergency preparedness — checklists and how-tos based on official guidance (Ready.gov, the American Red Cross, Germany's BBK and other national civil-protection agencies) — in seven languages.
+
+## App
+
+- [Home](${urlFor('en')}): ${en.seo.description}
+- [Pricing](${urlFor('en', PAGES.find((p) => p.id === 'pricing'))}): ${en.seo.pricingDescription}
+- [FAQ](${urlFor('en', PAGES.find((p) => p.id === 'faq'))}): ${en.seo.faqDescription}
+- [App Store](${APP_STORE}): GoBag+ on the App Store
+
+## Guides
+
+- [All guides](${urlFor('en', GUIDES_INDEX)}): ${en.seo.guidesDescription}
+${guides.join('\n')}
+
+## Facts about the app
+
+${facts.join('\n')}
+
+## Other languages
+
+${others.join('\n')}
+`);
+}
 
 /* The privacy page is not generated, but it carries blocks that must be
    byte-identical to the main page: the @font-face rules, the cookie banner CSS,

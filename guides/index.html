@@ -7,7 +7,7 @@
          accepts in the cookie banner. See loadGA()/setConsent() near the end. -->
     <!-- i18n:head:start -->
     <title>Go Bag &amp; Prep Kit Guides | GoBag+</title>
-    <meta name="description" content="Free go bag and emergency prep kit guides: a printable go bag checklist, how much water and food to store, which documents to copy, and how to keep it ready.">
+    <meta name="description" content="Free go bag and emergency prep guides: printable checklists for go bags, cars, pets, kids and first aid, power outage tips, family plans and water storage.">
     <meta name="keywords" content="go bag, bug-out bag, prep kit, prepper kit, emergency kit, 72-hour kit, survival kit, emergency preparedness, disaster kit app, GoBag">
     <link rel="canonical" href="https://gobag.gredami.com/guides/">
 
@@ -46,7 +46,7 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="Go Bag &amp; Prep Kit Guides | GoBag+">
-    <meta property="og:description" content="Free go bag and emergency prep kit guides: a printable go bag checklist, how much water and food to store, which documents to copy, and how to keep it ready.">
+    <meta property="og:description" content="Free go bag and emergency prep guides: printable checklists for go bags, cars, pets, kids and first aid, power outage tips, family plans and water storage.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gobag.gredami.com/guides/">
     <meta property="og:site_name" content="GoBag+">
@@ -67,7 +67,7 @@
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Go Bag &amp; Prep Kit Guides | GoBag+">
-    <meta name="twitter:description" content="Free go bag and emergency prep kit guides: a printable go bag checklist, how much water and food to store, which documents to copy, and how to keep it ready.">
+    <meta name="twitter:description" content="Free go bag and emergency prep guides: printable checklists for go bags, cars, pets, kids and first aid, power outage tips, family plans and water storage.">
     <meta name="twitter:image" content="https://gobag.gredami.com/screenshots/og.jpg">
     <meta name="twitter:site" content="@GreDamiStudio">
 
@@ -132,6 +132,54 @@
       "position": 6,
       "url": "https://gobag.gredami.com/guides/emergency-kit-maintenance/",
       "name": "Keeping your kit ready"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "url": "https://gobag.gredami.com/guides/power-outage-checklist/",
+      "name": "Power outage checklist"
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "url": "https://gobag.gredami.com/guides/car-emergency-kit/",
+      "name": "Car emergency kit"
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "url": "https://gobag.gredami.com/guides/pet-emergency-kit/",
+      "name": "Pet emergency kit"
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "url": "https://gobag.gredami.com/guides/go-bag-for-kids/",
+      "name": "Go bag for kids"
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "url": "https://gobag.gredami.com/guides/first-aid-kit-checklist/",
+      "name": "First aid kit checklist"
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "url": "https://gobag.gredami.com/guides/family-emergency-plan/",
+      "name": "Family emergency plan"
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "url": "https://gobag.gredami.com/guides/go-bag-hacks/",
+      "name": "Go bag hacks"
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "url": "https://gobag.gredami.com/guides/gobag-app-guide/",
+      "name": "How to use GoBag+"
     }
   ]
 }
@@ -1947,6 +1995,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1993,7 +2106,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2334,6 +2447,46 @@
         <li><a class="guide-card" href="/guides/emergency-kit-maintenance/">
             <h2>Keeping your kit ready</h2>
             <p>A six-month routine for checking expiry dates, rotating supplies and updating the bag as life changes.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/power-outage-checklist/">
+            <h2>Power outage checklist</h2>
+            <p>What to have before the lights go out, how long food lasts, and how to stay safe until the power returns.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/car-emergency-kit/">
+            <h2>Car emergency kit</h2>
+            <p>What to keep in the trunk for breakdowns, snow and closed roads, with winter and summer extras.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/pet-emergency-kit/">
+            <h2>Pet emergency kit</h2>
+            <p>A go bag for your dog or cat, and how to plan an evacuation with pets.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/go-bag-for-kids/">
+            <h2>Go bag for kids</h2>
+            <p>What to pack for babies and children, and how to prepare them without scaring them.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/first-aid-kit-checklist/">
+            <h2>First aid kit checklist</h2>
+            <p>What a home first aid kit holds, item by item, and how to keep it from expiring.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/family-emergency-plan/">
+            <h2>Family emergency plan</h2>
+            <p>Meeting places, an out-of-area contact and evacuation routes, written down on one page.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/go-bag-hacks/">
+            <h2>Go bag hacks</h2>
+            <p>Twenty small tricks that make an emergency bag lighter, drier, cheaper and quicker to grab.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/gobag-app-guide/">
+            <h2>How to use GoBag+</h2>
+            <p>Set up your go bag, home reserve, SOS contacts and document vault in ten minutes.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

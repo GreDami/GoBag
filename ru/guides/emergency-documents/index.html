@@ -109,7 +109,33 @@
   "mainEntityOfPage": "https://gobag.gredami.com/ru/guides/emergency-documents/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Памятки",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/ru/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "МЧС России",
+      "url": "https://mchs.gov.ru/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Американский Красный Крест: Survival Kit Supplies (на английском)",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/ru/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +150,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ru",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Класть ли оригиналы документов в тревожный чемоданчик?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет, копии. Потерять сумку с оригиналами хуже, чем не иметь ничего. Оригиналы храните в несгораемом и водонепроницаемом ящике или в банковской ячейке, а паспорт берите с собой, когда уходите."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Где безопасно хранить электронные копии документов?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "В хранилище, которое зашифровано, закрыто кодом или Face ID, доступно без интернета и имеет резервную копию. Фотоплёнка и почта не годятся: у того, кто попадёт в телефон или аккаунт, окажутся и они."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какие документы понадобятся первыми после ЧС?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Удостоверение личности, страховые полисы и подтверждение адреса. Их первыми спрашивают страховые компании и службы помощи — вместе с фотографиями жилья и имущества для заявления об ущербе."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как часто обновлять копии?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "При каждом изменении — новый паспорт, новый полис, рождение ребёнка, переезд — и при каждой полугодовой проверке набора."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2004,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2115,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2422,7 @@
             <p class="page-head-label"><a href="/ru/guides/" data-i18n="guides_label">Памятки</a></p>
             <h1>Документы <span>на случай ЧС</span></h1>
 <p class="page-head-lead">После катастрофы труднее всего восстановить бумаги. Что скопировать, где хранить и как держать всё в телефоне.</p>
-            <p class="guide-updated">Обновлено <time datetime="2026-10-22">22 октября 2026 г.</time></p>
+            <p class="guide-updated">Обновлено <time datetime="2026-11-13">13 ноября 2026 г.</time></p>
         </div>
     </div>
 </section>
@@ -2308,6 +2440,7 @@
                     <li><a href="#paper">Бумажные копии: в сумке и в сухости</a></li>
                     <li><a href="#digital">Электронные копии: зашифрованные и всегда с вами</a></li>
                     <li><a href="#update">Обновляйте их</a></li>
+                    <li><a href="#faq">Частые вопросы</a></li>
                     <li><a href="#sources">Источники</a></li>
                 </ul>
             </div>
@@ -2317,7 +2450,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>После пожара или наводнения почти всё можно купить заново. Документы — исключение. Без них долго доказывать, кто вы, что вам принадлежит и что покрывает страховка, — и именно тогда, когда нужно действовать быстро: подать заявление в страховую, оформить помощь, попасть к врачу. Копия каждого документа в тревожном чемоданчике и в телефоне превращает недели хождения по инстанциям в несколько дней.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Коротко</p>
+    <p>Скопируйте паспорта, свидетельства о рождении и браке, полис ОМС и страховые договоры, документы на жильё или договор аренды, медицинские сведения и бумажный список экстренных контактов. Бумажные копии держите в непромокаемом пакете в тревожном чемоданчике, оригиналы — в несгораемом ящике или банковской ячейке, а зашифрованные электронные копии — в телефоне, чтобы они открывались без интернета.</p>
+</div>
+<p class="guide-inline-app">GoBag+ превращает эту памятку в набор, за которым легко следить: количество под размер семьи и напоминание до истечения срока годности. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Попробовать GoBag+ бесплатно 30 дней <span aria-hidden="true">→</span></a></p>
+<p>После пожара или наводнения почти всё можно купить заново. Документы — исключение. Без них долго доказывать, кто вы, что вам принадлежит и что покрывает страховка, — и именно тогда, когда нужно действовать быстро: подать заявление в страховую, оформить помощь, попасть к врачу. Копия каждого документа в тревожном чемоданчике и в телефоне превращает недели хождения по инстанциям в несколько дней.</p>
 
 <h2 id="list">Какие документы скопировать</h2>
 <h3>Личность</h3>
@@ -2348,6 +2486,8 @@
     <li>Фото или видео каждой комнаты — для страховой</li>
 </ul>
 
+<p>Что ещё каждый в семье должен знать и иметь при себе — в <a href="/ru/guides/family-emergency-plan/">семейном плане на случай ЧС</a>.</p>
+
 <h2 id="paper">Бумажные копии: в сумке и в сухости</h2>
 <p>Держите комплект бумажных копий в водонепроницаемом пакете или пакете с застёжкой в тревожном чемоданчике. МЧС советует класть туда копии паспорта, водительского удостоверения, свидетельства о рождении и документов на недвижимость и машину, а также банковские карты и наличные.</p>
 <p>Копии, а не оригиналы: потерять сумку с оригиналами хуже, чем не иметь их с собой вовсе. Оригиналы, которые трудно восстановить, храните дома в огнестойком и влагозащищённом ящике или в банковской ячейке, а паспорта берите с собой, когда уходите.</p>
@@ -2361,11 +2501,24 @@
 </ul>
 <div class="guide-note is-app">
     <p><strong>Сейф документов в GoBag+</strong> хранит фото и PDF паспортов, удостоверений и страховых карт. Он открывается только по Face ID, файлы остаются на вашем устройстве, а при синхронизации идут через зашифрованный iCloud от Apple. Мы их никогда не видим.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Попробовать GoBag+ бесплатно 30 дней <span aria-hidden="true">→</span></a>
 </div>
 
 <h2 id="update">Обновляйте их</h2>
 <p>От копии просроченного паспорта мало толку. Обновляйте комплект при каждом изменении: новый паспорт, новая страховка, рождение ребёнка, переезд. И просматривайте его при каждой проверке набора раз в полгода — вместе с фотографиями детей.</p>
 <p>Дальше: <a href="/ru/guides/emergency-kit-maintenance/">как поддерживать в порядке остальной набор</a>.</p>
+
+<h2 id="faq">Частые вопросы</h2>
+<div class="guide-faq">
+    <h3>Класть ли оригиналы документов в тревожный чемоданчик?</h3>
+    <p>Нет, копии. Потерять сумку с оригиналами хуже, чем не иметь ничего. Оригиналы храните в несгораемом и водонепроницаемом ящике или в банковской ячейке, а паспорт берите с собой, когда уходите.</p>
+    <h3>Где безопасно хранить электронные копии документов?</h3>
+    <p>В хранилище, которое зашифровано, закрыто кодом или Face ID, доступно без интернета и имеет резервную копию. Фотоплёнка и почта не годятся: у того, кто попадёт в телефон или аккаунт, окажутся и они.</p>
+    <h3>Какие документы понадобятся первыми после ЧС?</h3>
+    <p>Удостоверение личности, страховые полисы и подтверждение адреса. Их первыми спрашивают страховые компании и службы помощи — вместе с фотографиями жилья и имущества для заявления об ущербе.</p>
+    <h3>Как часто обновлять копии?</h3>
+    <p>При каждом изменении — новый паспорт, новый полис, рождение ребёнка, переезд — и при каждой полугодовой проверке набора.</p>
+</div>
 
 <h2 id="sources">Источники</h2>
 <ul class="guide-sources">
@@ -2381,29 +2534,34 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Другие памятки</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/ru/guides/go-bag-checklist/">
-            <h3>Список для тревожного чемоданчика</h3>
-            <p>Всё, что нужно положить в тревожный чемоданчик, по девяти категориям, со списком для печати.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/ru/guides/go-bag-vs-bug-out-bag/">
-            <h3>Тревожный чемоданчик или рюкзак выживания</h3>
-            <p>Тревожный чемоданчик, рюкзак выживания, набор на 72 часа, запас дома: для чего каждый и что нужно вам.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/ru/guides/prep-kit-for-beginners/">
-            <h3>С чего начать подготовку к ЧС</h3>
-            <p>Шесть шагов от нуля до готовности: риски, семейный план, тревожный чемоданчик, запасы и их проверка.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/ru/guides/emergency-water-and-food/">
-            <h3>Запас воды и еды дома</h3>
-            <p>Сколько воды и еды держать дома на человека в день и что хранится дольше всего.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/ru/guides/emergency-kit-maintenance/">
             <h3>Как следить за запасами</h3>
             <p>Проверка раз в полгода: сроки годности, обновление запасов, вещи по сезону.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/power-outage-checklist/">
+            <h3>Если отключили электричество</h3>
+            <p>Что приготовить заранее, сколько хранятся продукты и как оставаться в безопасности, пока нет света.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/car-emergency-kit/">
+            <h3>Аварийный набор для машины</h3>
+            <p>Что возить в багажнике на случай поломки, снега и перекрытой дороги — зимой и летом.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/pet-emergency-kit/">
+            <h3>Тревожный набор для питомца</h3>
+            <p>Тревожный рюкзак для собаки или кошки и как эвакуироваться с животными.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/go-bag-for-kids/">
+            <h3>Тревожный рюкзак для детей</h3>
+            <p>Что собрать для малышей и детей постарше и как подготовить их, не напугав.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/ru/guides/first-aid-kit-checklist/">
+            <h3>Аптечка первой помощи</h3>
+            <p>Что должно быть в домашней аптечке, по пунктам, и как следить за сроками.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

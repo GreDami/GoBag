@@ -109,7 +109,33 @@
   "mainEntityOfPage": "https://gobag.gredami.com/es/guides/emergency-documents/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guías",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/es/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Cruz Roja estadounidense: Survival Kit Supplies (en inglés)",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Financial Preparedness (en inglés)",
+      "url": "https://www.ready.gov/financial-preparedness"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/es/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +150,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "es",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Meto los documentos originales en la mochila?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, copias. Perder una mochila llena de originales sería peor que no tener nada. Guarda los originales en una caja ignífuga e impermeable o en una caja de seguridad, y llévate el DNI y el pasaporte cuando salgas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Dónde guardo las copias digitales de forma segura?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En un almacenamiento cifrado, bloqueado con código o Face ID, disponible sin conexión y con copia de seguridad. La galería de fotos o el correo no sirven: quien entre en el móvil o en la cuenta las tendrá también."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué documentos se necesitan primero tras una catástrofe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un documento de identidad, las pólizas de seguro y un justificante de domicilio. Es lo primero que piden aseguradoras y servicios de ayuda, junto con fotos de la vivienda y tus cosas para el parte."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cada cuánto actualizo las copias?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cada vez que algo cambie (un DNI renovado, una póliza nueva, un bebé, una mudanza) y en cada revisión semestral del kit."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2004,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2115,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2422,7 @@
             <p class="page-head-label"><a href="/es/guides/" data-i18n="guides_label">Guías</a></p>
             <h1>Documentos <span>importantes</span></h1>
 <p class="page-head-lead">Tras una catástrofe, lo más difícil de reponer son los papeles. Qué copiar, dónde guardarlo y cómo llevarlo en el móvil.</p>
-            <p class="guide-updated">Actualizado el <time datetime="2026-10-22">22 de octubre de 2026</time></p>
+            <p class="guide-updated">Actualizado el <time datetime="2026-11-13">13 de noviembre de 2026</time></p>
         </div>
     </div>
 </section>
@@ -2308,6 +2440,7 @@
                     <li><a href="#paper">Copias en papel: en la mochila, a salvo del agua</a></li>
                     <li><a href="#digital">Copias digitales: cifradas y contigo</a></li>
                     <li><a href="#update">Mantenlos al día</a></li>
+                    <li><a href="#faq">Preguntas frecuentes</a></li>
                     <li><a href="#sources">Fuentes</a></li>
                 </ul>
             </div>
@@ -2317,7 +2450,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Después de un incendio o una inundación, casi todo se puede volver a comprar. Los papeles son la excepción. Sin ellos cuesta demostrar quién eres, qué tienes y qué cubre tu seguro, justo cuando hace falta ir rápido: para dar parte al seguro, pedir ayudas o ir al médico. Una copia de cada uno, en la mochila de emergencia y en el móvil, convierte semanas de trámites en unos días.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Respuesta corta</p>
+    <p>Copia el DNI y los pasaportes, los certificados de nacimiento y matrimonio, las pólizas de seguro, la escritura o el contrato de alquiler, tu información médica y una lista en papel de contactos de emergencia. Guarda las copias en papel en una funda impermeable dentro de la mochila, los originales en una caja ignífuga o en el banco, y copias digitales cifradas en el móvil que se abran sin conexión.</p>
+</div>
+<p class="guide-inline-app">GoBag+ convierte esta guía en un kit que puedes controlar: cantidades ajustadas a tu hogar y un aviso antes de que algo caduque. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prueba GoBag+ gratis 30 días <span aria-hidden="true">→</span></a></p>
+<p>Después de un incendio o una inundación, casi todo se puede volver a comprar. Los papeles son la excepción. Sin ellos cuesta demostrar quién eres, qué tienes y qué cubre tu seguro, justo cuando hace falta ir rápido: para dar parte al seguro, pedir ayudas o ir al médico. Una copia de cada uno, en la mochila de emergencia y en el móvil, convierte semanas de trámites en unos días.</p>
 
 <h2 id="list">Qué documentos copiar</h2>
 <h3>Identidad</h3>
@@ -2349,6 +2487,8 @@
     <li>Fotos o un vídeo de cada habitación de tu casa, para el seguro</li>
 </ul>
 
+<p>Lo demás que cada uno debe saber y llevar encima está en el <a href="/es/guides/family-emergency-plan/">plan familiar de emergencia</a>.</p>
+
 <h2 id="paper">Copias en papel: en la mochila, a salvo del agua</h2>
 <p>Guarda un juego de copias en papel en una funda impermeable o una bolsa con cierre dentro de la mochila de emergencia. La Cruz Roja estadounidense incluye las copias de los documentos personales, del pasaporte y las partidas de nacimiento a las pólizas de seguro y la escritura o el alquiler, en su kit básico.</p>
 <p>Copias, no originales: perder una mochila llena de originales sería peor que no tener ninguno. Guarda los originales difíciles de reponer en una caja ignífuga e impermeable en casa o en una caja de seguridad del banco, y llévate el DNI y el pasaporte cuando salgas.</p>
@@ -2362,11 +2502,24 @@
 </ul>
 <div class="guide-note is-app">
     <p><strong>La caja fuerte de documentos de GoBag+</strong> guarda fotos y PDF de tu DNI, pasaportes y tarjetas del seguro. Solo se abre con Face ID, los archivos se quedan en tu dispositivo y, cuando se sincronizan, viajan por el iCloud cifrado de Apple. Nosotros nunca los vemos.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prueba GoBag+ gratis 30 días <span aria-hidden="true">→</span></a>
 </div>
 
 <h2 id="update">Mantenlos al día</h2>
 <p>La copia de un pasaporte caducado sirve de poco. Actualiza el juego con cada cambio: un DNI renovado, una póliza nueva, un bebé, una mudanza. Y repásalo en cada revisión semestral del kit, junto con las fotos de los niños.</p>
 <p>Siguiente: <a href="/es/guides/emergency-kit-maintenance/">cómo mantener listo el resto del kit</a>.</p>
+
+<h2 id="faq">Preguntas frecuentes</h2>
+<div class="guide-faq">
+    <h3>¿Meto los documentos originales en la mochila?</h3>
+    <p>No, copias. Perder una mochila llena de originales sería peor que no tener nada. Guarda los originales en una caja ignífuga e impermeable o en una caja de seguridad, y llévate el DNI y el pasaporte cuando salgas.</p>
+    <h3>¿Dónde guardo las copias digitales de forma segura?</h3>
+    <p>En un almacenamiento cifrado, bloqueado con código o Face ID, disponible sin conexión y con copia de seguridad. La galería de fotos o el correo no sirven: quien entre en el móvil o en la cuenta las tendrá también.</p>
+    <h3>¿Qué documentos se necesitan primero tras una catástrofe?</h3>
+    <p>Un documento de identidad, las pólizas de seguro y un justificante de domicilio. Es lo primero que piden aseguradoras y servicios de ayuda, junto con fotos de la vivienda y tus cosas para el parte.</p>
+    <h3>¿Cada cuánto actualizo las copias?</h3>
+    <p>Cada vez que algo cambie (un DNI renovado, una póliza nueva, un bebé, una mudanza) y en cada revisión semestral del kit.</p>
+</div>
 
 <h2 id="sources">Fuentes</h2>
 <ul class="guide-sources">
@@ -2382,29 +2535,34 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Más guías</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/es/guides/go-bag-checklist/">
-            <h3>Lista de la mochila de emergencia</h3>
-            <p>Todo lo que debe llevar una mochila de emergencia, en nueve categorías, con una lista para imprimir.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/es/guides/go-bag-vs-bug-out-bag/">
-            <h3>Mochila de emergencia o bug-out bag</h3>
-            <p>Mochila de emergencia, bug-out bag, kit de 72 horas, reserva en casa: para qué sirve cada uno y cuál necesitas.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/es/guides/prep-kit-for-beginners/">
-            <h3>Kit de emergencia para principiantes</h3>
-            <p>Por dónde empezar: seis pasos, desde conocer tus riesgos hasta un kit que siempre esté listo.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/es/guides/emergency-water-and-food/">
-            <h3>Reservas de agua y comida</h3>
-            <p>Cuánta agua y comida guardar en casa, por persona y día, y qué dura más.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/es/guides/emergency-kit-maintenance/">
             <h3>Mantener el kit al día</h3>
             <p>Una rutina cada seis meses para revisar caducidades, rotar reservas y adaptar la mochila.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/power-outage-checklist/">
+            <h3>Qué hacer en un apagón</h3>
+            <p>Qué tener antes de que se vaya la luz, cuánto aguanta la comida y cómo estar seguro hasta que vuelva.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/car-emergency-kit/">
+            <h3>Kit de emergencia para el coche</h3>
+            <p>Qué llevar en el maletero para averías, nieve y carreteras cortadas, en invierno y en verano.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/pet-emergency-kit/">
+            <h3>Kit de emergencia para mascotas</h3>
+            <p>Una mochila de emergencia para tu perro o tu gato, y cómo evacuar con mascotas.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/go-bag-for-kids/">
+            <h3>Mochila de emergencia para niños</h3>
+            <p>Qué preparar para bebés y niños, y cómo prepararlos sin asustarlos.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/first-aid-kit-checklist/">
+            <h3>Lista del botiquín</h3>
+            <p>Qué lleva un botiquín en casa, artículo por artículo, y cómo mantenerlo al día.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

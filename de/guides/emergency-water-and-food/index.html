@@ -109,7 +109,43 @@
   "mainEntityOfPage": "https://gobag.gredami.com/de/guides/emergency-water-and-food/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Ratgeber",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/de/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Essen und Trinken bevorraten",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/So-koennen-Sie-sich-vorbereiten/Bevorraten/bevorraten_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ernährungsvorsorge: Vorratskalkulator",
+      "url": "https://www.ernaehrungsvorsorge.de/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Water (Englisch)",
+      "url": "https://www.ready.gov/water"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "USDA: Shelf-Stable Food Safety (Englisch)",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/shelf-stable-food"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/de/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +160,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "de",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie viel Wasser brauche ich für zehn Tage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei 2 Litern pro Person und Tag 20 Liter pro Person, 40 Liter für zwei und 80 Liter für vier. Für Körperpflege, Hitze, Kinder, Stillende, Kranke und Haustiere rechnest du mehr."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange ist gelagertes Wasser haltbar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gekauftes Mineralwasser hält bis zum Datum auf dem Etikett, solange die Flasche verschlossen bleibt. Selbst abgefülltes Wasser in sauberen, lebensmittelechten Behältern tauschst du alle sechs Monate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Lebensmittel eignen sich für den Notvorrat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Was dein Haushalt ohnehin isst, ohne Kühlschrank hält und wenig oder kein Kochen braucht: Konserven mit Fleisch, Fisch, Hülsenfrüchten und Gemüse, Nüsse, Zwieback, Haferflocken und H-Milch. Der Vorratskalkulator auf ernaehrungsvorsorge.de hilft beim Rechnen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange halten Konserven?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nach Angaben des US-Landwirtschaftsministeriums säurearme Konserven wie Fleisch, Fisch und die meisten Gemüse 2 bis 5 Jahre, säurehaltige wie Tomaten und Obst 12 bis 18 Monate, wenn die Dosen unbeschädigt sind und kühl und trocken stehen."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2014,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2125,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2432,7 @@
             <p class="page-head-label"><a href="/de/guides/" data-i18n="guides_label">Ratgeber</a></p>
             <h1>Notvorrat: <span>Wasser und Essen</span></h1>
 <p class="page-head-lead">Wie viel du zu Hause brauchst, damit dein Haushalt zehn Tage ohne Einkauf auskommt, pro Person gerechnet, und was sich am längsten hält.</p>
-            <p class="guide-updated">Aktualisiert am <time datetime="2026-10-22">22. Oktober 2026</time></p>
+            <p class="guide-updated">Aktualisiert am <time datetime="2026-11-13">13. November 2026</time></p>
         </div>
     </div>
 </section>
@@ -2309,6 +2451,7 @@
                     <li><a href="#shelf-life">Wie lange es hält</a></li>
                     <li><a href="#rotate">Umwälzen statt wegwerfen</a></li>
                     <li><a href="#more">Mehr als Wasser und Essen</a></li>
+                    <li><a href="#faq">Häufige Fragen</a></li>
                     <li><a href="#sources">Quellen</a></li>
                 </ul>
             </div>
@@ -2318,7 +2461,14 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Die meisten Notfälle sind keine Evakuierungen. Ein Sturm legt den Strom lahm, das Leitungswasser muss eine Woche abgekocht werden, Straßen sind gesperrt und die Regale leer. Dann zählt, was du schon zu Hause hast. Das BBK empfiehlt, sich <strong>möglichst zehn Tage</strong> selbst versorgen zu können; schon ein Vorrat für mindestens drei Tage hilft sehr.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Kurz gesagt</p>
+    <p>Das BBK empfiehlt, sich möglichst zehn Tage selbst versorgen zu können, mit 2 Litern pro Person und Tag zum Trinken und Kochen: 20 Liter pro Person, 80 Liter für eine vierköpfige Familie. Dazu kommt Essen, das ihr ohnehin esst, ohne Kühlschrank hält und wenig Kochen braucht, etwa 2.000 Kilokalorien pro Erwachsenem und Tag. Umwälzen, damit nichts abläuft.</p>
+</div>
+<p class="guide-inline-app">GoBag+ macht aus diesem Ratgeber eine Ausrüstung, die du im Blick behältst: Mengen passend zu deinem Haushalt und eine Erinnerung, bevor etwas abläuft. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a></p>
+<p>Die meisten Notfälle sind keine Evakuierungen. Ein Sturm legt den Strom lahm, das Leitungswasser muss eine Woche abgekocht werden, Straßen sind gesperrt und die Regale leer. Dann zählt, was du schon zu Hause hast. Das BBK empfiehlt, sich <strong>möglichst zehn Tage</strong> selbst versorgen zu können; schon ein Vorrat für mindestens drei Tage hilft sehr.</p>
+
+<p>Fällt der Strom aus, steht in der <a href="/de/guides/power-outage-checklist/">Checkliste Stromausfall</a>, was mit Kühlschrank und Gefriertruhe zu tun ist.</p>
 
 <h2 id="water">Wie viel Wasser du brauchst</h2>
 <p>Laut BBK braucht ein Erwachsener <strong>mindestens 1,5 Liter Flüssigkeit am Tag</strong>; wer kochen will, plant einen halben Liter Wasser zusätzlich ein. Das sind 2 Liter pro Person und Tag. Für Kinder, Stillende, Kranke und bei Hitze rechnest du mehr, und Haustiere brauchen ihr eigenes Wasser.</p>
@@ -2383,6 +2533,19 @@
 <p>Zum Vorrat für zu Hause gehören auch Taschenlampen und Batterien, ein Radio mit Batterie oder Kurbel, eine Hausapotheke mit deinen Medikamenten, Müllbeutel und Toilettenpapier, etwas Bargeld, warme Decken und eine Möglichkeit, Handys zu laden. Die <a href="/de/guides/go-bag-checklist/">Checkliste Notfallrucksack</a> enthält, was beide gemeinsam haben.</p>
 <div class="guide-note is-app">
     <p><strong>In GoBag+</strong> führt der Vorrat für zu Hause Wasser, Essen und Medikamente mit einem Mindestbestand pro Person. Ändert sich die Größe deines Haushalts, ziehen die Mengen mit; mit Premium erinnert dich die App, bevor etwas abläuft oder knapp wird.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Häufige Fragen</h2>
+<div class="guide-faq">
+    <h3>Wie viel Wasser brauche ich für zehn Tage?</h3>
+    <p>Bei 2 Litern pro Person und Tag 20 Liter pro Person, 40 Liter für zwei und 80 Liter für vier. Für Körperpflege, Hitze, Kinder, Stillende, Kranke und Haustiere rechnest du mehr.</p>
+    <h3>Wie lange ist gelagertes Wasser haltbar?</h3>
+    <p>Gekauftes Mineralwasser hält bis zum Datum auf dem Etikett, solange die Flasche verschlossen bleibt. Selbst abgefülltes Wasser in sauberen, lebensmittelechten Behältern tauschst du alle sechs Monate.</p>
+    <h3>Welche Lebensmittel eignen sich für den Notvorrat?</h3>
+    <p>Was dein Haushalt ohnehin isst, ohne Kühlschrank hält und wenig oder kein Kochen braucht: Konserven mit Fleisch, Fisch, Hülsenfrüchten und Gemüse, Nüsse, Zwieback, Haferflocken und H-Milch. Der Vorratskalkulator auf ernaehrungsvorsorge.de hilft beim Rechnen.</p>
+    <h3>Wie lange halten Konserven?</h3>
+    <p>Nach Angaben des US-Landwirtschaftsministeriums säurearme Konserven wie Fleisch, Fisch und die meisten Gemüse 2 bis 5 Jahre, säurehaltige wie Tomaten und Obst 12 bis 18 Monate, wenn die Dosen unbeschädigt sind und kühl und trocken stehen.</p>
 </div>
 
 <h2 id="sources">Quellen</h2>
@@ -2401,21 +2564,6 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Weitere Ratgeber</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/de/guides/go-bag-checklist/">
-            <h3>Checkliste Notfallrucksack</h3>
-            <p>Alles, was in den Notfallrucksack gehört, in neun Kategorien, mit Liste zum Ausdrucken.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/de/guides/go-bag-vs-bug-out-bag/">
-            <h3>Notfallrucksack oder Fluchtrucksack?</h3>
-            <p>Notfallrucksack, Fluchtrucksack, 72-Stunden-Kit, Notvorrat: wofür jedes gut ist und was du brauchst.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/de/guides/prep-kit-for-beginners/">
-            <h3>Notfallvorsorge für Einsteiger</h3>
-            <p>Sechs Schritte von null zu vorbereitet: Risiken kennen, Notfallplan, Notgepäck, Vorrat und Pflege.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/de/guides/emergency-documents/">
             <h3>Wichtige Dokumente</h3>
             <p>Welche Unterlagen in die Dokumentenmappe gehören und wie du Kopien sicher, trocken und griffbereit hältst.</p>
@@ -2424,6 +2572,26 @@
         <li><a class="guide-card" href="/de/guides/emergency-kit-maintenance/">
             <h3>Ausrüstung aktuell halten</h3>
             <p>Eine Routine alle sechs Monate: Haltbarkeit prüfen, Vorrat umwälzen, Rucksack anpassen.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/power-outage-checklist/">
+            <h3>Checkliste Stromausfall</h3>
+            <p>Was du parat haben solltest, wie lange Lebensmittel halten und wie du sicher bleibst, bis der Strom zurück ist.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/car-emergency-kit/">
+            <h3>Notfallausrüstung fürs Auto</h3>
+            <p>Was für Panne, Schnee und gesperrte Straßen in den Kofferraum gehört, im Winter wie im Sommer.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/pet-emergency-kit/">
+            <h3>Notfallausrüstung für Haustiere</h3>
+            <p>Ein Notfallrucksack für Hund oder Katze, und wie du mit Tieren evakuierst.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/go-bag-for-kids/">
+            <h3>Notfallrucksack für Kinder</h3>
+            <p>Was du für Babys und Kinder einpackst, und wie du sie vorbereitest, ohne Angst zu machen.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

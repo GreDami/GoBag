@@ -4,7 +4,7 @@ Static site for <https://gobag.gredami.com>, served from GitHub Pages.
 
 ## Pages and languages
 
-Home, pricing, FAQ and the guides — an index and six articles — in seven
+Home, pricing, FAQ and the guides — an index and fourteen articles — in seven
 languages. Each language is its
 own URL, with the copy already in the HTML — no runtime translation. That is
 what lets Google index and rank all seven separately; before, all seven shared
@@ -106,6 +106,37 @@ lists get bullets, `<ul class="checklist">` gets boxes to tick (and prints
 that way), and `.guide-note.is-app` is the "In GoBag+" box. Anything the
 article says the app does has to match what the FAQ says — expiry alerts and
 the widget are Premium.
+
+Every guide has the same parts, and the build fails on a guide without them:
+
+- **A short answer first.** The article opens with
+  `<div class="guide-answer">`: a label and two or three sentences that answer
+  the title's question outright. It is what a search snippet or an AI answer
+  quotes, so it carries the article's key figures. On a phone the build puts
+  the app line (`guide_app` + `guide_cta`) right after it, since the rail's
+  offer is hidden there.
+- **Questions at the foot.** `<h2 id="faq">` followed by
+  `<div class="guide-faq">` of `<h3>` question / one `<p>` answer pairs, at
+  least three. The page's `FAQPage` structured data is built from them, so
+  the markup is exactly what the reader sees.
+- **At least one "In GoBag+" box** (`.guide-note.is-app`). The build adds the
+  App Store button to every one of them; do not write the link by hand.
+- **Sources** in `<ul class="guide-sources">`. They become the `citation`
+  list of the `Article` markup, which also names the app (`mentions`).
+- App screens go in `<figure class="guide-shot">` with an `<img>` from
+  `/screenshots/` and a caption (see the GoBag+ guide).
+
+Under each guide the cards show the next six guides in `GUIDES` order,
+wrapping round, so every guide is linked from the same number of others; the
+index shows all of them.
+
+The build also writes `llms.txt` at the root, the llmstxt.org summary an AI
+assistant can read in one request: what the app is, every guide with its
+description, and the FAQ's answers.
+
+After a push has been published, `npm run indexnow` tells Bing and the other
+IndexNow engines which URLs changed (`-- --since YYYY-MM-DD` for only the
+recent ones). The key is the `<32 hex>.txt` file at the root; keep it there.
 
 The band's "Updated" date, `Article` structured data and the sitemap's
 `lastmod` come from git: the date the file was first committed and last

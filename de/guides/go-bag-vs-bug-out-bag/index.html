@@ -109,7 +109,43 @@
   "mainEntityOfPage": "https://gobag.gredami.com/de/guides/go-bag-vs-bug-out-bag/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-11-02",
+  "dateModified": "2026-11-13",
+  "articleSection": "Ratgeber",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/de/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Notgepäck",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/So-koennen-Sie-sich-vorbereiten/Notgepaeck/notgepaeck_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Essen und Trinken bevorraten",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/So-koennen-Sie-sich-vorbereiten/Bevorraten/bevorraten_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Europäische Kommission: Krisenvorsorge",
+      "url": "https://commission.europa.eu/topics/preparedness_de"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (Englisch)",
+      "url": "https://www.ready.gov/kit"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/de/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +160,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "de",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ist ein Notfallrucksack dasselbe wie ein Fluchtrucksack?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Weitgehend. Beide sind dafür da, schnell zu gehen und ein paar Tage durchzuhalten. Der Fluchtrucksack, der Bug-out-Bag der Prepper, trägt mehr fürs Durchkommen ohne Hilfe: Plane oder Zelt, Kocher und mehr Möglichkeiten, Wasser trinkbar zu machen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist ein 72-Stunden-Kit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Name, den viele Behörden denselben drei Tagen Vorrat geben. Die Europäische Kommission setzt seit 2025 das Ziel, dass sich die Bevölkerung mindestens 72 Stunden selbst versorgen kann."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen Notfallrucksack und Notfalltasche fürs Auto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Notfallrucksack bringt dich aus dem Haus, die Tasche im Auto oder Büro bringt dich zurück. Sie reicht für etwa einen Tag: Wasser, Snacks, bequeme Schuhe, Taschenlampe, Powerbank und Erste-Hilfe-Material."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Womit fange ich an?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mit einem Notfallrucksack pro Person und einem Vorrat an Wasser und Essen für zu Hause. Fährst du viel oder pendelst weit, kommt eine Tasche fürs Auto dazu."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2014,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2125,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2432,7 @@
             <p class="page-head-label"><a href="/de/guides/" data-i18n="guides_label">Ratgeber</a></p>
             <h1>Notfallrucksack oder <span>Fluchtrucksack?</span></h1>
 <p class="page-head-lead">Sechs Namen für Notfallausrüstung, und was sie wirklich unterscheidet, damit du die packst, die dein Haushalt braucht, und nicht alle.</p>
-            <p class="guide-updated">Aktualisiert am <time datetime="2026-11-02">2. November 2026</time></p>
+            <p class="guide-updated">Aktualisiert am <time datetime="2026-11-13">13. November 2026</time></p>
         </div>
     </div>
 </section>
@@ -2312,6 +2454,7 @@
                     <li><a href="#get-home-bag">Notfalltasche für Auto oder Büro</a></li>
                     <li><a href="#home-kit">Notvorrat: wenn du bleibst</a></li>
                     <li><a href="#which">Was brauchst du?</a></li>
+                    <li><a href="#faq">Häufige Fragen</a></li>
                     <li><a href="#sources">Quellen</a></li>
                 </ul>
             </div>
@@ -2321,7 +2464,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Frag fünf Leute, wie man eine Notfallausrüstung nennt, und du hörst fünf Namen. Manche meinen dasselbe unter anderem Etikett, andere sind wirklich verschiedene Ausrüstungen für verschiedene Lagen. Am Ende geht es um zwei Fragen: Gehst du oder bleibst du, und wie lange?</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Kurz gesagt</p>
+    <p>Notfallrucksack, Fluchtrucksack und 72-Stunden-Kit meinen fast dasselbe: einen Rucksack, mit dem du schnell aus dem Haus kommst und ein paar Tage auskommst. Der Fluchtrucksack rechnet mit weniger Hilfe und packt Unterschlupf und Wasseraufbereitung dazu. Wirklich anders sind die Notfalltasche für Auto oder Büro, die dich nach Hause bringt, und der Notvorrat, mit dem du laut BBK bis zu zehn Tage zu Hause bleiben kannst.</p>
+</div>
+<p class="guide-inline-app">GoBag+ macht aus diesem Ratgeber eine Ausrüstung, die du im Blick behältst: Mengen passend zu deinem Haushalt und eine Erinnerung, bevor etwas abläuft. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a></p>
+<p>Frag fünf Leute, wie man eine Notfallausrüstung nennt, und du hörst fünf Namen. Manche meinen dasselbe unter anderem Etikett, andere sind wirklich verschiedene Ausrüstungen für verschiedene Lagen. Am Ende geht es um zwei Fragen: Gehst du oder bleibst du, und wie lange?</p>
 
 <h2 id="short-answer">Die kurze Antwort</h2>
 <p>Für die meisten sind <strong>Notfallrucksack</strong>, <strong>Fluchtrucksack</strong> (englisch Bug-out-Bag) und <strong>72-Stunden-Kit</strong> dieselbe Idee: ein Rucksack, mit dem du schnell aus dem Haus kommst und ein paar Tage auskommst. Das BBK spricht vom Notgepäck, Prepper vom Fluchtrucksack, und 72 Stunden ist die Zeitspanne, mit der die EU rechnet. Wirklich anders sind die <strong>Notfalltasche für Auto oder Büro</strong> und der <strong>Notvorrat</strong> zu Hause, der gar keine Tasche ist.</p>
@@ -2354,6 +2502,7 @@
 
 <h2 id="get-home-bag">Notfalltasche für Auto oder Büro</h2>
 <p>Notfälle warten nicht, bis du zu Hause bist. Eine Get-Home-Bag liegt im Auto oder unter dem Schreibtisch und soll dich nach Hause bringen: Wasser und Snacks, bequeme Schuhe, Regenponcho, Taschenlampe, Powerbank, etwas Bargeld, eine Papierkarte, Erste-Hilfe-Material und deine täglichen Medikamente. Die US-Behörde Ready.gov rät, darauf vorbereitet zu sein, mindestens 24 Stunden am Arbeitsplatz zu bleiben, und eine Ausrüstung im Auto zu haben, falls du liegen bleibst.</p>
+<p>Die <a href="/de/guides/car-emergency-kit/">Checkliste Notfallausrüstung fürs Auto</a> listet sie Stück für Stück.</p>
 
 <h2 id="home-kit">Notvorrat: wenn du bleibst</h2>
 <p>Die meisten Notfälle schicken dich nirgendwohin. Ein Sturm legt tagelang den Strom lahm, das Leitungswasser muss eine Woche abgekocht werden, Straßen sind gesperrt. Dann zählt, was du schon zu Hause hast. Das BBK empfiehlt, sich möglichst zehn Tage selbst versorgen zu können, mindestens aber drei; der Ratgeber <a href="/de/guides/emergency-water-and-food/">Notvorrat: Wasser und Essen</a> rechnet aus, was das für deinen Haushalt heißt.</p>
@@ -2366,6 +2515,19 @@
 </ul>
 <div class="guide-note is-app">
     <p><strong>In GoBag+</strong> stehen Notfallrucksäcke und Vorrat nebeneinander: ein Rucksack pro Person oder pro Auto, und dein Vorrat zu Hause mit Mindestbeständen passend zur Haushaltsgröße. Beides gehört zu Premium, und den ersten Monat testest du kostenlos.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Häufige Fragen</h2>
+<div class="guide-faq">
+    <h3>Ist ein Notfallrucksack dasselbe wie ein Fluchtrucksack?</h3>
+    <p>Weitgehend. Beide sind dafür da, schnell zu gehen und ein paar Tage durchzuhalten. Der Fluchtrucksack, der Bug-out-Bag der Prepper, trägt mehr fürs Durchkommen ohne Hilfe: Plane oder Zelt, Kocher und mehr Möglichkeiten, Wasser trinkbar zu machen.</p>
+    <h3>Was ist ein 72-Stunden-Kit?</h3>
+    <p>Der Name, den viele Behörden denselben drei Tagen Vorrat geben. Die Europäische Kommission setzt seit 2025 das Ziel, dass sich die Bevölkerung mindestens 72 Stunden selbst versorgen kann.</p>
+    <h3>Was ist der Unterschied zwischen Notfallrucksack und Notfalltasche fürs Auto?</h3>
+    <p>Der Notfallrucksack bringt dich aus dem Haus, die Tasche im Auto oder Büro bringt dich zurück. Sie reicht für etwa einen Tag: Wasser, Snacks, bequeme Schuhe, Taschenlampe, Powerbank und Erste-Hilfe-Material.</p>
+    <h3>Womit fange ich an?</h3>
+    <p>Mit einem Notfallrucksack pro Person und einem Vorrat an Wasser und Essen für zu Hause. Fährst du viel oder pendelst weit, kommt eine Tasche fürs Auto dazu.</p>
 </div>
 
 <h2 id="sources">Quellen</h2>
@@ -2384,11 +2546,6 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Weitere Ratgeber</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/de/guides/go-bag-checklist/">
-            <h3>Checkliste Notfallrucksack</h3>
-            <p>Alles, was in den Notfallrucksack gehört, in neun Kategorien, mit Liste zum Ausdrucken.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/de/guides/prep-kit-for-beginners/">
             <h3>Notfallvorsorge für Einsteiger</h3>
             <p>Sechs Schritte von null zu vorbereitet: Risiken kennen, Notfallplan, Notgepäck, Vorrat und Pflege.</p>
@@ -2407,6 +2564,16 @@
         <li><a class="guide-card" href="/de/guides/emergency-kit-maintenance/">
             <h3>Ausrüstung aktuell halten</h3>
             <p>Eine Routine alle sechs Monate: Haltbarkeit prüfen, Vorrat umwälzen, Rucksack anpassen.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/power-outage-checklist/">
+            <h3>Checkliste Stromausfall</h3>
+            <p>Was du parat haben solltest, wie lange Lebensmittel halten und wie du sicher bleibst, bis der Strom zurück ist.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/car-emergency-kit/">
+            <h3>Notfallausrüstung fürs Auto</h3>
+            <p>Was für Panne, Schnee und gesperrte Straßen in den Kofferraum gehört, im Winter wie im Sommer.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

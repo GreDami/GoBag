@@ -109,7 +109,33 @@
   "mainEntityOfPage": "https://gobag.gredami.com/de/guides/emergency-documents/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Ratgeber",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/de/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Dokumente sichern",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/So-koennen-Sie-sich-vorbereiten/Dokumente-sichern/dokumente-sichern_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Notgepäck",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/So-koennen-Sie-sich-vorbereiten/Notgepaeck/notgepaeck_node.html"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/de/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +150,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "de",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Originale oder Kopien in die Dokumentenmappe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das BBK unterscheidet: Familienurkunden im Original, Policen, Kontoverträge und Zeugnisse im Original oder beglaubigt, Ausweise, Führerschein und Fahrzeugpapiere als einfache Kopie. Ausweis und Reisepass selbst nimmst du bei einer Evakuierung ohnehin mit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wo bewahre ich digitale Kopien sicher auf?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In einem Speicher, der verschlüsselt ist, mit Code oder Face ID gesperrt, offline erreichbar und gesichert. Die Fotogalerie oder das E-Mail-Postfach sind der falsche Ort: Wer an Handy oder Konto kommt, hat sie auch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Dokumente braucht man nach einer Katastrophe zuerst?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Einen Identitätsnachweis, die Versicherungspolicen und einen Adressnachweis. Danach fragen Versicherungen und Hilfsstellen zuerst, dazu nach Fotos der Wohnung und deines Besitzes für die Schadensmeldung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie oft sollte ich die Mappe aktualisieren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bei jeder Änderung, etwa einem neuen Ausweis, einer neuen Police, einem Baby oder einem Umzug, und bei jeder Halbjahresprüfung deiner Ausrüstung."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2004,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2115,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2422,7 @@
             <p class="page-head-label"><a href="/de/guides/" data-i18n="guides_label">Ratgeber</a></p>
             <h1>Wichtige <span>Dokumente</span></h1>
 <p class="page-head-lead">Nach einer Katastrophe ist Papier am schwersten zu ersetzen. Was du kopieren solltest, wo du es aufbewahrst und wie du es aufs Handy bekommst.</p>
-            <p class="guide-updated">Aktualisiert am <time datetime="2026-10-22">22. Oktober 2026</time></p>
+            <p class="guide-updated">Aktualisiert am <time datetime="2026-11-13">13. November 2026</time></p>
         </div>
     </div>
 </section>
@@ -2308,6 +2440,7 @@
                     <li><a href="#paper">Papier: Original, beglaubigt oder Kopie</a></li>
                     <li><a href="#digital">Digitale Kopien: verschlüsselt und immer dabei</a></li>
                     <li><a href="#update">Aktuell halten</a></li>
+                    <li><a href="#faq">Häufige Fragen</a></li>
                     <li><a href="#sources">Quellen</a></li>
                 </ul>
             </div>
@@ -2317,7 +2450,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Nach einem Brand oder Hochwasser lässt sich das meiste neu kaufen. Dokumente nicht. Ohne sie dauert es lange, zu beweisen, wer du bist, was dir gehört und wofür du versichert bist, und das genau dann, wenn es schnell gehen muss: beim Schaden an die Versicherung, beim Antrag auf Hilfe, beim Arztbesuch. Das BBK sagt es knapp: Wichtige Unterlagen sind oft schwer wiederzubeschaffen, wenn sie einmal verloren sind. Eine Kopie von allem, in der Dokumentenmappe und auf dem Handy, macht aus Wochen Papierkram ein paar Tage.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Kurz gesagt</p>
+    <p>In die Dokumentenmappe gehören laut BBK Familienurkunden wie Geburts- und Heiratsurkunde im Original, Versicherungspolicen, Kontoverträge und Zeugnisse im Original oder als beglaubigte Kopie, und von Personalausweis, Reisepass, Führerschein und Fahrzeugpapieren eine einfache Kopie. Die Mappe liegt griffbereit in einer wasserdichten Hülle; dazu kommen verschlüsselte digitale Kopien auf dem Handy, die auch offline aufgehen.</p>
+</div>
+<p class="guide-inline-app">GoBag+ macht aus diesem Ratgeber eine Ausrüstung, die du im Blick behältst: Mengen passend zu deinem Haushalt und eine Erinnerung, bevor etwas abläuft. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a></p>
+<p>Nach einem Brand oder Hochwasser lässt sich das meiste neu kaufen. Dokumente nicht. Ohne sie dauert es lange, zu beweisen, wer du bist, was dir gehört und wofür du versichert bist, und das genau dann, wenn es schnell gehen muss: beim Schaden an die Versicherung, beim Antrag auf Hilfe, beim Arztbesuch. Das BBK sagt es knapp: Wichtige Unterlagen sind oft schwer wiederzubeschaffen, wenn sie einmal verloren sind. Eine Kopie von allem, in der Dokumentenmappe und auf dem Handy, macht aus Wochen Papierkram ein paar Tage.</p>
 
 <h2 id="list">Welche Dokumente in die Mappe gehören</h2>
 <h3>Identität</h3>
@@ -2349,6 +2487,8 @@
     <li>Fotos oder ein Video jedes Zimmers, für die Hausratversicherung</li>
 </ul>
 
+<p>Was sonst alle im Haushalt wissen und dabeihaben sollten, steht im <a href="/de/guides/family-emergency-plan/">Notfallplan für die Familie</a>.</p>
+
 <h2 id="paper">Papier: Original, beglaubigt oder Kopie</h2>
 <p>Das BBK unterscheidet drei Fälle. Familienurkunden wie Geburts- und Heiratsurkunden gehören als Original in die Mappe. Sparbücher, Kontoverträge, Versicherungspolicen und Zeugnisse im Original oder als beglaubigte Kopie. Bei Personalausweis, Reisepass, Führerschein und Fahrzeugpapieren reicht eine einfache Kopie.</p>
 <p>Die Dokumentenmappe liegt griffbereit an einem festen Platz, den alle im Haushalt kennen, am besten in einer wasserdichten Hülle. Bei einer Evakuierung nimmst du sie mit, dazu Ausweis, Bargeld und Karten, Krankenversicherungskarte, Impfpass, Schlüssel und Handy. Ein zweiter Satz Kopien kann bei Verwandten, Freunden oder in einem Bankschließfach liegen.</p>
@@ -2362,11 +2502,24 @@
 </ul>
 <div class="guide-note is-app">
     <p><strong>Der Dokumententresor in GoBag+</strong> bewahrt Fotos und PDFs deiner Ausweise, Reisepässe und Versicherungskarten auf. Er öffnet sich nur mit Face ID, die Dateien bleiben auf deinem Gerät und laufen beim Synchronisieren über Apples verschlüsselte iCloud. Wir sehen sie nie.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a>
 </div>
 
 <h2 id="update">Aktuell halten</h2>
 <p>Die Kopie eines abgelaufenen Reisepasses hilft wenig. Aktualisiere die Mappe bei jeder Änderung: ein neuer Ausweis, eine neue Versicherung, ein Baby, ein Umzug. Und sieh sie bei jeder halbjährlichen Prüfung der Ausrüstung durch, zusammen mit den Fotos der Kinder.</p>
 <p>Weiter: <a href="/de/guides/emergency-kit-maintenance/">So hältst du die übrige Ausrüstung aktuell</a>.</p>
+
+<h2 id="faq">Häufige Fragen</h2>
+<div class="guide-faq">
+    <h3>Originale oder Kopien in die Dokumentenmappe?</h3>
+    <p>Das BBK unterscheidet: Familienurkunden im Original, Policen, Kontoverträge und Zeugnisse im Original oder beglaubigt, Ausweise, Führerschein und Fahrzeugpapiere als einfache Kopie. Ausweis und Reisepass selbst nimmst du bei einer Evakuierung ohnehin mit.</p>
+    <h3>Wo bewahre ich digitale Kopien sicher auf?</h3>
+    <p>In einem Speicher, der verschlüsselt ist, mit Code oder Face ID gesperrt, offline erreichbar und gesichert. Die Fotogalerie oder das E-Mail-Postfach sind der falsche Ort: Wer an Handy oder Konto kommt, hat sie auch.</p>
+    <h3>Welche Dokumente braucht man nach einer Katastrophe zuerst?</h3>
+    <p>Einen Identitätsnachweis, die Versicherungspolicen und einen Adressnachweis. Danach fragen Versicherungen und Hilfsstellen zuerst, dazu nach Fotos der Wohnung und deines Besitzes für die Schadensmeldung.</p>
+    <h3>Wie oft sollte ich die Mappe aktualisieren?</h3>
+    <p>Bei jeder Änderung, etwa einem neuen Ausweis, einer neuen Police, einem Baby oder einem Umzug, und bei jeder Halbjahresprüfung deiner Ausrüstung.</p>
+</div>
 
 <h2 id="sources">Quellen</h2>
 <ul class="guide-sources">
@@ -2382,29 +2535,34 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Weitere Ratgeber</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/de/guides/go-bag-checklist/">
-            <h3>Checkliste Notfallrucksack</h3>
-            <p>Alles, was in den Notfallrucksack gehört, in neun Kategorien, mit Liste zum Ausdrucken.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/de/guides/go-bag-vs-bug-out-bag/">
-            <h3>Notfallrucksack oder Fluchtrucksack?</h3>
-            <p>Notfallrucksack, Fluchtrucksack, 72-Stunden-Kit, Notvorrat: wofür jedes gut ist und was du brauchst.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/de/guides/prep-kit-for-beginners/">
-            <h3>Notfallvorsorge für Einsteiger</h3>
-            <p>Sechs Schritte von null zu vorbereitet: Risiken kennen, Notfallplan, Notgepäck, Vorrat und Pflege.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/de/guides/emergency-water-and-food/">
-            <h3>Notvorrat: Wasser und Essen</h3>
-            <p>Wie viel Wasser und Essen du für zehn Tage brauchst, pro Person, und was sich am längsten hält.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/de/guides/emergency-kit-maintenance/">
             <h3>Ausrüstung aktuell halten</h3>
             <p>Eine Routine alle sechs Monate: Haltbarkeit prüfen, Vorrat umwälzen, Rucksack anpassen.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/power-outage-checklist/">
+            <h3>Checkliste Stromausfall</h3>
+            <p>Was du parat haben solltest, wie lange Lebensmittel halten und wie du sicher bleibst, bis der Strom zurück ist.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/car-emergency-kit/">
+            <h3>Notfallausrüstung fürs Auto</h3>
+            <p>Was für Panne, Schnee und gesperrte Straßen in den Kofferraum gehört, im Winter wie im Sommer.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/pet-emergency-kit/">
+            <h3>Notfallausrüstung für Haustiere</h3>
+            <p>Ein Notfallrucksack für Hund oder Katze, und wie du mit Tieren evakuierst.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/go-bag-for-kids/">
+            <h3>Notfallrucksack für Kinder</h3>
+            <p>Was du für Babys und Kinder einpackst, und wie du sie vorbereitest, ohne Angst zu machen.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/first-aid-kit-checklist/">
+            <h3>Checkliste Hausapotheke</h3>
+            <p>Was in die Hausapotheke gehört, Stück für Stück, und wie du sie aktuell hältst.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

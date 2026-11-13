@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/pt/guides/prep-kit-for-beginners/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guias",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/pt/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "ANEPC: Autoridade Nacional de Emergência e Proteção Civil",
+      "url": "https://prociv.gov.pt/"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Comissão Europeia: preparação para crises",
+      "url": "https://commission.europa.eu/topics/preparedness_pt"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Make a Plan (em inglês)",
+      "url": "https://www.ready.gov/plan"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/pt/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "pt",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "O que comprar primeiro?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uma mochila por pessoa, água engarrafada, comida que não precisa de ser cozinhada, uma lanterna e um power bank. Quase tudo já está em casa; junte os medicamentos de cada um e cópias dos documentos e tem o essencial da mochila."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto custa preparar-se para uma emergência?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Menos do que parece. Comece com o que tem, junte uma ou duas coisas em cada ida às compras e guarde comida que já consome, para a gastar antes de expirar. Um kit pronto custa mais e continua sem os seus medicamentos e documentos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto tempo demora a estar preparado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Um fim de semana para o essencial: uma mochila por pessoa, água, comida, medicamentos e um ponto de encontro. A reserva em casa completa-se em um ou dois meses de compras normais."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual é o primeiro passo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Saber o que pode acontecer onde vive. A ANEPC e a proteção civil do seu município informam sobre os riscos locais, e os alertas de emergência do telemóvel devem estar ligados."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2009,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2120,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2427,7 @@
             <p class="page-head-label"><a href="/pt/guides/" data-i18n="guides_label">Guias</a></p>
             <h1>Kit de emergência <span>para principiantes</span></h1>
 <p class="page-head-lead">Não precisa de um bunker nem de um fim de semana de compras. Seis passos, por ordem, levam uma família do zero a preparada.</p>
-            <p class="guide-updated">Atualizado a <time datetime="2026-10-22">22 de outubro de 2026</time></p>
+            <p class="guide-updated">Atualizado a <time datetime="2026-11-13">13 de novembro de 2026</time></p>
         </div>
     </div>
 </section>
@@ -2312,6 +2449,7 @@
                     <li><a href="#maintain">6. Mantenha tudo em dia</a></li>
                     <li><a href="#budget">Com pouco orçamento</a></li>
                     <li><a href="#first-weekend">O seu primeiro fim de semana</a></li>
+                    <li><a href="#faq">Perguntas frequentes</a></li>
                     <li><a href="#sources">Fontes</a></li>
                 </ul>
             </div>
@@ -2321,7 +2459,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>A preparação para emergências tem fama de ser coisa de bunkers e comida liofilizada às paletes. Para uma família é muito mais simples: saber o que pode acontecer onde vive, combinar um plano e ter alguns dias de provisões à mão. Aqui ficam seis passos, pela ordem que os torna mais fáceis.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Resposta curta</p>
+    <p>Comece por seis passos, por esta ordem: descubra que duas ou três emergências são mais prováveis onde vive, faça um plano familiar com pontos de encontro e um contacto fora da zona, prepare uma mochila de emergência por pessoa, crie uma reserva de água e comida em casa, copie os documentos importantes e verifique tudo duas vezes por ano. Um fim de semana chega para o essencial.</p>
+</div>
+<p class="guide-inline-app">O GoBag+ transforma este guia num kit que pode acompanhar: quantidades ajustadas ao seu agregado e um alerta antes de algo expirar. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Experimente o GoBag+ grátis por 30 dias <span aria-hidden="true">→</span></a></p>
+<p>A preparação para emergências tem fama de ser coisa de bunkers e comida liofilizada às paletes. Para uma família é muito mais simples: saber o que pode acontecer onde vive, combinar um plano e ter alguns dias de provisões à mão. Aqui ficam seis passos, pela ordem que os torna mais fáceis.</p>
 
 <h2 id="risks">1. Conheça os riscos de onde vive</h2>
 <p>Não se prepara o mesmo kit junto a um rio, numa zona sísmica ou perto de uma zona industrial. Comece por anotar as duas ou três emergências mais prováveis onde vive: cheias, incêndios rurais, sismos, ondas de calor, tempestades, apagões longos. A proteção civil municipal e a ANEPC divulgam-nas. No telemóvel, mantenha ligados os alertas de emergência nas definições.</p>
@@ -2336,6 +2479,8 @@
     <li>as vossas vias de evacuação, de carro e a pé.</li>
 </ul>
 <p>Ponham tudo por escrito, metam uma cópia em cada mochila e revejam-no uma vez por ano.</p>
+
+<p>O guia do <a href="/pt/guides/family-emergency-plan/">plano familiar de emergência</a> percorre-o pergunta a pergunta.</p>
 
 <h2 id="go-bag">3. Prepare uma mochila de emergência por pessoa</h2>
 <p>Comece pelo essencial e complete o resto nas semanas seguintes: água, comida que não precise de ser cozinhada, medicamentos, cópias dos documentos de identificação, uma lanterna, um power bank e algum dinheiro. A <a href="/pt/guides/go-bag-checklist/">lista da mochila de emergência</a> tem tudo o resto, em nove categorias, e o guia sobre os <a href="/pt/guides/go-bag-vs-bug-out-bag/">tipos de kit de emergência</a> explica quando vale a pena ter uma para o carro ou o escritório.</p>
@@ -2357,6 +2502,8 @@
     <li><strong>Verifique os kits já feitos.</strong> Um kit comprado é um bom começo, mas não traz os seus medicamentos, os seus documentos nem as coisas das crianças.</li>
 </ul>
 
+<p>Mais truques para poupar dinheiro e espaço nos <a href="/pt/guides/go-bag-hacks/">truques para a mochila de emergência</a>.</p>
+
 <h2 id="first-weekend">O seu primeiro fim de semana</h2>
 <p>Se esta semana só fizer uma coisa, que seja esta:</p>
 <ul class="checklist">
@@ -2369,6 +2516,19 @@
 </ul>
 <div class="guide-note is-app">
     <p><strong>O GoBag+</strong> trata disto em minutos: uma mochila em nove categorias, quantidades ajustadas à sua família, os seus contactos SOS à distância de um toque mesmo sem rede, e cópias dos seus documentos num cofre que só abre com Face ID.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Experimente o GoBag+ grátis por 30 dias <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Perguntas frequentes</h2>
+<div class="guide-faq">
+    <h3>O que comprar primeiro?</h3>
+    <p>Uma mochila por pessoa, água engarrafada, comida que não precisa de ser cozinhada, uma lanterna e um power bank. Quase tudo já está em casa; junte os medicamentos de cada um e cópias dos documentos e tem o essencial da mochila.</p>
+    <h3>Quanto custa preparar-se para uma emergência?</h3>
+    <p>Menos do que parece. Comece com o que tem, junte uma ou duas coisas em cada ida às compras e guarde comida que já consome, para a gastar antes de expirar. Um kit pronto custa mais e continua sem os seus medicamentos e documentos.</p>
+    <h3>Quanto tempo demora a estar preparado?</h3>
+    <p>Um fim de semana para o essencial: uma mochila por pessoa, água, comida, medicamentos e um ponto de encontro. A reserva em casa completa-se em um ou dois meses de compras normais.</p>
+    <h3>Qual é o primeiro passo?</h3>
+    <p>Saber o que pode acontecer onde vive. A ANEPC e a proteção civil do seu município informam sobre os riscos locais, e os alertas de emergência do telemóvel devem estar ligados.</p>
 </div>
 
 <h2 id="sources">Fontes</h2>
@@ -2386,16 +2546,6 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Mais guias</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/pt/guides/go-bag-checklist/">
-            <h3>Lista da mochila de emergência</h3>
-            <p>Tudo o que deve levar numa mochila de emergência, em nove categorias, com uma lista para imprimir.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/pt/guides/go-bag-vs-bug-out-bag/">
-            <h3>Mochila de emergência ou bug-out bag</h3>
-            <p>Mochila de emergência, bug-out bag, kit de 72 horas, reserva em casa: para que serve cada um e qual precisa.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/pt/guides/emergency-water-and-food/">
             <h3>Reservas de água e comida</h3>
             <p>Quanta água e comida guardar em casa, por pessoa e por dia, e o que dura mais.</p>
@@ -2409,6 +2559,21 @@
         <li><a class="guide-card" href="/pt/guides/emergency-kit-maintenance/">
             <h3>Manter o kit pronto</h3>
             <p>Uma rotina a cada seis meses para verificar validades, rodar reservas e atualizar a mochila.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/pt/guides/power-outage-checklist/">
+            <h3>O que fazer num apagão</h3>
+            <p>O que ter antes de a luz faltar, quanto tempo aguenta a comida e como ficar em segurança até a luz voltar.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/pt/guides/car-emergency-kit/">
+            <h3>Kit de emergência para o carro</h3>
+            <p>O que levar na bagageira para avarias, neve e estradas cortadas, no inverno e no verão.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/pt/guides/pet-emergency-kit/">
+            <h3>Kit de emergência para animais</h3>
+            <p>Uma mochila de emergência para o seu cão ou gato, e como evacuar com animais.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

@@ -109,7 +109,43 @@
   "mainEntityOfPage": "https://gobag.gredami.com/de/guides/prep-kit-for-beginners/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Ratgeber",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/de/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Vorsorge",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/vorsorge_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Essen und Trinken bevorraten",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/So-koennen-Sie-sich-vorbereiten/Bevorraten/bevorraten_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "BBK: Warn-App NINA",
+      "url": "https://www.bbk.bund.de/DE/Warnung-Vorsorge/Warn-App-NINA/warn-app-nina_node.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Make a Plan (Englisch)",
+      "url": "https://www.ready.gov/plan"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/de/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +160,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "de",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was sollte ich zuerst kaufen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Einen Rucksack pro Person, Wasser in Flaschen, Essen ohne Kochen, eine Taschenlampe und eine Powerbank. Das meiste hast du schon zu Hause; mit den Medikamenten jeder Person und Kopien der Ausweise steht der Kern des Notfallrucksacks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet Notfallvorsorge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Weniger als gedacht. Fang mit dem an, was du hast, kauf bei jedem Einkauf ein, zwei Dinge dazu und lagere, was ihr ohnehin esst, damit es vor dem Ablaufdatum verbraucht wird. Ein fertiges Set kostet mehr und enthält trotzdem nicht deine Medikamente und Dokumente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert es, vorbereitet zu sein?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Wochenende für das Wichtigste: ein Rucksack pro Person, Wasser, Snacks, Medikamente und ein Treffpunkt. Der Vorrat für zu Hause kommt in ein, zwei Monaten mit dem normalen Einkauf zusammen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der erste Schritt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zu wissen, was bei dir passieren kann, und Warnungen zu empfangen. Die Warn-App NINA des BBK meldet Gefahren für deinen Standort, und die Notfallwarnungen im Handy sollten eingeschaltet bleiben."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2014,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2125,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2432,7 @@
             <p class="page-head-label"><a href="/de/guides/" data-i18n="guides_label">Ratgeber</a></p>
             <h1>Notfallvorsorge <span>für Einsteiger</span></h1>
 <p class="page-head-lead">Du brauchst weder Bunker noch ein Einkaufswochenende. Sechs Schritte, der Reihe nach, bringen einen Haushalt von null zu vorbereitet.</p>
-            <p class="guide-updated">Aktualisiert am <time datetime="2026-10-22">22. Oktober 2026</time></p>
+            <p class="guide-updated">Aktualisiert am <time datetime="2026-11-13">13. November 2026</time></p>
         </div>
     </div>
 </section>
@@ -2312,6 +2454,7 @@
                     <li><a href="#maintain">6. Alles aktuell halten</a></li>
                     <li><a href="#budget">Mit kleinem Budget</a></li>
                     <li><a href="#first-weekend">Dein erstes Wochenende</a></li>
+                    <li><a href="#faq">Häufige Fragen</a></li>
                     <li><a href="#sources">Quellen</a></li>
                 </ul>
             </div>
@@ -2321,7 +2464,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Notfallvorsorge hat den Ruf, etwas mit Bunkern und palettenweise gefriergetrocknetem Essen zu tun zu haben. Für einen Haushalt ist sie viel einfacher: wissen, was dort passieren kann, wo du wohnst, einen Plan absprechen und ein paar Tage Vorrat griffbereit haben. Hier sind sechs Schritte, in der Reihenfolge, die sie am leichtesten macht.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Kurz gesagt</p>
+    <p>Fang mit sechs Schritten an, in dieser Reihenfolge: herausfinden, welche zwei oder drei Notfälle bei dir am wahrscheinlichsten sind, einen Familienplan mit Treffpunkten und einer Kontaktperson außerhalb machen, für jede Person einen Notfallrucksack packen, einen Vorrat für zu Hause anlegen (das BBK empfiehlt möglichst zehn Tage), Dokumente sichern und alles zweimal im Jahr prüfen. Ein Wochenende reicht für das Wichtigste.</p>
+</div>
+<p class="guide-inline-app">GoBag+ macht aus diesem Ratgeber eine Ausrüstung, die du im Blick behältst: Mengen passend zu deinem Haushalt und eine Erinnerung, bevor etwas abläuft. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a></p>
+<p>Notfallvorsorge hat den Ruf, etwas mit Bunkern und palettenweise gefriergetrocknetem Essen zu tun zu haben. Für einen Haushalt ist sie viel einfacher: wissen, was dort passieren kann, wo du wohnst, einen Plan absprechen und ein paar Tage Vorrat griffbereit haben. Hier sind sechs Schritte, in der Reihenfolge, die sie am leichtesten macht.</p>
 
 <h2 id="risks">1. Wissen, was bei dir passieren kann</h2>
 <p>Am Fluss packt man anders als in den Bergen oder neben einem Industriegebiet. Schreib zuerst die zwei, drei Notfälle auf, die bei dir am wahrscheinlichsten sind: Hochwasser, Starkregen, Sturm, Waldbrand, Hitze, ein langer Stromausfall. Installiere eine Warn-App wie NINA und lass auf dem Handy die Notfallwarnungen eingeschaltet: Darüber kommt auch Cell Broadcast.</p>
@@ -2336,6 +2484,8 @@
     <li>eure Fluchtwege, mit dem Auto und zu Fuß.</li>
 </ul>
 <p>Schreibt es auf, legt in jeden Rucksack eine Kopie und geht es einmal im Jahr durch.</p>
+
+<p>Der Ratgeber <a href="/de/guides/family-emergency-plan/">Notfallplan für die Familie</a> geht ihn Frage für Frage durch.</p>
 
 <h2 id="go-bag">3. Für jede Person einen Notfallrucksack packen</h2>
 <p>Fang mit dem Wichtigsten an und ergänze den Rest in den nächsten Wochen: Wasser, Essen ohne Kochen, Medikamente, Kopien der Ausweise, eine Taschenlampe, eine Powerbank und etwas Bargeld. Die <a href="/de/guides/go-bag-checklist/">Checkliste Notfallrucksack</a> hat alles Weitere in neun Kategorien, und der Ratgeber zu den <a href="/de/guides/go-bag-vs-bug-out-bag/">Arten von Notfallausrüstung</a> erklärt, wann sich eine Tasche fürs Auto oder Büro lohnt.</p>
@@ -2357,6 +2507,8 @@
     <li><strong>Prüf Fertigsets.</strong> Ein fertig gepackter Rucksack ist ein guter Anfang, aber deine Medikamente, deine Dokumente und die Sachen der Kinder fehlen darin.</li>
 </ul>
 
+<p>Weitere Kniffe, die Geld und Platz sparen, stehen in den <a href="/de/guides/go-bag-hacks/">Tipps und Tricks für den Notfallrucksack</a>.</p>
+
 <h2 id="first-weekend">Dein erstes Wochenende</h2>
 <p>Wenn du diese Woche nur eins machst, dann das:</p>
 <ul class="checklist">
@@ -2369,6 +2521,19 @@
 </ul>
 <div class="guide-note is-app">
     <p><strong>GoBag+</strong> richtet das in wenigen Minuten ein: ein Notfallrucksack in neun Kategorien, Mengen passend zu deinem Haushalt, deine SOS-Kontakte mit einem Tipp erreichbar, auch offline, und Kopien deiner Dokumente in einem Tresor, der sich nur mit Face ID öffnet.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">GoBag+ 30 Tage kostenlos testen <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Häufige Fragen</h2>
+<div class="guide-faq">
+    <h3>Was sollte ich zuerst kaufen?</h3>
+    <p>Einen Rucksack pro Person, Wasser in Flaschen, Essen ohne Kochen, eine Taschenlampe und eine Powerbank. Das meiste hast du schon zu Hause; mit den Medikamenten jeder Person und Kopien der Ausweise steht der Kern des Notfallrucksacks.</p>
+    <h3>Was kostet Notfallvorsorge?</h3>
+    <p>Weniger als gedacht. Fang mit dem an, was du hast, kauf bei jedem Einkauf ein, zwei Dinge dazu und lagere, was ihr ohnehin esst, damit es vor dem Ablaufdatum verbraucht wird. Ein fertiges Set kostet mehr und enthält trotzdem nicht deine Medikamente und Dokumente.</p>
+    <h3>Wie lange dauert es, vorbereitet zu sein?</h3>
+    <p>Ein Wochenende für das Wichtigste: ein Rucksack pro Person, Wasser, Snacks, Medikamente und ein Treffpunkt. Der Vorrat für zu Hause kommt in ein, zwei Monaten mit dem normalen Einkauf zusammen.</p>
+    <h3>Was ist der erste Schritt?</h3>
+    <p>Zu wissen, was bei dir passieren kann, und Warnungen zu empfangen. Die Warn-App NINA des BBK meldet Gefahren für deinen Standort, und die Notfallwarnungen im Handy sollten eingeschaltet bleiben.</p>
 </div>
 
 <h2 id="sources">Quellen</h2>
@@ -2387,16 +2552,6 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Weitere Ratgeber</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/de/guides/go-bag-checklist/">
-            <h3>Checkliste Notfallrucksack</h3>
-            <p>Alles, was in den Notfallrucksack gehört, in neun Kategorien, mit Liste zum Ausdrucken.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/de/guides/go-bag-vs-bug-out-bag/">
-            <h3>Notfallrucksack oder Fluchtrucksack?</h3>
-            <p>Notfallrucksack, Fluchtrucksack, 72-Stunden-Kit, Notvorrat: wofür jedes gut ist und was du brauchst.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/de/guides/emergency-water-and-food/">
             <h3>Notvorrat: Wasser und Essen</h3>
             <p>Wie viel Wasser und Essen du für zehn Tage brauchst, pro Person, und was sich am längsten hält.</p>
@@ -2410,6 +2565,21 @@
         <li><a class="guide-card" href="/de/guides/emergency-kit-maintenance/">
             <h3>Ausrüstung aktuell halten</h3>
             <p>Eine Routine alle sechs Monate: Haltbarkeit prüfen, Vorrat umwälzen, Rucksack anpassen.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/power-outage-checklist/">
+            <h3>Checkliste Stromausfall</h3>
+            <p>Was du parat haben solltest, wie lange Lebensmittel halten und wie du sicher bleibst, bis der Strom zurück ist.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/car-emergency-kit/">
+            <h3>Notfallausrüstung fürs Auto</h3>
+            <p>Was für Panne, Schnee und gesperrte Straßen in den Kofferraum gehört, im Winter wie im Sommer.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/de/guides/pet-emergency-kit/">
+            <h3>Notfallausrüstung für Haustiere</h3>
+            <p>Ein Notfallrucksack für Hund oder Katze, und wie du mit Tieren evakuierst.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

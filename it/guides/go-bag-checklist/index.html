@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/it/guides/go-bag-checklist/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guide",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/it/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Commissione europea: preparazione alle crisi",
+      "url": "https://commission.europa.eu/topics/preparedness_it"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit (in inglese)",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Croce Rossa americana: Survival Kit Supplies (in inglese)",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/it/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,55 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "it",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Cosa è più importante nello zaino di emergenza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Acqua, farmaci su prescrizione, copie dei documenti, una torcia, un power bank carico e contanti: le cose più difficili da trovare una volta uscito di casa. Cibo, vestiti e attrezzi vengono dopo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto deve pesare uno zaino di emergenza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Abbastanza poco da permettere a ognuno di camminare un'ora senza fermarsi. Se pesa troppo, lascia gran parte dell'acqua a casa o in auto e porta un filtro: l'acqua è la cosa più pesante."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Basta uno zaino di emergenza già pronto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "È un buon inizio, ma un kit comprato non avrà i tuoi farmaci, i tuoi occhiali, le copie dei documenti né le cose dei tuoi figli. Compralo se ti aiuta a cominciare, poi aggiungi ciò che è proprio della tua famiglia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ogni quanto controllare lo zaino?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ogni sei mesi: scadenze di acqua, cibo e farmaci, carica del power bank, vestiti di stagione e che quelli dei bambini vadano ancora bene."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I bambini hanno bisogno di un proprio zaino?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, uno piccolo con poche cose leggere: uno spuntino, una borraccia, una torcia, un peluche e un biglietto con il tuo nome e il tuo numero. Le scorte pesanti restano negli zaini degli adulti."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2017,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2128,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2435,7 @@
             <p class="page-head-label"><a href="/it/guides/" data-i18n="guides_label">Guide</a></p>
             <h1>Lista dello zaino <span>di emergenza</span></h1>
 <p class="page-head-lead">Cosa mettere in uno zaino di emergenza da prendere al volo in un minuto: nove categorie, voce per voce, in una lista da stampare.</p>
-            <p class="guide-updated">Aggiornato il <time datetime="2026-10-22">22 ottobre 2026</time></p>
+            <p class="guide-updated">Aggiornato il <time datetime="2026-11-13">13 novembre 2026</time></p>
         </div>
     </div>
 </section>
@@ -2308,6 +2453,7 @@
                     <li><a href="#family">In più per bambini, anziani e animali</a></li>
                     <li><a href="#where">Dove tenere lo zaino</a></li>
                     <li><a href="#ready">Tenerlo pronto</a></li>
+                    <li><a href="#faq">Domande frequenti</a></li>
                     <li><a href="#sources">Fonti</a></li>
                 </ul>
             </div>
@@ -2317,7 +2463,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Lo zaino di emergenza è quello che prendi quando ti restano pochi minuti per uscire di casa: un incendio, un'alluvione, una fuga di gas, un ordine di evacuazione. Contiene ciò che serve per cavartela da solo per circa tre giorni: acqua, cibo, medicinali, copie dei documenti e i pochi attrezzi che rendono sopportabili quei giorni. È la durata indicata dalle autorità: dal 2025 la strategia di preparazione dell'Unione europea punta a un'autosufficienza della popolazione di almeno 72 ore.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">In breve</p>
+    <p>Uno zaino di emergenza contiene l'essenziale per circa tre giorni a persona: acqua (2 o 3 litri nello zaino, più un filtro o pastiglie per renderne potabile altra), cibo che non va cucinato, un kit di primo soccorso e i farmaci per una settimana, copie dei documenti in una busta impermeabile, contanti, torcia, power bank, radio, un cambio di vestiti e l'igiene di base. Uno zaino a persona, vicino alla porta.</p>
+</div>
+<p class="guide-inline-app">GoBag+ trasforma questa guida in un kit da tenere sotto controllo: quantità calibrate sulla tua famiglia e un avviso prima che qualcosa scada. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prova GoBag+ gratis per 30 giorni <span aria-hidden="true">→</span></a></p>
+<p>Lo zaino di emergenza è quello che prendi quando ti restano pochi minuti per uscire di casa: un incendio, un'alluvione, una fuga di gas, un ordine di evacuazione. Contiene ciò che serve per cavartela da solo per circa tre giorni: acqua, cibo, medicinali, copie dei documenti e i pochi attrezzi che rendono sopportabili quei giorni. È la durata indicata dalle autorità: dal 2025 la strategia di preparazione dell'Unione europea punta a un'autosufficienza della popolazione di almeno 72 ore.</p>
 <p>Prepara uno zaino a persona, del peso che ognuno riesce a portare a lungo. Uno zaino robusto è meglio di una valigia: lascia le mani libere. I bambini possono portarne uno piccolo, con qualche cosa leggera e un oggetto familiare.</p>
 <button type="button" class="btn-secondary guide-print" onclick="window.print()">Stampa questa lista</button>
 
@@ -2349,6 +2500,7 @@
     <li>Mascherine FFP2, contro fumo e polvere</li>
     <li>Gel igienizzante e salviette disinfettanti</li>
 </ul>
+<p>Cosa contiene un kit completo, voce per voce, è nella <a href="/it/guides/first-aid-kit-checklist/">lista della cassetta di primo soccorso</a>.</p>
 
 <h3>4. Documenti</h3>
 <ul class="checklist">
@@ -2413,15 +2565,32 @@
     <li>Anziani: pile per l'apparecchio acustico, caricatori dei dispositivi medici, ausili per camminare e occhiali di ricambio</li>
     <li>Animali: cibo e acqua per tre giorni, guinzaglio o trasportino, sacchetti per i bisogni, libretto sanitario e una foto</li>
 </ul>
+<p>Ognuno ha la sua guida: lo <a href="/it/guides/go-bag-for-kids/">zaino di emergenza per bambini e neonati</a> e il <a href="/it/guides/pet-emergency-kit/">kit di emergenza per animali</a>.</p>
 
 <h2 id="where">Dove tenere lo zaino</h2>
 <p>Vicino alla porta da cui usciresti, o in un armadio lungo il percorso, in un posto che tutti in casa conoscono. Ready.gov consiglia un kit in tre posti: a casa, al lavoro, dove conviene poter restare almeno 24 ore, e in auto, nel caso resti bloccato. Quelli per il lavoro e l'auto possono essere più piccoli; spesso si chiamano <a href="/it/guides/go-bag-vs-bug-out-bag/">zaini per tornare a casa</a>.</p>
+<p>Cosa deve contenere quello dell'auto è nel <a href="/it/guides/car-emergency-kit/">kit di emergenza per l'auto</a>.</p>
 <p>Tienilo al fresco e all'asciutto. Il caldo accorcia la vita di acqua, cibo, pile e medicinali: il bagagliaio di un'auto d'estate non è il posto giusto per qualcosa su cui dovrai contare.</p>
 
 <h2 id="ready">Tenerlo pronto</h2>
 <p>Uno zaino riempito non è uno zaino finito. Ogni sei mesi controlla le date di acqua, cibo e medicinali, ricarica il power bank, cambia i vestiti in base alla stagione e verifica che quelli dei bambini vadano ancora bene. La <a href="/it/guides/emergency-kit-maintenance/">guida alla manutenzione del kit</a> ha la routine completa.</p>
 <div class="guide-note is-app">
-    <p><strong>In GoBag+</strong> queste nove categorie sono già pronte. Di' all'app per quante persone prepari lo zaino e le quantità consigliate si adattano; segna quello che hai e ti mostra cosa manca ancora. Con Premium, ti avvisa prima che qualcosa scada.</p>
+    <p><strong>In GoBag+</strong> il tuo zaino è già ordinato in nove categorie: documenti, acqua e cibo, abbigliamento, salute e igiene, attrezzi ed equipaggiamento, elettronica, denaro, persona e famiglia, e varie, e puoi aggiungerne di tue. Di' all'app per quante persone prepari lo zaino e le quantità consigliate si adattano; segna quello che hai e un anello mostra quanto è completo e cosa manca ancora. Con Premium, ti avvisa prima che qualcosa scada.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prova GoBag+ gratis per 30 giorni <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Domande frequenti</h2>
+<div class="guide-faq">
+    <h3>Cosa è più importante nello zaino di emergenza?</h3>
+    <p>Acqua, farmaci su prescrizione, copie dei documenti, una torcia, un power bank carico e contanti: le cose più difficili da trovare una volta uscito di casa. Cibo, vestiti e attrezzi vengono dopo.</p>
+    <h3>Quanto deve pesare uno zaino di emergenza?</h3>
+    <p>Abbastanza poco da permettere a ognuno di camminare un'ora senza fermarsi. Se pesa troppo, lascia gran parte dell'acqua a casa o in auto e porta un filtro: l'acqua è la cosa più pesante.</p>
+    <h3>Basta uno zaino di emergenza già pronto?</h3>
+    <p>È un buon inizio, ma un kit comprato non avrà i tuoi farmaci, i tuoi occhiali, le copie dei documenti né le cose dei tuoi figli. Compralo se ti aiuta a cominciare, poi aggiungi ciò che è proprio della tua famiglia.</p>
+    <h3>Ogni quanto controllare lo zaino?</h3>
+    <p>Ogni sei mesi: scadenze di acqua, cibo e farmaci, carica del power bank, vestiti di stagione e che quelli dei bambini vadano ancora bene.</p>
+    <h3>I bambini hanno bisogno di un proprio zaino?</h3>
+    <p>Sì, uno piccolo con poche cose leggere: uno spuntino, una borraccia, una torcia, un peluche e un biglietto con il tuo nome e il tuo numero. Le scorte pesanti restano negli zaini degli adulti.</p>
 </div>
 
 <h2 id="sources">Fonti</h2>
@@ -2462,6 +2631,11 @@
         <li><a class="guide-card" href="/it/guides/emergency-kit-maintenance/">
             <h3>Tenere il kit pronto</h3>
             <p>Una routine ogni sei mesi per controllare le scadenze, ruotare le scorte e aggiornare lo zaino.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/it/guides/power-outage-checklist/">
+            <h3>Cosa fare in caso di blackout</h3>
+            <p>Cosa avere prima che salti la luce, quanto dura il cibo e come restare al sicuro finché torna la corrente.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

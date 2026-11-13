@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/guides/emergency-documents/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guides",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "American Red Cross: Survival Kit Supplies",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Financial Preparedness",
+      "url": "https://www.ready.gov/financial-preparedness"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit",
+      "url": "https://www.ready.gov/kit"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "en",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should I keep original documents in my go bag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, keep copies. Losing a bag full of originals would be worse than having none. Keep originals in a fireproof, waterproof box or a safe deposit box, and take your passports and IDs with you when you leave."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the safest way to keep digital copies of documents?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In storage that is encrypted, locked with a passcode or Face ID, available offline and backed up. A camera roll or an email inbox is the wrong place: anyone who gets into the phone or the account has them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which documents do I need first after a disaster?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Proof of identity, your insurance policies and proof of address. They are what insurers and aid agencies ask for first, along with photos of your home and belongings for a claim."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I update my document copies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Whenever something changes, such as a renewed ID, a new policy, a new baby or a move, and at every six-month check of your kit."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2009,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2120,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2427,7 @@
             <p class="page-head-label"><a href="/guides/" data-i18n="guides_label">Guides</a></p>
             <h1>Emergency <span>documents</span></h1>
 <p class="page-head-lead">After a disaster, the hardest things to replace are papers. Here is what to copy, where to keep it, and how to have it on your phone.</p>
-            <p class="guide-updated">Updated <time datetime="2026-10-22">October 22, 2026</time></p>
+            <p class="guide-updated">Updated <time datetime="2026-11-13">November 13, 2026</time></p>
         </div>
     </div>
 </section>
@@ -2308,6 +2445,7 @@
                     <li><a href="#paper">Paper copies: in the bag, out of the rain</a></li>
                     <li><a href="#digital">Digital copies: encrypted, and with you</a></li>
                     <li><a href="#update">Keep them current</a></li>
+                    <li><a href="#faq">Frequently asked questions</a></li>
                     <li><a href="#sources">Sources</a></li>
                 </ul>
             </div>
@@ -2317,7 +2455,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>After a fire or a flood, most things can be bought again. Papers are the exception. Proving who you are, what you own and what you are insured for is slow without them, and that is exactly when you need it fast: to claim on insurance, to apply for aid, to see a doctor. A copy of each, kept with your go bag and on your phone, turns weeks of paperwork into days.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Short answer</p>
+    <p>Copy your IDs and passports, birth and marriage certificates, insurance policies, the deed or lease to your home, medical information and a paper list of emergency contacts. Keep paper copies in a waterproof pouch in your go bag, originals in a fireproof box or safe deposit box, and encrypted digital copies on your phone that open offline.</p>
+</div>
+<p class="guide-inline-app">GoBag+ turns this guide into a kit you can track: quantities sized to your household, and an alert before anything expires. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Try GoBag+ free for 30 days <span aria-hidden="true">→</span></a></p>
+<p>After a fire or a flood, most things can be bought again. Papers are the exception. Proving who you are, what you own and what you are insured for is slow without them, and that is exactly when you need it fast: to claim on insurance, to apply for aid, to see a doctor. A copy of each, kept with your go bag and on your phone, turns weeks of paperwork into days.</p>
 
 <h2 id="list">Which documents to copy</h2>
 <h3>Identity</h3>
@@ -2345,7 +2488,7 @@
 </ul>
 <h3>Contacts and photos</h3>
 <ul class="checklist">
-    <li>A paper list of phone numbers: family, your out-of-area contact, doctors, insurer, employer, school</li>
+    <li>A paper list of phone numbers: family, your out-of-area contact, doctors, insurer, employer, school; the <a href="/guides/family-emergency-plan/">family emergency plan</a> has the rest</li>
     <li>Recent photos of each family member and pet</li>
     <li>Photos or a video of every room in your home, for an insurance claim</li>
 </ul>
@@ -2363,11 +2506,24 @@
 </ul>
 <div class="guide-note is-app">
     <p><strong>The Document Vault in GoBag+</strong> keeps photos and PDFs of your IDs, passports and insurance cards. It opens only with Face ID, the files stay on your device, and when they sync they travel through Apple's encrypted iCloud. We never see them.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Try GoBag+ free for 30 days <span aria-hidden="true">→</span></a>
 </div>
 
 <h2 id="update">Keep them current</h2>
 <p>A copy of an expired passport is little help. Update the set whenever something changes, such as a renewed ID, a new insurance policy, a new baby or a move, and look through it at every six-month check of your kit, along with the photos of your children. Ready.gov's <a href="https://www.ready.gov/financial-preparedness" target="_blank" rel="noopener">financial preparedness</a> page has a fuller list of records worth keeping.</p>
 <p>Next: <a href="/guides/emergency-kit-maintenance/">how to keep the rest of your kit ready</a>.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<div class="guide-faq">
+    <h3>Should I keep original documents in my go bag?</h3>
+    <p>No, keep copies. Losing a bag full of originals would be worse than having none. Keep originals in a fireproof, waterproof box or a safe deposit box, and take your passports and IDs with you when you leave.</p>
+    <h3>What is the safest way to keep digital copies of documents?</h3>
+    <p>In storage that is encrypted, locked with a passcode or Face ID, available offline and backed up. A camera roll or an email inbox is the wrong place: anyone who gets into the phone or the account has them.</p>
+    <h3>Which documents do I need first after a disaster?</h3>
+    <p>Proof of identity, your insurance policies and proof of address. They are what insurers and aid agencies ask for first, along with photos of your home and belongings for a claim.</p>
+    <h3>How often should I update my document copies?</h3>
+    <p>Whenever something changes, such as a renewed ID, a new policy, a new baby or a move, and at every six-month check of your kit.</p>
+</div>
 
 <h2 id="sources">Sources</h2>
 <ul class="guide-sources">
@@ -2384,29 +2540,34 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">More guides</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/guides/go-bag-checklist/">
-            <h3>Go bag checklist</h3>
-            <p>Everything to pack in an emergency bag, in nine categories, with a list you can print.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/guides/go-bag-vs-bug-out-bag/">
-            <h3>Go bag vs bug-out bag</h3>
-            <p>Go bag, bug-out bag, 72-hour kit, get-home bag: what each one is for, and which you need.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/guides/prep-kit-for-beginners/">
-            <h3>Prep kit for beginners</h3>
-            <p>Where to start with emergency preparedness: six steps, from knowing your risks to a kit that stays ready.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/guides/emergency-water-and-food/">
-            <h3>Emergency water and food</h3>
-            <p>How much water and food to store at home, per person and per day, and what keeps longest.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/guides/emergency-kit-maintenance/">
             <h3>Keeping your kit ready</h3>
             <p>A six-month routine for checking expiry dates, rotating supplies and updating the bag as life changes.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/power-outage-checklist/">
+            <h3>Power outage checklist</h3>
+            <p>What to have before the lights go out, how long food lasts, and how to stay safe until the power returns.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/car-emergency-kit/">
+            <h3>Car emergency kit</h3>
+            <p>What to keep in the trunk for breakdowns, snow and closed roads, with winter and summer extras.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/pet-emergency-kit/">
+            <h3>Pet emergency kit</h3>
+            <p>A go bag for your dog or cat, and how to plan an evacuation with pets.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/go-bag-for-kids/">
+            <h3>Go bag for kids</h3>
+            <p>What to pack for babies and children, and how to prepare them without scaring them.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/first-aid-kit-checklist/">
+            <h3>First aid kit checklist</h3>
+            <p>What a home first aid kit holds, item by item, and how to keep it from expiring.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

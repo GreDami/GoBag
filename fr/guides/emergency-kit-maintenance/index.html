@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/fr/guides/emergency-kit-maintenance/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guides",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/fr/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov : Build a Kit (en anglais)",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov : Water (en anglais)",
+      "url": "https://www.ready.gov/water"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "USDA : Shelf-Stable Food Safety (en anglais)",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/shelf-stable-food"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/fr/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "fr",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "À quelle fréquence vérifier son kit d'urgence ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tous les six mois, et la semaine même quand la vie change : une naissance, un nouvel animal, un déménagement, un nouveau traitement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quand renouveler l'eau du kit ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tous les six mois pour l'eau mise en bouteille soi-même. L'eau du commerce se garde jusqu'à la date indiquée tant qu'elle reste fermée."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Les piles et les batteries externes se déchargent-elles ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Testez les piles tous les six mois et rangez-les hors des appareils pour qu'elles ne coulent pas. Une batterie externe se vide seule ; rechargez-la à chaque vérification."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on manger les provisions du kit ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, c'est le principe de la rotation : consommez conserves et en-cas quelques mois avant leur date et rachetez-en des neufs. Rien n'est gaspillé."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2009,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2120,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2427,7 @@
             <p class="page-head-label"><a href="/fr/guides/" data-i18n="guides_label">Guides</a></p>
             <h1>Entretenir <span>son kit</span></h1>
 <p class="page-head-lead">Un kit préparé une fois puis oublié lâche en silence : l'eau vieillit, les piles coulent, les enfants grandissent. Une routine deux fois par an le garde en état.</p>
-            <p class="guide-updated">Mis à jour le <time datetime="2026-10-22">22 octobre 2026</time></p>
+            <p class="guide-updated">Mis à jour le <time datetime="2026-11-13">13 novembre 2026</time></p>
         </div>
     </div>
 </section>
@@ -2309,6 +2446,7 @@
                     <li><a href="#storage">Le ranger là où il dure</a></li>
                     <li><a href="#rotate">Faire tourner plutôt que jeter</a></li>
                     <li><a href="#life-changes">Le mettre à jour quand la vie change</a></li>
+                    <li><a href="#faq">Questions fréquentes</a></li>
                     <li><a href="#sources">Sources</a></li>
                 </ul>
             </div>
@@ -2318,7 +2456,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>Un kit d'urgence ne lâche pas le jour où vous en avez besoin. Il lâche dans les mois qui précèdent, sans que personne le remarque. L'eau dépasse sa date, la batterie externe se vide toute seule, les médicaments périment, et un enfant ne rentre plus dans les vêtements que vous aviez prévus. L'agence américaine Ready.gov conseille de remplacer ce qui est périmé et de repenser le kit chaque année, à mesure que la famille change. Une vérification tous les six mois, par exemple au changement d'heure, attrape la plupart des problèmes avant qu'ils comptent.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">En bref</p>
+    <p>Vérifiez votre kit tous les six mois, par exemple au changement d'heure : remplacez ce qui expire dans les six mois, renouvelez l'eau mise en bouteille vous-même, testez lampes et piles, rechargez la batterie externe, changez les vêtements selon la saison et mettez à jour copies de papiers et contacts. Rangez le tout au frais et au sec : la chaleur est ce qui use le plus vite un kit.</p>
+</div>
+<p class="guide-inline-app">GoBag+ fait de ce guide un kit que vous pouvez suivre : des quantités adaptées à votre foyer, et une alerte avant que quoi que ce soit n'expire. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Essayer GoBag+ gratuitement 30 jours <span aria-hidden="true">→</span></a></p>
+<p>Un kit d'urgence ne lâche pas le jour où vous en avez besoin. Il lâche dans les mois qui précèdent, sans que personne le remarque. L'eau dépasse sa date, la batterie externe se vide toute seule, les médicaments périment, et un enfant ne rentre plus dans les vêtements que vous aviez prévus. L'agence américaine Ready.gov conseille de remplacer ce qui est périmé et de repenser le kit chaque année, à mesure que la famille change. Une vérification tous les six mois, par exemple au changement d'heure, attrape la plupart des problèmes avant qu'ils comptent.</p>
 
 <h2 id="routine">La routine des six mois</h2>
 <ul class="checklist">
@@ -2363,6 +2506,20 @@
 <p>Certains changements n'attendent pas la vérification des six mois : une naissance, un nouvel animal, un déménagement, une nouvelle maladie ou un nouveau traitement, un nouveau travail plus loin de chez vous qui justifie un <a href="/fr/guides/go-bag-vs-bug-out-bag/">sac de retour</a>. Chacun est une raison d'ouvrir le sac dans la semaine.</p>
 <div class="guide-note is-app">
     <p><strong>GoBag+</strong> suit la date de péremption de chaque article de vos sacs et de votre réserve à domicile. Avec Premium, l'app vous alerte avant qu'un article expire ou passe sous le minimum que vous avez fixé, et un widget d'écran d'accueil montre d'un coup d'œil où vous en êtes.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Essayer GoBag+ gratuitement 30 jours <span aria-hidden="true">→</span></a>
+</div>
+<p>Le <a href="/fr/guides/gobag-app-guide/">guide de GoBag+</a> montre comment tout mettre en place.</p>
+
+<h2 id="faq">Questions fréquentes</h2>
+<div class="guide-faq">
+    <h3>À quelle fréquence vérifier son kit d'urgence ?</h3>
+    <p>Tous les six mois, et la semaine même quand la vie change : une naissance, un nouvel animal, un déménagement, un nouveau traitement.</p>
+    <h3>Quand renouveler l'eau du kit ?</h3>
+    <p>Tous les six mois pour l'eau mise en bouteille soi-même. L'eau du commerce se garde jusqu'à la date indiquée tant qu'elle reste fermée.</p>
+    <h3>Les piles et les batteries externes se déchargent-elles ?</h3>
+    <p>Oui. Testez les piles tous les six mois et rangez-les hors des appareils pour qu'elles ne coulent pas. Une batterie externe se vide seule ; rechargez-la à chaque vérification.</p>
+    <h3>Peut-on manger les provisions du kit ?</h3>
+    <p>Oui, c'est le principe de la rotation : consommez conserves et en-cas quelques mois avant leur date et rachetez-en des neufs. Rien n'est gaspillé.</p>
 </div>
 
 <h2 id="sources">Sources</h2>
@@ -2380,29 +2537,34 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Autres guides</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/fr/guides/go-bag-checklist/">
-            <h3>Liste du sac d'évacuation</h3>
-            <p>Tout ce qu'il faut mettre dans un sac d'urgence, en neuf catégories, avec une liste à imprimer.</p>
+        <li><a class="guide-card" href="/fr/guides/power-outage-checklist/">
+            <h3>Coupure de courant</h3>
+            <p>Ce qu'il faut avoir avant que la lumière s'éteigne, combien de temps tiennent les aliments, et comment rester en sécurité.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/fr/guides/go-bag-vs-bug-out-bag/">
-            <h3>Sac d'évacuation ou sac de survie ?</h3>
-            <p>Sac d'évacuation, sac de survie, kit 72 h, sac de retour : à quoi sert chacun, et lequel il vous faut.</p>
+        <li><a class="guide-card" href="/fr/guides/car-emergency-kit/">
+            <h3>Kit d'urgence voiture</h3>
+            <p>Ce qu'il faut garder dans le coffre pour une panne, la neige ou une route coupée, l'hiver comme l'été.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/fr/guides/prep-kit-for-beginners/">
-            <h3>Kit d'urgence pour débutants</h3>
-            <p>Par où commencer : six étapes, de la connaissance des risques à un kit toujours prêt.</p>
+        <li><a class="guide-card" href="/fr/guides/pet-emergency-kit/">
+            <h3>Kit d'urgence pour animaux</h3>
+            <p>Un sac d'évacuation pour votre chien ou votre chat, et comment évacuer avec vos animaux.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/fr/guides/emergency-water-and-food/">
-            <h3>Réserves d'eau et de nourriture</h3>
-            <p>Combien d'eau et de nourriture garder chez soi, par personne et par jour, et ce qui se conserve le mieux.</p>
+        <li><a class="guide-card" href="/fr/guides/go-bag-for-kids/">
+            <h3>Sac d'urgence pour enfants</h3>
+            <p>Quoi prévoir pour les bébés et les enfants, et comment les préparer sans leur faire peur.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
-        <li><a class="guide-card" href="/fr/guides/emergency-documents/">
-            <h3>Papiers importants</h3>
-            <p>Quels papiers copier pour votre sac d'évacuation, et comment les garder à l'abri, au sec et sur vous.</p>
+        <li><a class="guide-card" href="/fr/guides/first-aid-kit-checklist/">
+            <h3>Trousse de secours</h3>
+            <p>Ce que contient une trousse de secours à la maison, article par article, et comment la garder à jour.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/fr/guides/family-emergency-plan/">
+            <h3>Plan familial d'urgence</h3>
+            <p>Points de rendez-vous, contact éloigné et itinéraires d'évacuation, notés sur une page.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

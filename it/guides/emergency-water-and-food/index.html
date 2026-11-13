@@ -109,7 +109,43 @@
   "mainEntityOfPage": "https://gobag.gredami.com/it/guides/emergency-water-and-food/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guide",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/it/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Commissione europea: preparazione alle crisi",
+      "url": "https://commission.europa.eu/topics/preparedness_it"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Water (in inglese)",
+      "url": "https://www.ready.gov/water"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Croce Rossa americana: Survival Kit Supplies (in inglese)",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "USDA: Shelf-Stable Food Safety (in inglese)",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/shelf-stable-food"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/it/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +160,47 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "it",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanta acqua serve per due settimane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 2 litri a persona al giorno, 28 litri a persona: 56 per due e 112 per quattro. Tienine di più per l'igiene, quando fa caldo, per bambini, donne che allattano, malati e animali."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto dura l'acqua conservata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'acqua in bottiglia del commercio dura fino alla data in etichetta finché resta chiusa. Quella che imbottigli tu, in contenitori per alimenti puliti, va cambiata ogni sei mesi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quali cibi tenere per un'emergenza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quelli che la tua famiglia mangia già, che si conservano senza frigorifero e richiedono poca o nessuna cottura: scatolette di carne, pesce, legumi e verdure, burro di arachidi, frutta secca, cracker, cereali e latte UHT."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto durano le scatolette?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Secondo il Dipartimento dell'Agricoltura degli Stati Uniti, da 2 a 5 anni quelle poco acide (carne, pesce, quasi tutte le verdure) e da 12 a 18 mesi quelle acide (pomodoro, frutta), se le lattine sono integre e tenute al fresco e all'asciutto."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2014,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2125,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2432,7 @@
             <p class="page-head-label"><a href="/it/guides/" data-i18n="guides_label">Guide</a></p>
             <h1>Scorte di acqua <span>e cibo</span></h1>
 <p class="page-head-lead">Quanto tenere in casa perché la tua famiglia possa restare due settimane senza uscire, calcolato a persona, e cosa dura di più.</p>
-            <p class="guide-updated">Aggiornato il <time datetime="2026-10-22">22 ottobre 2026</time></p>
+            <p class="guide-updated">Aggiornato il <time datetime="2026-11-13">13 novembre 2026</time></p>
         </div>
     </div>
 </section>
@@ -2309,6 +2451,7 @@
                     <li><a href="#shelf-life">Quanto dura</a></li>
                     <li><a href="#rotate">Ruota, non buttare</a></li>
                     <li><a href="#more">Oltre l'acqua e il cibo</a></li>
+                    <li><a href="#faq">Domande frequenti</a></li>
                     <li><a href="#sources">Fonti</a></li>
                 </ul>
             </div>
@@ -2318,7 +2461,14 @@
             </div>
         </aside>
         <article class="guide">
-            <p>La maggior parte delle emergenze non sono evacuazioni. Un temporale toglie la corrente, l'acqua del rubinetto non è potabile per una settimana, le strade chiudono e gli scaffali si svuotano. A quel punto conta quello che hai già in casa. L'Unione europea chiede almeno 72 ore di autonomia, e la Croce Rossa americana raccomanda due settimane di acqua e cibo per chi resta in casa.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">In breve</p>
+    <p>Tieni almeno 2 litri d'acqua a persona al giorno per bere e cucinare: 28 litri a persona per le due settimane raccomandate dalla Croce Rossa americana, 112 litri per una famiglia di quattro. Ready.gov ne calcola quasi 4 al giorno includendo l'igiene. Aggiungi cibo a lunga conservazione che mangiate già, circa 2.000 calorie al giorno per un adulto, e ruotalo perché nulla scada.</p>
+</div>
+<p class="guide-inline-app">GoBag+ trasforma questa guida in un kit da tenere sotto controllo: quantità calibrate sulla tua famiglia e un avviso prima che qualcosa scada. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prova GoBag+ gratis per 30 giorni <span aria-hidden="true">→</span></a></p>
+<p>La maggior parte delle emergenze non sono evacuazioni. Un temporale toglie la corrente, l'acqua del rubinetto non è potabile per una settimana, le strade chiudono e gli scaffali si svuotano. A quel punto conta quello che hai già in casa. L'Unione europea chiede almeno 72 ore di autonomia, e la Croce Rossa americana raccomanda due settimane di acqua e cibo per chi resta in casa.</p>
+
+<p>Se manca la corrente, la <a href="/it/guides/power-outage-checklist/">lista per un blackout</a> spiega cosa fare con frigorifero e congelatore.</p>
 
 <h2 id="water">Quanta acqua tenere</h2>
 <p>Conta <strong>almeno 2 litri a persona al giorno</strong> per bere e cucinare: è la cifra dell'agenzia tedesca di protezione civile (1,5 litri da bere e mezzo per cucinare) e del piano del governo francese. L'agenzia statunitense Ready.gov ne calcola quasi il doppio, 3,8 litri, perché include l'igiene. Tienine di più per bambini, donne che allattano, malati e quando fa caldo, e aggiungi l'acqua per gli animali.</p>
@@ -2383,6 +2533,19 @@
 <p>Le scorte di casa richiedono anche torce e pile, una radio a pile, un kit di primo soccorso e farmaci in più, sacchi della spazzatura e carta igienica, un po' di contanti, coperte calde e un modo per ricaricare i telefoni. La <a href="/it/guides/go-bag-checklist/">lista dello zaino di emergenza</a> raccoglie ciò che i due kit hanno in comune.</p>
 <div class="guide-note is-app">
     <p><strong>In GoBag+</strong> le scorte di casa tengono traccia di acqua, cibo e medicinali con una soglia minima a persona. Cambia il numero di persone e i livelli si adeguano; con Premium, l'app ti avvisa prima che qualcosa scada o stia per finire.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Prova GoBag+ gratis per 30 giorni <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Domande frequenti</h2>
+<div class="guide-faq">
+    <h3>Quanta acqua serve per due settimane?</h3>
+    <p>A 2 litri a persona al giorno, 28 litri a persona: 56 per due e 112 per quattro. Tienine di più per l'igiene, quando fa caldo, per bambini, donne che allattano, malati e animali.</p>
+    <h3>Quanto dura l'acqua conservata?</h3>
+    <p>L'acqua in bottiglia del commercio dura fino alla data in etichetta finché resta chiusa. Quella che imbottigli tu, in contenitori per alimenti puliti, va cambiata ogni sei mesi.</p>
+    <h3>Quali cibi tenere per un'emergenza?</h3>
+    <p>Quelli che la tua famiglia mangia già, che si conservano senza frigorifero e richiedono poca o nessuna cottura: scatolette di carne, pesce, legumi e verdure, burro di arachidi, frutta secca, cracker, cereali e latte UHT.</p>
+    <h3>Quanto durano le scatolette?</h3>
+    <p>Secondo il Dipartimento dell'Agricoltura degli Stati Uniti, da 2 a 5 anni quelle poco acide (carne, pesce, quasi tutte le verdure) e da 12 a 18 mesi quelle acide (pomodoro, frutta), se le lattine sono integre e tenute al fresco e all'asciutto.</p>
 </div>
 
 <h2 id="sources">Fonti</h2>
@@ -2401,21 +2564,6 @@
     <div class="container">
         <h2 class="section-title" data-i18n="guides_more">Altre guide</h2>
         <ul class="guide-cards">
-        <li><a class="guide-card" href="/it/guides/go-bag-checklist/">
-            <h3>Lista dello zaino di emergenza</h3>
-            <p>Tutto quello che va nello zaino di emergenza, in nove categorie, con una lista da stampare.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/it/guides/go-bag-vs-bug-out-bag/">
-            <h3>Zaino di emergenza o bug-out bag</h3>
-            <p>Zaino di emergenza, bug-out bag, kit 72 ore, scorte in casa: a cosa serve ciascuno e quale ti serve.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
-        <li><a class="guide-card" href="/it/guides/prep-kit-for-beginners/">
-            <h3>Kit di emergenza per principianti</h3>
-            <p>Da dove cominciare: sei passi, dal conoscere i rischi a un kit sempre pronto.</p>
-            <span class="guide-card-go" aria-hidden="true">→</span>
-        </a></li>
         <li><a class="guide-card" href="/it/guides/emergency-documents/">
             <h3>Documenti importanti</h3>
             <p>Quali documenti copiare per lo zaino e come tenerli al sicuro, all'asciutto e sempre con te.</p>
@@ -2424,6 +2572,26 @@
         <li><a class="guide-card" href="/it/guides/emergency-kit-maintenance/">
             <h3>Tenere il kit pronto</h3>
             <p>Una routine ogni sei mesi per controllare le scadenze, ruotare le scorte e aggiornare lo zaino.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/it/guides/power-outage-checklist/">
+            <h3>Cosa fare in caso di blackout</h3>
+            <p>Cosa avere prima che salti la luce, quanto dura il cibo e come restare al sicuro finché torna la corrente.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/it/guides/car-emergency-kit/">
+            <h3>Kit di emergenza per l'auto</h3>
+            <p>Cosa tenere nel bagagliaio per guasti, neve e strade chiuse, d'inverno e d'estate.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/it/guides/pet-emergency-kit/">
+            <h3>Kit di emergenza per animali</h3>
+            <p>Uno zaino di emergenza per il tuo cane o gatto, e come evacuare con gli animali.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/it/guides/go-bag-for-kids/">
+            <h3>Zaino di emergenza per bambini</h3>
+            <p>Cosa preparare per neonati e bambini, e come prepararli senza spaventarli.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

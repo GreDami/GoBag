@@ -7,7 +7,7 @@
          accepts in the cookie banner. See loadGA()/setConsent() near the end. -->
     <!-- i18n:head:start -->
     <title>Guías de la mochila y el kit de emergencia | GoBag+</title>
-    <meta name="description" content="Guías gratuitas para tu kit de emergencia: lista de la mochila para imprimir, cuánta agua y comida guardar, qué documentos copiar y cómo mantenerlo al día.">
+    <meta name="description" content="Guías gratis para prepararte ante emergencias: listas para imprimir de la mochila de emergencia, el coche, las mascotas, los niños, el botiquín y los apagones.">
     <meta name="keywords" content="mochila de emergencia, kit de emergencia, kit de supervivencia, mochila de evacuación, kit 72 horas, reserva de alimentos, preparación ante desastres">
     <link rel="canonical" href="https://gobag.gredami.com/es/guides/">
 
@@ -46,7 +46,7 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="Guías de la mochila y el kit de emergencia | GoBag+">
-    <meta property="og:description" content="Guías gratuitas para tu kit de emergencia: lista de la mochila para imprimir, cuánta agua y comida guardar, qué documentos copiar y cómo mantenerlo al día.">
+    <meta property="og:description" content="Guías gratis para prepararte ante emergencias: listas para imprimir de la mochila de emergencia, el coche, las mascotas, los niños, el botiquín y los apagones.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gobag.gredami.com/es/guides/">
     <meta property="og:site_name" content="GoBag+">
@@ -67,7 +67,7 @@
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Guías de la mochila y el kit de emergencia | GoBag+">
-    <meta name="twitter:description" content="Guías gratuitas para tu kit de emergencia: lista de la mochila para imprimir, cuánta agua y comida guardar, qué documentos copiar y cómo mantenerlo al día.">
+    <meta name="twitter:description" content="Guías gratis para prepararte ante emergencias: listas para imprimir de la mochila de emergencia, el coche, las mascotas, los niños, el botiquín y los apagones.">
     <meta name="twitter:image" content="https://gobag.gredami.com/screenshots/og.jpg">
     <meta name="twitter:site" content="@GreDamiStudio">
 
@@ -132,6 +132,54 @@
       "position": 6,
       "url": "https://gobag.gredami.com/es/guides/emergency-kit-maintenance/",
       "name": "Mantener el kit al día"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "url": "https://gobag.gredami.com/es/guides/power-outage-checklist/",
+      "name": "Qué hacer en un apagón"
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "url": "https://gobag.gredami.com/es/guides/car-emergency-kit/",
+      "name": "Kit de emergencia para el coche"
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "url": "https://gobag.gredami.com/es/guides/pet-emergency-kit/",
+      "name": "Kit de emergencia para mascotas"
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "url": "https://gobag.gredami.com/es/guides/go-bag-for-kids/",
+      "name": "Mochila de emergencia para niños"
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "url": "https://gobag.gredami.com/es/guides/first-aid-kit-checklist/",
+      "name": "Lista del botiquín"
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "url": "https://gobag.gredami.com/es/guides/family-emergency-plan/",
+      "name": "Plan familiar de emergencia"
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "url": "https://gobag.gredami.com/es/guides/go-bag-hacks/",
+      "name": "Trucos para la mochila de emergencia"
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "url": "https://gobag.gredami.com/es/guides/gobag-app-guide/",
+      "name": "Cómo usar GoBag+"
     }
   ]
 }
@@ -1947,6 +1995,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1993,7 +2106,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2334,6 +2447,46 @@
         <li><a class="guide-card" href="/es/guides/emergency-kit-maintenance/">
             <h2>Mantener el kit al día</h2>
             <p>Una rutina cada seis meses para revisar caducidades, rotar reservas y adaptar la mochila.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/power-outage-checklist/">
+            <h2>Qué hacer en un apagón</h2>
+            <p>Qué tener antes de que se vaya la luz, cuánto aguanta la comida y cómo estar seguro hasta que vuelva.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/car-emergency-kit/">
+            <h2>Kit de emergencia para el coche</h2>
+            <p>Qué llevar en el maletero para averías, nieve y carreteras cortadas, en invierno y en verano.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/pet-emergency-kit/">
+            <h2>Kit de emergencia para mascotas</h2>
+            <p>Una mochila de emergencia para tu perro o tu gato, y cómo evacuar con mascotas.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/go-bag-for-kids/">
+            <h2>Mochila de emergencia para niños</h2>
+            <p>Qué preparar para bebés y niños, y cómo prepararlos sin asustarlos.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/first-aid-kit-checklist/">
+            <h2>Lista del botiquín</h2>
+            <p>Qué lleva un botiquín en casa, artículo por artículo, y cómo mantenerlo al día.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/family-emergency-plan/">
+            <h2>Plan familiar de emergencia</h2>
+            <p>Puntos de encuentro, un contacto fuera de la zona y rutas de evacuación, en una página.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/go-bag-hacks/">
+            <h2>Trucos para la mochila de emergencia</h2>
+            <p>Veinte trucos para una mochila más ligera, más seca, más barata y más rápida de coger.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/es/guides/gobag-app-guide/">
+            <h2>Cómo usar GoBag+</h2>
+            <p>Prepara mochila, reserva en casa, contactos SOS y caja fuerte de documentos en diez minutos.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>

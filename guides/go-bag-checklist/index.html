@@ -109,7 +109,38 @@
   "mainEntityOfPage": "https://gobag.gredami.com/guides/go-bag-checklist/",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
   "datePublished": "2026-10-22",
-  "dateModified": "2026-10-22",
+  "dateModified": "2026-11-13",
+  "articleSection": "Guides",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "GoBag+",
+    "url": "https://gobag.gredami.com/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Build a Kit",
+      "url": "https://www.ready.gov/kit"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "American Red Cross: Survival Kit Supplies",
+      "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ready.gov: Prepare Your Pets for Disasters",
+      "url": "https://www.ready.gov/pets"
+    }
+  ],
+  "mentions": {
+    "@type": "MobileApplication",
+    "name": "GoBag+",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://gobag.gredami.com/",
+    "downloadUrl": "https://apps.apple.com/app/id6760232332"
+  },
   "author": {
     "@type": "Organization",
     "name": "GreDami",
@@ -124,6 +155,55 @@
       "url": "https://gobag.gredami.com/img/logo-64.png"
     }
   }
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "en",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the most important things to put in a go bag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Water, prescription medicine, copies of your documents, a flashlight, a charged power bank and cash. These are the things hardest to find once you have left home. Food, clothes and tools come next."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How heavy should a go bag be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Light enough that each person can walk with it for an hour without stopping. If a bag is too heavy, keep most of the water at home or in the car and pack a filter instead: water is the heaviest thing in it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a ready-made go bag good enough?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is a fair start, but a pre-packed kit will not have your medicine, your glasses, copies of your documents or your children's things. Buy one if it gets you started, then add what is personal to your household."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I check my go bag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every six months: check the dates on water, food and medicine, recharge the power bank, swap clothes for the season and make sure the children's still fit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do children need their own go bag?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, a small one with a few light things: a snack, a water bottle, a flashlight, a comfort toy and a card with your name and phone number. The heavy supplies stay in the adults' bags."
+      }
+    }
+  ]
 }
     </script>
 
@@ -1937,6 +2017,71 @@
         .guide-sources { font-size: 0.92rem; color: var(--muted); }
         .guide-sources li { font-size: 0.92rem; line-height: 1.65; }
         .guide-print { margin: 0 0 30px; }
+        /* The short answer that opens every guide: what a search snippet or an
+           AI answer quotes, so it is set apart and kept to a few sentences. */
+        .guide-answer {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(22,33,61,0.04);
+            border: 1px solid rgba(22,33,61,0.08);
+        }
+        .guide-answer-label {
+            font-family: var(--mono);
+            font-size: 0.72rem !important;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-ink);
+            margin: 0 0 8px !important;
+        }
+        .guide-answer p:last-child { margin-bottom: 0; }
+        .guide-answer ul { margin: 8px 0 0; }
+        /* The app line after the short answer: phones only, where the rail's
+           offer is hidden. */
+        .guide-inline-app { display: none; }
+        @media (max-width: 900px) {
+            .guide p.guide-inline-app {
+                display: block;
+                margin: -18px 0 30px;
+                padding: 14px 18px;
+                border-radius: 14px;
+                background: rgba(47,138,82,0.08);
+                border: 1px solid rgba(47,138,82,0.18);
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .guide-inline-app a { display: inline-block; margin-top: 4px; color: var(--green-ink); font-weight: 700; }
+        }
+        /* The way out of every "In GoBag+" box, added by the build. */
+        .guide a.guide-note-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            background: var(--green-ink);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .guide a.guide-note-cta:hover { background: var(--navy); color: #fff; transform: translateY(-1px); }
+        /* Questions at the foot of a guide: each one a heading the FAQ markup is read from. */
+        .guide-faq h3 { margin-top: 26px; }
+        .guide-faq h3:first-child { margin-top: 0; }
+        /* A screen from the app, in the guides that explain it. */
+        .guide-shot { margin: 26px 0 30px; text-align: center; }
+        .guide-shot img {
+            width: min(280px, 72%);
+            height: auto;
+            border-radius: 28px;
+            border: 1px solid rgba(22,33,61,0.10);
+            box-shadow: 0 12px 40px rgba(22,33,61,0.12);
+        }
+        .guide-shot figcaption { margin-top: 12px; font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
 
         /* the cards that lead to the guides: the index, and the foot of each */
         .guides-section { padding-top: 64px; }
@@ -1983,7 +2128,7 @@
            no offers — and the checklist's boxes print as boxes to tick. */
         @media print {
             nav, .nav-stage, .nav-scrim, .skip-link, .cookie-consent, .lang-offer,
-            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print { display: none !important; }
+            .page-head-art, .faq-rail, .guide-more, .divider, .cta-section, footer, .guide-print, .guide-note-cta, .guide-shot, .guide-inline-app { display: none !important; }
             body { background: #fff; }
             .page-head { background: none; color: #000; padding: 0 0 12px; }
             .page-head h1 span, .page-head-label { color: #000; }
@@ -2290,7 +2435,7 @@
             <p class="page-head-label"><a href="/guides/" data-i18n="guides_label">Guides</a></p>
             <h1>Go bag <span>checklist</span></h1>
 <p class="page-head-lead">What to put in an emergency bag you can grab in a minute: nine categories, item by item, on a list you can print.</p>
-            <p class="guide-updated">Updated <time datetime="2026-10-22">October 22, 2026</time></p>
+            <p class="guide-updated">Updated <time datetime="2026-11-13">November 13, 2026</time></p>
         </div>
     </div>
 </section>
@@ -2308,6 +2453,7 @@
                     <li><a href="#family">Extras for children, older relatives and pets</a></li>
                     <li><a href="#where">Where to keep your go bag</a></li>
                     <li><a href="#ready">Keep it ready</a></li>
+                    <li><a href="#faq">Frequently asked questions</a></li>
                     <li><a href="#sources">Sources</a></li>
                 </ul>
             </div>
@@ -2317,7 +2463,12 @@
             </div>
         </aside>
         <article class="guide">
-            <p>A go bag is the bag you pick up when you have minutes to leave home: a wildfire, a flood, a gas leak, an evacuation order. It holds what you need to get through about three days on your own: water, food, medicine, copies of your documents, and the few tools that make those days bearable. Ready.gov and the American Red Cross both recommend one, and the Red Cross counts a three-day supply for an evacuation.</p>
+            <div class="guide-answer">
+    <p class="guide-answer-label">Short answer</p>
+    <p>A go bag holds about three days of essentials for each person: water (2–3 liters to carry, plus a filter or tablets to make more safe), food that needs no cooking, a first aid kit and a week of prescription medicine, copies of your IDs and insurance in a waterproof pouch, cash in small bills, a flashlight, a power bank, a radio, a change of clothes and hygiene basics. Pack one backpack per person and keep it by the door.</p>
+</div>
+<p class="guide-inline-app">GoBag+ turns this guide into a kit you can track: quantities sized to your household, and an alert before anything expires. <a href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Try GoBag+ free for 30 days <span aria-hidden="true">→</span></a></p>
+<p>A go bag is the bag you pick up when you have minutes to leave home: a wildfire, a flood, a gas leak, an evacuation order. It holds what you need to get through about three days on your own: water, food, medicine, copies of your documents, and the few tools that make those days bearable. Ready.gov and the American Red Cross both recommend one, and the Red Cross counts a three-day supply for an evacuation.</p>
 <p>Pack one bag per person, sized to what that person can carry for a long walk. A sturdy backpack is better than a suitcase: it leaves your hands free. Children can carry a small bag of their own with a few light things and something familiar.</p>
 <button type="button" class="btn-secondary guide-print" onclick="window.print()">Print this checklist</button>
 
@@ -2349,6 +2500,7 @@
     <li>Dust masks or N95 respirators, for smoke and debris</li>
     <li>Hand sanitizer and disinfecting wipes</li>
 </ul>
+<p>What a complete kit holds, item by item, is in the <a href="/guides/first-aid-kit-checklist/">first aid kit checklist</a>.</p>
 
 <h3>4. Documents</h3>
 <ul class="checklist">
@@ -2412,15 +2564,31 @@
     <li>Older relatives: spare hearing aid batteries, chargers for medical devices, mobility aids and extra glasses</li>
     <li>Pets: three days of food and water, a leash or carrier, waste bags, vaccination records and a photo</li>
 </ul>
+<p>Each has a guide of its own: a <a href="/guides/go-bag-for-kids/">go bag for kids and babies</a> and a <a href="/guides/pet-emergency-kit/">pet emergency kit</a>.</p>
 
 <h2 id="where">Where to keep your go bag</h2>
-<p>By the door you would leave through, or in a closet on the way to it, where everyone in the house knows to find it. Ready.gov suggests a kit in three places: at home, at work, where you should be ready to shelter for at least 24 hours, and in the car, in case you are stranded. The work and car kits can be smaller; they are often called <a href="/guides/go-bag-vs-bug-out-bag/">get-home bags</a>.</p>
+<p>By the door you would leave through, or in a closet on the way to it, where everyone in the house knows to find it. Ready.gov suggests a kit in three places: at home, at work, where you should be ready to shelter for at least 24 hours, and in the car, in case you are stranded. The work and car kits can be smaller; they are often called <a href="/guides/go-bag-vs-bug-out-bag/">get-home bags</a>, and the <a href="/guides/car-emergency-kit/">car emergency kit</a> lists what the car one needs.</p>
 <p>Keep it somewhere cool and dry. Heat shortens the life of water, food, batteries and medicine, so a car trunk in summer is a poor home for anything you will need to rely on.</p>
 
 <h2 id="ready">Keep it ready</h2>
 <p>A packed bag is not a finished one. Every six months, check the dates on water, food and medicine, recharge the power bank, swap clothes for the season and make sure the children's still fit. The <a href="/guides/emergency-kit-maintenance/">kit maintenance guide</a> has the full routine.</p>
 <div class="guide-note is-app">
-    <p><strong>In GoBag+</strong>, these nine categories are already set up. Tell the app how many people you are packing for and the recommended quantities adjust; mark what you have, and it shows what is still missing. With Premium, it alerts you before anything expires.</p>
+    <p><strong>In GoBag+</strong>, your go bag comes already sorted into nine categories: Documents, Water &amp; Food, Clothing, Medical &amp; Hygiene, Tools &amp; Equipment, Electronics, Money, Personal &amp; Family and Miscellaneous, and you can add your own. Tell the app how many people you are packing for and the recommended quantities adjust; mark what you have, and a ring shows how complete the bag is and what is still missing. With Premium, it alerts you before anything expires.</p>
+    <a class="guide-note-cta" href="https://apps.apple.com/app/id6760232332" target="_blank" rel="noopener">Try GoBag+ free for 30 days <span aria-hidden="true">→</span></a>
+</div>
+
+<h2 id="faq">Frequently asked questions</h2>
+<div class="guide-faq">
+    <h3>What are the most important things to put in a go bag?</h3>
+    <p>Water, prescription medicine, copies of your documents, a flashlight, a charged power bank and cash. These are the things hardest to find once you have left home. Food, clothes and tools come next.</p>
+    <h3>How heavy should a go bag be?</h3>
+    <p>Light enough that each person can walk with it for an hour without stopping. If a bag is too heavy, keep most of the water at home or in the car and pack a filter instead: water is the heaviest thing in it.</p>
+    <h3>Is a ready-made go bag good enough?</h3>
+    <p>It is a fair start, but a pre-packed kit will not have your medicine, your glasses, copies of your documents or your children's things. Buy one if it gets you started, then add what is personal to your household.</p>
+    <h3>How often should I check my go bag?</h3>
+    <p>Every six months: check the dates on water, food and medicine, recharge the power bank, swap clothes for the season and make sure the children's still fit.</p>
+    <h3>Do children need their own go bag?</h3>
+    <p>Yes, a small one with a few light things: a snack, a water bottle, a flashlight, a comfort toy and a card with your name and phone number. The heavy supplies stay in the adults' bags.</p>
 </div>
 
 <h2 id="sources">Sources</h2>
@@ -2461,6 +2629,11 @@
         <li><a class="guide-card" href="/guides/emergency-kit-maintenance/">
             <h3>Keeping your kit ready</h3>
             <p>A six-month routine for checking expiry dates, rotating supplies and updating the bag as life changes.</p>
+            <span class="guide-card-go" aria-hidden="true">→</span>
+        </a></li>
+        <li><a class="guide-card" href="/guides/power-outage-checklist/">
+            <h3>Power outage checklist</h3>
+            <p>What to have before the lights go out, how long food lasts, and how to stay safe until the power returns.</p>
             <span class="guide-card-go" aria-hidden="true">→</span>
         </a></li>
     </ul>
