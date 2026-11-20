@@ -267,7 +267,7 @@ function renderHead(lang, page) {
     downloadUrl: 'https://apps.apple.com/app/id6760232332',
     installUrl: 'https://apps.apple.com/app/id6760232332',
     image: `${ORIGIN}/screenshots/og.jpg`,
-    screenshot: `${ORIGIN}/screenshots/1.jpg`,
+    screenshot: `${ORIGIN}/screenshots/${lang}/gobag.jpg`,
     description: seo.ogDescription,
     keywords: seo.keywords,
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -823,6 +823,8 @@ for (const page of PAGES) {
     }
 
     html = localizeLinks(html, lang);
+    /* The app's screens are shot in each language: /screenshots/en/ is the English set. */
+    if (lang !== 'en') html = html.replace(/\/screenshots\/en\//g, `/screenshots/${lang}/`);
     html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`);
     html = replaceRegion(html, 'head', renderHead(lang, page));
     html = replaceRegion(html, 'switcher', renderSwitcher(lang, page));

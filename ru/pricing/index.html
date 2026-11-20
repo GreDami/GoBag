@@ -913,21 +913,6 @@
             height: 11%;
             background: linear-gradient(180deg, #5c626b, #2b2f36);
         }
-        /* screenshots/3.jpg is a composite photo, so unlike the other screens it
-           carries no Dynamic Island of its own and its frame would read as a
-           phone missing one. Draw it, matching the island in screenshots/1.jpg
-           (206x60px within that file's 660x1435 screen). */
-        .phone-mock--island .phone-screen::after {
-            content: "";
-            position: absolute;
-            top: 1.6%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 31.2%;
-            height: 4.18%;
-            border-radius: 99px;
-            background: #000;
-        }
         @media (max-width: 900px) {
             /* The band closes on its contents: the picture has no room to
                reserve underneath it. */
@@ -1645,17 +1630,15 @@
         .step-dot.active::before { background: var(--green-ink); width: 26px; }
         .step-dot:hover::before { background: rgba(22,33,61,0.45); }
         .step-dot.active:hover::before { background: var(--green-ink); }
-        /* Three 42px buttons and seven 24px dots are 330px with 8px gaps,
-           which a 375px phone (327px inside the padding) cannot hold; at 6px
-           they fit. Narrower than that, the dots go on a row of their own
-           above the buttons. */
+        /* Ten 28px dots and the three 42px buttons need about 460px. Narrower
+           than that the dots take a row of their own above the buttons, and
+           under 380px they shrink to 24px so the row still fits. */
         @media (max-width: 380px) {
-            .steps-nav { gap: 6px; }
             .step-dot { width: 24px; }
             .step-dot::before { width: 16px; }
             .step-dot.active::before { width: 20px; }
         }
-        @media (max-width: 370px) {
+        @media (max-width: 480px) {
             .steps-nav { flex-wrap: wrap; row-gap: 12px; column-gap: 10px; }
             .steps-dots { order: -1; flex-basis: 100%; justify-content: center; }
         }
@@ -2851,7 +2834,7 @@ applyRegionalPricing(document.documentElement.lang);
       if (rel >  N / 2) rel -= N;   // wrap for infinite loop
       if (rel < -N / 2) rel += N;
       const abs = Math.min(Math.max(rel, -EDGE), EDGE);
-      const c   = deck()[abs + EDGE];
+      const c   = Math.abs(rel) > EDGE ? { ...deck()[abs + EDGE], op: 0, zi: 0 } : deck()[abs + EDGE];
       const dx  = c.dx + extraDx * (1 - Math.abs(abs) * 0.25);
       s.style.transform  = `translateX(${dx}px) scale(${c.sc})`;
       s.style.opacity    = c.op;

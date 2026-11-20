@@ -89,7 +89,7 @@
   "downloadUrl": "https://apps.apple.com/app/id6760232332",
   "installUrl": "https://apps.apple.com/app/id6760232332",
   "image": "https://gobag.gredami.com/screenshots/og.jpg",
-  "screenshot": "https://gobag.gredami.com/screenshots/1.jpg",
+  "screenshot": "https://gobag.gredami.com/screenshots/fr/gobag.jpg",
   "description": "Constituez votre sac d'évacuation et votre kit de survie, suivez vos réserves à la maison et protégez vos documents essentiels — dans une seule app.",
   "keywords": "sac d'évacuation, kit d'urgence, sac de survie, kit 72 heures, kit de survie, préparation aux catastrophes, réserve alimentaire, trousse d'urgence",
   "offers": {
@@ -951,21 +951,6 @@
             height: 11%;
             background: linear-gradient(180deg, #5c626b, #2b2f36);
         }
-        /* screenshots/3.jpg is a composite photo, so unlike the other screens it
-           carries no Dynamic Island of its own and its frame would read as a
-           phone missing one. Draw it, matching the island in screenshots/1.jpg
-           (206x60px within that file's 660x1435 screen). */
-        .phone-mock--island .phone-screen::after {
-            content: "";
-            position: absolute;
-            top: 1.6%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 31.2%;
-            height: 4.18%;
-            border-radius: 99px;
-            background: #000;
-        }
         @media (max-width: 900px) {
             /* The band closes on its contents: the picture has no room to
                reserve underneath it. */
@@ -1683,17 +1668,15 @@
         .step-dot.active::before { background: var(--green-ink); width: 26px; }
         .step-dot:hover::before { background: rgba(22,33,61,0.45); }
         .step-dot.active:hover::before { background: var(--green-ink); }
-        /* Three 42px buttons and seven 24px dots are 330px with 8px gaps,
-           which a 375px phone (327px inside the padding) cannot hold; at 6px
-           they fit. Narrower than that, the dots go on a row of their own
-           above the buttons. */
+        /* Ten 28px dots and the three 42px buttons need about 460px. Narrower
+           than that the dots take a row of their own above the buttons, and
+           under 380px they shrink to 24px so the row still fits. */
         @media (max-width: 380px) {
-            .steps-nav { gap: 6px; }
             .step-dot { width: 24px; }
             .step-dot::before { width: 16px; }
             .step-dot.active::before { width: 20px; }
         }
-        @media (max-width: 370px) {
+        @media (max-width: 480px) {
             .steps-nav { flex-wrap: wrap; row-gap: 12px; column-gap: 10px; }
             .steps-dots { order: -1; flex-basis: 100%; justify-content: center; }
         }
@@ -2398,7 +2381,7 @@
         <div class="section-label reveal" data-i18n="how_label">Comment ça marche</div>
         <h2 class="section-title reveal d1" data-i18n="how_title">Prêt en quelques minutes</h2>
         <p class="section-sub reveal d2" style="margin:0 auto 44px" data-i18n="how_sub">Configurez votre kit d'urgence en quelques étapes.</p>
-        <!-- A labelled group rather than a bare div, so the seven slides are
+        <!-- A labelled group rather than a bare div, so the slides are
              announced as one thing; the status line below carries the heading
              of whichever slide a deliberate move lands on. Autoplay does not
              write to it — a live region firing every few seconds is noise. -->
@@ -2411,8 +2394,50 @@
                 <div class="phone-mock">
                     <div class="phone-screen">
                         <picture>
-                            <source srcset="/screenshots/2.webp" type="image/webp">
-                            <img src="/screenshots/2.jpg" data-screenshot="2" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                            <source srcset="/screenshots/fr/reserve.webp" type="image/webp">
+                            <img src="/screenshots/fr/reserve.jpg" alt="" width="660" height="1434" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+            <div class="how-step-card">
+                <div class="step-card-header">
+                    <h3 data-i18n="step_expiry_h">Toutes les dates de péremption d'un coup d'œil</h3>
+                    <p data-i18n="step_expiry_p">Chaque article affiche sa date, et ce qui va bientôt périmer passe en orange.</p>
+                </div>
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <picture>
+                            <source srcset="/screenshots/fr/expiry.webp" type="image/webp">
+                            <img src="/screenshots/fr/expiry.jpg" alt="" width="660" height="1434" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+            <div class="how-step-card">
+                <div class="step-card-header">
+                    <h3 data-i18n="step_label_h">Scannez une étiquette</h3>
+                    <p data-i18n="step_label_p">Visez une boîte ou un paquet : le nom et la date de péremption se remplissent.</p>
+                </div>
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <picture>
+                            <source srcset="/screenshots/fr/label.webp" type="image/webp">
+                            <img src="/screenshots/fr/label.jpg" alt="" width="660" height="1434" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+            <div class="how-step-card">
+                <div class="step-card-header">
+                    <h3 data-i18n="step_barcode_h">Scannez un code-barres</h3>
+                    <p data-i18n="step_barcode_p">Scannez un produit que vous avez déjà, puis ajoutez-en ou retirez-en un d'un geste.</p>
+                </div>
+                <div class="phone-mock">
+                    <div class="phone-screen">
+                        <picture>
+                            <source srcset="/screenshots/fr/barcode.webp" type="image/webp">
+                            <img src="/screenshots/fr/barcode.jpg" alt="" width="660" height="1434" loading="lazy" decoding="async">
                         </picture>
                     </div>
                 </div>
@@ -2422,11 +2447,11 @@
                     <h3 data-i18n="step2_h">Synchronisé sur tous vos appareils</h3>
                     <p data-i18n="step2_p">Votre sac et votre réserve restent à jour sur iPhone et iPad via iCloud.</p>
                 </div>
-                <div class="phone-mock phone-mock--island">
+                <div class="phone-mock">
                     <div class="phone-screen">
                         <picture>
-                            <source srcset="/screenshots/3.webp" type="image/webp">
-                            <img src="/screenshots/3.jpg" data-screenshot="3" alt="" width="660" height="1428" loading="lazy" decoding="async">
+                            <source srcset="/screenshots/fr/bags.webp" type="image/webp">
+                            <img src="/screenshots/fr/bags.jpg" alt="" width="660" height="1434" loading="lazy" decoding="async">
                         </picture>
                     </div>
                 </div>
@@ -2439,8 +2464,8 @@
                 <div class="phone-mock">
                     <div class="phone-screen">
                         <picture>
-                            <source srcset="/screenshots/4.webp" type="image/webp">
-                            <img src="/screenshots/4.jpg" data-screenshot="4" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                            <source srcset="/screenshots/fr/contacts.webp" type="image/webp">
+                            <img src="/screenshots/fr/contacts.jpg" alt="" width="660" height="1434" loading="lazy" decoding="async">
                         </picture>
                     </div>
                 </div>
@@ -2453,8 +2478,8 @@
                 <div class="phone-mock">
                     <div class="phone-screen">
                         <picture>
-                            <source srcset="/screenshots/5.webp" type="image/webp">
-                            <img src="/screenshots/5.jpg" data-screenshot="5" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                            <source srcset="/screenshots/fr/vault.webp" type="image/webp">
+                            <img src="/screenshots/fr/vault.jpg" alt="" width="660" height="1434" loading="lazy" decoding="async">
                         </picture>
                     </div>
                 </div>
@@ -2467,8 +2492,8 @@
                 <div class="phone-mock">
                     <div class="phone-screen">
                         <picture>
-                            <source srcset="/screenshots/6.webp" type="image/webp">
-                            <img src="/screenshots/6.jpg" data-screenshot="6" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                            <source srcset="/screenshots/fr/people.webp" type="image/webp">
+                            <img src="/screenshots/fr/people.jpg" alt="" width="660" height="1434" loading="lazy" decoding="async">
                         </picture>
                     </div>
                 </div>
@@ -2481,8 +2506,8 @@
                 <div class="phone-mock">
                     <div class="phone-screen">
                         <picture>
-                            <source srcset="/screenshots/7.webp" type="image/webp">
-                            <img src="/screenshots/7.jpg" data-screenshot="7" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                            <source srcset="/screenshots/widget.webp" type="image/webp">
+                            <img src="/screenshots/widget.jpg" alt="" width="660" height="1435" loading="lazy" decoding="async">
                         </picture>
                     </div>
                 </div>
@@ -2495,8 +2520,8 @@
                 <div class="phone-mock">
                     <div class="phone-screen">
                         <picture>
-                            <source srcset="/screenshots/8.webp" type="image/webp">
-                            <img src="/screenshots/8.jpg" data-screenshot="8" alt="" width="660" height="1435" loading="lazy" decoding="async">
+                            <source srcset="/screenshots/fr/home.webp" type="image/webp">
+                            <img src="/screenshots/fr/home.jpg" alt="" width="660" height="1434" loading="lazy" decoding="async">
                         </picture>
                     </div>
                 </div>
@@ -2505,19 +2530,22 @@
         <div class="steps-nav">
             <button class="steps-btn" id="stepsPrev" aria-label="Précédent" data-i18n-attr="aria-label:nav_prev">&#8249;</button>
             <!-- Each dot is named after the slide it goes to, reusing that
-                 slide's own heading key rather than seven new strings per
+                 slide's own heading key rather than new strings per
                  language. The English values below are what the source page
                  ships; the build rewrites them per language. Keep literal tags
                  out of this comment: the build balances tags by scanning raw
                  text. -->
             <div class="steps-dots" id="stepsDots">
                 <button class="step-dot active" data-i="0" aria-label="Suivez vos réserves" data-i18n-attr="aria-label:step1_h"></button>
-                <button class="step-dot" data-i="1" aria-label="Synchronisé sur tous vos appareils" data-i18n-attr="aria-label:step2_h"></button>
-                <button class="step-dot" data-i="2" aria-label="Ajoutez vos contacts SOS" data-i18n-attr="aria-label:step3_h"></button>
-                <button class="step-dot" data-i="3" aria-label="Stockez vos documents importants" data-i18n-attr="aria-label:step4_h"></button>
-                <button class="step-dot" data-i="4" aria-label="Adaptez-le à votre foyer" data-i18n-attr="aria-label:step5_h"></button>
-                <button class="step-dot" data-i="5" aria-label="Votre niveau de préparation en un coup d'œil" data-i18n-attr="aria-label:step6_h"></button>
-                <button class="step-dot" data-i="6" aria-label="Tout au même endroit" data-i18n-attr="aria-label:step7_h"></button>
+                <button class="step-dot" data-i="1" aria-label="Toutes les dates de péremption d'un coup d'œil" data-i18n-attr="aria-label:step_expiry_h"></button>
+                <button class="step-dot" data-i="2" aria-label="Scannez une étiquette" data-i18n-attr="aria-label:step_label_h"></button>
+                <button class="step-dot" data-i="3" aria-label="Scannez un code-barres" data-i18n-attr="aria-label:step_barcode_h"></button>
+                <button class="step-dot" data-i="4" aria-label="Synchronisé sur tous vos appareils" data-i18n-attr="aria-label:step2_h"></button>
+                <button class="step-dot" data-i="5" aria-label="Ajoutez vos contacts SOS" data-i18n-attr="aria-label:step3_h"></button>
+                <button class="step-dot" data-i="6" aria-label="Stockez vos documents importants" data-i18n-attr="aria-label:step4_h"></button>
+                <button class="step-dot" data-i="7" aria-label="Adaptez-le à votre foyer" data-i18n-attr="aria-label:step5_h"></button>
+                <button class="step-dot" data-i="8" aria-label="Votre niveau de préparation en un coup d'œil" data-i18n-attr="aria-label:step6_h"></button>
+                <button class="step-dot" data-i="9" aria-label="Tout au même endroit" data-i18n-attr="aria-label:step7_h"></button>
             </div>
             <button class="steps-btn" id="stepsNext" aria-label="Suivant" data-i18n-attr="aria-label:nav_next">&#8250;</button>
             <!-- WCAG 2.2.2 wants a way to stop anything that moves by itself
@@ -2912,7 +2940,7 @@ applyRegionalPricing(document.documentElement.lang);
       if (rel >  N / 2) rel -= N;   // wrap for infinite loop
       if (rel < -N / 2) rel += N;
       const abs = Math.min(Math.max(rel, -EDGE), EDGE);
-      const c   = deck()[abs + EDGE];
+      const c   = Math.abs(rel) > EDGE ? { ...deck()[abs + EDGE], op: 0, zi: 0 } : deck()[abs + EDGE];
       const dx  = c.dx + extraDx * (1 - Math.abs(abs) * 0.25);
       s.style.transform  = `translateX(${dx}px) scale(${c.sc})`;
       s.style.opacity    = c.op;
